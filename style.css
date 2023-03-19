@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+.map-container {
+    height: 90vh;
+}
+
+.map {
+    height: 100%;
+    width: 100%;
+}
