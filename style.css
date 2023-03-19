@@ -4,6 +4,7 @@
 
 .map-container {
     height: 95vh;
+    position: relative;
 }
 
 .map {
@@ -28,4 +29,26 @@ path.provincias {
 
 path.provincias:hover {
     fill: gold;
+}
+
+/* button reset map */
+
+.btn-reset-map {
+
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    background-color: aliceblue;
+    border: 2px solid #333;
+    box-shadow: 4px 4px #AAA;
+    padding: .3em .4em;
+    border-radius: 3px;
+
+}
+
+.btn-reset-map:active {
+
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px #AAA;
+
 }

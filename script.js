@@ -29,6 +29,42 @@ function init(data) {
 
     main.mapa.initZoom();
 
+    main.controls = new Controls();
+
+
+}
+
+class Controls {
+
+    buttons = [
+
+        {
+
+            ref : 'btn-reset-map',
+            handler : (e) => {
+
+                console.log('fire');
+                main.mapa.reset_map();
+
+                // precisa resetar o zoom
+
+            }
+        }
+
+    ];
+
+    refs = {};
+
+    constructor() {
+
+        this.buttons.forEach(button => {
+
+            this.refs[button.ref] = new Button('.' + button.ref, button.handler)
+
+        })
+
+    }
+
 }
 
 class Mapa {
@@ -90,14 +126,15 @@ class Mapa {
             .attr('transform', e.transform);
     }
 
-    initZoom = function() {
+    initZoom() {
         console.log('init');
         d3.select('svg')
             .call(this.zoom);
     }
 
-    reset_map = function() {
-        d3.select('g').transition().duration(1000).attr('transform', '');
+    reset_map() {
+        //d3.select('g').transition().duration(1000).attr('transform', '');
+        d3.select('svg').transition().duration(750).call(this.zoom.transform, d3.zoomIdentity);
     }
 
 }
@@ -131,6 +168,30 @@ class Features {
             .append("title")
             .text(d => d.properties.name)
         ;
+
+    }
+
+}
+
+class Button {
+
+    ref;
+    el;
+
+    handler;
+
+    constructor(ref, handler) {
+
+        this.ref = ref;
+        this.el = document.querySelector(ref);
+        this.handler = handler;
+        this.monitor();
+
+    }
+
+    monitor() {
+
+        this.el.addEventListener('click', this.handler);
 
     }
 
