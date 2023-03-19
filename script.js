@@ -26,6 +26,22 @@ function init(data) {
         provincias : new Features('provincias', ref_to_data = main.data.level1, ref_to_map = main.mapa)
 
     }
+
+    let zoom = d3.zoom()
+    .on('zoom', handleZoom);
+
+    function handleZoom(e) {
+        d3.select('svg g')
+            .attr('transform', e.transform);
+    }
+
+    function initZoom() {
+        d3.select('svg')
+            .call(zoom);
+    }
+
+    initZoom();
+
 }
 
 class Mapa {
@@ -68,9 +84,15 @@ class Mapa {
 
         ;
 
+        this.d3sel.append('g');
+
         //this.data = data;
         //this.features = data.features;
 
+    }
+
+    reset_map = function() {
+        d3.select('g').transition().duration(1000).attr('transform', '');
     }
 
 }
@@ -94,7 +116,7 @@ class Features {
 
         this.path_generator = d3.geoPath().projection(ref_to_map.proj);
 
-        this.d3sel = ref_to_map.d3sel
+        this.d3sel = ref_to_map.d3sel.select('g')
             .selectAll("path." + class_name)
             .data(ref_to_data.features)
             .join("path")
