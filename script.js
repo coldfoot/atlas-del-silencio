@@ -71,6 +71,7 @@ class Mapa {
 
     el = null;
     d3sel = null;
+    d3svg = null;
     ref = null;
 
     original_viewbox;
@@ -86,11 +87,14 @@ class Mapa {
 
     zoom;
 
+    flag_zoom_to_feature = false;
+
     constructor(ref) {
 
         this.el = document.querySelector(ref);
         //this.d3sel = d3.select(ref);
         this.ref = ref;
+        this.d3svg = d3.select(ref);
 
         const cont = document.querySelector(ref + '-container');
 
@@ -121,7 +125,6 @@ class Mapa {
 
 
     handleZoom = (e) => {
-        console.log(this);
         this.d3sel
             .attr('transform', e.transform);
     }
@@ -134,7 +137,38 @@ class Mapa {
 
     reset_map() {
         //d3.select('g').transition().duration(1000).attr('transform', '');
-        d3.select('svg').transition().duration(750).call(this.zoom.transform, d3.zoomIdentity);
+        d3.select('svg').transition().duration(500).call(this.zoom.transform, d3.zoomIdentity);
+        if (this.flag_zoom_to_feature) this.fit_bounds('reset');
+    }
+
+    fit_bounds(class_name, name) {
+
+        const margin = 20;
+
+        let viewBox;
+
+        if (class_name == 'reset') {
+
+            viewBox = this.original_viewbox;
+
+            this.flag_zoom_to_feature = false;
+
+        } else {
+
+            this.flag_zoom_to_feature = true;
+
+            const feat = document.querySelector(`[data-name-${class_name}="${name}"]`);
+    
+            const bbox = feat.getBBox();
+    
+            viewBox = `${bbox.x - margin} ${bbox.y - margin} ${bbox.width + 2*margin} ${bbox.height + 2*margin}`
+        
+            console.log(feat, bbox, viewBox);
+
+        }
+
+        main.mapa.d3svg.transition().duration(500).attr('viewBox', viewBox);
+
     }
 
 }
@@ -163,7 +197,7 @@ class Features {
             .data(ref_to_data.features)
             .join("path")
             .classed(class_name, true)
-            .attr('data-name', d => d.properties.name)
+            .attr('data-name-' + class_name, d => d.properties.name)
             .attr("d", this.path_generator)
             .append("title")
             .text(d => d.properties.name)

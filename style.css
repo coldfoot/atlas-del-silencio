@@ -46,6 +46,10 @@ path.provincias:hover {
 
 }
 
+.btn-reset-map:hover {
+    background-color: lightblue;
+}
+
 .btn-reset-map:active {
 
     transform: translate(2px, 2px);
