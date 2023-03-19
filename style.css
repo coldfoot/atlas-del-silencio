@@ -19,11 +19,12 @@
 path {
     stroke-width: 1;
     stroke: white;
-    fill: khaki;
+    fill: lightseagreen;
 }
 
 path.provincias {
     stroke: #333;
+    stroke-width: 2px;
     fill: transparent;
 }
 

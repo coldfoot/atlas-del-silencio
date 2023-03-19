@@ -178,6 +178,7 @@ class Features {
     ref;
     el;
     d3sel;
+    d3ContSel;
 
     ref_to_data;
     ref_to_map;
@@ -192,17 +193,59 @@ class Features {
 
         this.path_generator = d3.geoPath().projection(ref_to_map.proj);
 
-        this.d3sel = ref_to_map.d3sel
+        ref_to_map.d3sel.append('g').classed('container-' + class_name, true);
+
+        this.d3ContSel = d3.select('.container-' + class_name);
+
+        this.d3sel = this.d3ContSel
             .selectAll("path." + class_name)
             .data(ref_to_data.features)
             .join("path")
             .classed(class_name, true)
             .attr('data-name-' + class_name, d => d.properties.name)
-            .attr("d", this.path_generator)
+            .attr("d", this.path_generator);
+
+        this.d3sel
             .append("title")
             .text(d => d.properties.name)
         ;
 
+    }
+
+    change_to_circle() {
+
+        const w = this.ref_to_map.w;
+
+        // const r = d3.scaleSqrt()
+        //   .domain([0, max_pop])
+        //   .range([1, 20]) 
+        // ;
+
+        let r = 10;
+
+        this.d3sel
+            .transition()
+            //.delay((d,i) => (i % 100) * 100)
+            .duration(3000)
+            .attrTween('d', function(d, i) {
+
+                let x = 50 + (2 * r + 10) * i;
+
+                const j = Math.floor(x / w);
+
+                x = x % w;
+                let y = 200 + (2 * r + 10) * j;
+
+                const d_attr = d3.select(this).attr('d');
+
+                return flubber.toCircle(d_attr, x, y, r, {maxSegmentLength: 2});
+
+        })
+
+    }
+
+    hide() {
+        this.d3ContSel.transition().duration(500).attr('opacity', 0);
     }
 
 }
@@ -229,4 +272,9 @@ class Button {
 
     }
 
+}
+
+function test() {
+    main.features.provincias.hide();
+    main.features.paroquias.change_to_circle();
 }
