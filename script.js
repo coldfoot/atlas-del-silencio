@@ -229,30 +229,62 @@ class Features {
         // ;
 
         let r = 10;
+        let margin = 5;
+
+        let qde = Math.ceil((w - margin - margin) / ((2 * r) + margin));
+
+        console.log(qde);
+
+        this.d3sel
+            .transition()
+            .delay((d,i) => i * 5)//(i % 50) * 100)
+            .duration(1000)
+            .attrTween('d', function(d, n) {
+
+                const i = n % qde;
+                const j = Math.floor(n / qde);
+
+                let x = 50 + (2 * r + margin) * i;
+
+                let y = 200 + (2 * r + margin) * j;
+
+                d.cx = x;
+                d.cy = y
+
+                const d_attr = d3.select(this).attr('d');
+
+                d.d = d_attr;
+
+                return flubber.toCircle(d_attr, x, y, r, {maxSegmentLength: 2});
+
+        }) 
+
+    }
+
+    change_to_shape() {
+
+        let r = 10;
 
         this.d3sel
             .transition()
             //.delay((d,i) => (i % 100) * 100)
             .duration(3000)
-            .attrTween('d', function(d, i) {
+            .attrTween('d', function(d, n) {
 
-                let x = 50 + (2 * r + 10) * i;
+                let x = d.cx;
 
-                const j = Math.floor(x / w);
+                let y = d.cy;
 
-                x = x % w;
-                let y = 200 + (2 * r + 10) * j;
+                const d_attr = d.d;
 
-                const d_attr = d3.select(this).attr('d');
-
-                return flubber.toCircle(d_attr, x, y, r, {maxSegmentLength: 2});
+                return flubber.fromCircle (x, y, r, d_attr, {maxSegmentLength: 2});
 
         })
 
     }
 
-    hide() {
-        this.d3ContSel.transition().duration(500).attr('opacity', 0);
+    hide(op) {
+        this.d3ContSel.transition().duration(500).attr('opacity', op);
     }
 
 }
@@ -318,4 +350,16 @@ function monitor_select(level) {
         
     });
 
+}
+
+function magic() {
+
+    main.features.provincias.hide(0);
+    main.features.municipios.change_to_circle();
+}
+
+function un_magic() {
+
+    main.features.provincias.hide(1);
+    main.features.municipios.change_to_shape();
 }
