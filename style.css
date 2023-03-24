@@ -24,7 +24,7 @@ path {
 
 path.provincias {
     stroke: #333;
-    stroke-width: 2px;
+    stroke-width: 3;
     fill: transparent;
     pointer-events: none;
 }
@@ -57,6 +57,11 @@ path.municipios:hover {
     border-radius: 3px;
 }
 
+.controls select:hover,
+.controls button:hover {
+    background-color: lightblue;
+}
+
 .select-wrapper {
 
     margin-block: 1em;
@@ -77,13 +82,30 @@ path.municipios:hover {
 
 }
 
-.btn-reset-map:hover {
-    background-color: lightblue;
-}
-
 .btn-reset-map:active {
 
     transform: translate(2px, 2px);
     box-shadow: 2px 2px #AAA;
 
+}
+
+
+
+.hud {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    background-color: #333;
+    padding: .5em;
+    border-radius: 2px;
+    width: 13em;
+    font-family: monospace;
+    color: yellow;
+    font-size: .7rem;
+    opacity: .7;
+}
+
+.hud p {
+    margin: 0;
+    text-align: right;
 }
