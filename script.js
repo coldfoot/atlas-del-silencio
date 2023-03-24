@@ -22,7 +22,7 @@ function init(data) {
 
     main.features = {
 
-        paroquias  : new Features('paroquias' , ref_to_data = main.data.level2, ref_to_map = main.mapa),
+        municipios  : new Features('municipios' , ref_to_data = main.data.level2, ref_to_map = main.mapa),
         provincias : new Features('provincias', ref_to_data = main.data.level1, ref_to_map = main.mapa)
 
     }
@@ -30,6 +30,11 @@ function init(data) {
     main.mapa.initZoom();
 
     main.controls = new Controls();
+
+    populate_select('provincias');
+    populate_select('municipios');
+    monitor_select('provincias');
+    monitor_select('municipios');
 
 
 }
@@ -143,6 +148,8 @@ class Mapa {
 
     fit_bounds(class_name, name) {
 
+        // class_name = provincias, municipios
+
         const margin = 20;
 
         let viewBox;
@@ -163,7 +170,7 @@ class Mapa {
     
             viewBox = `${bbox.x - margin} ${bbox.y - margin} ${bbox.width + 2*margin} ${bbox.height + 2*margin}`
         
-            console.log(feat, bbox, viewBox);
+            //console.log(feat, bbox, viewBox);
 
         }
 
@@ -276,5 +283,39 @@ class Button {
 
 function test() {
     main.features.provincias.hide();
-    main.features.paroquias.change_to_circle();
+    main.features.municipios.change_to_circle();
+}
+
+
+function populate_select(level) {
+
+    const sel = document.querySelector('#select-' + level);
+
+    const data = main.data[level == 'provincias' ? 'level1' : 'level2'].features
+      .map(d => d.properties.name)
+      .sort( (a,b) => a.localeCompare(b))
+    ;
+
+    data.forEach(local => {
+
+        const new_option = document.createElement('option');
+        new_option.value = local;
+        new_option.innerText = local;
+        sel.append(new_option);
+
+    })
+
+}
+
+function monitor_select(level) {
+
+    const sel = document.querySelector('#select-' + level);
+
+    sel.addEventListener('change', e => {
+        
+        //console.log(e, e.target.value, e.value);
+        main.mapa.fit_bounds(level, e.target.value);
+        
+    });
+
 }

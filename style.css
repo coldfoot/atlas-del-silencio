@@ -26,24 +26,54 @@ path.provincias {
     stroke: #333;
     stroke-width: 2px;
     fill: transparent;
+    pointer-events: none;
 }
 
-path.provincias:hover {
+path.municipios:hover {
     fill: gold;
+}
+
+/* controls */
+
+.controls {
+
+    position: absolute;
+    top: 1em;
+    left: 1em;
+
+    display: flex;
+    flex-direction: column;
+
+    font-family: sans-serif;
+
+}
+
+.controls select,
+.controls button {
+    background-color: aliceblue;
+    border: 2px solid #333;
+    box-shadow: 4px 4px #AAA;
+    padding: .3em .4em;
+    border-radius: 3px;
+}
+
+.select-wrapper {
+
+    margin-block: 1em;
+
+}
+
+.select-wrapper label {
+    display: block;
+    margin-bottom: .25rem;
+    font-size: .8rem;
 }
 
 /* button reset map */
 
 .btn-reset-map {
 
-    position: absolute;
-    top: 1em;
-    left: 1em;
-    background-color: aliceblue;
-    border: 2px solid #333;
-    box-shadow: 4px 4px #AAA;
-    padding: .3em .4em;
-    border-radius: 3px;
+    width: 5rem;
 
 }
 

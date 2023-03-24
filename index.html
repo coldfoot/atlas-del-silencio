@@ -10,7 +10,33 @@
 <body>
 
     <div class="map-container">
-        <button class="btn-reset-map">Reset map</button>
+
+        <div class="controls">
+
+            <button class="btn-reset-map">Reset map</button>
+
+            <div class="select-wrapper">
+
+                <label for="select-provincias">Provincias:</label>
+
+                <select name="provincias" id="select-provincias">
+                    <option value="">--Please choose an option--</option>
+                </select>
+
+            </div>
+
+            <div class="select-wrapper">
+
+                <label for="select-municipios">Municipios:</label>
+
+                <select name="municipios" id="select-municipios">
+                    <option value="">--Please choose an option--</option>
+                </select>
+
+            </div>
+
+        </div>
+        
         <svg class="map"></svg>
     </div>
 
