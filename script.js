@@ -143,13 +143,15 @@ class Mapa {
 
     reset_zoom() {
         d3.select('svg').call(this.zoom.transform, d3.zoomIdentity);
+        this.el.classList.remove('zoomed');
     }
 
     reset_map() {
+
         //d3.select('g').transition().duration(1000).attr('transform', '');
         d3.select('svg').transition().duration(300).call(this.zoom.transform, d3.zoomIdentity);
         if (this.flag_zoom_to_feature) this.fit_bounds('reset');
-        this.el.classList.remove('zoomed');
+        setTimeout( () => { d3.select('svg').classed('zoomed', false); } , 1000);
     }
 
     fit_bounds(class_name, name) {
@@ -167,9 +169,11 @@ class Mapa {
             viewBox = this.original_viewbox;
 
             this.flag_zoom_to_feature = false;
+            this.el.classList.remove('zoomed');
 
         } else {
 
+            this.el.classList.add('zoomed');
             this.flag_zoom_to_feature = true;
 
             const feat = document.querySelector(`[data-name-${class_name}="${name}"]`);

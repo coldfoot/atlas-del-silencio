@@ -37,6 +37,10 @@ path.provincias {
     stroke-width: 1;
 }
 
+.zoomed + .controls button {
+    background-color: khaki;
+}
+
 path.municipios:hover {
     fill: gold;
 }
