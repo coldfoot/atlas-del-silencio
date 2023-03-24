@@ -130,6 +130,7 @@ class Mapa {
 
 
     handleZoom = (e) => {
+        this.el.classList.add('zoomed');
         this.d3sel
             .attr('transform', e.transform);
     }
@@ -140,15 +141,22 @@ class Mapa {
             .call(this.zoom);
     }
 
+    reset_zoom() {
+        d3.select('svg').call(this.zoom.transform, d3.zoomIdentity);
+    }
+
     reset_map() {
         //d3.select('g').transition().duration(1000).attr('transform', '');
-        d3.select('svg').transition().duration(500).call(this.zoom.transform, d3.zoomIdentity);
+        d3.select('svg').transition().duration(300).call(this.zoom.transform, d3.zoomIdentity);
         if (this.flag_zoom_to_feature) this.fit_bounds('reset');
+        this.el.classList.remove('zoomed');
     }
 
     fit_bounds(class_name, name) {
 
         // class_name = provincias, municipios
+
+        this.reset_zoom();
 
         const margin = 20;
 

@@ -29,6 +29,14 @@ path.provincias {
     pointer-events: none;
 }
 
+.zoomed path {
+    stroke-width: .5;
+}
+
+.zoomed path.provincias {
+    stroke-width: 1;
+}
+
 path.municipios:hover {
     fill: gold;
 }
