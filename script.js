@@ -163,6 +163,7 @@ class Mapa {
         const margin = 20;
 
         let viewBox;
+        main.features.municipios.d3sel.classed('selected', false);
 
         if (class_name == 'reset') {
 
@@ -170,6 +171,7 @@ class Mapa {
 
             this.flag_zoom_to_feature = false;
             this.el.classList.remove('zoomed');
+            document.querySelector('.tooltip').innerHTML = "";
 
         } else {
 
@@ -177,6 +179,10 @@ class Mapa {
             this.flag_zoom_to_feature = true;
 
             const feat = document.querySelector(`[data-name-${class_name}="${name}"]`);
+
+            feat.classList.add('selected');
+
+            document.querySelector('.tooltip').innerHTML = name + ` (${class_name})`;
     
             const bbox = feat.getBBox();
     
@@ -228,6 +234,14 @@ class Features {
             .append("title")
             .text(d => d.properties.name)
         ;
+
+        this.d3sel.on('click', function(e) {
+
+            const name = e.target.dataset.nameMunicipios
+            main.mapa.fit_bounds('municipios', name);
+            //document.querySelector('.tooltip').innerHTML = name + ` (Municipio)`;
+
+        });
 
     }
 

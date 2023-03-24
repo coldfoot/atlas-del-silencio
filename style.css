@@ -29,6 +29,10 @@ path.provincias {
     pointer-events: none;
 }
 
+path.selected {
+    fill: khaki;
+}
+
 .zoomed path {
     stroke-width: .5;
 }
@@ -42,7 +46,7 @@ path.provincias {
 }
 
 path.municipios:hover {
-    fill: gold;
+    stroke: gold;
 }
 
 /* controls */
