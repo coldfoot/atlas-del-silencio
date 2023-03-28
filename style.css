@@ -2,15 +2,21 @@
     box-sizing: border-box;
 }
 
+.outer-wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
 .map-container {
-    height: 95vh;
+    height: 50vh;
     position: relative;
 }
 
 .map {
     height: 100%;
     width: 100%;
-    aspect-ratio: 1;
+    /*aspect-ratio: 1;*/
     border: 3px solid #333;
     /*background-color: khaki;*/
     background: radial-gradient(white, aliceblue);
@@ -47,6 +53,33 @@ path.selected {
 
 path.municipios:hover {
     stroke: gold;
+}
+
+/* text */
+.text-container {
+    height: 47vh;
+    border: 3px solid #333;
+    margin-top: -3px;
+    padding: 1em;
+    line-height: 1.4;
+}
+
+.text-container h1 {
+
+    margin: .5rem 0;
+
+}
+
+.key-word {
+    padding: .05em .1em;
+    border: 2px solid #333;
+    border-radius: 3px;
+    /*transition: all .3s;*/
+}
+
+.key-word.highlighted {
+    border-color: crimson;
+    background-color: lightpink;
 }
 
 /* controls */

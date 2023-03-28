@@ -29,12 +29,14 @@ function init(data) {
 
     main.mapa.initZoom();
 
-    main.controls = new Controls();
+    //main.controls = new Controls();
 
-    populate_select('provincias');
-    populate_select('municipios');
-    monitor_select('provincias');
-    monitor_select('municipios');
+    //populate_select('provincias');
+    //populate_select('municipios');
+    //monitor_select('provincias');
+    //monitor_select('municipios');
+
+    //animation();
 
 
 }
@@ -113,7 +115,7 @@ class Mapa {
         this.proj = d3.geoMercator()
           .center(this.center)
           //.rotate([10, 0])
-          .translate([this.w/4, this.h/1.5])
+          .translate([this.w/2.2, this.h/0.8]) // arrumar um jeito de calcular isso direito
           .scale(4200)
 
         ;
@@ -227,6 +229,7 @@ class Features {
             .data(ref_to_data.features)
             .join("path")
             .classed(class_name, true)
+            .attr('data-grupo', (d,i) => i % 3 )
             .attr('data-name-' + class_name, d => d.properties.name)
             .attr("d", this.path_generator);
 
@@ -388,4 +391,67 @@ function un_magic() {
 
     main.features.provincias.hide(1);
     main.features.municipios.change_to_shape();
+}
+
+function animation() {
+
+    const tl = gsap.timeline(
+        {repeat: 2}
+    );
+
+    
+    tl
+    .to('.municipios[data-grupo="1"]', {
+        fill: '#FFA614',
+        duration: 2
+    }, "<")
+    .to('[data-word="1"]', {
+        backgroundColor: '#FFA614',
+        duration: 2
+    }, "<")
+    .to('.municipios[data-grupo="1"]', {
+        fill: '#20b2aa',
+        duration: 2
+    }, ">2")
+    .to('[data-word="1"]', {
+        backgroundColor: '#FFFFFF',
+        duration: 2
+    }, "<")
+
+    .to('.municipios[data-grupo="2"]', {
+        fill: '#B33029',
+        duration: 2
+    }, "<")
+    .to('[data-word="2"]', {
+        backgroundColor: '#B33029',
+        duration: 2
+    }, "<")
+    .to('.municipios[data-grupo="2"]', {
+        fill: '#20b2aa',
+        duration: 2
+    }, ">2")
+    .to('[data-word="2"]', {
+        backgroundColor: '#FFFFFF',
+        duration: 2
+    }, "<")
+
+    .to('.municipios[data-grupo="0"]', {
+        fill: '#17B353',
+        duration: 2
+    }, "<")
+    .to('[data-word="0"]', {
+        backgroundColor: '#17B353',
+        duration: 2
+    }, "<")
+    .to('.municipios[data-grupo="0"]', {
+        fill: '#20b2aa',
+        duration: 2
+    }, ">2")
+    .to('[data-word="0"]', {
+        backgroundColor: '#FFFFFF',
+        duration: 2
+    }, "<")
+    
+
+
 }
