@@ -55,9 +55,12 @@ path[data-category="Desierto Moderado"] { fill: var(--color-semi-desiertos); }
 path[data-category="Desierto"] { fill: var(--color-desiertos); }
 
 
+g:has(path.selected) path {
+    opacity: .1;
+}
 
-path.selected {
-    fill: khaki;
+g:has(path.selected) path.selected {
+    opacity: 1;
 }
 
 .zoomed path {
