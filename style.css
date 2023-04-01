@@ -18,6 +18,7 @@ body {
     max-width: 400px;
     margin: 0 auto;
     background: white;
+    padding-top: 1rem;
 }
 
 .map-container {
@@ -90,7 +91,7 @@ path.municipios:hover {
     font-size: 2rem;
 }
 
-.key-word {
+.key-word, .btns > button {
     padding: .2em .4em;
     border-radius: 1rem;
     background-color: var(--color-highlight);
@@ -130,6 +131,67 @@ path.municipios:hover {
     text-decoration: none;
     border-radius: 1.5rem;
 }
+
+/* menu button */
+
+.top-bar {
+    display: flex;
+    height: 2rem;
+    justify-content: space-between;
+    margin: 1rem;
+    margin-top: 0;
+}
+
+.top-bar img {
+    display: block;
+    height: 100%;
+}
+
+.top-bar .btn-menu {
+    background-color: white;
+    border: none;
+    display: block;
+    height: 100%;
+    width: 3rem;
+    padding: 0;
+}
+
+.top-bar .btn-menu svg {
+    display: block;
+    height: 2rem;
+    width: 100%;
+}
+
+.top-bar .btn-menu line {
+    stroke: #333;
+    stroke-width: 3;
+}
+
+/* top-controls */
+.top-controls {
+    transition: transform 1s;
+}
+
+.top-controls > div {
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.top-controls > div + div {
+    margin-top: 1rem;
+}
+
+.btns button {
+    border: none;
+}
+
+.btns button + button {
+    margin-left: 1rem;
+}
+
+/* see .btns > button above */
+
 
 /* controls */
 
