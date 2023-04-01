@@ -99,6 +99,14 @@ path.municipios:hover {
     margin-top: 0;
 }
 
+.card-container h3 {
+    margin-bottom: 0;
+}
+
+.card-container p {
+    margin: 0;
+}
+
 /* text */
 
 .wrapper-text-container {

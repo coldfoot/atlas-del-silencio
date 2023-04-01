@@ -31,6 +31,8 @@ function init(data) {
 
     main.controls = new Controls();
 
+    main.card = new Card('card-container', data[1].features);
+
     //populate_select('provincias');
     //populate_select('municipios');
     //monitor_select('provincias');
@@ -254,6 +256,7 @@ class Features {
 
             const name = e.target.dataset.nameMunicipios
             main.mapa.fit_bounds('municipios', name);
+            main.card.set(name);
             //document.querySelector('.tooltip').innerHTML = name + ` (Municipio)`;
 
         });
@@ -328,6 +331,38 @@ class Features {
         this.d3ContSel.transition().duration(500).attr('opacity', op);
     }
 
+}
+
+class Card {
+
+    ref;
+    el;
+
+    data;
+
+    title_el;
+    pop_el;
+    medios_el;
+
+    constructor(ref, data) {
+
+        this.ref = ref;
+        this.el = document.querySelector('.' + ref);
+        this.title_el = document.querySelector('[data-text="location"]');
+        this.pop_el = document.querySelector('[data-text="poblacion"]');
+        //this.medios_ = document.querySelector('[data-text="medios"]');
+        this.data = data.map(d => d.properties);
+
+    }
+
+    set(name) {
+
+        const mini_data = this.data.filter(d => d.name = name)[0];
+
+        this.title_el.innerHTML = mini_data.name;
+        this.pop_el.innerHTML = mini_data.population;
+        //this.medios_el.innerHTML = mini_data.medios;
+    }
 }
 
 class Button {
