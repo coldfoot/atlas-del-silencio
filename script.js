@@ -367,7 +367,8 @@ class Card {
 
     set(name) {
 
-        const mini_data = this.data.filter(d => d.name = name)[0];
+        const mini_data = this.data.filter(d => d.name == name)[0];
+        console.log(mini_data);
 
         this.title_el.innerHTML = mini_data.name;
         this.pop_el.innerHTML = main.format(mini_data.population);
