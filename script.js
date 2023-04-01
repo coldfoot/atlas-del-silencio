@@ -45,7 +45,7 @@ class Controls {
 
     buttons = [
 
-        /*
+        
         {
 
             ref : 'btn-reset-map',
@@ -57,7 +57,7 @@ class Controls {
                 // precisa resetar o zoom
 
             }
-        },*/
+        },
 
         {
             ref: 'btn-explora',
@@ -185,7 +185,7 @@ class Mapa {
 
             this.flag_zoom_to_feature = false;
             this.el.classList.remove('zoomed');
-            document.querySelector('.tooltip').innerHTML = "";
+            //document.querySelector('.tooltip').innerHTML = "";
 
         } else {
 
@@ -196,7 +196,7 @@ class Mapa {
 
             feat.classList.add('selected');
 
-            document.querySelector('.tooltip').innerHTML = name + ` (${class_name})`;
+            //document.querySelector('.tooltip').innerHTML = name + ` (${class_name})`;
     
             const bbox = feat.getBBox();
     
