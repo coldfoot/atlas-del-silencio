@@ -8,6 +8,10 @@
     --color-back: #d9d9d9;
     background-color: #e8e8e8;
     --t: .5s;
+
+    --color-no-desiertos: #65CA87;
+    --color-semi-desiertos: #EFBB8B;
+    --color-desiertos: #FF8888;
 }
 
 body {
@@ -117,11 +121,15 @@ path.municipios:hover {
 .key-word, .btns > button {
     padding: .2em .4em;
     border-radius: 1rem;
-    background-color: var(--color-highlight);
+    /*background-color: var(--color-highlight);*/
     text-transform: uppercase;
     font-weight: 500;
     /*transition: all .3s;*/
 }
+
+.btn-no-desiertos, [data-word="no desiertos"] {background-color: var(--color-no-desiertos);}
+.btn-semi-desiertos, [data-word="semi-desiertos"] {background-color: var(--color-semi-desiertos);}
+.btn-desiertos, [data-word="desiertos"] {background-color: var(--color-desiertos);}
 
 .key-word.highlighted {
     border-color: crimson;
