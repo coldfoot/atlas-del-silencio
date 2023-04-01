@@ -2,8 +2,8 @@ const main = {};
 
 Promise.all([
 
-    fetch('./data/output/level-1.geojson').then(response => response.json()),
-    fetch('./data/output/level-2.geojson').then(response => response.json())
+    fetch('./data/output/finished-geojsons/level_1_results.geojson').then(response => response.json()),
+    fetch('./data/output/finished-geojsons/level_2_results.geojson').then(response => response.json())
 
 ]).then( init )
 
@@ -241,7 +241,7 @@ class Features {
             .data(ref_to_data.features)
             .join("path")
             .classed(class_name, true)
-            .attr('data-grupo', (d,i) => i % 3 )
+            .attr('data-category', d => d.properties.category)
             .attr('data-name-' + class_name, d => d.properties.name)
             .attr("d", this.path_generator);
 

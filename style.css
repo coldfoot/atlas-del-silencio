@@ -39,8 +39,8 @@ body {
 
 path {
     stroke-width: 1;
-    stroke: #BFA98F;
-    fill: #FEFED0; /* lightseagreen;*/
+    stroke: #333;/* #BFA98F;*/
+    /*fill: #FEFED0; /* lightseagreen;*/
 }
 
 path.provincias {
@@ -49,6 +49,12 @@ path.provincias {
     fill: transparent;
     pointer-events: none;
 }
+
+path[data-category="No desierto"] { fill: var(--color-no-desiertos); }
+path[data-category="Desierto Moderado"] { fill: var(--color-semi-desiertos); }
+path[data-category="Desierto"] { fill: var(--color-desiertos); }
+
+
 
 path.selected {
     fill: khaki;
@@ -67,7 +73,9 @@ path.selected {
 }
 
 path.municipios:hover {
-    stroke: gold;
+    stroke: var(--color-highlight);
+    stroke-width: 2;
+    opacity: .7;
 }
 
 
