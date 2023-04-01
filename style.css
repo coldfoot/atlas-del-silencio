@@ -35,8 +35,8 @@ body {
 
 path {
     stroke-width: 1;
-    stroke: white;
-    fill: lightseagreen;
+    stroke: #BFA98F;
+    fill: #FEFED0; /* lightseagreen;*/
 }
 
 path.provincias {
@@ -71,7 +71,7 @@ path.municipios:hover {
 .wrapper-text-container {
     position: relative;
     margin-top: -2rem;
-
+    transition: transform var(--t);
 }
 
 .text-container {
@@ -143,7 +143,7 @@ path.municipios:hover {
     color: #333;
     text-decoration: none;
     border-radius: 1.5rem;
-    opacity: 0;
+    /*opacity: 0;*/
     transition: opacity var(--t);
 }
 
@@ -224,8 +224,8 @@ path.municipios:hover {
     margin-top: -4.5rem;
 }
 
-[data-state="opening"] .link-hallazgos {
-    opacity: 1;
+[data-state="explore"] .wrapper-text-container {
+    transform: translateY(100%);
 }
 
 /* see .btns > button above */
