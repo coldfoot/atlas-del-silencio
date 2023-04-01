@@ -29,7 +29,7 @@ function init(data) {
 
     main.mapa.initZoom();
 
-    //main.controls = new Controls();
+    main.controls = new Controls();
 
     //populate_select('provincias');
     //populate_select('municipios');
@@ -45,6 +45,7 @@ class Controls {
 
     buttons = [
 
+        /*
         {
 
             ref : 'btn-reset-map',
@@ -54,6 +55,17 @@ class Controls {
                 main.mapa.reset_map();
 
                 // precisa resetar o zoom
+
+            }
+        },*/
+
+        {
+            ref: 'btn-explora',
+            handler: (e) => {
+
+                document.querySelector('.outer-wrapper').dataset.state = "explore";
+
+                console.log(document.querySelector('.outer-wrapper'));
 
             }
         }
@@ -336,6 +348,7 @@ class Button {
 
     monitor() {
 
+        console.log(this.el, ' -- monitoring...');
         this.el.addEventListener('click', this.handler);
 
     }

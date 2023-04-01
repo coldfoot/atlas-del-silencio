@@ -66,6 +66,27 @@ path.municipios:hover {
     stroke: gold;
 }
 
+
+
+/* cards */
+
+.wrapper-text-card-containers {
+    position: relative;
+}
+
+.card-container {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity var(--t);
+}
+
+.card-container h2 {
+    margin-top: 0;
+}
+
 /* text */
 
 .wrapper-text-container {
@@ -74,7 +95,7 @@ path.municipios:hover {
     transition: transform var(--t);
 }
 
-.text-container {
+.text-container, .card-container {
     height: auto;
     background-color: var(--color-back);
     padding: 2rem 2rem 2rem 1.5rem;
@@ -226,6 +247,10 @@ path.municipios:hover {
 
 [data-state="explore"] .wrapper-text-container {
     transform: translateY(100%);
+}
+
+[data-state="explore"] .card-container {
+    opacity: 1;
 }
 
 /* see .btns > button above */
