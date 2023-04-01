@@ -33,6 +33,12 @@ function init(data) {
 
     main.card = new Card('card-container', data[1].features);
 
+    main.never_clicked = true;
+
+    main.format = function(n) {
+        return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
+    }
+
     //populate_select('provincias');
     //populate_select('municipios');
     //monitor_select('provincias');
@@ -254,6 +260,10 @@ class Features {
 
         this.d3sel.on('click', function(e) {
 
+            if (main.never_clicked) {
+                main.never_clicked = false;
+                document.querySelector('.outer-wrapper').dataset.state = "explore";
+            }
             const name = e.target.dataset.nameMunicipios
             main.mapa.fit_bounds('municipios', name);
             main.card.set(name);
@@ -360,7 +370,7 @@ class Card {
         const mini_data = this.data.filter(d => d.name = name)[0];
 
         this.title_el.innerHTML = mini_data.name;
-        this.pop_el.innerHTML = mini_data.population;
+        this.pop_el.innerHTML = main.format(mini_data.population);
         //this.medios_el.innerHTML = mini_data.medios;
     }
 }
