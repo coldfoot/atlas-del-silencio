@@ -2,10 +2,22 @@
     box-sizing: border-box;
 }
 
+:root {
+    font-family: Roboto;
+    --color-highlight: #a6a6a6;
+    --color-back: #d9d9d9;
+    background-color: #e8e8e8;
+}
+
+body {
+    margin: 0;
+}
+
 .outer-wrapper {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
+    background: white;
 }
 
 .map-container {
@@ -16,10 +28,6 @@
 .map {
     height: 100%;
     width: 100%;
-    /*aspect-ratio: 1;*/
-    border: 3px solid #333;
-    /*background-color: khaki;*/
-    background: radial-gradient(white, aliceblue);
 }
 
 path {
@@ -56,30 +64,71 @@ path.municipios:hover {
 }
 
 /* text */
+
+.wrapper-text-container {
+    position: relative;
+    margin-top: -2rem;
+
+}
+
 .text-container {
-    height: 47vh;
-    border: 3px solid #333;
-    margin-top: -3px;
-    padding: 1em;
+    height: auto;
+    background-color: var(--color-back);
+    padding: 2rem 2rem 2rem 1.5rem;
     line-height: 1.4;
+    border-radius: 2rem 2rem 0 0;
+}
+
+.text-container * {
+    margin: 0;
 }
 
 .text-container h1 {
-
-    margin: .5rem 0;
-
+    margin-bottom: 1.5rem;
+    line-height: 1;
+    font-weight: 500;
+    font-size: 2rem;
 }
 
 .key-word {
-    padding: .05em .1em;
-    border: 2px solid #333;
-    border-radius: 3px;
+    padding: .2em .4em;
+    border-radius: 1rem;
+    background-color: var(--color-highlight);
+    text-transform: uppercase;
+    font-weight: 500;
     /*transition: all .3s;*/
 }
 
 .key-word.highlighted {
     border-color: crimson;
     background-color: lightpink;
+}
+
+/* button explora, hallazgos */
+
+.btn-explora {
+    border-radius: 2rem;
+    background-color: var(--color-highlight);
+    padding: 1rem;
+    width: 70%;
+    display: block;
+    margin: 1rem auto 0;
+    font-size: 1.5rem;
+    border: none;
+}
+
+.link-hallazgos {
+    margin: 0 auto 1rem 1rem;
+    line-height: 1;
+    padding: .6rem;
+    font-family: 1rem;
+    background-color: var(--color-back);
+    width: 33%;
+    display: block;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    border-radius: 1.5rem;
 }
 
 /* controls */
