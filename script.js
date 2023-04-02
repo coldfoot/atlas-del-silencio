@@ -11,19 +11,14 @@ function init(data) {
 
     console.log(data);
 
-    main.data = {
-
-        level1: data[0],
-        level2: data[1]
-
-    } 
+    main.data = new Data(data[0], data[1]);
 
     main.mapa = new Mapa('.map');
 
     main.features = {
 
-        municipios  : new Features('municipios' , ref_to_data = main.data.level2, ref_to_map = main.mapa),
-        provincias : new Features('provincias', ref_to_data = main.data.level1, ref_to_map = main.mapa)
+        municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa),
+        provincias : new Features('provincias', ref_to_data = main.data.paroquias, ref_to_map = main.mapa)
 
     }
 
@@ -46,6 +41,18 @@ function init(data) {
 
     //animation();
 
+
+}
+
+class Data {
+
+    paroquias;
+    municipios;
+
+    constructor(paroquias_data, municipios_data) {
+        this.paroquias = paroquias_data;
+        this.municipios = municipios_data;
+    }
 
 }
 
@@ -505,7 +512,7 @@ function populate_select(level) {
 
     const sel = document.querySelector('#select-' + level);
 
-    const data = main.data[level == 'provincias' ? 'level1' : 'level2'].features
+    const data = main.data[level].features
       .map(d => d.properties.name)
       .sort( (a,b) => a.localeCompare(b))
     ;
