@@ -67,77 +67,6 @@ class Data {
 
 }
 
-class Controls {
-
-    buttons = [
-
-        
-        /*{
-
-            ref : 'btn-reset-map',
-            handler : (e) => {
-
-                console.log('fire');
-                main.mapa.reset_map();
-
-                // precisa resetar o zoom
-
-            }
-        },*/
-
-        {
-
-            ref : 'breadcrumb-venezuela',
-            handler : (e) => {
-
-                console.log('fire');
-                main.mapa.reset_map();
-
-            }
-        },
-
-        {
-
-            ref : 'breadcrumb-provincia',
-            handler : (e) => {
-
-                console.log('fire');
-                const provincia = document.querySelector('.breadcrumb-provincia').innerText;
-                console.log(provincia);
-                main.mapa.fit_bounds('provincias', provincia);
-
-            }
-        },
-
-        {
-            ref: 'btn-explora',
-            handler: (e) => {
-
-                document.querySelector('.outer-wrapper').dataset.state = "explore";
-
-                console.log(document.querySelector('.outer-wrapper'));
-
-            }
-        },
-
-
-
-    ];
-
-    refs = {};
-
-    constructor() {
-
-        this.buttons.forEach(button => {
-
-            this.refs[button.ref] = new Button('.' + button.ref, button.handler)
-
-        })
-
-    }
-
-}
-
 class Mapa {
 
     el = null;
@@ -479,6 +408,77 @@ class Card {
         }
 
     }
+}
+
+class Controls {
+
+    buttons = [
+
+        
+        /*{
+
+            ref : 'btn-reset-map',
+            handler : (e) => {
+
+                console.log('fire');
+                main.mapa.reset_map();
+
+                // precisa resetar o zoom
+
+            }
+        },*/
+
+        {
+
+            ref : 'breadcrumb-venezuela',
+            handler : (e) => {
+
+                console.log('fire');
+                main.mapa.reset_map();
+
+            }
+        },
+
+        {
+
+            ref : 'breadcrumb-provincia',
+            handler : (e) => {
+
+                console.log('fire');
+                const provincia = document.querySelector('.breadcrumb-provincia').innerText;
+                console.log(provincia);
+                main.mapa.fit_bounds('provincias', provincia);
+
+            }
+        },
+
+        {
+            ref: 'btn-explora',
+            handler: (e) => {
+
+                document.querySelector('.outer-wrapper').dataset.state = "explore";
+
+                console.log(document.querySelector('.outer-wrapper'));
+
+            }
+        },
+
+
+
+    ];
+
+    refs = {};
+
+    constructor() {
+
+        this.buttons.forEach(button => {
+
+            this.refs[button.ref] = new Button('.' + button.ref, button.handler)
+
+        })
+
+    }
+
 }
 
 class Button {
