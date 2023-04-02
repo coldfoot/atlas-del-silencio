@@ -219,6 +219,7 @@ class Mapa {
         if (class_name == 'reset') {
 
             main.card.update_bread_crumb('venezuela');
+            main.card.set('venezuela');
 
             viewBox = this.original_viewbox;
 
@@ -227,6 +228,8 @@ class Mapa {
             //document.querySelector('.tooltip').innerHTML = "";
 
         } else {
+
+            main.card.set(class_name, name);
 
             this.el.classList.add('zoomed');
             this.flag_zoom_to_feature = true;
@@ -243,6 +246,7 @@ class Mapa {
                 console.log(mun_data, provincia);
                 document.querySelector(`[data-provincias="${provincia}"]`).classList.add('selected');
             }
+
 
             //document.querySelector('.tooltip').innerHTML = name + ` (${class_name})`;
     
@@ -314,7 +318,6 @@ class Features {
             }
             const name = e.target.dataset[type]
             main.mapa.fit_bounds(type, name);
-            main.card.set(type, name);
             //document.querySelector('.tooltip').innerHTML = name + ` (Municipio)`;
 
         });
@@ -423,7 +426,19 @@ class Card {
 
     set(type, name) {
 
-        const mini_data = this.retrieve_data(type, name);
+        let mini_data;
+        
+        if (type == 'venezuela') {
+
+            mini_data = {
+                name : 'Venezuela',
+                population : 28200000
+            }
+        }
+        
+        else  mini_data = this.retrieve_data(type, name);
+
+        
         console.log(mini_data);
 
         this.title_el.innerHTML = mini_data.name;
