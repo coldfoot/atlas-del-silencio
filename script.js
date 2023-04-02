@@ -18,7 +18,7 @@ function init(data) {
     main.features = {
 
         municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa),
-        provincias : new Features('provincias', ref_to_data = main.data.paroquias, ref_to_map = main.mapa)
+        provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa)
 
     }
 
@@ -46,12 +46,23 @@ function init(data) {
 
 class Data {
 
-    paroquias;
+    provincias;
     municipios;
 
-    constructor(paroquias_data, municipios_data) {
-        this.paroquias = paroquias_data;
+    constructor(provincias_data, municipios_data) {
+        this.provincias = provincias_data;
         this.municipios = municipios_data;
+    }
+
+    retrieve_data(type, name) {
+
+        console.log(type, this[type]);
+        const mini_data = this[type].features
+          .map(d => d.properties)
+          .filter(d => d.name == name)[0];
+
+        return mini_data;
+
     }
 
 }
@@ -248,7 +259,7 @@ class Mapa {
 
             // also make the parent provincia selected, so it stays transparent;
             if (class_name == 'municipios') {
-                const mun_data = main.card.retrieve_data('municipios', name);
+                const mun_data = main.data.retrieve_data('municipios', name);
                 const provincia = mun_data.parent_name;
                 console.log(mun_data, provincia);
                 document.querySelector(`[data-provincias="${provincia}"]`).classList.add('selected');
@@ -443,7 +454,7 @@ class Card {
             }
         }
         
-        else  mini_data = this.retrieve_data(type, name);
+        else  mini_data = main.data.retrieve_data(type, name);
 
         
         console.log(mini_data);
@@ -455,13 +466,6 @@ class Card {
         //this.medios_el.innerHTML = mini_data.medios;
     }
 
-    retrieve_data(type, name) {
-
-        const mini_data = this.data[type].filter(d => d.name == name)[0];
-        return mini_data;
-
-    }
-
     update_bread_crumb(type, name) {
 
         console.log(this.breadcrumb_el, type, name);
@@ -470,7 +474,7 @@ class Card {
 
         if (type == 'municipios') {
 
-            document.querySelector('.breadcrumb-provincia').innerText = this.retrieve_data('municipios', name).parent_name;
+            document.querySelector('.breadcrumb-provincia').innerText = main.data.retrieve_data('municipios', name).parent_name;
 
         }
 
