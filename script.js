@@ -192,6 +192,8 @@ class Mapa {
 
         if (class_name == 'reset') {
 
+            main.card.update_bread_crumb('venezuela');
+
             viewBox = this.original_viewbox;
 
             this.flag_zoom_to_feature = false;
@@ -374,10 +376,13 @@ class Card {
     pop_el;
     medios_el;
 
+    breadcrumb_el;
+
     constructor(ref, data_provincias, data_municipios) {
 
         this.ref = ref;
         this.el = document.querySelector('.' + ref);
+        this.breadcrumb_el = document.querySelector('.' + ref + ' .card-breadcrumbs');
         this.title_el = document.querySelector('[data-text="location"]');
         this.pop_el = document.querySelector('[data-text="poblacion"]');
         //this.medios_ = document.querySelector('[data-text="medios"]');
@@ -397,6 +402,8 @@ class Card {
 
         this.title_el.innerHTML = mini_data.name;
         this.pop_el.innerHTML = main.format(mini_data.population);
+
+        this.update_bread_crumb(type, name);
         //this.medios_el.innerHTML = mini_data.medios;
     }
 
@@ -404,6 +411,20 @@ class Card {
 
         const mini_data = this.data[type].filter(d => d.name == name)[0];
         return mini_data;
+
+    }
+
+    update_bread_crumb(type, name) {
+
+        console.log(this.breadcrumb_el, type, name);
+
+        this.breadcrumb_el.dataset.breadcrumbLevel = type;
+
+        if (type == 'municipios') {
+
+            document.querySelector('.breadcrumb-provincia').innerText = this.retrieve_data('municipios', name).parent_name;
+
+        }
 
     }
 }

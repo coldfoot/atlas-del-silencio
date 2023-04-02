@@ -118,6 +118,26 @@ g path.municipios.municipios.municipios:hover {
     margin: 0;
 }
 
+.card-breadcrumbs {
+    font-size: .6rem;
+    text-transform: uppercase;
+}
+
+[data-breadcrumb-level="venezuela"] .breadcrumb-venezuela,
+[data-breadcrumb-level="venezuela"] .breadcrumb-provincia {
+    opacity: 0;
+}
+
+[data-breadcrumb-level="provincias"] .breadcrumb-provincia {
+    opacity: 0;
+}
+
+.breadcrumb-provincia::before {
+    content: '>';
+    margin-right: .3rem;
+    margin-left: .3rem;
+}
+
 /* text */
 
 .wrapper-text-container {
