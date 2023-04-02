@@ -299,6 +299,7 @@ g path.municipios.municipios.municipios:hover {
     width: 100%;
     padding-left: 2rem;
     font-family: inherit;
+    border: none;
 }
 
 .top-controls > div + div {
