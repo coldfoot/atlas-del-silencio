@@ -165,7 +165,7 @@ g path.municipios.municipios.municipios:hover {
 .wrapper-text-container {
     position: relative;
     margin-top: -2.2rem;
-    transition: transform var(--t);
+    transition: transform var(--t), opacity var(--t);
 }
 
 .text-container, .card-container {
@@ -325,6 +325,7 @@ g path.municipios.municipios.municipios:hover {
 
 [data-state="explore"] .wrapper-text-container {
     transform: translateY(100%);
+    opacity: 0;
 }
 
 [data-state="explore"] .card-container {
