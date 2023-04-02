@@ -124,19 +124,38 @@ g path.municipios.municipios.municipios:hover {
 }
 
 [data-breadcrumb-level="venezuela"] .breadcrumb-venezuela,
-[data-breadcrumb-level="venezuela"] .breadcrumb-provincia {
+[data-breadcrumb-level="venezuela"] .breadcrumb-provincia,
+[data-breadcrumb-level="venezuela"] .breadcrumb-separator {
     opacity: 0;
+    display: none;
 }
 
-[data-breadcrumb-level="provincias"] .breadcrumb-provincia {
+[data-breadcrumb-level="provincias"] .breadcrumb-provincia,
+[data-breadcrumb-level="provincias"] .breadcrumb-separator  {
     opacity: 0;
+    display: none;
 }
 
+.card-breadcrumbs button {
+    border: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 0;
+}
+
+.card-breadcrumbs button:hover {
+    border-color: var(--color-highlight);
+}
+
+/*
 .breadcrumb-provincia::before {
+    display: inline-block;
     content: '>';
     margin-right: .3rem;
     margin-left: .3rem;
-}
+    border: none;
+    background-color: transparent;
+}*/
 
 /* text */
 

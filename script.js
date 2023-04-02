@@ -54,7 +54,7 @@ class Controls {
     buttons = [
 
         
-        {
+        /*{
 
             ref : 'btn-reset-map',
             handler : (e) => {
@@ -63,6 +63,30 @@ class Controls {
                 main.mapa.reset_map();
 
                 // precisa resetar o zoom
+
+            }
+        },*/
+
+        {
+
+            ref : 'breadcrumb-venezuela',
+            handler : (e) => {
+
+                console.log('fire');
+                main.mapa.reset_map();
+
+            }
+        },
+
+        {
+
+            ref : 'breadcrumb-provincia',
+            handler : (e) => {
+
+                console.log('fire');
+                const provincia = document.querySelector('.breadcrumb-provincia').innerText;
+                console.log(provincia);
+                main.mapa.fit_bounds('provincias', provincia);
 
             }
         },
@@ -76,7 +100,9 @@ class Controls {
                 console.log(document.querySelector('.outer-wrapper'));
 
             }
-        }
+        },
+
+
 
     ];
 
