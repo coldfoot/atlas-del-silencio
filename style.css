@@ -95,19 +95,22 @@ g path.municipios.municipios.municipios:hover {
 
 .wrapper-text-card-containers {
     position: relative;
+    height: calc(100vh - 50vh - 8rem);
 }
 
 .card-container {
     position: absolute;
-    top: 2rem;
+    bottom: 0;
     left: 0;
     width: 100%;
     opacity: 0;
+    top: 2rem;
     transition: opacity var(--t);
 }
 
 .card-container h2 {
     margin-top: 0;
+    line-height: 1.2;
 }
 
 .card-container h3 {
@@ -166,7 +169,6 @@ g path.municipios.municipios.municipios:hover {
 }
 
 .text-container, .card-container {
-    height: auto;
     background-color: var(--color-back);
     padding: 2rem 2rem 2rem 1.5rem;
     line-height: 1.65;
@@ -281,6 +283,7 @@ g path.municipios.municipios.municipios:hover {
 /* top-controls */
 .top-controls {
     transition: transform var(--t), opacity var(--t);
+    margin-bottom: .5rem;
 }
 
 .top-controls > div {
@@ -316,7 +319,7 @@ g path.municipios.municipios.municipios:hover {
 }
 
 [data-state="opening"] .map-container {
-    margin-top: -4.5rem;
+    margin-top: -5rem;
 }
 
 [data-state="explore"] .wrapper-text-container {
