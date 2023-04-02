@@ -40,12 +40,20 @@ body {
 path {
     stroke-width: 1;
     stroke: #333;/* #BFA98F;*/
-    /*fill: #FEFED0; /* lightseagreen;*/
+    fill: #FEFED0; /* lightseagreen;*/
 }
 
 path.provincias {
     stroke: #333;
     stroke-width: 3;
+    transition: fill var(--t);
+}
+
+path.provincias:hover {
+    fill: lightseagreen;
+}
+
+path.provincias.selected {
     fill: transparent;
     pointer-events: none;
 }
@@ -55,13 +63,14 @@ path[data-category="Desierto Moderado"] { fill: var(--color-semi-desiertos); }
 path[data-category="Desierto"] { fill: var(--color-desiertos); }
 
 
+/*
 g:has(path.selected) path {
     opacity: .1;
 }
 
 g:has(path.selected) path.selected {
     opacity: 1;
-}
+}*/
 
 .zoomed path {
     stroke-width: .5;

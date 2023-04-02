@@ -31,7 +31,7 @@ function init(data) {
 
     main.controls = new Controls();
 
-    main.card = new Card('card-container', data[1].features);
+    main.card = new Card('card-container', data[0].features, data[1].features);
 
     main.never_clicked = true;
 
@@ -185,7 +185,10 @@ class Mapa {
         const margin = 20;
 
         let viewBox;
+
+        // resets selections
         main.features.municipios.d3sel.classed('selected', false);
+        main.features.provincias.d3sel.classed('selected', false);
 
         if (class_name == 'reset') {
 
@@ -200,9 +203,18 @@ class Mapa {
             this.el.classList.add('zoomed');
             this.flag_zoom_to_feature = true;
 
-            const feat = document.querySelector(`[data-name-${class_name}="${name}"]`);
+            const feat = document.querySelector(`[data-${class_name}="${name}"]`);
 
+            console.log(class_name, name);
             feat.classList.add('selected');
+
+            // also make the parent provincia selected, so it stays transparent;
+            if (class_name == 'municipios') {
+                const mun_data = main.card.retrieve_data('municipios', name);
+                const provincia = mun_data.parent_name;
+                console.log(mun_data, provincia);
+                document.querySelector(`[data-provincias="${provincia}"]`).classList.add('selected');
+            }
 
             //document.querySelector('.tooltip').innerHTML = name + ` (${class_name})`;
     
@@ -227,6 +239,8 @@ class Features {
     d3sel;
     d3ContSel;
 
+    type;
+
     ref_to_data;
     ref_to_map;
 
@@ -237,6 +251,8 @@ class Features {
         this.ref = '.' + class_name;
         this.ref_to_data = ref_to_data;
         this.ref_to_map = ref_to_map;
+
+        this.type = class_name;
 
         this.path_generator = d3.geoPath().projection(ref_to_map.proj);
 
@@ -249,8 +265,9 @@ class Features {
             .data(ref_to_data.features)
             .join("path")
             .classed(class_name, true)
+            .attr('data-type', class_name)
             .attr('data-category', d => d.properties.category)
-            .attr('data-name-' + class_name, d => d.properties.name)
+            .attr('data-' + class_name, d => d.properties.name)
             .attr("d", this.path_generator);
 
         this.d3sel
@@ -260,13 +277,16 @@ class Features {
 
         this.d3sel.on('click', function(e) {
 
+            const el_clicked = e.target;
+            const type = e.target.dataset.type;
+
             if (main.never_clicked) {
                 main.never_clicked = false;
                 document.querySelector('.outer-wrapper').dataset.state = "explore";
             }
-            const name = e.target.dataset.nameMunicipios
-            main.mapa.fit_bounds('municipios', name);
-            main.card.set(name);
+            const name = e.target.dataset[type]
+            main.mapa.fit_bounds(type, name);
+            main.card.set(type, name);
             //document.querySelector('.tooltip').innerHTML = name + ` (Municipio)`;
 
         });
@@ -354,25 +374,37 @@ class Card {
     pop_el;
     medios_el;
 
-    constructor(ref, data) {
+    constructor(ref, data_provincias, data_municipios) {
 
         this.ref = ref;
         this.el = document.querySelector('.' + ref);
         this.title_el = document.querySelector('[data-text="location"]');
         this.pop_el = document.querySelector('[data-text="poblacion"]');
         //this.medios_ = document.querySelector('[data-text="medios"]');
-        this.data = data.map(d => d.properties);
+        this.data = {
+
+            'provincias' : data_provincias.map(d => d.properties),
+            'municipios' : data_municipios.map(d => d.properties)
+
+        }
 
     }
 
-    set(name) {
+    set(type, name) {
 
-        const mini_data = this.data.filter(d => d.name == name)[0];
+        const mini_data = this.retrieve_data(type, name);
         console.log(mini_data);
 
         this.title_el.innerHTML = mini_data.name;
         this.pop_el.innerHTML = main.format(mini_data.population);
         //this.medios_el.innerHTML = mini_data.medios;
+    }
+
+    retrieve_data(type, name) {
+
+        const mini_data = this.data[type].filter(d => d.name == name)[0];
+        return mini_data;
+
     }
 }
 
