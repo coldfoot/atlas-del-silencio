@@ -114,7 +114,7 @@ path.municipios:hover {
 
 .wrapper-text-container {
     position: relative;
-    margin-top: -2rem;
+    margin-top: -2.2rem;
     transition: transform var(--t);
 }
 
@@ -185,7 +185,7 @@ path.municipios:hover {
     padding: .6rem;
     font-family: 1rem;
     background-color: var(--color-back);
-    border: 2px solid var(--color-back);
+    /*border: 2px solid var(--color-back);*/
     width: 33%;
     text-align: center;
     color: #333;
