@@ -247,6 +247,7 @@ class Features {
             .data(ref_to_data.features)
             .join("path")
             .classed(class_name, true)
+            .classed('distrito-capital', d => d.properties.parent_name == "Distrito capital")
             .attr('data-type', class_name)
             .attr('data-category', d => d.properties.category)
             .attr('data-' + class_name, d => d.properties.name)

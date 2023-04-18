@@ -73,11 +73,19 @@ g:has(path.municipios.selected) path.municipios.selected {
 }
 
 .zoomed path {
-    stroke-width: .5;
+    stroke-width: .25;
 }
 
 .zoomed path.provincias {
-    stroke-width: 1;
+    stroke-width: .5;
+}
+
+.zoomed path.distrito-capital {
+    stroke-width: .05;
+}
+
+.zoomed g:has(path.municipios.selected) path.distrito-capital {
+    stroke-width: .01;
 }
 
 .zoomed + .controls button {
