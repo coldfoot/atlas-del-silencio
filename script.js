@@ -155,7 +155,7 @@ class Mapa {
 
         this.reset_zoom();
 
-        const margin = 20;
+        const margin = 0.1;//20;
 
         let viewBox;
 
@@ -199,9 +199,12 @@ class Mapa {
     
             const bbox = feat.getBBox();
     
-            viewBox = `${bbox.x - margin} ${bbox.y - margin} ${bbox.width + 2*margin} ${bbox.height + 2*margin}`
+            //viewBox = `${bbox.x - margin} ${bbox.y - margin} ${bbox.width + 2*margin} ${bbox.height + 2*margin}`
+            viewBox = `${bbox.x - (margin * bbox.width) } ${ bbox.y - (margin * bbox.height)} ${(1+2*margin)*bbox.width} ${(1+2*margin)*bbox.height}`
         
             //console.log(feat, bbox, viewBox);
+
+            console.log('bbox-width ', bbox.width);
 
         }
 
