@@ -377,6 +377,8 @@ class Card {
 
     set(type, name) {
 
+        this.el.dataset.locationType = type;
+
         let mini_data;
         
         if (type == 'venezuela') {
@@ -394,6 +396,21 @@ class Card {
 
         this.title_el.innerHTML = mini_data.name;
         this.pop_el.innerHTML = main.format(mini_data.population);
+
+        // numeric info
+        if (type == 'provincias') {
+            document.querySelector('[data-text="medios"]').innerText = mini_data.total_medios;
+            const medios_types = ['tv', 'print', 'digital', 'radio'];
+            medios_types.forEach(medio => {
+
+                let nof_medios = mini_data[medio + "_medios"];
+
+                if (nof_medios == null) nof_medios = 0;
+
+                document.querySelector(`[data-text="${medio}"]`).innerText = nof_medios;
+
+            })
+        }
 
         this.update_bread_crumb(type, name);
         //this.medios_el.innerHTML = mini_data.medios;

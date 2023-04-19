@@ -121,8 +121,9 @@ g path.municipios.municipios.municipios:hover {
     line-height: 1.2;
 }
 
-.card-container h3 {
-    margin-bottom: 0;
+.card-container p.info-subtitle {
+    margin: 0;
+    font-weight: bold;
 }
 
 .card-container p {
@@ -157,6 +158,42 @@ g path.municipios.municipios.municipios:hover {
 .card-breadcrumbs button:hover {
     border-color: var(--color-highlight);
 }
+
+/* medios */
+.info-medios {
+    display: none;
+}
+
+[data-location-type="provincias"] .info-medios {
+    display: block;
+}
+
+.wrapper-info-location {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper-info-location > div {
+    flex: 0 0 50%;
+}
+
+.info-medios * {
+    text-align: right;
+}
+
+.wrapper-medios-types { 
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper-medios-types > span::before {
+    padding-right: .3em;
+}
+
+[data-text="tv"]::before { content: '📺' ;}
+[data-text="radio"]::before { content: '📻' ;}
+[data-text="print"]::before { content: '📰' ;}
+[data-text="digital"]::before { content: '🖥️' ;}
 
 /*
 .breadcrumb-provincia::before {
