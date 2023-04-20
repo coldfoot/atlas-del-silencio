@@ -12,6 +12,7 @@
     --color-no-desiertos: #65CA87;
     --color-semi-desiertos: #EFBB8B;
     --color-desiertos: #FF8888;
+
 }
 
 body {
@@ -249,6 +250,32 @@ g path.municipios.municipios.municipios:hover {
     background-color: lightpink;
 }
 
+/* bar-chart */
+
+.wrapper-bar-chart-categories {
+    display: none;
+    margin-top: 1em;
+}
+
+[data-location-type="provincias"] .wrapper-bar-chart-categories {
+    display: block;
+}
+
+.bar-chart-container {
+    display: flex;
+    width: 100%;
+}
+
+.bar-chart-container > div {
+    flex: 0 0 33%;
+    height: 1em;
+    transition: flex-basis .3s;
+}
+
+[data-bar-category="No desierto"] { background-color: var(--color-no-desiertos); }
+[data-bar-category="Desierto"] { background-color: var(--color-desiertos); }
+[data-bar-category="Desierto Moderado"] { background-color: var(--color-semi-desiertos); }
+
 /* button explora, hallazgos */
 
 .btn-explora {
@@ -379,6 +406,9 @@ g path.municipios.municipios.municipios:hover {
 
 /* see .btns > button above */
 
+/* bar-chart */
+
+
 
 /* controls */
 
@@ -456,3 +486,4 @@ g path.municipios.municipios.municipios:hover {
     margin: 0;
     text-align: right;
 }
+
