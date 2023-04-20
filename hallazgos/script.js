@@ -347,7 +347,7 @@ class Features {
 
     }
 
-    change_to_circle() {
+    change_to_circle(grid) {
 
         const w = this.ref_to_map.w;
 
@@ -356,30 +356,45 @@ class Features {
         //   .range([1, 20]) 
         // ;
 
-        let r = 10;
         let margin = 5;
-
-        let qde = Math.ceil((w - margin - margin) / ((2 * r) + margin));
 
         //console.log(qde);
 
+        let r;
+
         this.d3sel
             .transition()
-            .delay((d,i) => i * 5)//(i % 50) * 100)
+            .delay((d,i) => i * 10) //5)//(i % 50) * 100)
             .duration(1000)
             .attrTween('d', function(d, n) {
 
-                const i = n % qde;
-                const j = Math.floor(n / qde);
 
-                let x = 50 + (2 * r + margin) * i;
+                let x, y;
 
-                let y = 200 + (2 * r + margin) * j;
-
-                d.cx = x;
-                d.cy = y
+                //d.cx = x;
+                //d.cy = y
 
                 const d_attr = d3.select(this).attr('d');
+
+                if (!grid) {
+
+                    r = +d3.select(this).attr('data-r');
+                    x = +d3.select(this).attr('data-x');
+                    y = +d3.select(this).attr('data-y');
+
+                } else {
+
+                    let qde = Math.ceil((w - margin - margin) / ((2 * r) + margin));
+
+                    const i = n % qde;
+                    const j = Math.floor(n / qde);
+
+                    r = 10;
+                    x = 50 + (2 * r + margin) * i;
+                    y = 200 + (2 * r + margin) * j;
+
+                }
+
 
                 d.d = d_attr;
 
@@ -404,6 +419,8 @@ class Features {
                 let y = d.cy;
 
                 const d_attr = d.d;
+
+                r = +d3.select(this).attr('data-r');
 
                 return flubber.fromCircle (x, y, r, d_attr, {maxSegmentLength: 2});
 
@@ -937,6 +954,18 @@ const scroller = {
             console.log('forward');
             d3.selectAll('path.provincias').attr('opacity', 0);
 
+
+        },
+
+        'third' : function(direction = null) {
+
+            main.features.municipios.change_to_circle();
+
+        },
+
+        'fourth' : function(direction = null) {
+
+            main.features.municipios.change_to_circle(true);
 
         }
 
