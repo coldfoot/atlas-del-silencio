@@ -19,6 +19,8 @@ function init(data) {
 
     main.data = new Data(data[0], data[1]);
 
+    compute_subtotals();
+
     main.mapa = new Mapa('.map');
 
     main.features = {
@@ -79,9 +81,9 @@ function compute_subtotals() {
     }
 
     main.data.provincias.features.forEach(provincia => {
-        provincia.properties['pop_desierto'] = get_pop(provincia.properties.name, 'Desierto');
-        provincia.properties['pop_no_desierto'] = get_pop(provincia.properties.name, 'No desierto');
-        provincia.properties['pop_desierto_moderado'] = get_pop(provincia.properties.name, 'Desierto Moderado');
+        provincia.properties['pop Desierto'] = get_pop(provincia.properties.name, 'Desierto');
+        provincia.properties['pop No desierto'] = get_pop(provincia.properties.name, 'No desierto');
+        provincia.properties['pop Desierto Moderado'] = get_pop(provincia.properties.name, 'Desierto Moderado');
     })
 
     //console.log(get_pop(provincias[2], 'No desierto'));
@@ -211,6 +213,7 @@ class Mapa {
 
             main.card.update_bread_crumb('venezuela');
             main.card.set('venezuela');
+            this.el.dataset.zoomedToProvince = "";
 
             viewBox = this.original_viewbox;
 
@@ -236,6 +239,13 @@ class Mapa {
                 const provincia = mun_data.parent_name;
                 console.log(mun_data, provincia);
                 document.querySelector(`[data-provincias="${provincia}"]`).classList.add('selected');
+            } else {
+
+                // when a province was clicked
+
+                // it will always go first through a province, so we will only change this value upon a new province selection. if the user is selecting a municipality within this province, the province name will be kept.
+                // or we reset it when the map is reset.
+                this.el.dataset.zoomedToProvince = name;
             }
 
 
@@ -295,6 +305,7 @@ class Features {
             .attr('data-type', class_name)
             .attr('data-category', d => d.properties.category)
             .attr('data-' + class_name, d => d.properties.name)
+            //.attr('data-parent', d => class_name == 'municipios' ? d.properties.parent_name : '')
             .attr("d", this.path_generator);
 
         this.d3sel
@@ -443,6 +454,9 @@ class Card {
 
         // numeric info
         if (type == 'provincias') {
+
+            // texts 
+
             document.querySelector('[data-text="medios"]').innerText = mini_data.total_medios;
             const medios_types = ['tv', 'print', 'digital', 'radio'];
             medios_types.forEach(medio => {
@@ -452,6 +466,16 @@ class Card {
                 if (nof_medios == null) nof_medios = 0;
 
                 document.querySelector(`[data-text="${medio}"]`).innerText = nof_medios;
+
+            })
+
+            // mini bar-chart;
+
+            const categories = ['No desierto', 'Desierto', 'Desierto Moderado'];
+
+            categories.forEach(category => {
+
+                document.querySelector(`[data-bar-category="${category}"]`).style.flexBasis = (100 * (mini_data['pop ' + category] / mini_data.population)).toFixed(2) + "%";
 
             })
         }
