@@ -475,7 +475,11 @@ class Card {
 
             categories.forEach(category => {
 
-                document.querySelector(`[data-bar-category="${category}"]`).style.flexBasis = (100 * (mini_data['pop ' + category] / mini_data.population)).toFixed(2) + "%";
+                const pct = (100 * (mini_data['pop ' + category] / mini_data.population)).toFixed(1) + "%";
+
+                document.querySelector(`[data-bar-category="${category}"]`).style.flexBasis = pct;
+
+                document.querySelector(`[data-label-category="${category}"]`).innerText = main.format(mini_data['pop ' + category]) + " (" + pct + ")";
 
             })
         }

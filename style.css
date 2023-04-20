@@ -107,7 +107,7 @@ g path.municipios.municipios.municipios:hover {
 
 .wrapper-text-card-containers {
     position: relative;
-    height: calc(100vh - 50vh - 8rem);
+    height: calc(100vh - 50vh - 7rem);
 }
 
 .card-container {
@@ -116,7 +116,7 @@ g path.municipios.municipios.municipios:hover {
     left: 0;
     width: 100%;
     opacity: 0;
-    top: 2rem;
+    top: 1rem;
     transition: opacity var(--t);
 }
 
@@ -245,9 +245,9 @@ g path.municipios.municipios.municipios:hover {
     /*transition: all .3s;*/
 }
 
-.btn-no-desiertos, [data-word="no desiertos"] {background-color: var(--color-no-desiertos);}
-.btn-semi-desiertos, [data-word="semi-desiertos"] {background-color: var(--color-semi-desiertos);}
-.btn-desiertos, [data-word="desiertos"] {background-color: var(--color-desiertos);}
+.btn-no-desiertos, [data-word="no desiertos"], [data-label-category="No desierto"]::before  {background-color: var(--color-no-desiertos);}
+.btn-semi-desiertos, [data-word="semi-desiertos"], [data-label-category="Desierto Moderado"]::before {background-color: var(--color-semi-desiertos);}
+.btn-desiertos, [data-word="desiertos"], [data-label-category="Desierto"]::before {background-color: var(--color-desiertos);}
 
 .btn-categories {
     display: flex;
@@ -255,7 +255,8 @@ g path.municipios.municipios.municipios:hover {
     align-items: center;
     padding-right: .35em;
 }
-.btn-categories::before {
+.btn-categories::before,
+[data-label-category]::before {
     content: '';
     background-size: contain;
     /*margin-left: .35em;*/
@@ -264,13 +265,49 @@ g path.municipios.municipios.municipios:hover {
     height: 1em;
     display: inline-block;
 }
-.btn-no-desiertos::before { background-image: url(/imgs/no-desierto.png);}
-.btn-semi-desiertos::before { background-image: url(/imgs/semidesert.png);}
-.btn-desiertos::before { background-image: url(/imgs/desierto.png);}
+
+.btn-no-desiertos::before, [data-label-category="No desierto"]::before { background-image: url(/imgs/no-desierto.png);}
+.btn-semi-desiertos::before, [data-label-category="Desierto Moderado"]::before { background-image: url(/imgs/semidesert.png);}
+.btn-desiertos::before, [data-label-category="Desierto"]::before { background-image: url(/imgs/desierto.png);}
 
 .key-word.highlighted {
     border-color: crimson;
     background-color: lightpink;
+}
+
+/* labels */
+
+[data-label-category]::before {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    background-position: center center;
+    border-radius: 50%;
+    margin-right: .5em;
+}
+
+[data-label-category] {
+    display: flex;
+    align-items: center;
+}
+
+[data-label-category] + [data-label-category] {
+    margin-left: 1em;
+
+}
+
+.bar-chart-title-label-wrapper {
+    /*display: flex;
+    justify-content: space-evenly;*/
+}
+
+.bar-chart-label-container {
+    margin: .5rem 0;
+    flex: 1 0 50%;
+    display: flex;
+    justify-content: space-between;
+    font-size: .6rem;
+    align-items: center;
 }
 
 /* bar-chart */
