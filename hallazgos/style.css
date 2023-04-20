@@ -1,0 +1,583 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: Roboto;
+    --color-highlight: #a6a6a6;
+    --color-back: #d9d9d9;
+    background-color: #e8e8e8;
+    --t: .5s;
+
+    --color-no-desiertos: #65CA87;
+    --color-semi-desiertos: #EFBB8B;
+    --color-desiertos: #FF8888;
+
+}
+
+body {
+    margin: 0;
+}
+
+.outer-wrapper {
+    width: 100%;
+    height: 100vh;
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding-top: 1rem;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.map-container {
+    max-width: 400px;
+    height: 100vh;
+    position: fixed;
+    transition: margin var(--t);
+}
+
+.map {
+    height: 100%;
+    width: 100%;
+
+    --stroke: 1;
+}
+
+path {
+    stroke-width: var(--stroke);
+    stroke: #333;/* #BFA98F;*/
+    fill: #FEFED0; /* lightseagreen;*/
+    transition: stroke var(--t), fill var(--t);
+}
+
+path.provincias {
+    
+    stroke: #333;
+    stroke-width: calc(var(--stroke) * 2);
+    /*transition: fill var(--t);*/
+}
+
+path.provincias:hover {
+    fill: lightseagreen;
+}
+
+path.provincias.selected {
+    fill: transparent;
+    pointer-events: none;
+}
+
+path[data-category="No desierto"] { fill: var(--color-no-desiertos); }
+path[data-category="Desierto Moderado"] { fill: var(--color-semi-desiertos); }
+path[data-category="Desierto"] { fill: var(--color-desiertos); }
+
+
+
+g:has(path.municipios.selected) path.municipios {
+    opacity: .3;
+}
+
+g:has(path.municipios.selected) path.municipios.selected {
+    opacity: 1;
+}
+
+.zoomed {
+    --stroke: .25;
+}
+
+.zoomed[data-zoomed-to-province="Distrito capital"],
+.zoomed[data-zoomed-to-province="Vargas"] {
+    --stroke: .05;
+
+}
+
+.zoomed[data-zoomed-to-province="Distrito capital"]:has(path.municipios.selected),
+.zoomed[data-zoomed-to-province="Vargas"]:has(path.municipios.selected) {
+    --stroke: 0.01
+}
+
+.zoomed + .controls button {
+    background-color: khaki;
+}
+
+g path.municipios.municipios.municipios:hover {
+    stroke: var(--color-highlight);
+    opacity: .7;
+}
+
+
+
+/* cards */
+
+.wrapper-text-card-containers {
+    position: relative;
+    height: calc(100vh - 50vh - 7rem);
+}
+
+.card-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    top: 1rem;
+    transition: opacity var(--t);
+}
+
+.card-container h2 {
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+.card-container p.info-subtitle {
+    margin: 0;
+    font-weight: bold;
+}
+
+.card-container p {
+    margin: 0;
+}
+
+.card-breadcrumbs {
+    font-size: .6rem;
+    text-transform: uppercase;
+}
+
+[data-breadcrumb-level="venezuela"] .breadcrumb-venezuela,
+[data-breadcrumb-level="venezuela"] .breadcrumb-provincia,
+[data-breadcrumb-level="venezuela"] .breadcrumb-separator {
+    opacity: 0;
+    display: none;
+}
+
+[data-breadcrumb-level="provincias"] .breadcrumb-provincia,
+[data-breadcrumb-level="provincias"] .breadcrumb-separator  {
+    opacity: 0;
+    display: none;
+}
+
+.card-breadcrumbs button {
+    border: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 0;
+}
+
+.card-breadcrumbs button:hover {
+    border-color: var(--color-highlight);
+}
+
+/* medios */
+.info-medios {
+    display: none;
+}
+
+[data-location-type="provincias"] .info-medios {
+    display: block;
+}
+
+.wrapper-info-location {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper-info-location > div {
+    flex: 0 0 50%;
+}
+
+.info-medios * {
+    text-align: right;
+}
+
+.wrapper-medios-types { 
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper-medios-types > span::before {
+    padding-right: .3em;
+}
+
+[data-text="tv"]::before { content: '📺' ;}
+[data-text="radio"]::before { content: '📻' ;}
+[data-text="print"]::before { content: '📰' ;}
+[data-text="digital"]::before { content: '🖥️' ;}
+
+/*
+.breadcrumb-provincia::before {
+    display: inline-block;
+    content: '>';
+    margin-right: .3rem;
+    margin-left: .3rem;
+    border: none;
+    background-color: transparent;
+}*/
+
+/* text */
+
+.wrapper-text-container {
+    position: relative;
+    margin-top: -2.2rem;
+    transition: transform var(--t), opacity var(--t);
+}
+
+.text-container, .card-container {
+    background-color: var(--color-back);
+    padding: 2rem 2rem 2rem 1.5rem;
+    line-height: 1.65;
+    border-radius: 2rem 2rem 0 0;
+}
+
+.text-container * {
+    margin: 0;
+}
+
+.text-container h1 {
+    margin-bottom: 1.5rem;
+    line-height: 1;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.key-word, .btns > button {
+    font-size: .8rem;
+    padding: .2em .6em;
+    border-radius: .8rem;
+    /*background-color: var(--color-highlight);*/
+    text-transform: uppercase;
+    font-weight: 500;
+    /*transition: all .3s;*/
+}
+
+.btns > button {
+    font-size: .7rem;
+}
+
+.btn-no-desiertos, [data-word="no desiertos"], [data-label-category="No desierto"]::before  {background-color: var(--color-no-desiertos);}
+.btn-semi-desiertos, [data-word="semi-desiertos"], [data-label-category="Desierto Moderado"]::before {background-color: var(--color-semi-desiertos);}
+.btn-desiertos, [data-word="desiertos"], [data-label-category="Desierto"]::before {background-color: var(--color-desiertos);}
+
+.btn-categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: .35em;
+}
+.btn-categories::before,
+[data-label-category]::before {
+    content: '';
+    background-size: contain;
+    /*margin-left: .35em;*/
+    background-repeat: no-repeat;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+}
+
+.btn-no-desiertos::before, [data-label-category="No desierto"]::before { background-image: url(/imgs/no-desierto.png);}
+.btn-semi-desiertos::before, [data-label-category="Desierto Moderado"]::before { background-image: url(/imgs/semidesert.png);}
+.btn-desiertos::before, [data-label-category="Desierto"]::before { background-image: url(/imgs/desierto.png);}
+
+.key-word.highlighted {
+    border-color: crimson;
+    background-color: lightpink;
+}
+
+/* labels */
+
+[data-label-category]::before {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    background-position: center center;
+    border-radius: 50%;
+    margin-right: .5em;
+}
+
+[data-label-category] {
+    display: flex;
+    align-items: center;
+}
+
+[data-label-category] + [data-label-category] {
+    margin-left: 1em;
+
+}
+
+.bar-chart-title-label-wrapper {
+    /*display: flex;
+    justify-content: space-evenly;*/
+}
+
+.bar-chart-label-container {
+    margin: .5rem 0;
+    flex: 1 0 50%;
+    display: flex;
+    justify-content: space-between;
+    font-size: .6rem;
+    align-items: center;
+}
+
+/* bar-chart */
+
+select.info-subtitle {
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    margin-left: -0.3rem;
+}
+
+.wrapper-bar-chart-categories {
+    display: none;
+    margin-top: 1em;
+}
+
+[data-location-type="provincias"] .wrapper-bar-chart-categories {
+    display: block;
+}
+
+.bar-chart-container {
+    display: flex;
+    width: 100%;
+}
+
+.bar-chart-container > div {
+    flex: 1 1 33%;
+    height: 1.5em;
+    transition: flex-basis .3s;
+}
+
+[data-bar-category="No desierto"] { background-color: var(--color-no-desiertos); }
+[data-bar-category="Desierto"] { background-color: var(--color-desiertos); }
+[data-bar-category="Desierto Moderado"] { background-color: var(--color-semi-desiertos); }
+
+/* button explora, hallazgos */
+
+.btn-explora {
+    border-radius: 2rem;
+    background-color: var(--color-highlight);
+    padding: 1rem;
+    width: 70%;
+    display: block;
+    margin: 1rem auto 0;
+    font-size: 1.5rem;
+    border: 2px solid var(--color-back);
+    position: relative;
+    transition: border-color .5s, background-color .5s;
+}
+
+.btn-explora:hover {
+
+    border-color: var(--color-highlight);
+    background-color: var(--color-back);
+
+
+}
+
+.link-hallazgos {
+    display: block;
+    margin: 0 auto 1rem 1rem;
+    line-height: 1;
+    padding: .6rem;
+    font-family: 1rem;
+    background-color: var(--color-back);
+    /*border: 2px solid var(--color-back);*/
+    width: 33%;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    border-radius: 1.5rem;
+    /*opacity: 0;*/
+    transition: opacity var(--t);
+}
+
+/* menu button */
+
+.top-bar {
+    display: flex;
+    height: 3rem;
+    justify-content: space-between;
+    margin: 0 1rem;
+    padding-bottom: 1rem;
+}
+
+.top-bar img {
+    display: block;
+    height: 100%;
+}
+
+.top-bar .btn-menu {
+    background-color: white;
+    border: none;
+    display: block;
+    height: 100%;
+    width: 3rem;
+    padding: 0;
+}
+
+.top-bar .btn-menu svg {
+    display: block;
+    height: 2rem;
+    width: 100%;
+}
+
+.top-bar .btn-menu line {
+    stroke: #333;
+    stroke-width: 3;
+}
+
+/* top-controls */
+.top-controls {
+    transition: transform var(--t), opacity var(--t);
+    margin-bottom: .5rem;
+}
+
+.top-controls > div {
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+}
+
+.top-controls input {
+    border-radius: 2rem;
+    background-color: var(--color-back);
+    width: 100%;
+    padding-left: 2rem;
+    font-family: inherit;
+    border: none;
+}
+
+.top-controls > div + div {
+    margin-top: 1rem;
+}
+
+.btns button {
+    border: none;
+    font-family: inherit;
+}
+
+/* state : opening*/
+
+[data-state="opening"] .top-controls {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%);
+}
+
+[data-state="opening"] .map-container {
+    margin-top: -5rem;
+}
+
+[data-state="explore"] .wrapper-text-container {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+[data-state="explore"] .card-container {
+    opacity: 1;
+}
+
+/* see .btns > button above */
+
+/* bar-chart */
+
+
+
+/* controls */
+
+.controls {
+
+    position: absolute;
+    top: 1em;
+    left: 1em;
+
+    display: flex;
+    flex-direction: column;
+
+    font-family: sans-serif;
+
+}
+
+.controls select,
+.controls button {
+    background-color: aliceblue;
+    border: 2px solid #333;
+    box-shadow: 4px 4px #AAA;
+    padding: .3em .4em;
+    border-radius: 3px;
+}
+
+.controls select:hover,
+.controls button:hover {
+    background-color: lightblue;
+}
+
+.select-wrapper {
+
+    margin-block: 1em;
+
+}
+
+.select-wrapper label {
+    display: block;
+    margin-bottom: .25rem;
+    font-size: .8rem;
+}
+
+/* button reset map */
+
+.btn-reset-map {
+
+    width: 5rem;
+
+}
+
+.btn-reset-map:active {
+
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px #AAA;
+
+}
+
+
+
+.hud {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    background-color: #333;
+    padding: .5em;
+    border-radius: 2px;
+    width: 13em;
+    font-family: monospace;
+    color: yellow;
+    font-size: .7rem;
+    opacity: .7;
+}
+
+.hud p {
+    margin: 0;
+    text-align: right;
+}
+
+.story {
+    position: absolute;
+    top: 0;
+}
+
+.text-step-wrapper {
+
+    height: 100vh;
+    display: grid;
+    place-content: center;
+
+}
+
+.text-step {
+    height: 40vh;
+    width: 80%;
+    border: 3px solid currentColor;
+}
+

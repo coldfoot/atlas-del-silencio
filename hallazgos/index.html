@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas del Silencio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="outer-wrapper" data-state="opening"> <!-- exploring-->
+
+        <!--<div class="top-bar">
+            <a href="" class="logo-wrapper">
+                <img src="../imgs/logo-ypis.png" alt="Logo de Ypis">
+            </a>
+            <button class="btn-menu" data-state="burger">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
+                    <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
+                    <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
+                </svg>
+            </button>
+        </div>-->
+
+        <div class="map-container">
+
+            <!--<div class="hud">
+                <p><strong>Atlas del Silencio</strong></p>
+                <p>------------------</p>
+                <p>Prototype 0.1</p>
+                <p>Map interactions</p>
+                <p>------------------</p>
+                <p class="tooltip"></p>
+            </div>-->
+    
+            <svg class="map" data-zoomed-to-province=""></svg>
+    
+            
+            <div class="controls">
+    
+                <!--<button class="btn-reset-map">Reset map</button>-->
+    
+                <!--
+                <div class="select-wrapper">
+    
+                    <label for="select-provincias">Provincias:</label>
+    
+                    <select name="provincias" id="select-provincias">
+                        <option value="">--Please choose an option--</option>
+                    </select>
+    
+                </div>
+    
+                <div class="select-wrapper">
+    
+                    <label for="select-municipios">Municipios:</label>
+    
+                    <select name="municipios" id="select-municipios">
+                        <option value="">--Please choose an option--</option>
+                    </select>
+    
+                </div>-->
+    
+            </div>
+    
+        </div>
+
+        <div class="story">
+
+            <div class="text-step-wrapper">
+
+                <div class="text-step">
+
+                    <h1>Atlas del silencio</h1>
+    
+                    <p>What? <span class="key-word" data-word="no desiertos">no desiertos</span>? Old? I’m not vain or unrealistic. <span class="key-word" data-word="semi-desiertos">desiertos moderados</span> to making and began to write what would probably become a story. The first sentence is: “That year all the boys on my <span class="key-word" data-word="desiertos">desiertos</span> were sixty-seven.”</p>
+            
+                </div>
+    
+            </div>
+
+            <div class="text-step-wrapper">
+
+                <div class="text-step">
+
+                    <h1>Passo 2</h1>
+    
+                    <p>What? <span class="key-word" data-word="no desiertos">no desiertos</span>? Old? I’m not vain or unrealistic. <span class="key-word" data-word="semi-desiertos">desiertos moderados</span> to making and began to write what would probably become a story. The first sentence is: “That year all the boys on my <span class="key-word" data-word="desiertos">desiertos</span> were sixty-seven.”</p>
+            
+                </div>
+    
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/flubber@0.3.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="script.js"></script>
+
+    
+</body>
+</html>
