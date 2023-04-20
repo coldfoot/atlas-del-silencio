@@ -19,6 +19,8 @@ function init(data) {
 
     main.data = new Data(data[0], data[1]);
 
+    main.r = d3.scaleSqrt().domain(d3.extent(main.data.municipios.features, d => d.properties.population)).range([1,30]);
+
     compute_subtotals();
 
     main.mapa = new Mapa('.map');
@@ -29,6 +31,16 @@ function init(data) {
         provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa)
 
     }
+
+    document.querySelectorAll('path.municipios').forEach(p => {
+
+        const bbox = p.getBBox();
+        //console.log(bbox);
+
+        p.setAttribute('data-x', bbox.x + bbox.width / 2);
+        p.setAttribute('data-y', bbox.y + bbox.height / 2);
+
+    })
 
    // main.mapa.initZoom();
 
@@ -174,7 +186,6 @@ class Mapa {
 
     }
 
-
     handleZoom = (e) => {
         this.el.classList.add('zoomed');
         this.d3sel
@@ -308,6 +319,7 @@ class Features {
             .classed(class_name, true)
             .classed('distrito-capital', d => d.properties.parent_name == "Distrito capital")
             .attr('data-type', class_name)
+            .attr('data-r', d => class_name == "municipios" ? main.r(d.properties.population) : '')
             .attr('data-category', d => d.properties.category)
             .attr('data-' + class_name, d => d.properties.name)
             //.attr('data-parent', d => class_name == 'municipios' ? d.properties.parent_name : '')
