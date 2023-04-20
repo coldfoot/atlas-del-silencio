@@ -11,3 +11,5 @@ ordenar dados por x,y. para transicao para shapes ficar mais suave
 pegar x,y dos centros
 
 "https://unpkg.com/world-atlas@2.0.2/countries-110m.json"
+
+fazer uma forma mais inteligente de calcular o tamanho do stroke-width automaticamente
