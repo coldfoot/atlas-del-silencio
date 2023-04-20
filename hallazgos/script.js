@@ -903,6 +903,10 @@ const scroller = {
 
         'first' : function(direction = null) {
 
+            if (direction == 'back') { 
+                d3.selectAll('path.provincias').attr('opacity', 1);
+            }
+
             //app.map_obj.setPaintProperty('localidad', 'fill-pattern', null);
             //app.map_obj.setPaintProperty('localidad', 'fill-color', ['get', 'color']);
             //app.map_obj.setPaintProperty('localidad', 'fill-outline-color', 'ghostwhite');
@@ -929,11 +933,10 @@ const scroller = {
         // no scroller
         'second' : function(direction = null) {
 
-            if (direction == 'back') { 
-                console.log('back');
-            } else {
-                console.log('forward');
-            }
+
+            console.log('forward');
+            d3.selectAll('path.provincias').attr('opacity', 0);
+
 
         }
 
