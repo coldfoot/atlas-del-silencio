@@ -30,13 +30,13 @@ function init(data) {
 
     }
 
-    main.mapa.initZoom();
+   // main.mapa.initZoom();
 
-    main.controls = new Controls();
+    //main.controls = new Controls();
 
-    main.searchBar = new SearchBar('#location-search');
+    //main.searchBar = new SearchBar('#location-search');
 
-    main.card = new Card('card-container', data[0].features, data[1].features);
+    //main.card = new Card('card-container', data[0].features, data[1].features);
 
     main.never_clicked = true;
 
@@ -50,6 +50,9 @@ function init(data) {
     //monitor_select('municipios');
 
     //animation();
+
+    scroller.steps.get();
+    scroller.config();
 
 
 }
@@ -825,5 +828,103 @@ function animation() {
     }, "<")
     
 
+
+}
+
+
+const scroller = {
+
+    steps : {
+
+        list : null,
+
+        get : function() {
+
+            const steps_html = document.querySelector(".story").children;
+
+            scroller.steps.list = Array.from(steps_html).map(d => d.dataset.step);
+
+        }
+
+    },
+
+    config : function() {
+
+        enterView({
+
+            selector: '.text-step-wrapper',
+
+            enter: function(el) {
+
+                const step = el.dataset.step;
+
+                console.log("Renderizando step... ", step);
+
+                scroller.render[step]();
+
+            },
+
+            exit: function(el) {
+
+                const step = el.dataset.step;
+
+                const index_step = scroller.steps.list.indexOf(step);
+
+                const step_anterior = scroller.steps.list[index_step - 1];
+
+                console.log(scroller.steps.list);
+
+                scroller.render[step_anterior]('back');
+
+                //console.log("saiu, ", step_anterior);
+            },
+
+            offset: 0.5, // enter at middle of viewport
+            //once: true, // trigger just once
+        });
+
+    },
+
+    // por em outro lugar?
+
+    render : {
+
+        'first' : function(direction = null) {
+
+            //app.map_obj.setPaintProperty('localidad', 'fill-pattern', null);
+            //app.map_obj.setPaintProperty('localidad', 'fill-color', ['get', 'color']);
+            //app.map_obj.setPaintProperty('localidad', 'fill-outline-color', 'ghostwhite');
+            //app.map_obj.setPaintProperty('localidad', 'fill-opacity', .5);
+           // app.map.set_initial_view();
+           //app.ctrl.prevents_scroll_on_opening(true);
+
+            //app.interactions.story.toggle_visibility("dashboard_button");
+
+        },
+
+        // 'pesquisa' : function() {
+
+        //     console.log('Pesquisando...');
+
+        //     app.map.set_initial_view();
+        //     app.map.fog_of_war.toggle('provincia', '');
+        //     app.map.fog_of_war.toggle('localidad', '');
+        //     app.map_obj.setPaintProperty('localidad', 'fill-color', ['get', 'color']);
+        //     app.map.localidad.toggle_highlight_border('');
+            
+        // },
+
+        // no scroller
+        'second' : function(direction = null) {
+
+            if (direction == 'back') { 
+                console.log('back');
+            } else {
+                console.log('forward');
+            }
+
+        }
+
+    }
 
 }
