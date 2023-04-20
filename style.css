@@ -245,6 +245,10 @@ g path.municipios.municipios.municipios:hover {
     /*transition: all .3s;*/
 }
 
+.btns > button {
+    font-size: .7rem;
+}
+
 .btn-no-desiertos, [data-word="no desiertos"], [data-label-category="No desierto"]::before  {background-color: var(--color-no-desiertos);}
 .btn-semi-desiertos, [data-word="semi-desiertos"], [data-label-category="Desierto Moderado"]::before {background-color: var(--color-semi-desiertos);}
 .btn-desiertos, [data-word="desiertos"], [data-label-category="Desierto"]::before {background-color: var(--color-desiertos);}
