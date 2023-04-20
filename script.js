@@ -15,7 +15,7 @@ Promise.all([
 
 function init(data) {
 
-    console.log(data);
+    //console.log(data);
 
     main.data = new Data(data[0], data[1]);
 
@@ -102,7 +102,7 @@ class Data {
 
     retrieve_data(type, name) {
 
-        console.log(type, this[type]);
+        //console.log(type, this[type]);
         const mini_data = this[type].features
           .map(d => d.properties)
           .filter(d => d.name == name)[0];
@@ -177,7 +177,7 @@ class Mapa {
     }
 
     initZoom() {
-        console.log('init');
+        //console.log('init');
         d3.select('svg')
             .call(this.zoom);
     }
@@ -230,14 +230,14 @@ class Mapa {
 
             const feat = document.querySelector(`[data-${class_name}="${name}"]`);
 
-            console.log(class_name, name);
+            //console.log(class_name, name);
             feat.classList.add('selected');
 
             // also make the parent provincia selected, so it stays transparent;
             if (class_name == 'municipios') {
                 const mun_data = main.data.retrieve_data('municipios', name);
                 const provincia = mun_data.parent_name;
-                console.log(mun_data, provincia);
+                //console.log(mun_data, provincia);
                 document.querySelector(`[data-provincias="${provincia}"]`).classList.add('selected');
             } else {
 
@@ -344,7 +344,7 @@ class Features {
 
         let qde = Math.ceil((w - margin - margin) / ((2 * r) + margin));
 
-        console.log(qde);
+        //console.log(qde);
 
         this.d3sel
             .transition()
@@ -404,6 +404,7 @@ class Card {
 
     ref;
     el;
+    select;
 
     data;
 
@@ -417,6 +418,7 @@ class Card {
 
         this.ref = ref;
         this.el = document.querySelector('.' + ref);
+        this.select = document.querySelector('select.info-subtitle');
         this.breadcrumb_el = document.querySelector('.' + ref + ' .card-breadcrumbs');
         this.title_el = document.querySelector('[data-text="location"]');
         this.pop_el = document.querySelector('[data-text="poblacion"]');
@@ -427,6 +429,8 @@ class Card {
             'municipios' : data_municipios.map(d => d.properties)
 
         }
+
+        this.monitorSelect();
 
     }
 
@@ -447,7 +451,7 @@ class Card {
         else  mini_data = main.data.retrieve_data(type, name);
 
         
-        console.log(mini_data);
+        //console.log(mini_data);
 
         this.title_el.innerHTML = mini_data.name;
         this.pop_el.innerHTML = main.format(mini_data.population);
@@ -473,15 +477,36 @@ class Card {
 
             const categories = ['No desierto', 'Desierto', 'Desierto Moderado'];
 
+            const getVariableName = {
+                'Desierto' : 'desert_children',
+                'No desierto' : 'not_desert_children',
+                'Desierto Moderado' : 'moderate_desert_children'
+            }
+
             categories.forEach(category => {
 
-                const pct = (100 * (mini_data['pop ' + category] / mini_data.population)).toFixed(1) + "%";
+                const pct_pop = (100 * (mini_data['pop ' + category] / mini_data.population)).toFixed(1) + "%";
 
-                document.querySelector(`[data-bar-category="${category}"]`).style.flexBasis = pct;
+                const bar = document.querySelector(`[data-bar-category="${category}"]`);
+                const label = document.querySelector(`[data-label-category="${category}"]`)
 
-                document.querySelector(`[data-label-category="${category}"]`).innerText = main.format(mini_data['pop ' + category]) + " (" + pct + ")";
+                //bar.style.flexBasis = pct_pop;
+                //label.innerText = main.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
+
+                label.dataset.popInfo = main.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
+                bar.dataset.popValue = pct_pop;
+
+                const qty_total = mini_data.desert_children + mini_data.not_desert_children + mini_data.moderate_desert_children;
+
+                const pct_qty = (100 * (mini_data[getVariableName[category]] / qty_total)).toFixed(1) + "%";
+
+                label.dataset.qtyInfo = mini_data[getVariableName[category]] + " (" + pct_qty + ")";
+                bar.dataset.qtyValue = pct_qty;
 
             })
+
+            this.updateBarsAndLabels(this);
+
         }
 
         this.update_bread_crumb(type, name);
@@ -490,7 +515,7 @@ class Card {
 
     update_bread_crumb(type, name) {
 
-        console.log(this.breadcrumb_el, type, name);
+        //console.log(this.breadcrumb_el, type, name);
 
         this.breadcrumb_el.dataset.breadcrumbLevel = type;
 
@@ -499,6 +524,37 @@ class Card {
             document.querySelector('.breadcrumb-provincia').innerText = main.data.retrieve_data('municipios', name).parent_name;
 
         }
+
+    }
+
+    monitorSelect() {
+
+        console.log('monitoring select!');
+
+        this.select.addEventListener('change', (e) => {
+            this.updateBarsAndLabels(this)
+        });
+
+    }
+
+    updateBarsAndLabels(thisObject) {
+
+        const option = thisObject.select.value;
+
+        //console.log('Chamou!', thisObject, option);
+
+        const categories = ['No desierto', 'Desierto', 'Desierto Moderado'];
+
+        categories.forEach(category => {
+
+            const bar = document.querySelector(`[data-bar-category="${category}"]`);
+            const label = document.querySelector(`[data-label-category="${category}"]`)
+
+            // option will be pop or qty, resulting in dataset.popValue/popInfo or qtyValue/qtyInfo
+            bar.style.flexBasis = bar.dataset[option + 'Value'];
+            label.innerText = label.dataset[option + 'Info'];
+
+        })
 
     }
 }
@@ -526,7 +582,7 @@ class Controls {
             ref : 'breadcrumb-venezuela',
             handler : (e) => {
 
-                console.log('fire');
+                //console.log('fire');
                 main.mapa.reset_map();
 
             }
@@ -537,9 +593,9 @@ class Controls {
             ref : 'breadcrumb-provincia',
             handler : (e) => {
 
-                console.log('fire');
+                //console.log('fire');
                 const provincia = document.querySelector('.breadcrumb-provincia').innerText;
-                console.log(provincia);
+                //console.log(provincia);
                 main.mapa.fit_bounds('provincias', provincia);
 
             }
@@ -551,7 +607,7 @@ class Controls {
 
                 document.querySelector('.outer-wrapper').dataset.state = "explore";
 
-                console.log(document.querySelector('.outer-wrapper'));
+                //console.log(document.querySelector('.outer-wrapper'));
 
             }
         },

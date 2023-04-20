@@ -312,6 +312,14 @@ g path.municipios.municipios.municipios:hover {
 
 /* bar-chart */
 
+select.info-subtitle {
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    margin-left: -0.3rem;
+}
+
 .wrapper-bar-chart-categories {
     display: none;
     margin-top: 1em;
