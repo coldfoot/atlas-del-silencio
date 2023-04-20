@@ -22,7 +22,7 @@ body {
 .outer-wrapper {
     width: 100%;
     height: 100vh;
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
     background: white;
     padding-top: 1rem;
@@ -31,7 +31,7 @@ body {
 }
 
 .map-container {
-    max-width: 400px;
+    max-width: 600px;
     height: 100vh;
     position: fixed;
     transition: margin var(--t);
