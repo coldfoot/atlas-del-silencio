@@ -156,8 +156,8 @@ class Mapa {
         this.proj = d3.geoMercator()
           .center(this.center)
           //.rotate([10, 0])
-          .translate([this.w/2.2, this.h/0.8]) // arrumar um jeito de calcular isso direito
-          .scale(4200)
+          .translate([this.w/1.4, this.h/1.3]) // arrumar um jeito de calcular isso direito
+          .scale(4000)
 
         ;
 
