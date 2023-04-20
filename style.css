@@ -236,8 +236,9 @@ g path.municipios.municipios.municipios:hover {
 }
 
 .key-word, .btns > button {
-    padding: .2em .4em;
-    border-radius: 1rem;
+    font-size: .8rem;
+    padding: .2em .6em;
+    border-radius: .8rem;
     /*background-color: var(--color-highlight);*/
     text-transform: uppercase;
     font-weight: 500;
@@ -247,6 +248,25 @@ g path.municipios.municipios.municipios:hover {
 .btn-no-desiertos, [data-word="no desiertos"] {background-color: var(--color-no-desiertos);}
 .btn-semi-desiertos, [data-word="semi-desiertos"] {background-color: var(--color-semi-desiertos);}
 .btn-desiertos, [data-word="desiertos"] {background-color: var(--color-desiertos);}
+
+.btn-categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: .35em;
+}
+.btn-categories::before {
+    content: '';
+    background-size: contain;
+    /*margin-left: .35em;*/
+    background-repeat: no-repeat;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+}
+.btn-no-desiertos::before { background-image: url(/imgs/no-desierto.png);}
+.btn-semi-desiertos::before { background-image: url(/imgs/semidesert.png);}
+.btn-desiertos::before { background-image: url(/imgs/desierto.png);}
 
 .key-word.highlighted {
     border-color: crimson;
@@ -271,7 +291,7 @@ g path.municipios.municipios.municipios:hover {
 
 .bar-chart-container > div {
     flex: 1 1 33%;
-    height: 1em;
+    height: 1.5em;
     transition: flex-basis .3s;
 }
 

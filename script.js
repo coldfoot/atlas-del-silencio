@@ -440,7 +440,7 @@ class Card {
 
             mini_data = {
                 name : 'Venezuela',
-                population : 28200000
+                population : 33357851
             }
         }
         
