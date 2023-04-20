@@ -34,6 +34,8 @@ function init(data) {
 
     main.controls = new Controls();
 
+    main.searchBar = new SearchBar('#location-search');
+
     main.card = new Card('card-container', data[0].features, data[1].features);
 
     main.never_clicked = true;
@@ -650,6 +652,63 @@ class Button {
 
         console.log(this.el, ' -- monitoring...');
         this.el.addEventListener('click', this.handler);
+
+    }
+
+}
+
+class SearchBar {
+
+    el;
+    datalist;
+    provincias;
+
+    constructor(ref) {
+
+        this.el = document.querySelector(ref);
+        this.datalist = document.querySelector('datalist');
+
+        this.populate_datalist();
+        this.monitor();
+
+    }
+
+    populate_datalist() {
+
+        const provincias = main.data.provincias.features.map(d => d.properties.name);
+        this.provincias = provincias.map(d => d.normalize('NFD').replace(/[\u0300-\u036f]/g, ""));
+
+        console.log(provincias);
+
+        provincias.forEach(provincia => {
+
+            const option = document.createElement('option');
+            option.value = provincia;//provincia.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+            this.datalist.appendChild(option);
+
+        })
+
+    }
+
+    monitor() {
+
+        this.el.addEventListener('change', e => this.submit(e, this));
+
+    }
+
+    submit(e, thisObj) {
+
+        const text = e.target.value;
+        console.log(text, thisObj.provincias.indexOf(e.target.value));
+        //if (this.provincias.indexOf(e.target.value)
+
+        const index = thisObj.provincias.indexOf(e.target.value);
+
+        if (index >= 0) {
+
+            main.mapa.fit_bounds('provincias', text);
+
+        }
 
     }
 
