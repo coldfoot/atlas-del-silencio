@@ -2,8 +2,14 @@ const main = {};
 
 Promise.all([
 
-    fetch('./data/output/finished-geojsons/level_1_results.geojson').then(response => response.json()),
-    fetch('./data/output/finished-geojsons/level_2_results.geojson').then(response => response.json())
+    fetch(
+        './data/output/finished-geojsons/level_1_results.geojson'
+        //'lv1.json'
+        ).then(response => response.json()),
+    fetch(
+        './data/output/finished-geojsons/level_2_results.geojson'
+        //'lv2.json'
+        ).then(response => response.json())
 
 ]).then( init )
 
@@ -41,6 +47,44 @@ function init(data) {
 
     //animation();
 
+
+}
+
+// temporary function while we don't have this info encoded in the data
+function compute_subtotals() {
+
+    /*
+    function get_unique_provincias_list() {
+        return main.data.provincias.features
+          .map(d => d.properties.name)
+          .filter( (d, i, arr) => arr.indexOf(d) == i ) // get unique values
+    }
+
+    const provincias = get_unique_provincias_list();
+    console.log(provincias);
+    */
+
+    function get_pop(provincia, category) {
+
+        const mun_of_provincia_category = main.data.municipios.features
+          .filter(d => d.properties.parent_name == provincia)
+          .filter(d => d.properties.category == category)
+        ;
+
+        return mun_of_provincia_category
+          .map(d => d.properties.population)
+          .reduce( (prev, current) => prev + current, 0 )
+        ;
+
+    }
+
+    main.data.provincias.features.forEach(provincia => {
+        provincia.properties['pop_desierto'] = get_pop(provincia.properties.name, 'Desierto');
+        provincia.properties['pop_no_desierto'] = get_pop(provincia.properties.name, 'No desierto');
+        provincia.properties['pop_desierto_moderado'] = get_pop(provincia.properties.name, 'Desierto Moderado');
+    })
+
+    //console.log(get_pop(provincias[2], 'No desierto'));
 
 }
 
