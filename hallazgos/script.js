@@ -406,7 +406,7 @@ class Features {
 
     change_to_shape() {
 
-        let r = 10;
+        let r, x, y;
 
         this.d3sel
             .transition()
@@ -414,9 +414,9 @@ class Features {
             .duration(3000)
             .attrTween('d', function(d, n) {
 
-                let x = d.cx;
-
-                let y = d.cy;
+                r = +d3.select(this).attr('data-r');
+                x = +d3.select(this).attr('data-x');
+                y = +d3.select(this).attr('data-y');
 
                 const d_attr = d.d;
 
@@ -960,6 +960,11 @@ const scroller = {
         'third' : function(direction = null) {
 
             main.features.municipios.change_to_circle();
+            if (direction == 'back') {
+
+                main.features.municipios.change_to_shape();
+
+            }
 
         },
 
