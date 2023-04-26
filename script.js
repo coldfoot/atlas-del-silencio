@@ -1,4 +1,12 @@
-const main = {};
+const main = {
+
+    colors : {
+        'No desierto' : '#65CA87',
+        'Desierto Moderado' : '#EFBB8B',
+        'Desierto' : '#FF8888'
+    }
+
+};
 
 Promise.all([
 
@@ -85,6 +93,12 @@ function load_sources_layers() {
         'promoteId' : 'id'
     });
 
+    main.mapa.addSource('municipios', {
+        type: 'geojson',
+        data : main.data.municipios,
+        'promoteId' : 'id'
+    });
+
     main.mapa.addLayer({
         'id': 'estados',
         'type': 'fill',
@@ -107,7 +121,54 @@ function load_sources_layers() {
     });
 
     main.mapa.addLayer({
-        'id': 'localidad-border',
+        'id': 'municipios',
+        'type': 'fill',
+        'source': 'municipios',
+        'layout': {},
+        'paint': {
+          'fill-color': [
+            'case',
+
+            [
+                '==',
+                ['get', 'category'],
+                'No desierto'
+            ],
+                main.colors['No desierto'],
+                
+            [
+                '==',
+                ['get', 'category'],
+                'Desierto'
+            ],
+                main.colors['Desierto'],
+
+            [
+                '==',
+                ['get', 'category'],
+                'Desierto Moderado'
+            ],
+                main.colors['Desierto Moderado'],
+
+                'lightgray'
+
+          ],
+          'fill-outline-color' : 'transparent',
+          'fill-opacity': [
+            'case',
+            [
+                'boolean', 
+                ['feature-state', 'hover'], 
+                false
+            ],
+            1,
+            .8
+          ]
+        }
+    });
+
+    main.mapa.addLayer({
+        'id': 'estados-border',
         'type': 'line',
         'source': 'estados',
         'layout': {},
