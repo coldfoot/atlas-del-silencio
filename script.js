@@ -21,16 +21,18 @@ function init(data) {
 
     compute_subtotals();
 
-    main.mapa = new Mapa('.map');
+    //main.mapa = new Mapa('.map');
 
+    /*
     main.features = {
 
         municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa),
         provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa)
 
-    }
+    }*/
+    init_map();
 
-    main.mapa.initZoom();
+    //main.mapa.initZoom();
 
     main.controls = new Controls();
 
@@ -52,6 +54,16 @@ function init(data) {
     //animation();
 
 
+}
+
+function init_map() {
+    mapboxgl.accessToken = 'pk.eyJ1IjoidGlhZ29tYnAiLCJhIjoiY2thdjJmajYzMHR1YzJ5b2huM2pscjdreCJ9.oT7nAiasQnIMjhUB-VFvmw';
+    main.mapa = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/tiagombp/clgxtpl6400eg01p6dtzv8igv', // style URL
+        center : [-65, 1], // starting position [lng, lat]
+        zoom: 4, // starting zoom
+    });
 }
 
 // temporary function while we don't have this info encoded in the data

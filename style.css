@@ -25,89 +25,26 @@ body {
     margin: 0 auto;
     background: white;
     padding-top: 1rem;
-}
-
-.map-container {
-    height: 50vh;
     position: relative;
-    transition: margin var(--t);
+    height: 95vh;
+    background-color: transparent;
 }
 
-.map {
-    height: 100%;
-    width: 100%;
-
-    --stroke: 1;
+.map-container#map {
+    height: 95vh;
+    width: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
-
-path {
-    stroke-width: var(--stroke);
-    stroke: #333;/* #BFA98F;*/
-    fill: #FEFED0; /* lightseagreen;*/
-    transition: stroke var(--t), fill var(--t);
-}
-
-path.provincias {
-    
-    stroke: #333;
-    stroke-width: calc(var(--stroke) * 2);
-    /*transition: fill var(--t);*/
-}
-
-path.provincias:hover {
-    fill: lightseagreen;
-}
-
-path.provincias.selected {
-    fill: transparent;
-    pointer-events: none;
-}
-
-path[data-category="No desierto"] { fill: var(--color-no-desiertos); }
-path[data-category="Desierto Moderado"] { fill: var(--color-semi-desiertos); }
-path[data-category="Desierto"] { fill: var(--color-desiertos); }
-
-
-
-g:has(path.municipios.selected) path.municipios {
-    opacity: .3;
-}
-
-g:has(path.municipios.selected) path.municipios.selected {
-    opacity: 1;
-}
-
-.zoomed {
-    --stroke: .25;
-}
-
-.zoomed[data-zoomed-to-province="Distrito capital"],
-.zoomed[data-zoomed-to-province="Vargas"] {
-    --stroke: .05;
-
-}
-
-.zoomed[data-zoomed-to-province="Distrito capital"]:has(path.municipios.selected),
-.zoomed[data-zoomed-to-province="Vargas"]:has(path.municipios.selected) {
-    --stroke: 0.01
-}
-
-.zoomed + .controls button {
-    background-color: khaki;
-}
-
-g path.municipios.municipios.municipios:hover {
-    stroke: var(--color-highlight);
-    opacity: .7;
-}
-
-
 
 /* cards */
 
 .wrapper-text-card-containers {
-    position: relative;
-    height: calc(100vh - 50vh - 7rem);
+    position: absolute;
+    height: calc(95vh - 50vh - 7rem);
+    bottom: 0;
 }
 
 .card-container {
@@ -405,7 +342,7 @@ select.info-subtitle {
 }
 
 .top-bar .btn-menu {
-    background-color: white;
+    background-color: transparent;
     border: none;
     display: block;
     height: 100%;
@@ -464,7 +401,7 @@ select.info-subtitle {
 }
 
 [data-state="opening"] .map-container {
-    margin-top: -5rem;
+
 }
 
 [data-state="explore"] .wrapper-text-container {
