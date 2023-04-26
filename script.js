@@ -4,6 +4,13 @@ const main = {
         'No desierto' : '#65CA87',
         'Desierto Moderado' : '#EFBB8B',
         'Desierto' : '#FF8888'
+    },
+    
+    dims : {
+
+        top: null,
+        bottom: null
+
     }
 
 };
@@ -64,6 +71,17 @@ function init(data) {
 
 }
 
+const utils = {
+
+    getDims() {
+
+        main.dims.top = +window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
+        main.dims.bottom = +window.getComputedStyle(document.querySelector('.wrapper-text-card-containers')).height.slice(0,-2);
+
+    }
+
+}
+
 function init_map() {
 
     mapboxgl.accessToken = 'pk.eyJ1IjoidGlhZ29tYnAiLCJhIjoiY2thdjJmajYzMHR1YzJ5b2huM2pscjdreCJ9.oT7nAiasQnIMjhUB-VFvmw';
@@ -97,27 +115,6 @@ function load_sources_layers() {
         type: 'geojson',
         data : main.data.municipios,
         'promoteId' : 'id'
-    });
-
-    main.mapa.addLayer({
-        'id': 'estados',
-        'type': 'fill',
-        'source': 'estados',
-        'layout': {},
-        'paint': {
-          'fill-color': 'khaki',
-          'fill-outline-color' : 'transparent',
-          'fill-opacity': [
-            'case',
-            [
-                'boolean', 
-                ['feature-state', 'hover'], 
-                false
-            ],
-            1,
-            .8
-          ]
-        }
     });
 
     main.mapa.addLayer({
@@ -168,6 +165,38 @@ function load_sources_layers() {
     });
 
     main.mapa.addLayer({
+        'id': 'municipios-border',
+        'type': 'line',
+        'source': 'municipios',
+        'layout': {},
+        'paint': {
+            'line-color': '#666',
+            'line-width': 0,
+        }
+    }); 
+
+    main.mapa.addLayer({
+        'id': 'estados',
+        'type': 'fill',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+          'fill-color': 'transparent',
+          'fill-outline-color' : 'transparent',
+          'fill-opacity': [
+            'case',
+            [
+                'boolean', 
+                ['feature-state', 'hover'], 
+                false
+            ],
+            .1,
+            0
+          ]
+        }
+    });
+
+    main.mapa.addLayer({
         'id': 'estados-border',
         'type': 'line',
         'source': 'estados',
@@ -178,7 +207,82 @@ function load_sources_layers() {
         }
     }); 
 
+    main.mapa.addLayer({
+        'id': 'estado-border',
+        'type': 'line',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+          'line-color': 'black',
+          'line-width': 4
+        },
+        'filter': ['==', 'estado', '']
+    });
+
+    main.mapa.addLayer({
+        'id': 'estado-border-hover',
+        'type': 'line',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+          'line-color': '#666',
+          'line-width': [
+            'case',
+            [
+                'boolean', 
+                ['feature-state', 'hover'], 
+                false
+            ],
+            4,
+            1
+        ]
+        }
+    }); 
+
 }
+
+function toggle_borders_municipios(toggle) {
+
+    main.mapa.setPaintProperty(
+        'municipios-border', 
+        'line-width', toggle ? 1 : 0
+    );
+
+}
+
+function fit_bounds(type, location) {
+
+    const feature = main.data[type].features.filter(d => d.properties.name == location)[0];
+
+    const bbox = turf.bbox(feature);
+
+    console.log(feature, bbox);
+
+    main.mapa.fitBounds(bbox, {
+        padding : {
+            top: main.dims.top + 10,
+            bottom: main.dims.bottom + 10,
+            left: 10,
+            right: 10
+        }
+    })
+
+    main.mapa.setFilter(
+            'estado-border', 
+            [
+                '==',
+                ['get', 'name'],
+                location
+            ]
+    );
+
+    toggle_borders_municipios(true);
+
+    main.card.set('provincias', location);
+
+}
+
+
 
 // temporary function while we don't have this info encoded in the data
 function compute_subtotals() {
@@ -735,6 +839,10 @@ class Controls {
 
                 document.querySelector('.outer-wrapper').dataset.state = "explore";
 
+                utils.getDims();
+
+
+
                 //console.log(document.querySelector('.outer-wrapper'));
 
             }
@@ -802,7 +910,7 @@ class SearchBar {
     populate_datalist() {
 
         const provincias = main.data.provincias.features.map(d => d.properties.name);
-        this.provincias = provincias.map(d => d.normalize('NFD').replace(/[\u0300-\u036f]/g, ""));
+        this.provincias = provincias;//.map(d => d.normalize('NFD').replace(/[\u0300-\u036f]/g, ""));
 
         console.log(provincias);
 
@@ -832,7 +940,8 @@ class SearchBar {
 
         if (index >= 0) {
 
-            main.mapa.fit_bounds('provincias', text);
+            //main.mapa.fit_bounds('provincias', text);
+            fit_bounds('provincias', text);
 
         }
 

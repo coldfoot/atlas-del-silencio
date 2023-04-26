@@ -24,7 +24,6 @@ body {
     max-width: 400px;
     margin: 0 auto;
     background: white;
-    padding-top: 1rem;
     position: relative;
     height: 95vh;
     background-color: transparent;
@@ -36,17 +35,27 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
 }
 
-/* cards */
+.wrapper-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    max-width: inherit;
+    padding-top: 1rem;
+    z-index: 1;
+}
 
 .wrapper-text-card-containers {
     position: absolute;
     width: inherit;
     height: 50vh;
     bottom: 0;
+    z-index: 1;
 }
+
+/* cards */
 
 .card-container {
     height: 100%;
@@ -174,7 +183,7 @@ body {
 
 .text-container, .card-container {
     background-color: var(--color-back);
-    padding: 2rem 2rem 2rem 1.5rem;
+    padding: 1rem 1.5rem 3rem 1.5rem;
     line-height: 1.65;
     border-radius: 2rem 2rem 0 0;
 }
@@ -408,7 +417,7 @@ select.info-subtitle {
 }
 
 [data-state="explore"] .wrapper-text-card-containers {
-    height: 40vh;
+    height: 35vh;
 }
 
 [data-state="explore"] .wrapper-text-container {

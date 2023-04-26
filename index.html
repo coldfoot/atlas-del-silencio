@@ -17,32 +17,36 @@
 
     <div class="outer-wrapper" data-state="opening"> <!-- exploring-->
 
-        <div class="top-bar">
-            <a href="" class="logo-wrapper">
-                <img src="./imgs/logo-ypis.png" alt="Logo de Ypis">
-            </a>
-            <button class="btn-menu" data-state="burger">
-                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
-                    <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
-                    <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
-                </svg>
-            </button>
-        </div>
+        <div class="wrapper-top">
 
-        <div class="top-controls">
-            <div class="search-bar">
-
-                <input type="search" id="location-search" name="q" placeholder="Selecciona el Estado" list="locations" aria-label="Search through list of locations">
-                
-                <datalist id="locations"></datalist>
-
+            <div class="top-bar">
+                <a href="" class="logo-wrapper">
+                    <img src="./imgs/logo-ypis.png" alt="Logo de Ypis">
+                </a>
+                <button class="btn-menu" data-state="burger">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
+                        <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
+                        <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
+                    </svg>
+                </button>
             </div>
-            <div class="btns">
-                <button class="btn-categories btn-no-desiertos">No Desiertos</button>
-                <button class="btn-categories btn-semi-desiertos">Desiertos Moderados</button>
-                <button class="btn-categories btn-desiertos">Desiertos</button>
+    
+            <div class="top-controls">
+                <div class="search-bar">
+    
+                    <input type="search" id="location-search" name="q" placeholder="Selecciona el Estado" list="locations" aria-label="Search through list of locations">
+                    
+                    <datalist id="locations"></datalist>
+    
+                </div>
+                <div class="btns">
+                    <button class="btn-categories btn-no-desiertos">No Desiertos</button>
+                    <button class="btn-categories btn-semi-desiertos">Desiertos Moderados</button>
+                    <button class="btn-categories btn-desiertos">Desiertos</button>
+                </div>
             </div>
+
         </div>
 
         <div class="map-container" id="map"></div>
@@ -137,6 +141,7 @@
 
     </div>
 
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/flubber@0.3.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
