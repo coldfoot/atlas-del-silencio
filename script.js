@@ -57,13 +57,66 @@ function init(data) {
 }
 
 function init_map() {
+
     mapboxgl.accessToken = 'pk.eyJ1IjoidGlhZ29tYnAiLCJhIjoiY2thdjJmajYzMHR1YzJ5b2huM2pscjdreCJ9.oT7nAiasQnIMjhUB-VFvmw';
+
     main.mapa = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/tiagombp/clgxtpl6400eg01p6dtzv8igv', // style URL
         center : [-65, 1], // starting position [lng, lat]
         zoom: 4, // starting zoom
     });
+
+    main.mapa.on('load', map_is_loaded);
+
+}
+
+function map_is_loaded() {
+
+    load_sources_layers();
+
+}
+
+function load_sources_layers() {
+
+    main.mapa.addSource('estados', {
+        type: 'geojson',
+        data : main.data.provincias,
+        'promoteId' : 'id'
+    });
+
+    main.mapa.addLayer({
+        'id': 'estados',
+        'type': 'fill',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+          'fill-color': 'khaki',
+          'fill-outline-color' : 'transparent',
+          'fill-opacity': [
+            'case',
+            [
+                'boolean', 
+                ['feature-state', 'hover'], 
+                false
+            ],
+            1,
+            .8
+          ]
+        }
+    });
+
+    main.mapa.addLayer({
+        'id': 'localidad-border',
+        'type': 'line',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+            'line-color': '#666',
+            'line-width': 1,
+        }
+    }); 
+
 }
 
 // temporary function while we don't have this info encoded in the data
