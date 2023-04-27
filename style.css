@@ -140,7 +140,7 @@ body {
 
 [data-text="tv"]::before { content: '📺' ;}
 [data-text="radio"]::before { content: '📻' ;}
-[data-text="print"]::before { content: '📰' ;}
+[data-text="print"]::before { content: '🗞️' ;}
 [data-text="digital"]::before { content: '🖥️' ;}
 
 /*
