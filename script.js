@@ -474,7 +474,7 @@ const mouseEventsMunicipio = {
 
     click(e) {
 
-        console.log(e, e.features);
+        //console.log(e, e.features);
         fit_bounds('provincias', e.features[0].properties.parent_name);
 
     },
@@ -569,7 +569,7 @@ function monitorMunicipio(toggle = 'on') {
 
     main.mapa[toggle]('mousemove', 'municipios', mouseEventsMunicipio.hover_move)
     main.mapa[toggle]('mouseleave', 'municipios', mouseEventsMunicipio.hover_leave);
-    //main.mapa[toggle]('click', 'municipios', mouseEventsMunicipio.click);
+    main.mapa[toggle]('click', 'municipios', mouseEventsMunicipio.click);
 
     if (toggle == 'off') {
         reset_featureState_municipio();

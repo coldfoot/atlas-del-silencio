@@ -57,6 +57,10 @@ body {
 
 /* cards */
 
+[data-location-type="venezuela"] {
+    opacity: 0;
+}
+
 .card-container {
     height: 100%;
     width: inherit;
