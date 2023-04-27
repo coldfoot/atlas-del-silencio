@@ -57,10 +57,6 @@ function init(data) {
 
     main.never_clicked = true;
 
-    main.format = function(n) {
-        return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
-    }
-
     //populate_select('provincias');
     //populate_select('municipios');
     //monitor_select('provincias');
@@ -78,6 +74,11 @@ const utils = {
         main.dims.top = +window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
         main.dims.bottom = +window.getComputedStyle(document.querySelector('.wrapper-text-card-containers')).height.slice(0,-2);
 
+    },
+
+    format(n) {
+        if (n == null) return 0;
+        return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
     }
 
 }
@@ -686,7 +687,7 @@ class Card {
         //console.log(mini_data);
 
         this.title_el.innerHTML = mini_data.name;
-        this.pop_el.innerHTML = main.format(mini_data.population);
+        this.pop_el.innerHTML = utils.format(mini_data.population);
 
         // numeric info
         if (type == 'provincias') {
@@ -723,9 +724,9 @@ class Card {
                 const label = document.querySelector(`[data-label-category="${category}"]`)
 
                 //bar.style.flexBasis = pct_pop;
-                //label.innerText = main.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
+                //label.innerText = utils.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
 
-                label.dataset.popInfo = main.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
+                label.dataset.popInfo = utils.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
                 bar.dataset.popValue = pct_pop;
 
                 const qty_total = mini_data.desert_children + mini_data.not_desert_children + mini_data.moderate_desert_children;
