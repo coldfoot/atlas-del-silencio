@@ -13,7 +13,11 @@ const main = {
 
     },
 
-    IDhoveredEstado : null
+    IDhoveredEstado : null,
+    IDhoveredMunicipio : null,
+
+    monitoringEstado : false,
+    monitoringMunicipio : true
 
 };
 
@@ -37,6 +41,8 @@ function init(data) {
     main.data = new Data(data[0], data[1]);
 
     main.bboxVenezuela = turf.bbox(main.data.provincias);
+    utils.computeCenters('provincias');
+    utils.computeCenters('municipios');
 
     compute_subtotals();
 
@@ -80,6 +86,14 @@ const utils = {
 
     },
 
+    computeCenters(type) {
+
+        main.data[type].features.forEach(feature => {
+            feature.properties.center = turf.center(feature).geometry.coordinates;
+        })
+
+    },
+
     format(n) {
         if (n == null) return 0;
         return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
@@ -119,12 +133,21 @@ function init_map() {
 
     main.mapa.on('load', map_is_loaded);
 
+    main.popup_estados = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+
+    main.popup_municipios = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+
 }
 
 function map_is_loaded() {
 
     load_sources_layers();
-    monitorEstado('on');
 
 }
 
@@ -139,7 +162,7 @@ function load_sources_layers() {
     main.mapa.addSource('municipios', {
         type: 'geojson',
         data : main.data.municipios,
-        'promoteId' : 'id'
+        'promoteId' : 'name'
     });
 
     main.mapa.addLayer({
@@ -291,6 +314,19 @@ function reset_featureState_estado() {
 
 }
 
+function reset_featureState_municipio() {
+
+    if (main.IDhoveredMunicipio !== null) {
+        main.mapa.setFeatureState(
+            { source: 'municipios', id: main.IDhoveredMunicipio },
+            { hover: false }
+        );
+    }
+
+    main.IDhoveredMunicipio = null;
+
+}
+
 const mouseEventsEstado = {
 
     hover_move(e) {
@@ -298,7 +334,7 @@ const mouseEventsEstado = {
         // When the user moves their mouse over the state-fill layer, we'll update the
         // feature state for the feature under the mouse.
 
-        console.log(e.features, e.features[0], e.features[0].id, main.IDhoveredEstado);
+        //console.log(e.features, e.features[0], e.features[0].id, main.IDhoveredEstado);
 
         //'features' will not be shown as an Object key if you log only the event 'e' :/
         // you need to explicitely call e.features
@@ -329,6 +365,8 @@ const mouseEventsEstado = {
                 { hover: true }
             );
 
+            mouseEventsEstado.showPopup(e);
+
         }
 
     },
@@ -337,6 +375,7 @@ const mouseEventsEstado = {
         // When the mouse leaves the state-fill layer, update the feature state of the
         // previously hovered feature.
         reset_featureState_estado();
+        mouseEventsEstado.hidePopup();
 
     },
 
@@ -345,6 +384,142 @@ const mouseEventsEstado = {
         console.log(e, e.features);
         fit_bounds('provincias', e.features[0].id);
 
+    },
+
+    showPopup(e) {
+
+        // Change the cursor style as a UI indicator.
+        main.mapa.getCanvas().style.cursor = 'pointer';
+
+        console.log(e, e.features[0]);
+            
+        // Copy coordinates array.
+        const coordinates = JSON.parse(e.features[0].properties.center);
+        const name = e.features[0].properties.name;
+
+        console.log(coordinates);
+            
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        /*
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }*/
+            
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        main.popup_estados.setLngLat(coordinates).setHTML(name).addTo(main.mapa);
+
+    },
+
+    hidePopup() {
+        main.mapa.getCanvas().style.cursor = '';
+        main.popup_estados.remove();
+    }
+
+}
+
+const mouseEventsMunicipio = {
+
+    hover_move(e) {
+
+        // When the user moves their mouse over the state-fill layer, we'll update the
+        // feature state for the feature under the mouse.
+
+        //console.log(e.features, e.features[0], e.features[0].id, main.IDhoveredEstado);
+
+        //'features' will not be shown as an Object key if you log only the event 'e' :/
+        // you need to explicitely call e.features
+        // this 'id' key was generated when the source was added. it is not within the 'properties' object.
+        // we explicitely asked for the 'name' property to be considered as the feature's 'id'.
+
+        if (e.features.length > 0) {
+            
+            // why?
+            if (main.IDhoveredMunicipio !== null) {
+
+                /*
+                main.mapa.removeFeatureState({
+                    source: 'estados',
+                    id: main.IDhoveredEstado
+                });
+                */
+                main.mapa.setFeatureState(
+                    { source: 'municipios', id: main.IDhoveredMunicipio },
+                    { hover: false }
+                );
+            }
+
+            main.IDhoveredMunicipio = e.features[0].id;
+
+            main.mapa.setFeatureState(
+                { source: 'municipios', id: main.IDhoveredMunicipio },
+                { hover: true }
+            );
+
+            mouseEventsMunicipio.showPopup(e);
+
+        }
+
+    },
+
+    hover_leave() {
+        // When the mouse leaves the state-fill layer, update the feature state of the
+        // previously hovered feature.
+        reset_featureState_municipio();
+        mouseEventsMunicipio.hidePopup();
+
+    },
+
+    click(e) {
+
+        console.log(e, e.features);
+        fit_bounds('provincias', e.features[0].properties.parent_name);
+
+    },
+
+    showPopup(e) {
+
+        // Change the cursor style as a UI indicator.
+        main.mapa.getCanvas().style.cursor = 'pointer';
+
+        //console.log(e, e.features[0]);
+            
+        // Copy coordinates array.
+        const coordinates = JSON.parse(e.features[0].properties.center);
+        
+        const name = e.features[0].properties.name;
+        const category = e.features[0].properties.category;
+        const estado = e.features[0].properties.parent_name;
+        const pop = e.features[0].properties.population;
+        
+        const content = `
+            <p style="font-weight: bold;">${name}</p>
+            <p>Estado: ${estado}</p>
+            <p>Población: ${utils.format(pop)}</p>
+            <p class="popup-category" style="display: inline-block; background-color: ${main.colors[category]};">${category}</p>
+        `
+
+        //console.log(coordinates);
+            
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        /*
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }*/
+            
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        main.popup_municipios.setLngLat(coordinates).setHTML(content).addTo(main.mapa);
+
+    },
+
+    hidePopup() {
+        main.mapa.getCanvas().style.cursor = '';
+        main.popup_municipios.remove();
     }
 
 }
@@ -353,6 +528,7 @@ const mouseEventsEstado = {
 
 function monitorEstado(toggle = 'on') {
 
+    main.monitoringEstado = toggle == 'on' ? true : false;
     // toggle: 'on', 'off'
     
     // olha que interessante:
@@ -368,7 +544,37 @@ function monitorEstado(toggle = 'on') {
     main.mapa[toggle]('mouseleave', 'estados', mouseEventsEstado.hover_leave);
     main.mapa[toggle]('click', 'estados', mouseEventsEstado.click);
 
-    if (toggle == 'off') reset_featureState_estado();
+    if (toggle == 'off') {
+        reset_featureState_estado();
+        mouseEventsEstado.hidePopup();
+    }
+
+}
+
+function monitorMunicipio(toggle = 'on') {
+
+    main.monitoringMunicipio = toggle == 'on' ? true : false;
+
+    console.log('Monitorin municipios ', toggle);
+    // toggle: 'on', 'off'
+    
+    // olha que interessante:
+    // o evento do mouse é definido sobre um LAYER, 
+    // o featured state é definido para o SOURCE,
+    // e podemos usar o featureState para alterar o visual de OUTRA LAYER.
+
+    // 1. evento do mouse sobre LAYER1 é disparado e chama uma função.
+    // 2. essa função altera o featureState do feature em questão na própria SOURCE.
+    // 3. uma outra layer, LAYER2, definida com formatação condicionada a um featureState é afetada.
+
+    main.mapa[toggle]('mousemove', 'municipios', mouseEventsMunicipio.hover_move)
+    main.mapa[toggle]('mouseleave', 'municipios', mouseEventsMunicipio.hover_leave);
+    //main.mapa[toggle]('click', 'municipios', mouseEventsMunicipio.click);
+
+    if (toggle == 'off') {
+        reset_featureState_municipio();
+        mouseEventsMunicipio.hidePopup();
+    }
 
 }
 
@@ -384,6 +590,9 @@ function fit_bounds(type, location) {
 
         toggle_borders_municipios(true);
 
+        monitorEstado('off');
+        if (!main.monitoringMunicipio) monitorMunicipio('on');
+
     }
 
     if (type == 'venezuela') {
@@ -391,6 +600,11 @@ function fit_bounds(type, location) {
         bbox = main.bboxVenezuela;
 
         location = '';
+
+        toggle_borders_municipios(false);
+
+        if (!main.monitoringEstado) monitorEstado('on');
+        monitorMunicipio('off');
 
     }
 
@@ -975,6 +1189,10 @@ class Controls {
                 document.querySelector('.outer-wrapper').dataset.state = "explore";
 
                 utils.getDims();
+
+                fit_bounds('venezuela');
+
+                if (!main.monitoringEstado) monitorEstado('on');
 
 
 

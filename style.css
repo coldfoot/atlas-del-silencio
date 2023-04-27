@@ -513,3 +513,14 @@ select.info-subtitle {
     text-align: right;
 }
 
+/* MAPBOX */
+
+.mapboxgl-popup-content p {
+    margin: 0
+}
+
+.mapboxgl-popup-content .popup-category {
+    padding: .2em .4em;
+    border-radius: 1em;
+}
+
