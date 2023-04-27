@@ -83,6 +83,25 @@ const utils = {
     format(n) {
         if (n == null) return 0;
         return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
+    },
+
+    showsBBoxVenezuela() {
+
+        const poly = turf.bboxPolygon(main.bboxVenezuela);
+
+        main.mapa.addSource('bbox-venezuela', { type: 'geojson', data: poly})
+
+        main.mapa.addLayer({
+            'id': 'bbox-venezuela',
+            'type': 'line',
+            'source': 'bbox-venezuela',
+            'layout': {},
+            'paint': {
+                'line-color': 'hotpink',
+                'line-width': 5,
+            }
+        })
+
     }
 
 }
