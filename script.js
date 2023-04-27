@@ -257,13 +257,28 @@ function toggle_borders_municipios(toggle) {
 function hoverEstado() {
     // When the user moves their mouse over the state-fill layer, we'll update the
     // feature state for the feature under the mouse.
-    main.mapa.on('mousemove', 'estado-border-hover', (e) => {
-        console.log(e, e.features[0], e.features[0].id);
-        /*
+    main.mapa.on('mousemove', 'estados', (e) => {
+
+        console.log(e.features, e.features[0], e.features[0].id, main.IDhoveredEstado);
+
+        //'features' will not be shown as an Object key if you log only the event 'e' :/
+        // you need to explicitely call e.features
+        // this 'id' key was generated when the source was added. it is not within the 'properties' object.
+        // we explicitely asked for the 'name' property to be considered as the feature's 'id'.
+
         if (e.features.length > 0) {
+            
+            // why?
             if (main.IDhoveredEstado !== null) {
+
+                /*
+                main.mapa.removeFeatureState({
+                    source: 'estados',
+                    id: main.IDhoveredEstado
+                });
+                */
                 main.mapa.setFeatureState(
-                    { source: 'states', id: main.IDhoveredEstado },
+                    { source: 'estados', id: main.IDhoveredEstado },
                     { hover: false }
                 );
             }
@@ -271,20 +286,19 @@ function hoverEstado() {
             main.IDhoveredEstado = e.features[0].id;
 
             main.mapa.setFeatureState(
-                { source: 'states', id: main.IDhoveredEstado },
+                { source: 'estados', id: main.IDhoveredEstado },
                 { hover: true }
             );
-        }*/
+        }
     });
 
-    /*
-        
+    
     // When the mouse leaves the state-fill layer, update the feature state of the
     // previously hovered feature.
-    map.on('mouseleave', 'estado-border-hover', () => {
+    main.mapa.on('mouseleave', 'estado-border-hover', () => {
         if (main.IDhoveredEstado !== null) {
-            map.setFeatureState(
-                { source: 'states', id: main.IDhoveredEstado },
+            main.mapa.setFeatureState(
+                { source: 'estados', id: main.IDhoveredEstado },
                 { hover: false }
             );
         }
@@ -292,8 +306,6 @@ function hoverEstado() {
         main.IDhoveredEstado = null;
 
      });
-
-     */
 
 }
 
