@@ -103,7 +103,7 @@ function init_map() {
 function map_is_loaded() {
 
     load_sources_layers();
-    hoverEstado();
+    monitorEstado('on');
 
 }
 
@@ -254,10 +254,25 @@ function toggle_borders_municipios(toggle) {
 
 }
 
-function hoverEstado() {
-    // When the user moves their mouse over the state-fill layer, we'll update the
-    // feature state for the feature under the mouse.
-    main.mapa.on('mousemove', 'estados', (e) => {
+function reset_featureState_estado() {
+
+    if (main.IDhoveredEstado !== null) {
+        main.mapa.setFeatureState(
+            { source: 'estados', id: main.IDhoveredEstado },
+            { hover: false }
+        );
+    }
+
+    main.IDhoveredEstado = null;
+
+}
+
+const mouseEventsEstado = {
+
+    hover_move(e) {
+
+        // When the user moves their mouse over the state-fill layer, we'll update the
+        // feature state for the feature under the mouse.
 
         console.log(e.features, e.features[0], e.features[0].id, main.IDhoveredEstado);
 
@@ -289,23 +304,30 @@ function hoverEstado() {
                 { source: 'estados', id: main.IDhoveredEstado },
                 { hover: true }
             );
-        }
-    });
 
-    
-    // When the mouse leaves the state-fill layer, update the feature state of the
-    // previously hovered feature.
-    main.mapa.on('mouseleave', 'estado-border-hover', () => {
-        if (main.IDhoveredEstado !== null) {
-            main.mapa.setFeatureState(
-                { source: 'estados', id: main.IDhoveredEstado },
-                { hover: false }
-            );
         }
 
-        main.IDhoveredEstado = null;
+    },
 
-     });
+    hover_leave() {
+        // When the mouse leaves the state-fill layer, update the feature state of the
+        // previously hovered feature.
+        reset_featureState_estado();
+
+    }
+
+}
+
+
+
+function monitorEstado(toggle = 'on') {
+
+    // toggle: 'on', 'off'
+
+    main.mapa[toggle]('mousemove', 'estados', mouseEventsEstado.hover_move)
+    main.mapa[toggle]('mouseleave', 'estado-border-hover', mouseEventsEstado.hover_leave);
+
+    if (toggle == 'off') reset_featureState_estado();
 
 }
 
