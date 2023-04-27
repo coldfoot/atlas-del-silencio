@@ -9,7 +9,8 @@ const main = {
     dims : {
 
         top: null,
-        bottom: null
+        bottom: null,
+        left: null
 
     },
 
@@ -82,6 +83,7 @@ const utils = {
     getDims() {
 
         main.dims.top = +window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
+        main.dims.left = document.querySelector('.wrapper-top').getBoundingClientRect().x;
         main.dims.bottom = +window.getComputedStyle(document.querySelector('.wrapper-text-card-containers')).height.slice(0,-2);
 
     },
@@ -89,6 +91,7 @@ const utils = {
     position_back_button() {
 
         document.querySelector('button.back-to-main-map').style.setProperty('--top-position', main.dims.top + 'px');
+        document.querySelector('button.back-to-main-map').style.setProperty('--left-position', main.dims.left + 'px');
 
     },
 
@@ -397,13 +400,13 @@ const mouseEventsEstado = {
         // Change the cursor style as a UI indicator.
         main.mapa.getCanvas().style.cursor = 'pointer';
 
-        console.log(e, e.features[0]);
+        //console.log(e, e.features[0]);
             
         // Copy coordinates array.
         const coordinates = JSON.parse(e.features[0].properties.center);
         const name = e.features[0].properties.name;
 
-        console.log(coordinates);
+        //console.log(coordinates);
             
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
@@ -561,7 +564,7 @@ function monitorMunicipio(toggle = 'on') {
 
     main.monitoringMunicipio = toggle == 'on' ? true : false;
 
-    console.log('Monitorin municipios ', toggle);
+    //console.log('Monitoring municipios ', toggle);
     // toggle: 'on', 'off'
     
     // olha que interessante:
@@ -699,6 +702,7 @@ class Data {
 
 }
 
+/*
 class Mapa {
 
     el = null;
@@ -985,6 +989,7 @@ class Features {
     }
 
 }
+*/
 
 class Card {
 

@@ -20,8 +20,8 @@ body {
 }
 
 .outer-wrapper {
-    width: 100%;
-    max-width: 400px;
+    max-width: 100%;
+    width: 400px;
     margin: 0 auto;
     background: white;
     position: relative;
@@ -32,6 +32,7 @@ body {
 .map-container#map {
     height: 95vh;
     width: inherit;
+    max-width: inherit;
     position: absolute;
     top: 0;
     left: 0;
@@ -50,6 +51,7 @@ body {
 .wrapper-text-card-containers {
     position: absolute;
     width: inherit;
+    max-width: inherit;
     height: 50vh;
     bottom: 0;
     z-index: 1;
@@ -59,9 +61,11 @@ body {
 
 button.back-to-main-map {
     --top-position: 10vh; /*updated by JS */
+    --left-position: calc(50vw - 200px);
     position: fixed;
     top: var(--top-position);
-    left: calc(50vw - 200px + 1rem);
+    left: var(--left-position);
+    margin-left: 1rem;
     border-radius: 50%;
     z-index: 2;
     height: 2rem;
