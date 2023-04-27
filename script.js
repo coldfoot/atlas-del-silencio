@@ -11,7 +11,9 @@ const main = {
         top: null,
         bottom: null
 
-    }
+    },
+
+    IDhoveredEstado : null
 
 };
 
@@ -101,6 +103,7 @@ function init_map() {
 function map_is_loaded() {
 
     load_sources_layers();
+    hoverEstado();
 
 }
 
@@ -109,7 +112,7 @@ function load_sources_layers() {
     main.mapa.addSource('estados', {
         type: 'geojson',
         data : main.data.provincias,
-        'promoteId' : 'id'
+        'promoteId' : 'name'
     });
 
     main.mapa.addSource('municipios', {
@@ -248,6 +251,49 @@ function toggle_borders_municipios(toggle) {
         'municipios-border', 
         'line-width', toggle ? 1 : 0
     );
+
+}
+
+function hoverEstado() {
+    // When the user moves their mouse over the state-fill layer, we'll update the
+    // feature state for the feature under the mouse.
+    main.mapa.on('mousemove', 'estado-border-hover', (e) => {
+        console.log(e, e.features[0], e.features[0].id);
+        /*
+        if (e.features.length > 0) {
+            if (main.IDhoveredEstado !== null) {
+                main.mapa.setFeatureState(
+                    { source: 'states', id: main.IDhoveredEstado },
+                    { hover: false }
+                );
+            }
+
+            main.IDhoveredEstado = e.features[0].id;
+
+            main.mapa.setFeatureState(
+                { source: 'states', id: main.IDhoveredEstado },
+                { hover: true }
+            );
+        }*/
+    });
+
+    /*
+        
+    // When the mouse leaves the state-fill layer, update the feature state of the
+    // previously hovered feature.
+    map.on('mouseleave', 'estado-border-hover', () => {
+        if (main.IDhoveredEstado !== null) {
+            map.setFeatureState(
+                { source: 'states', id: main.IDhoveredEstado },
+                { hover: false }
+            );
+        }
+
+        main.IDhoveredEstado = null;
+
+     });
+
+     */
 
 }
 
