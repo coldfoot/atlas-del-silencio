@@ -256,9 +256,9 @@ button.back-to-main-map {
     display: inline-block;
 }
 
-.btn-no-desiertos::before, [data-label-category="No desierto"]::before { background-image: url(/imgs/no-desierto.png);}
-.btn-semi-desiertos::before, [data-label-category="Desierto Moderado"]::before { background-image: url(/imgs/semidesert.png);}
-.btn-desiertos::before, [data-label-category="Desierto"]::before { background-image: url(/imgs/desierto.png);}
+.btn-no-desiertos::before, [data-label-category="No desierto"]::before { background-image: url(./imgs/no-desierto.png);}
+.btn-semi-desiertos::before, [data-label-category="Desierto Moderado"]::before { background-image: url(./imgs/semidesert.png);}
+.btn-desiertos::before, [data-label-category="Desierto"]::before { background-image: url(./imgs/desierto.png);}
 
 .key-word.highlighted {
     border-color: crimson;
