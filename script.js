@@ -36,6 +36,8 @@ function init(data) {
 
     main.data = new Data(data[0], data[1]);
 
+    main.bboxVenezuela = turf.bbox(main.data.provincias);
+
     compute_subtotals();
 
     //main.mapa = new Mapa('.map');
@@ -211,18 +213,9 @@ function load_sources_layers() {
         }
     }); 
 
-    main.mapa.addLayer({
-        'id': 'estado-border',
-        'type': 'line',
-        'source': 'estados',
-        'layout': {},
-        'paint': {
-          'line-color': 'black',
-          'line-width': 4
-        },
-        'filter': ['==', 'estado', '']
-    });
-
+    // antes do 'selected-estado-border', para que este fique acima
+    // do 'hover' (caso contrário, quando houver um estado selecionado,
+    // passar o mouse sobre esse mesmo estado fará mudar sua borda, criando um efeito estranho)
     main.mapa.addLayer({
         'id': 'estado-border-hover',
         'type': 'line',
@@ -242,6 +235,18 @@ function load_sources_layers() {
         ]
         }
     }); 
+
+    main.mapa.addLayer({
+        'id': 'selected-estado-border',
+        'type': 'line',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+          'line-color': 'black',
+          'line-width': 4
+        },
+        'filter': ['==', 'estado', '']
+    });
 
 }
 
@@ -314,6 +319,13 @@ const mouseEventsEstado = {
         // previously hovered feature.
         reset_featureState_estado();
 
+    },
+
+    click(e) {
+
+        console.log(e, e.features);
+        fit_bounds('provincias', e.features[0].id);
+
     }
 
 }
@@ -323,9 +335,19 @@ const mouseEventsEstado = {
 function monitorEstado(toggle = 'on') {
 
     // toggle: 'on', 'off'
+    
+    // olha que interessante:
+    // o evento do mouse é definido sobre um LAYER, 
+    // o featured state é definido para o SOURCE,
+    // e podemos usar o featureState para alterar o visual de OUTRA LAYER.
+
+    // 1. evento do mouse sobre LAYER1 é disparado e chama uma função.
+    // 2. essa função altera o featureState do feature em questão na própria SOURCE.
+    // 3. uma outra layer, LAYER2, definida com formatação condicionada a um featureState é afetada.
 
     main.mapa[toggle]('mousemove', 'estados', mouseEventsEstado.hover_move)
-    main.mapa[toggle]('mouseleave', 'estado-border-hover', mouseEventsEstado.hover_leave);
+    main.mapa[toggle]('mouseleave', 'estados', mouseEventsEstado.hover_leave);
+    main.mapa[toggle]('click', 'estados', mouseEventsEstado.click);
 
     if (toggle == 'off') reset_featureState_estado();
 
@@ -333,11 +355,34 @@ function monitorEstado(toggle = 'on') {
 
 function fit_bounds(type, location) {
 
-    const feature = main.data[type].features.filter(d => d.properties.name == location)[0];
+    let bbox;
 
-    const bbox = turf.bbox(feature);
+    if (type == 'provincias') {
 
-    console.log(feature, bbox);
+        const feature = main.data[type].features.filter(d => d.properties.name == location)[0];
+
+        bbox = turf.bbox(feature);
+
+        toggle_borders_municipios(true);
+
+    }
+
+    if (type == 'venezuela') {
+
+        bbox = main.bboxVenezuela;
+
+        location = '';
+
+    }
+
+    main.mapa.setFilter(
+        'selected-estado-border', 
+        [
+            '==',
+            ['get', 'name'],
+            location
+        ]
+    );
 
     main.mapa.fitBounds(bbox, {
         padding : {
@@ -348,18 +393,7 @@ function fit_bounds(type, location) {
         }
     })
 
-    main.mapa.setFilter(
-            'estado-border', 
-            [
-                '==',
-                ['get', 'name'],
-                location
-            ]
-    );
-
-    toggle_borders_municipios(true);
-
-    main.card.set('provincias', location);
+    main.card.set(type, location);
 
 }
 
@@ -896,7 +930,8 @@ class Controls {
             handler : (e) => {
 
                 //console.log('fire');
-                main.mapa.reset_map();
+                //main.mapa.reset_map();
+                fit_bounds('venezuela');
 
             }
         },
