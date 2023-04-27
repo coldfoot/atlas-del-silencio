@@ -1,4 +1,25 @@
-const main = {};
+const main = {
+
+    colors : {
+        'No desierto' : '#65CA87',
+        'Desierto Moderado' : '#EFBB8B',
+        'Desierto' : '#FF8888'
+    },
+    
+    dims : {
+
+        top: null,
+        bottom: null
+
+    },
+
+    IDhoveredEstado : null,
+    IDhoveredMunicipio : null,
+
+    monitoringEstado : false,
+    monitoringMunicipio : true
+
+};
 
 Promise.all([
 
@@ -19,18 +40,24 @@ function init(data) {
 
     main.data = new Data(data[0], data[1]);
 
+    main.bboxVenezuela = turf.bbox(main.data.provincias);
+    utils.computeCenters('provincias');
+    utils.computeCenters('municipios');
+
     compute_subtotals();
 
-    main.mapa = new Mapa('.map');
+    //main.mapa = new Mapa('.map');
 
+    /*
     main.features = {
 
         municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa),
         provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa)
 
-    }
+    }*/
+    init_map();
 
-    main.mapa.initZoom();
+    //main.mapa.initZoom();
 
     main.controls = new Controls();
 
@@ -39,10 +66,6 @@ function init(data) {
     main.card = new Card('card-container', data[0].features, data[1].features);
 
     main.never_clicked = true;
-
-    main.format = function(n) {
-        return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
-    }
 
     //populate_select('provincias');
     //populate_select('municipios');
@@ -53,6 +76,567 @@ function init(data) {
 
 
 }
+
+const utils = {
+
+    getDims() {
+
+        main.dims.top = +window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
+        main.dims.bottom = +window.getComputedStyle(document.querySelector('.wrapper-text-card-containers')).height.slice(0,-2);
+
+    },
+
+    position_back_button() {
+
+        document.querySelector('button.back-to-main-map').style.setProperty('--top-position', main.dims.top + 'px');
+
+    },
+
+    computeCenters(type) {
+
+        main.data[type].features.forEach(feature => {
+            feature.properties.center = turf.center(feature).geometry.coordinates;
+        })
+
+    },
+
+    format(n) {
+        if (n == null) return 0;
+        return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
+    },
+
+    showsBBoxVenezuela() {
+
+        const poly = turf.bboxPolygon(main.bboxVenezuela);
+
+        main.mapa.addSource('bbox-venezuela', { type: 'geojson', data: poly})
+
+        main.mapa.addLayer({
+            'id': 'bbox-venezuela',
+            'type': 'line',
+            'source': 'bbox-venezuela',
+            'layout': {},
+            'paint': {
+                'line-color': 'hotpink',
+                'line-width': 5,
+            }
+        })
+
+    }
+
+}
+
+function init_map() {
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoidGlhZ29tYnAiLCJhIjoiY2thdjJmajYzMHR1YzJ5b2huM2pscjdreCJ9.oT7nAiasQnIMjhUB-VFvmw';
+
+    main.mapa = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/tiagombp/clgxtpl6400eg01p6dtzv8igv', // style URL
+        center : [-65, 1], // starting position [lng, lat]
+        zoom: 4, // starting zoom
+    });
+
+    main.mapa.on('load', map_is_loaded);
+
+    main.popup_estados = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+
+    main.popup_municipios = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+
+}
+
+function map_is_loaded() {
+
+    load_sources_layers();
+
+}
+
+function load_sources_layers() {
+
+    main.mapa.addSource('estados', {
+        type: 'geojson',
+        data : main.data.provincias,
+        'promoteId' : 'name'
+    });
+
+    main.mapa.addSource('municipios', {
+        type: 'geojson',
+        data : main.data.municipios,
+        'promoteId' : 'name'
+    });
+
+    main.mapa.addLayer({
+        'id': 'municipios',
+        'type': 'fill',
+        'source': 'municipios',
+        'layout': {},
+        'paint': {
+          'fill-color': [
+            'case',
+
+            [
+                '==',
+                ['get', 'category'],
+                'No desierto'
+            ],
+                main.colors['No desierto'],
+                
+            [
+                '==',
+                ['get', 'category'],
+                'Desierto'
+            ],
+                main.colors['Desierto'],
+
+            [
+                '==',
+                ['get', 'category'],
+                'Desierto Moderado'
+            ],
+                main.colors['Desierto Moderado'],
+
+                'lightgray'
+
+          ],
+          'fill-outline-color' : 'transparent',
+          'fill-opacity': [
+            'case',
+            [
+                'boolean', 
+                ['feature-state', 'hover'], 
+                false
+            ],
+            1,
+            .8
+          ]
+        }
+    });
+
+    main.mapa.addLayer({
+        'id': 'municipios-border',
+        'type': 'line',
+        'source': 'municipios',
+        'layout': {},
+        'paint': {
+            'line-color': '#666',
+            'line-width': 0,
+        }
+    }); 
+
+    main.mapa.addLayer({
+        'id': 'estados',
+        'type': 'fill',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+          'fill-color': 'transparent',
+          'fill-outline-color' : 'transparent',
+          'fill-opacity': [
+            'case',
+            [
+                'boolean', 
+                ['feature-state', 'hover'], 
+                false
+            ],
+            .1,
+            0
+          ]
+        }
+    });
+
+    main.mapa.addLayer({
+        'id': 'estados-border',
+        'type': 'line',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+            'line-color': '#666',
+            'line-width': 1,
+        }
+    }); 
+
+    // antes do 'selected-estado-border', para que este fique acima
+    // do 'hover' (caso contrário, quando houver um estado selecionado,
+    // passar o mouse sobre esse mesmo estado fará mudar sua borda, criando um efeito estranho)
+    main.mapa.addLayer({
+        'id': 'estado-border-hover',
+        'type': 'line',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+          'line-color': '#666',
+          'line-width': [
+            'case',
+            [
+                'boolean', 
+                ['feature-state', 'hover'], 
+                false
+            ],
+            4,
+            1
+        ]
+        }
+    }); 
+
+    main.mapa.addLayer({
+        'id': 'selected-estado-border',
+        'type': 'line',
+        'source': 'estados',
+        'layout': {},
+        'paint': {
+          'line-color': 'black',
+          'line-width': 4
+        },
+        'filter': ['==', 'estado', '']
+    });
+
+}
+
+function toggle_borders_municipios(toggle) {
+
+    main.mapa.setPaintProperty(
+        'municipios-border', 
+        'line-width', toggle ? 1 : 0
+    );
+
+}
+
+function reset_featureState_estado() {
+
+    if (main.IDhoveredEstado !== null) {
+        main.mapa.setFeatureState(
+            { source: 'estados', id: main.IDhoveredEstado },
+            { hover: false }
+        );
+    }
+
+    main.IDhoveredEstado = null;
+
+}
+
+function reset_featureState_municipio() {
+
+    if (main.IDhoveredMunicipio !== null) {
+        main.mapa.setFeatureState(
+            { source: 'municipios', id: main.IDhoveredMunicipio },
+            { hover: false }
+        );
+    }
+
+    main.IDhoveredMunicipio = null;
+
+}
+
+const mouseEventsEstado = {
+
+    hover_move(e) {
+
+        // When the user moves their mouse over the state-fill layer, we'll update the
+        // feature state for the feature under the mouse.
+
+        //console.log(e.features, e.features[0], e.features[0].id, main.IDhoveredEstado);
+
+        //'features' will not be shown as an Object key if you log only the event 'e' :/
+        // you need to explicitely call e.features
+        // this 'id' key was generated when the source was added. it is not within the 'properties' object.
+        // we explicitely asked for the 'name' property to be considered as the feature's 'id'.
+
+        if (e.features.length > 0) {
+            
+            // why?
+            if (main.IDhoveredEstado !== null) {
+
+                /*
+                main.mapa.removeFeatureState({
+                    source: 'estados',
+                    id: main.IDhoveredEstado
+                });
+                */
+                main.mapa.setFeatureState(
+                    { source: 'estados', id: main.IDhoveredEstado },
+                    { hover: false }
+                );
+            }
+
+            main.IDhoveredEstado = e.features[0].id;
+
+            main.mapa.setFeatureState(
+                { source: 'estados', id: main.IDhoveredEstado },
+                { hover: true }
+            );
+
+            mouseEventsEstado.showPopup(e);
+
+        }
+
+    },
+
+    hover_leave() {
+        // When the mouse leaves the state-fill layer, update the feature state of the
+        // previously hovered feature.
+        reset_featureState_estado();
+        mouseEventsEstado.hidePopup();
+
+    },
+
+    click(e) {
+
+        console.log(e, e.features);
+        fit_bounds('provincias', e.features[0].id);
+
+    },
+
+    showPopup(e) {
+
+        // Change the cursor style as a UI indicator.
+        main.mapa.getCanvas().style.cursor = 'pointer';
+
+        console.log(e, e.features[0]);
+            
+        // Copy coordinates array.
+        const coordinates = JSON.parse(e.features[0].properties.center);
+        const name = e.features[0].properties.name;
+
+        console.log(coordinates);
+            
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        /*
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }*/
+            
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        main.popup_estados.setLngLat(coordinates).setHTML(name).addTo(main.mapa);
+
+    },
+
+    hidePopup() {
+        main.mapa.getCanvas().style.cursor = '';
+        main.popup_estados.remove();
+    }
+
+}
+
+const mouseEventsMunicipio = {
+
+    hover_move(e) {
+
+        // When the user moves their mouse over the state-fill layer, we'll update the
+        // feature state for the feature under the mouse.
+
+        //console.log(e.features, e.features[0], e.features[0].id, main.IDhoveredEstado);
+
+        //'features' will not be shown as an Object key if you log only the event 'e' :/
+        // you need to explicitely call e.features
+        // this 'id' key was generated when the source was added. it is not within the 'properties' object.
+        // we explicitely asked for the 'name' property to be considered as the feature's 'id'.
+
+        if (e.features.length > 0) {
+            
+            // why?
+            if (main.IDhoveredMunicipio !== null) {
+
+                /*
+                main.mapa.removeFeatureState({
+                    source: 'estados',
+                    id: main.IDhoveredEstado
+                });
+                */
+                main.mapa.setFeatureState(
+                    { source: 'municipios', id: main.IDhoveredMunicipio },
+                    { hover: false }
+                );
+            }
+
+            main.IDhoveredMunicipio = e.features[0].id;
+
+            main.mapa.setFeatureState(
+                { source: 'municipios', id: main.IDhoveredMunicipio },
+                { hover: true }
+            );
+
+            mouseEventsMunicipio.showPopup(e);
+
+        }
+
+    },
+
+    hover_leave() {
+        // When the mouse leaves the state-fill layer, update the feature state of the
+        // previously hovered feature.
+        reset_featureState_municipio();
+        mouseEventsMunicipio.hidePopup();
+
+    },
+
+    click(e) {
+
+        //console.log(e, e.features);
+        fit_bounds('provincias', e.features[0].properties.parent_name);
+
+    },
+
+    showPopup(e) {
+
+        // Change the cursor style as a UI indicator.
+        main.mapa.getCanvas().style.cursor = 'pointer';
+
+        //console.log(e, e.features[0]);
+            
+        // Copy coordinates array.
+        const coordinates = JSON.parse(e.features[0].properties.center);
+        
+        const name = e.features[0].properties.name;
+        const category = e.features[0].properties.category;
+        const estado = e.features[0].properties.parent_name;
+        const pop = e.features[0].properties.population;
+        
+        const content = `
+            <p style="font-weight: bold;">${name}</p>
+            <p>Estado: ${estado}</p>
+            <p>Población: ${utils.format(pop)}</p>
+            <p class="popup-category" style="display: inline-block; background-color: ${main.colors[category]};">${category}</p>
+        `
+
+        //console.log(coordinates);
+            
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        /*
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }*/
+            
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        main.popup_municipios.setLngLat(coordinates).setHTML(content).addTo(main.mapa);
+
+    },
+
+    hidePopup() {
+        main.mapa.getCanvas().style.cursor = '';
+        main.popup_municipios.remove();
+    }
+
+}
+
+
+
+function monitorEstado(toggle = 'on') {
+
+    main.monitoringEstado = toggle == 'on' ? true : false;
+    // toggle: 'on', 'off'
+    
+    // olha que interessante:
+    // o evento do mouse é definido sobre um LAYER, 
+    // o featured state é definido para o SOURCE,
+    // e podemos usar o featureState para alterar o visual de OUTRA LAYER.
+
+    // 1. evento do mouse sobre LAYER1 é disparado e chama uma função.
+    // 2. essa função altera o featureState do feature em questão na própria SOURCE.
+    // 3. uma outra layer, LAYER2, definida com formatação condicionada a um featureState é afetada.
+
+    main.mapa[toggle]('mousemove', 'estados', mouseEventsEstado.hover_move)
+    main.mapa[toggle]('mouseleave', 'estados', mouseEventsEstado.hover_leave);
+    main.mapa[toggle]('click', 'estados', mouseEventsEstado.click);
+
+    if (toggle == 'off') {
+        reset_featureState_estado();
+        mouseEventsEstado.hidePopup();
+    }
+
+}
+
+function monitorMunicipio(toggle = 'on') {
+
+    main.monitoringMunicipio = toggle == 'on' ? true : false;
+
+    console.log('Monitorin municipios ', toggle);
+    // toggle: 'on', 'off'
+    
+    // olha que interessante:
+    // o evento do mouse é definido sobre um LAYER, 
+    // o featured state é definido para o SOURCE,
+    // e podemos usar o featureState para alterar o visual de OUTRA LAYER.
+
+    // 1. evento do mouse sobre LAYER1 é disparado e chama uma função.
+    // 2. essa função altera o featureState do feature em questão na própria SOURCE.
+    // 3. uma outra layer, LAYER2, definida com formatação condicionada a um featureState é afetada.
+
+    main.mapa[toggle]('mousemove', 'municipios', mouseEventsMunicipio.hover_move)
+    main.mapa[toggle]('mouseleave', 'municipios', mouseEventsMunicipio.hover_leave);
+    main.mapa[toggle]('click', 'municipios', mouseEventsMunicipio.click);
+
+    if (toggle == 'off') {
+        reset_featureState_municipio();
+        mouseEventsMunicipio.hidePopup();
+    }
+
+}
+
+function fit_bounds(type, location) {
+
+    let bbox;
+
+    if (type == 'provincias') {
+
+        const feature = main.data[type].features.filter(d => d.properties.name == location)[0];
+
+        bbox = turf.bbox(feature);
+
+        toggle_borders_municipios(true);
+
+        monitorEstado('off');
+        if (!main.monitoringMunicipio) monitorMunicipio('on');
+
+    }
+
+    if (type == 'venezuela') {
+
+        bbox = main.bboxVenezuela;
+
+        location = '';
+
+        toggle_borders_municipios(false);
+
+        if (!main.monitoringEstado) monitorEstado('on');
+        monitorMunicipio('off');
+
+    }
+
+    main.mapa.setFilter(
+        'selected-estado-border', 
+        [
+            '==',
+            ['get', 'name'],
+            location
+        ]
+    );
+
+    main.mapa.fitBounds(bbox, {
+        padding : {
+            top: main.dims.top + 10,
+            bottom: main.dims.bottom + 10,
+            left: 10,
+            right: 10
+        }
+    })
+
+    main.card.set(type, location);
+
+}
+
+
 
 // temporary function while we don't have this info encoded in the data
 function compute_subtotals() {
@@ -456,7 +1040,7 @@ class Card {
         //console.log(mini_data);
 
         this.title_el.innerHTML = mini_data.name;
-        this.pop_el.innerHTML = main.format(mini_data.population);
+        this.pop_el.innerHTML = utils.format(mini_data.population);
 
         // numeric info
         if (type == 'provincias') {
@@ -493,9 +1077,9 @@ class Card {
                 const label = document.querySelector(`[data-label-category="${category}"]`)
 
                 //bar.style.flexBasis = pct_pop;
-                //label.innerText = main.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
+                //label.innerText = utils.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
 
-                label.dataset.popInfo = main.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
+                label.dataset.popInfo = utils.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
                 bar.dataset.popValue = pct_pop;
 
                 const qty_total = mini_data.desert_children + mini_data.not_desert_children + mini_data.moderate_desert_children;
@@ -585,7 +1169,20 @@ class Controls {
             handler : (e) => {
 
                 //console.log('fire');
-                main.mapa.reset_map();
+                //main.mapa.reset_map();
+                fit_bounds('venezuela');
+
+            }
+        },
+
+        {
+
+            ref : 'back-to-main-map',
+            handler : (e) => {
+
+                //console.log('fire');
+                //main.mapa.reset_map();
+                fit_bounds('venezuela');
 
             }
         },
@@ -608,6 +1205,15 @@ class Controls {
             handler: (e) => {
 
                 document.querySelector('.outer-wrapper').dataset.state = "explore";
+
+                utils.getDims();
+                utils.position_back_button();
+
+                fit_bounds('venezuela');
+
+                if (!main.monitoringEstado) monitorEstado('on');
+
+
 
                 //console.log(document.querySelector('.outer-wrapper'));
 
@@ -676,7 +1282,7 @@ class SearchBar {
     populate_datalist() {
 
         const provincias = main.data.provincias.features.map(d => d.properties.name);
-        this.provincias = provincias.map(d => d.normalize('NFD').replace(/[\u0300-\u036f]/g, ""));
+        this.provincias = provincias;//.map(d => d.normalize('NFD').replace(/[\u0300-\u036f]/g, ""));
 
         console.log(provincias);
 
@@ -706,7 +1312,8 @@ class SearchBar {
 
         if (index >= 0) {
 
-            main.mapa.fit_bounds('provincias', text);
+            //main.mapa.fit_bounds('provincias', text);
+            fit_bounds('provincias', text);
 
         }
 

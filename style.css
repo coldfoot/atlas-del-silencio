@@ -24,99 +24,61 @@ body {
     max-width: 400px;
     margin: 0 auto;
     background: white;
-    padding-top: 1rem;
-}
-
-.map-container {
-    height: 50vh;
     position: relative;
-    transition: margin var(--t);
+    height: 95vh;
+    background-color: transparent;
 }
 
-.map {
-    height: 100%;
-    width: 100%;
-
-    --stroke: 1;
+.map-container#map {
+    height: 95vh;
+    width: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-path {
-    stroke-width: var(--stroke);
-    stroke: #333;/* #BFA98F;*/
-    fill: #FEFED0; /* lightseagreen;*/
-    transition: stroke var(--t), fill var(--t);
+.wrapper-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    max-width: inherit;
+    padding-top: 1rem;
+    z-index: 1;
 }
 
-path.provincias {
-    
-    stroke: #333;
-    stroke-width: calc(var(--stroke) * 2);
-    /*transition: fill var(--t);*/
+.wrapper-text-card-containers {
+    position: absolute;
+    width: inherit;
+    height: 50vh;
+    bottom: 0;
+    z-index: 1;
 }
-
-path.provincias:hover {
-    fill: lightseagreen;
-}
-
-path.provincias.selected {
-    fill: transparent;
-    pointer-events: none;
-}
-
-path[data-category="No desierto"] { fill: var(--color-no-desiertos); }
-path[data-category="Desierto Moderado"] { fill: var(--color-semi-desiertos); }
-path[data-category="Desierto"] { fill: var(--color-desiertos); }
-
-
-
-g:has(path.municipios.selected) path.municipios {
-    opacity: .3;
-}
-
-g:has(path.municipios.selected) path.municipios.selected {
-    opacity: 1;
-}
-
-.zoomed {
-    --stroke: .25;
-}
-
-.zoomed[data-zoomed-to-province="Distrito capital"],
-.zoomed[data-zoomed-to-province="Vargas"] {
-    --stroke: .05;
-
-}
-
-.zoomed[data-zoomed-to-province="Distrito capital"]:has(path.municipios.selected),
-.zoomed[data-zoomed-to-province="Vargas"]:has(path.municipios.selected) {
-    --stroke: 0.01
-}
-
-.zoomed + .controls button {
-    background-color: khaki;
-}
-
-g path.municipios.municipios.municipios:hover {
-    stroke: var(--color-highlight);
-    opacity: .7;
-}
-
-
 
 /* cards */
 
-.wrapper-text-card-containers {
-    position: relative;
-    height: calc(100vh - 50vh - 7rem);
+button.back-to-main-map {
+    --top-position: 10vh; /*updated by JS */
+    position: fixed;
+    top: var(--top-position);
+    left: calc(50vw - 200px + 1rem);
+    border-radius: 50%;
+    z-index: 2;
+    height: 2rem;
+    width: 2rem;
+    border: 2px solid white;
+    background-color: var(--color-back);
+    font-weight: bold;
+}
+
+[data-location-type="venezuela"] {
+    opacity: 0;
 }
 
 .card-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    top: 1rem;
+    height: 100%;
+    width: inherit;
+    display: none;
     transition: opacity var(--t);
 }
 
@@ -196,7 +158,7 @@ g path.municipios.municipios.municipios:hover {
 
 [data-text="tv"]::before { content: '📺' ;}
 [data-text="radio"]::before { content: '📻' ;}
-[data-text="print"]::before { content: '📰' ;}
+[data-text="print"]::before { content: '🗞️' ;}
 [data-text="digital"]::before { content: '🖥️' ;}
 
 /*
@@ -212,14 +174,34 @@ g path.municipios.municipios.municipios:hover {
 /* text */
 
 .wrapper-text-container {
-    position: relative;
-    margin-top: -2.2rem;
-    transition: transform var(--t), opacity var(--t);
+    display: flex;
+    flex-direction: column;
+}
+
+.container-link-hallazgos {
+    flex: 0 0 1rem;
+}
+
+.link-hallazgos {
+    display: block;
+    margin: 0 auto 1rem 1rem;
+    line-height: 1;
+    padding: .6rem;
+    font-family: 1rem;
+    background-color: var(--color-back);
+    /*border: 2px solid var(--color-back);*/
+    width: 33%;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    border-radius: 1.5rem;
+    /*opacity: 0;*/
+    transition: opacity var(--t);
 }
 
 .text-container, .card-container {
     background-color: var(--color-back);
-    padding: 2rem 2rem 2rem 1.5rem;
+    padding: 1rem 1.5rem 3rem 1.5rem;
     line-height: 1.65;
     border-radius: 2rem 2rem 0 0;
 }
@@ -371,22 +353,7 @@ select.info-subtitle {
 
 }
 
-.link-hallazgos {
-    display: block;
-    margin: 0 auto 1rem 1rem;
-    line-height: 1;
-    padding: .6rem;
-    font-family: 1rem;
-    background-color: var(--color-back);
-    /*border: 2px solid var(--color-back);*/
-    width: 33%;
-    text-align: center;
-    color: #333;
-    text-decoration: none;
-    border-radius: 1.5rem;
-    /*opacity: 0;*/
-    transition: opacity var(--t);
-}
+
 
 /* menu button */
 
@@ -405,7 +372,7 @@ select.info-subtitle {
 }
 
 .top-bar .btn-menu {
-    background-color: white;
+    background-color: transparent;
     border: none;
     display: block;
     height: 100%;
@@ -464,16 +431,21 @@ select.info-subtitle {
 }
 
 [data-state="opening"] .map-container {
-    margin-top: -5rem;
+
+}
+
+[data-state="explore"] .wrapper-text-card-containers {
+    height: 35vh;
 }
 
 [data-state="explore"] .wrapper-text-container {
-    transform: translateY(100%);
-    opacity: 0;
+    /*transform: translateY(100%);
+    opacity: 0;*/
+    display: none;
 }
 
 [data-state="explore"] .card-container {
-    opacity: 1;
+    display: block;
 }
 
 /* see .btns > button above */
@@ -557,5 +529,16 @@ select.info-subtitle {
 .hud p {
     margin: 0;
     text-align: right;
+}
+
+/* MAPBOX */
+
+.mapboxgl-popup-content p {
+    margin: 0
+}
+
+.mapboxgl-popup-content .popup-category {
+    padding: .2em .4em;
+    border-radius: 1em;
 }
 
