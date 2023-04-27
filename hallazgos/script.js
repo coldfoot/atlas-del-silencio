@@ -27,20 +27,12 @@ function init(data) {
 
     main.features = {
 
-        municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa),
-        provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa)
+        provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa),
+        municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa)
 
     }
 
-    document.querySelectorAll('path.municipios').forEach(p => {
-
-        const bbox = p.getBBox();
-        //console.log(bbox);
-
-        p.setAttribute('data-x', bbox.x + bbox.width / 2);
-        p.setAttribute('data-y', bbox.y + bbox.height / 2);
-
-    })
+    set_centers();
 
    // main.mapa.initZoom();
 
@@ -66,6 +58,25 @@ function init(data) {
     scroller.steps.get();
     scroller.config();
 
+
+}
+
+function set_centers() {
+
+    document.querySelectorAll('path.municipios').forEach(p => {
+
+        const bbox = p.getBBox();
+        //console.log(bbox);
+
+        p.setAttribute('data-x', bbox.x + bbox.width / 2);
+        p.setAttribute('data-y', bbox.y + bbox.height / 2);
+
+        d3.select(p).datum().x0 = bbox.x + bbox.width / 2;
+        d3.select(p).datum().x = bbox.x + bbox.width / 2;
+        d3.select(p).datum().y0 = bbox.y + bbox.height / 2;
+        d3.select(p).datum().y = bbox.y + bbox.height / 2;
+
+    })
 
 }
 
@@ -319,6 +330,7 @@ class Features {
             .classed(class_name, true)
             .classed('distrito-capital', d => d.properties.parent_name == "Distrito capital")
             .attr('data-type', class_name)
+            .style('fill', 'khaki')
             .attr('data-r', d => class_name == "municipios" ? main.r(d.properties.population) : '')
             .attr('data-category', d => d.properties.category)
             .attr('data-' + class_name, d => d.properties.name)
@@ -364,17 +376,46 @@ class Features {
 
         this.d3sel
             .transition()
-            .delay((d,i) => i * 10) //5)//(i % 50) * 100)
-            .duration(1000)
+            .delay((d,i) => d.x * 2) //5)//(i % 50) * 100)
+            .duration(2000)
             .attrTween('d', function(d, n) {
-
-
-                let x, y;
 
                 //d.cx = x;
                 //d.cy = y
+                let x, y;
 
                 const d_attr = d3.select(this).attr('d');
+
+                if (!grid) {
+
+                    r = +d3.select(this).attr('data-r');
+                    x = +d3.select(this).attr('data-x');
+                    y = +d3.select(this).attr('data-y');
+
+                    if (n < 10) console.log(x,y);
+
+                } else {
+
+                    let qde = Math.ceil((w - margin - margin) / ((2 * r) + margin));
+
+                    const i = n % qde;
+                    const j = Math.floor(n / qde);
+
+                    r = 10;
+
+                    x = 50 + (2 * r + margin) * i;
+                    y = 200 + (2 * r + margin) * j;
+
+                }
+
+
+                d.d = d_attr;
+
+                return flubber.toCircle(d_attr, x, y, r, {maxSegmentLength: 2})
+            }) 
+            /*.attr('transform', function(d,n) {
+
+                let x, y, r;
 
                 if (!grid) {
 
@@ -390,17 +431,18 @@ class Features {
                     const j = Math.floor(n / qde);
 
                     r = 10;
+
+                    if (n < 10) console.log(i, j, n, qde);
+
                     x = 50 + (2 * r + margin) * i;
                     y = 200 + (2 * r + margin) * j;
 
                 }
 
+                return `translate(${x},${y})`
+            
 
-                d.d = d_attr;
-
-                return flubber.toCircle(d_attr, x, y, r, {maxSegmentLength: 2});
-
-        }) 
+            });*/
 
     }
 
@@ -412,6 +454,7 @@ class Features {
             .transition()
             //.delay((d,i) => (i % 100) * 100)
             .duration(3000)
+            //.attr('transform', `translate(${0},${0})`)
             .attrTween('d', function(d, n) {
 
                 r = +d3.select(this).attr('data-r');
@@ -422,9 +465,13 @@ class Features {
 
                 r = +d3.select(this).attr('data-r');
 
-                return flubber.fromCircle (x, y, r, d_attr, {maxSegmentLength: 2});
+                if (n <10) console.log(x,y,r);
 
-        })
+                return flubber.fromCircle (x, y, r, d_attr, {maxSegmentLength: 2})
+            })
+        ;
+
+
 
     }
 
@@ -751,7 +798,6 @@ function test() {
     main.features.municipios.change_to_circle();
 }
 
-
 function populate_select(level) {
 
     const sel = document.querySelector('#select-' + level);
@@ -860,6 +906,9 @@ function animation() {
 
 }
 
+const sim = {
+
+};
 
 const scroller = {
 
@@ -921,7 +970,7 @@ const scroller = {
         'first' : function(direction = null) {
 
             if (direction == 'back') { 
-                d3.selectAll('path.provincias').attr('opacity', 1);
+                d3.selectAll('path.municipios').style('fill', 'khaki');
             }
 
             //app.map_obj.setPaintProperty('localidad', 'fill-pattern', null);
@@ -948,11 +997,14 @@ const scroller = {
         // },
 
         // no scroller
-        'second' : function(direction = null) {
+        'second' : function(direction = null) {                
 
-
-            console.log('forward');
-            d3.selectAll('path.provincias').attr('opacity', 0);
+            if (direction == 'back') {
+                main.features.municipios.change_to_shape();
+                console.log('here, back');
+            } else {
+                d3.selectAll('path.municipios').style('fill', '');
+            }
 
 
         },
