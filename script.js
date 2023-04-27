@@ -86,6 +86,12 @@ const utils = {
 
     },
 
+    position_back_button() {
+
+        document.querySelector('button.back-to-main-map').style.setProperty('--top-position', main.dims.top + 'px');
+
+    },
+
     computeCenters(type) {
 
         main.data[type].features.forEach(feature => {
@@ -1171,6 +1177,18 @@ class Controls {
 
         {
 
+            ref : 'back-to-main-map',
+            handler : (e) => {
+
+                //console.log('fire');
+                //main.mapa.reset_map();
+                fit_bounds('venezuela');
+
+            }
+        },
+
+        {
+
             ref : 'breadcrumb-provincia',
             handler : (e) => {
 
@@ -1189,6 +1207,7 @@ class Controls {
                 document.querySelector('.outer-wrapper').dataset.state = "explore";
 
                 utils.getDims();
+                utils.position_back_button();
 
                 fit_bounds('venezuela');
 

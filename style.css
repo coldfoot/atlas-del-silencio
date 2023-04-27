@@ -57,6 +57,20 @@ body {
 
 /* cards */
 
+button.back-to-main-map {
+    --top-position: 10vh; /*updated by JS */
+    position: fixed;
+    top: var(--top-position);
+    left: calc(50vw - 200px + 1rem);
+    border-radius: 50%;
+    z-index: 2;
+    height: 2rem;
+    width: 2rem;
+    border: 2px solid white;
+    background-color: var(--color-back);
+    font-weight: bold;
+}
+
 [data-location-type="venezuela"] {
     opacity: 0;
 }
