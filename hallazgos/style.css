@@ -53,6 +53,7 @@ path {
 
 path.provincias {
     
+    opacity: .7;
     stroke: #333;
     stroke-width: calc(var(--stroke) * 2);
     transition: opacity var(--t);

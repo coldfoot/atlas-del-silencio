@@ -19,7 +19,7 @@ function init(data) {
 
     main.data = new Data(data[0], data[1]);
 
-    main.r = d3.scaleSqrt().domain(d3.extent(main.data.municipios.features, d => d.properties.population)).range([1,30]);
+    main.r = d3.scaleSqrt().domain(d3.extent(main.data.municipios.features, d => d.properties.population)).range([1,40]);
 
     compute_subtotals();
 
@@ -33,6 +33,8 @@ function init(data) {
     }
 
     set_centers();
+
+    sim.set();
 
    // main.mapa.initZoom();
 
@@ -331,7 +333,12 @@ class Features {
             .classed('distrito-capital', d => d.properties.parent_name == "Distrito capital")
             .attr('data-type', class_name)
             .style('fill', 'khaki')
-            .attr('data-r', d => class_name == "municipios" ? main.r(d.properties.population) : '')
+            .attr('data-r', d => {
+                if (class_name == "municipios") {
+                    d.r = main.r(d.properties.population);
+                    return d.r 
+                } else return ''
+            })
             .attr('data-category', d => d.properties.category)
             .attr('data-' + class_name, d => d.properties.name)
             //.attr('data-parent', d => class_name == 'municipios' ? d.properties.parent_name : '')
@@ -470,6 +477,26 @@ class Features {
                 return flubber.fromCircle (x, y, r, d_attr, {maxSegmentLength: 2})
             })
         ;
+
+
+
+    }
+
+    bubble_chart() {
+
+        this.d3sel
+        .transition()
+        .duration(0)
+        .attrTween('d', function(d, n) {
+
+            return flubber.toCircle(d.d, 0, 0, d.r, {maxSegmentLength: 2})
+
+        }) 
+        .attr('transform', function(d,n) {
+
+            return `translate(${d.x},${d.y})`
+        
+        });
 
 
 
@@ -908,7 +935,94 @@ function animation() {
 
 const sim = {
 
+    simulation : d3.forceSimulation().stop(),
+
+    strength : 0.04,
+
+    set : () => {
+
+        const strength = sim.strength;
+        //const x = v.scales.x;
+        //const y0 = v.sizings.h/2
+
+        main.nodes = main.data.municipios.features;//.features;
+
+
+        sim.simulation
+            .velocityDecay(0.2)
+            //.force('x', d3.forceX().strength(strength).x(d => d.x0))
+            //.force('y', d3.forceY().strength(strength).y(d => d.y0))
+            .force('collision', d3.forceCollide().strength(strength*1.5).radius(d => d.r))
+            .alphaMin(0.2)
+            /* comentando para não movimentar as bolhas enquanto atualiza */
+            .on('tick', () => {
+                d3.selectAll('path.municipios')
+                    .attr('transform', d => {
+
+                        return `translate(${d.x}, ${d.y})`
+
+                    });
+            })
+            .on('end', () => {
+                console.log('terminou');
+            })
+            .stop()
+        ;
+
+        sim.simulation.nodes(main.nodes);
+
+    },
+
+    start : () => sim.simulation.alpha(1).restart()
+
+
 };
+
+const charts = {
+
+    force_bubble() {
+
+        const w = 1000;//+d3.select('svg.map').style('width').slice(0,-2);
+
+        sim.simulation.force('x', d3.forceX().strength(sim.strength/3).x(d => {
+            if (d.properties.category == 'Desierto') return w / 4;
+            if (d.properties.category == 'Desierto Moderado') return w/ 2;
+            if (d.properties.category == 'No desierto') return 3*w/4;
+        }))
+
+        .force('y', d3.forceY().strength(sim.strength/3).y(w/2))
+        .force('collision', d3.forceCollide().strength(sim.strength*4).radius(d => d.r))
+        .velocityDecay(0.1)
+        .alphaMin(0.05);
+
+        sim.start();
+
+    },
+
+    grid() {
+
+        const margin = 100;
+        const r = 10;
+        let qde = Math.ceil((1000 - margin - margin) / ((2 * r) + margin));
+
+        d3.selectAll('path.municipios').transition().duration(1000)
+        .attr('transform', (d,n) => {
+
+            const i = n % qde;
+            const j = Math.floor(n / qde);
+    
+            x = (2 * r + margin) * i;
+            y = 200 + (2 * r + margin) * j;
+
+            return `translate(${x}, ${y})`
+
+
+        })
+
+
+    }
+
+}
 
 const scroller = {
 
@@ -1022,7 +1136,14 @@ const scroller = {
 
         'fourth' : function(direction = null) {
 
-            main.features.municipios.change_to_circle(true);
+            main.features.municipios.bubble_chart();
+            sim.start();
+
+        },
+
+        'fifth' : function(direction = null) {
+
+            charts.force_bubble();
 
         }
 
