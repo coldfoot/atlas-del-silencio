@@ -54,7 +54,7 @@ body {
     max-width: inherit;
     height: 50vh;
     bottom: 0;
-    z-index: 1;
+    z-index: 2;
 }
 
 /* cards */
@@ -204,8 +204,8 @@ button.back-to-main-map {
 }
 
 .text-container, .card-container {
-    background-color: var(--color-back);
-    padding: 1rem 1.5rem 3rem 1.5rem;
+    background-color: white;
+    padding: 2rem 2rem 1rem 2rem;
     line-height: 1.65;
     border-radius: 2rem 2rem 0 0;
 }
@@ -338,13 +338,15 @@ select.info-subtitle {
 
 .btn-explora {
     border-radius: 2rem;
-    background-color: var(--color-highlight);
-    padding: 1rem;
-    width: 70%;
+    background-color: black;
+    color: white;
+    padding: .5rem 2.5rem;
+    width: 11.5rem;
+    max-width: 70%;
     display: block;
-    margin: 1rem auto 0;
-    font-size: 1.5rem;
-    border: 2px solid var(--color-back);
+    margin: 1rem auto 1rem;
+    font-size: 1rem;
+    border: 2px solid transparent;
     position: relative;
     transition: border-color .5s, background-color .5s;
 }
