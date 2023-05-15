@@ -221,7 +221,7 @@ button.back-to-main-map {
     font-size: 2rem;
 }
 
-.key-word, .btns > button {
+.key-word {
     font-size: .8rem;
     padding: .2em .6em;
     border-radius: .8rem;
@@ -231,28 +231,36 @@ button.back-to-main-map {
     /*transition: all .3s;*/
 }
 
-.btns > button {
-    font-size: .7rem;
-}
-
 .btn-no-desiertos, [data-word="no desiertos"], [data-label-category="No desierto"]::before  {background-color: var(--color-no-desiertos);}
 .btn-semi-desiertos, [data-word="semi-desiertos"], [data-label-category="Desierto Moderado"]::before {background-color: var(--color-semi-desiertos);}
 .btn-desiertos, [data-word="desiertos"], [data-label-category="Desierto"]::before {background-color: var(--color-desiertos);}
 
 .btn-categories {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding-right: .35em;
+    border-radius: 1rem;
+    flex-basis: 2rem;
+    flex-grow: 0;
+    flex-shrink: 1;
+    height: 2rem;
+    transition: flex-basis .3s;
+    padding: 0;
 }
+
+.btn-categories:hover {
+    flex-basis: 100%;
+}
+
 .btn-categories::before,
 [data-label-category]::before {
     content: '';
     background-size: contain;
     /*margin-left: .35em;*/
     background-repeat: no-repeat;
-    width: 1em;
-    height: 1em;
+    background-position: center;
+    width: 2rem;
+    height: 75%;
     display: inline-block;
 }
 
@@ -412,20 +420,28 @@ select.info-subtitle {
 
 .top-controls input {
     border-radius: 2rem;
-    background-color: var(--color-back);
+    background-color: white;
     width: 100%;
     padding-left: 2rem;
     font-family: inherit;
-    border: none;
+    border: 1px solid black;
 }
 
 .top-controls > div + div {
     margin-top: 1rem;
 }
 
+.top-controls > div.btns {
+    justify-content: flex-start;
+}
+
 .btns button {
     border: none;
     font-family: inherit;
+}
+
+.btns button + button {
+    margin-left: .5rem;
 }
 
 /* state : opening*/
