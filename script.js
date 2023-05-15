@@ -157,6 +157,7 @@ function init_map() {
 function map_is_loaded() {
 
     load_sources_layers();
+    eventsBTNsCategory.monitor();
 
 }
 
@@ -533,6 +534,91 @@ const mouseEventsMunicipio = {
 
 }
 
+function colorMapCategory(category) {
+
+    if (category == '') {
+
+        main.mapa.setPaintProperty(
+
+            'municipios', 'fill-color', 
+            [
+                'case',
+    
+                [
+                    '==',
+                    ['get', 'category'],
+                    'No desierto'
+                ],
+                    main.colors['No desierto'],
+                    
+                [
+                    '==',
+                    ['get', 'category'],
+                    'Desierto'
+                ],
+                    main.colors['Desierto'],
+    
+                [
+                    '==',
+                    ['get', 'category'],
+                    'Desierto Moderado'
+                ],
+                    main.colors['Desierto Moderado'],
+    
+                    'lightgray'
+            ])
+
+    } else {
+
+        main.mapa.setPaintProperty(
+
+            'municipios', 'fill-color', 
+            [
+                'case',
+                [
+                    '==',
+                    ['get', 'category'],
+                    category
+                ],
+    
+                main.colors[category],
+    
+                '#f0e9df'
+            ])
+
+    }
+
+}
+
+const eventsBTNsCategory = {
+
+    monitor() {
+
+        const btns = document.querySelector('.btns');
+
+        btns.addEventListener('click', e => this.click(e, this));
+
+        console.log(btns);
+
+    },
+
+    click(e, ref) {
+
+        if (e.target.tagName == 'BUTTON') {
+
+            const cat = e.target.dataset.btnCategory;
+
+            //console.log(cat);
+
+            colorMapCategory(cat);
+
+        }
+
+    }
+
+
+
+}
 
 
 function monitorEstado(toggle = 'on') {
@@ -588,6 +674,8 @@ function monitorMunicipio(toggle = 'on') {
 }
 
 function fit_bounds(type, location) {
+
+    colorMapCategory('');
 
     let bbox;
 
