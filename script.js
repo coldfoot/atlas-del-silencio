@@ -606,9 +606,20 @@ const eventsBTNsCategory = {
 
         if (e.target.tagName == 'BUTTON') {
 
-            const cat = e.target.dataset.btnCategory;
+            let cat = e.target.dataset.btnCategory;
 
-            //console.log(cat);
+            if (e.target.classList.contains('category-selected')) {
+
+                e.target.classList.remove('category-selected');
+                
+                cat = ''; // to reset the map
+
+            } else {
+
+                document.querySelectorAll('.btn-categories').forEach(btn => btn.classList.remove('category-selected'));
+                e.target.classList.add('category-selected');
+
+            }
 
             colorMapCategory(cat);
 

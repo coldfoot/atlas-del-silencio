@@ -240,7 +240,7 @@ button.back-to-main-map:hover {
 .btn-semi-desiertos, [data-word="semi-desiertos"], [data-label-category="Desierto Moderado"]::before {background-color: var(--color-semi-desiertos);}
 .btn-desiertos, [data-word="desiertos"], [data-label-category="Desierto"]::before {background-color: var(--color-desiertos);}
 
-.btn-categories {
+.btns .btn-categories {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -251,9 +251,10 @@ button.back-to-main-map:hover {
     height: 2rem;
     transition: flex-basis .3s; /* essa transição faz o ícone dar uma saltada */
     padding: 0;
+    border: 1px solid white;
 }
 
-.btn-categories:hover {
+.btn-categories:hover, .btn-categories.category-selected {
     flex-basis: 100%;
 }
 
@@ -280,10 +281,14 @@ button.back-to-main-map:hover {
     text-align: left;
 }
 
-.btn-categories:hover::after {
+.btn-categories:hover::after,
+.btn-categories.category-selected::after {
     opacity: 1;
     content: attr(data-btn-category);
+}
 
+.btn-categories.category-selected::after {
+    font-weight: bold;
 }
 
 /*
