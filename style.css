@@ -244,7 +244,7 @@ button.back-to-main-map {
     flex-grow: 0;
     flex-shrink: 1;
     height: 2rem;
-    transition: flex-basis .3s;
+    transition: flex-basis .3s; /* essa transição faz o ícone dar uma saltada */
     padding: 0;
 }
 
@@ -267,6 +267,41 @@ button.back-to-main-map {
 .btn-no-desiertos::before, [data-label-category="No desierto"]::before { background-image: url(./imgs/no-desierto.png);}
 .btn-semi-desiertos::before, [data-label-category="Desierto Moderado"]::before { background-image: url(./imgs/semidesert.png);}
 .btn-desiertos::before, [data-label-category="Desierto"]::before { background-image: url(./imgs/desierto.png);}
+
+.btn-categories::after {
+    opacity: 0;
+    content: '';
+    transition: opacity .2s .2s;
+    text-align: left;
+}
+
+.btn-categories:hover::after {
+    opacity: 1;
+    content: attr(data-btn-category);
+
+}
+
+/*
+.btn-categories:hover::after {
+    opacity: 1;
+    /*content: attr(data-label-category);*/ /*
+    background-color: white;
+    margin-right: 0.2rem;
+    flex-basis: 100%;
+    border-radius: 1rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    text-align: left;
+    padding-left: .5rem;
+}
+*/
+
+/*
+.btn-no-desiertos:hover::after { content: 'No desierto'; }
+.btn-semi-desiertos:hover::after { content: 'Desierto moderado'; }
+.btn-desiertos:hover::after { content: 'Desierto'; }
+*/
+
 
 .key-word.highlighted {
     border-color: crimson;
