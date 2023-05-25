@@ -1143,6 +1143,62 @@ const scroller = {
 
         },
 
+        'desiertos, mediano' : function(direction = null) {
+
+            main.mapa.fit_bounds('municipios', 'Junín (Rubio)');
+            //main.data.municipios.features.filter(d => d.properties.category == 'Desierto' && d.properties.size == 'Pequeño')
+
+            // Array.from(document.querySelectorAll('path[data-municipios]')).map(m => m.dataset.municipios).filter(d => d.includes('Iturriza'))
+            //main.data.municipios.features.filter(d => d.properties.parent_name == 'Zulia').map(d => d.properties.name)
+
+        },
+
+        'desiertos, grande' : function(direction = null) {
+
+            if (direction == 'back') {
+
+                main.features.municipios.color_single_category('Desierto');
+
+            }
+
+            main.mapa.fit_bounds('municipios', 'Cabimas');
+
+
+        },
+
+        'desiertos moderados 1' : function(direction = null) {
+
+            main.features.municipios.color_single_category('');
+            main.mapa.fit_bounds('reset');
+
+        },
+
+        'desiertos moderados 2' : function(direction = null) {
+
+            main.features.municipios.color_single_category('Desierto Moderado');
+
+        },
+
+        'desiertos moderados 3' : function(direction = null) {
+
+        },
+
+        'no desiertos 1' : function(direction = null) {
+
+            main.features.municipios.color_single_category('');
+
+        },
+
+        'no desiertos 2' : function(direction = null) {
+
+            main.features.municipios.color_single_category('No desierto');
+
+        },
+
+        'no desiertos 3' : function(direction = null) {
+
+        },
+
 
         'first' : function(direction = null) {
 
