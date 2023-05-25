@@ -1048,28 +1048,28 @@ const charts = {
 
     bubble_groups() {
 
-        const w = +d3.select('svg.map').style('width').slice(0,-2);
-        const h = +d3.select('svg.map').style('height').slice(0,-2);
+        const w = 1000;//+d3.select('svg.map').style('width').slice(0,-2);
+        const h = 1000;
 
-        console.log(w,h);
+        //console.log(w,5*w/6);
         
         const charge = function(d) {
             return -Math.pow(d.r, 2.0) * sim.strength;
         }
 
 
-        sim.simulation.force('x', d3.forceX().strength(sim.strength).x(d => {
+        sim.simulation.force('x', d3.forceX().strength(sim.strength/4).x(d => {
             if (d.properties.category == 'Desierto') return w / 6;
             if (d.properties.category == 'Desierto Moderado') return w / 2;
             if (d.properties.category == 'No desierto') return 5*w/6;
             return w/2;
         }))
 
-        .force('y', d3.forceY().strength(sim.strength).y(h/2))
+        .force('y', d3.forceY().strength(sim.strength/4).y(h/2))
         //.force('charge', d3.forceManyBody().strength(charge))
         //.force('collision', null)
         //.force('collision', d3.forceCollide().strength(sim.strength*1.5).radius(d => d.r))
-        //.velocityDecay(0.1)
+        .velocityDecay(0.05)
         .alphaMin(0.02);
 
         sim.start();
