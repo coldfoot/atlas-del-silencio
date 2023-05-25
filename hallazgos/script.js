@@ -1246,6 +1246,7 @@ const scroller = {
         'bubble transition' : function(direction = null) {
 
             main.features.municipios.change_to_circle();
+            setTimeout(() => sim.start(), 500);
             //charts.force_bubble();
 
             if (direction == 'back') { 
