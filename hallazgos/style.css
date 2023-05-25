@@ -3,20 +3,22 @@
 }
 
 :root {
-    font-family: Roboto;
+
     --color-highlight: #a6a6a6;
     --color-back: #d9d9d9;
-    background-color: #e8e8e8;
     --t: .5s;
 
     --color-no-desiertos: #65CA87;
     --color-semi-desiertos: #EFBB8B;
     --color-desiertos: #FF8888;
 
+    font-family: Roboto;
+
 }
 
 body {
     margin: 0;
+    font-family: 'Roboto';
 }
 
 .outer-wrapper {
@@ -27,14 +29,17 @@ body {
     background: white;
     padding-top: 1rem;
     overflow-y: scroll;
-    position: relative;
 }
 
 .map-container {
     max-width: 600px;
     height: 100vh;
     position: fixed;
-    transition: margin var(--t);
+    transition: margin var(--t), opacity var(--t);
+}
+
+.map-container.hidden {
+    opacity: 0;
 }
 
 .map {
@@ -241,7 +246,7 @@ g path.municipios.municipios.municipios:hover {
     font-size: 2rem;
 }
 
-.key-word, .btns > button {
+.key-word {
     font-size: .8rem;
     padding: .2em .6em;
     border-radius: .8rem;
@@ -251,214 +256,19 @@ g path.municipios.municipios.municipios:hover {
     /*transition: all .3s;*/
 }
 
-.btns > button {
-    font-size: .7rem;
-}
 
 .btn-no-desiertos, [data-word="no desiertos"], [data-label-category="No desierto"]::before  {background-color: var(--color-no-desiertos);}
 .btn-semi-desiertos, [data-word="semi-desiertos"], [data-label-category="Desierto Moderado"]::before {background-color: var(--color-semi-desiertos);}
 .btn-desiertos, [data-word="desiertos"], [data-label-category="Desierto"]::before {background-color: var(--color-desiertos);}
-
-.btn-categories {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: .35em;
-}
-.btn-categories::before,
-[data-label-category]::before {
-    content: '';
-    background-size: contain;
-    /*margin-left: .35em;*/
-    background-repeat: no-repeat;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-}
-
-.btn-no-desiertos::before, [data-label-category="No desierto"]::before { background-image: url(/imgs/no-desierto.png);}
-.btn-semi-desiertos::before, [data-label-category="Desierto Moderado"]::before { background-image: url(/imgs/semidesert.png);}
-.btn-desiertos::before, [data-label-category="Desierto"]::before { background-image: url(/imgs/desierto.png);}
 
 .key-word.highlighted {
     border-color: crimson;
     background-color: lightpink;
 }
 
-/* labels */
-
-[data-label-category]::before {
-    width: 1rem;
-    height: 1rem;
-    display: inline-block;
-    background-position: center center;
-    border-radius: 50%;
-    margin-right: .5em;
-}
-
-[data-label-category] {
-    display: flex;
-    align-items: center;
-}
-
-[data-label-category] + [data-label-category] {
-    margin-left: 1em;
-
-}
-
-.bar-chart-title-label-wrapper {
-    /*display: flex;
-    justify-content: space-evenly;*/
-}
-
-.bar-chart-label-container {
-    margin: .5rem 0;
-    flex: 1 0 50%;
-    display: flex;
-    justify-content: space-between;
-    font-size: .6rem;
-    align-items: center;
-}
-
-/* bar-chart */
-
-select.info-subtitle {
-    background-color: transparent;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    margin-left: -0.3rem;
-}
-
-.wrapper-bar-chart-categories {
-    display: none;
-    margin-top: 1em;
-}
-
-[data-location-type="provincias"] .wrapper-bar-chart-categories {
-    display: block;
-}
-
-.bar-chart-container {
-    display: flex;
-    width: 100%;
-}
-
-.bar-chart-container > div {
-    flex: 1 1 33%;
-    height: 1.5em;
-    transition: flex-basis .3s;
-}
-
 [data-bar-category="No desierto"] { background-color: var(--color-no-desiertos); }
 [data-bar-category="Desierto"] { background-color: var(--color-desiertos); }
 [data-bar-category="Desierto Moderado"] { background-color: var(--color-semi-desiertos); }
-
-/* button explora, hallazgos */
-
-.btn-explora {
-    border-radius: 2rem;
-    background-color: var(--color-highlight);
-    padding: 1rem;
-    width: 70%;
-    display: block;
-    margin: 1rem auto 0;
-    font-size: 1.5rem;
-    border: 2px solid var(--color-back);
-    position: relative;
-    transition: border-color .5s, background-color .5s;
-}
-
-.btn-explora:hover {
-
-    border-color: var(--color-highlight);
-    background-color: var(--color-back);
-
-
-}
-
-.link-hallazgos {
-    display: block;
-    margin: 0 auto 1rem 1rem;
-    line-height: 1;
-    padding: .6rem;
-    font-family: 1rem;
-    background-color: var(--color-back);
-    /*border: 2px solid var(--color-back);*/
-    width: 33%;
-    text-align: center;
-    color: #333;
-    text-decoration: none;
-    border-radius: 1.5rem;
-    /*opacity: 0;*/
-    transition: opacity var(--t);
-}
-
-/* menu button */
-
-.top-bar {
-    display: flex;
-    height: 3rem;
-    justify-content: space-between;
-    margin: 0 1rem;
-    padding-bottom: 1rem;
-}
-
-.top-bar img {
-    display: block;
-    height: 100%;
-}
-
-.top-bar .btn-menu {
-    background-color: white;
-    border: none;
-    display: block;
-    height: 100%;
-    width: 3rem;
-    padding: 0;
-}
-
-.top-bar .btn-menu svg {
-    display: block;
-    height: 2rem;
-    width: 100%;
-}
-
-.top-bar .btn-menu line {
-    stroke: #333;
-    stroke-width: 3;
-}
-
-/* top-controls */
-.top-controls {
-    transition: transform var(--t), opacity var(--t);
-    margin-bottom: .5rem;
-}
-
-.top-controls > div {
-    height: 2rem;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 1rem;
-}
-
-.top-controls input {
-    border-radius: 2rem;
-    background-color: var(--color-back);
-    width: 100%;
-    padding-left: 2rem;
-    font-family: inherit;
-    border: none;
-}
-
-.top-controls > div + div {
-    margin-top: 1rem;
-}
-
-.btns button {
-    border: none;
-    font-family: inherit;
-}
 
 /* state : opening*/
 
@@ -480,69 +290,6 @@ select.info-subtitle {
 [data-state="explore"] .card-container {
     opacity: 1;
 }
-
-/* see .btns > button above */
-
-/* bar-chart */
-
-
-
-/* controls */
-
-.controls {
-
-    position: absolute;
-    top: 1em;
-    left: 1em;
-
-    display: flex;
-    flex-direction: column;
-
-    font-family: sans-serif;
-
-}
-
-.controls select,
-.controls button {
-    background-color: aliceblue;
-    border: 2px solid #333;
-    box-shadow: 4px 4px #AAA;
-    padding: .3em .4em;
-    border-radius: 3px;
-}
-
-.controls select:hover,
-.controls button:hover {
-    background-color: lightblue;
-}
-
-.select-wrapper {
-
-    margin-block: 1em;
-
-}
-
-.select-wrapper label {
-    display: block;
-    margin-bottom: .25rem;
-    font-size: .8rem;
-}
-
-/* button reset map */
-
-.btn-reset-map {
-
-    width: 5rem;
-
-}
-
-.btn-reset-map:active {
-
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px #AAA;
-
-}
-
 
 
 .hud {
@@ -567,22 +314,49 @@ select.info-subtitle {
 .story {
     position: absolute;
     top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .text-step-wrapper {
 
     height: 100vh;
+    width: 100%;
     display: grid;
     place-items: center;
 
 }
 
 .text-step {
-    height: 40vh;
+    /*height: 40vh;*/
     padding: 1em;
     font-size: 1rem;
+    max-width: 640px;
     width: 80%;
     border: 3px solid currentColor;
     background-color: #FFFFFFCC;
+}
+
+[data-step="cover"] .text-step {
+    border: none;
+}
+
+.text-step h1 {
+    margin: 0;
+    font-size: 4rem;
+}
+
+p.lead {
+    line-height: 1.4;
+    letter-spacing: .05em;
+    font-weight: 300;
+}
+
+
+
+p.chapeu {
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin: 0;
 }
 

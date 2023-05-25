@@ -1081,6 +1081,10 @@ const scroller = {
 
     render : {
 
+        'cover' : function(direction = null) {
+
+        },
+
         'first' : function(direction = null) {
 
             if (direction == 'back') { 
