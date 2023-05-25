@@ -1,5 +1,9 @@
 const main = {};
 
+main.format = function(n) {
+    return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
+}
+
 Promise.all([
 
     /*fetch(
@@ -24,6 +28,7 @@ function init(data) {
     main.r = d3.scaleSqrt().domain(d3.extent(main.data.municipios.features, d => d.properties.population)).range([1,40]);
 
     compute_subtotals();
+    make_labels_pop_category();
 
     main.mapa = new Mapa('.map');
 
@@ -47,10 +52,6 @@ function init(data) {
     //main.card = new Card('card-container', data[0].features, data[1].features);
 
     main.never_clicked = true;
-
-    main.format = function(n) {
-        return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
-    }
 
     //populate_select('provincias');
     //populate_select('municipios');
@@ -95,41 +96,16 @@ function set_centers() {
 // temporary function while we don't have this info encoded in the data
 function compute_subtotals() {
 
-    /*
-    function get_unique_provincias_list() {
-        return main.data.provincias.features
-          .map(d => d.properties.name)
-          .filter( (d, i, arr) => arr.indexOf(d) == i ) // get unique values
-    }
+    const categories = main.data.municipios.features.map(d => d.properties.category).filter( (d,i,a) => a.indexOf(d) == i);
 
-    const provincias = get_unique_provincias_list();
-    console.log(provincias);
-    */
-
-    function get_pop(provincia, category) {
-
-        const mun_of_provincia_category = main.data.municipios.features
-          .filter(d => d.properties.parent_name == provincia)
-          .filter(d => d.properties.category == category)
-        ;
-
-        return mun_of_provincia_category
-          .map(d => d.properties.population)
-          .reduce( (prev, current) => prev + current, 0 )
-        ;
-
-    }
-
-    /*
-
-    main.data.provincias.features.forEach(provincia => {
-        provincia.properties['pop Desierto'] = get_pop(provincia.properties.name, 'Desierto');
-        provincia.properties['pop No desierto'] = get_pop(provincia.properties.name, 'No desierto');
-        provincia.properties['pop Desierto Moderado'] = get_pop(provincia.properties.name, 'Desierto Moderado');
-    })
-    */
-
-    //console.log(get_pop(provincias[2], 'No desierto'));
+    main.data.subtotals = [];
+    
+    categories.forEach(category => main.data.subtotals.push(
+        {
+            category : category,
+            pop : main.data.municipios.features.filter(d => d.properties.category == category).map(d => d.properties.population).reduce( (a,b) => a+b )
+        })
+    )   
 
 }
 
@@ -864,6 +840,16 @@ class SearchBar {
 
 }
 
+function show_labels(toggle) {
+
+    const method = toggle == true ? 'remove' : 'add';
+
+    document.querySelectorAll('.label-pop').forEach(label => {
+        label.classList[method]('hidden');
+    })
+
+}
+
 function test() {
     main.features.provincias.hide();
     main.features.municipios.change_to_circle();
@@ -899,6 +885,37 @@ function monitor_select(level) {
         main.mapa.fit_bounds(level, e.target.value);
         
     });
+
+}
+
+function make_labels_pop_category() {
+
+    const data = main.data.subtotals;
+
+    const cont = document.querySelector('.map-container');
+
+    let w = +window.getComputedStyle(cont).width.slice(0, -2);
+
+    //const increment = left * 2;
+
+    data.forEach(cat => {
+
+        if (cat.category != 'Sin información') {
+
+            const new_label = document.createElement('span');
+            new_label.classList.add('label-pop');
+            new_label.classList.add('hidden');
+            new_label.dataset.category = cat.category;
+            new_label.innerText = main.format(cat.pop);
+            //new_label.style.left = left + 'px';
+
+            //left += increment;
+
+            cont.appendChild(new_label);
+
+        }
+
+    })
 
 }
 
@@ -1329,31 +1346,14 @@ const scroller = {
         'bubble groups 1' : function(direction = null) {                
 
             charts.bubble_groups();
+            show_labels(false);
 
 
         },
 
-        'third' : function(direction = null) {
+        'bubble groups 2' : function(direction = null) {
 
-            main.features.municipios.change_to_circle();
-            if (direction == 'back') {
-
-                main.features.municipios.change_to_shape();
-
-            }
-
-        },
-
-        'fourth' : function(direction = null) {
-
-            main.features.municipios.bubble_chart();
-            sim.start();
-
-        },
-
-        'fifth' : function(direction = null) {
-
-            charts.force_bubble();
+            show_labels(true);
 
         }
 
