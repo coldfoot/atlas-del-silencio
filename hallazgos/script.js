@@ -150,6 +150,8 @@ class Mapa {
     d3svg = null;
     ref = null;
 
+    cont = null;
+
     original_viewbox;
 
     features;
@@ -173,6 +175,7 @@ class Mapa {
         this.d3svg = d3.select(ref);
 
         const cont = document.querySelector(ref + '-container');
+        this.cont = cont;
 
         this.w = +window.getComputedStyle(cont).width.slice(0,-2);
         this.h = +window.getComputedStyle(cont).height.slice(0,-2);
@@ -196,6 +199,25 @@ class Mapa {
 
         //this.data = data;
         //this.features = data.features;
+
+    }
+
+    show(toggle = true) {
+
+        let method = 'remove';
+        if (toggle == false) method = 'add';
+
+        this.cont.classList[method]('hidden');
+
+    }
+
+    noColor(toggle = true) {
+
+        let method = 'add';
+        if (toggle == false) method = 'remove';
+
+        this.el.classList[method]('no-color');
+
 
     }
 
@@ -332,7 +354,7 @@ class Features {
             .classed(class_name, true)
             .classed('distrito-capital', d => d.properties.parent_name == "Distrito capital")
             .attr('data-type', class_name)
-            .style('fill', 'khaki')
+            //.style('fill', 'khaki')
             .attr('data-r', d => {
                 if (class_name == "municipios") {
                     d.r = main.r(d.properties.population);
@@ -1083,7 +1105,27 @@ const scroller = {
 
         'cover' : function(direction = null) {
 
+            if (direction == 'back') {
+
+                console.log('here we are');
+                main.mapa.show(false);
+
+            }
+
         },
+
+        '1' : function(direction = null) {
+
+            main.mapa.show(true);
+
+        },
+
+        '2' : function(direction = null) {
+
+            main.mapa.noColor(false);
+
+        },
+
 
         'first' : function(direction = null) {
 

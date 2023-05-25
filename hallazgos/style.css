@@ -8,9 +8,12 @@
     --color-back: #d9d9d9;
     --t: .5s;
 
-    --color-no-desiertos: #65CA87;
-    --color-semi-desiertos: #EFBB8B;
-    --color-desiertos: #FF8888;
+    --color-no-desiertos: #19A476;
+    --color-semi-desiertos: #EDAE70;
+    --color-desiertos: #EA7885;
+    --color-ypis: #266FB0;
+    --color-black: #1b1b1b;
+    --color-gris: #d4d4d5;
 
     font-family: Roboto;
 
@@ -78,218 +81,34 @@ path[data-category="No desierto"] { fill: var(--color-no-desiertos); }
 path[data-category="Desierto Moderado"] { fill: var(--color-semi-desiertos); }
 path[data-category="Desierto"] { fill: var(--color-desiertos); }
 
-
-
-g:has(path.municipios.selected) path.municipios {
-    opacity: .3;
-}
-
-g:has(path.municipios.selected) path.municipios.selected {
-    opacity: 1;
-}
-
-.zoomed {
-    --stroke: .25;
-}
-
-.zoomed[data-zoomed-to-province="Distrito capital"],
-.zoomed[data-zoomed-to-province="Vargas"] {
-    --stroke: .05;
-
-}
-
-.zoomed[data-zoomed-to-province="Distrito capital"]:has(path.municipios.selected),
-.zoomed[data-zoomed-to-province="Vargas"]:has(path.municipios.selected) {
-    --stroke: 0.01
-}
-
-.zoomed + .controls button {
-    background-color: khaki;
-}
-
-g path.municipios.municipios.municipios:hover {
-    stroke: var(--color-highlight);
-    opacity: .7;
-}
-
-
-
-/* cards */
-
-.wrapper-text-card-containers {
-    position: relative;
-    height: calc(100vh - 50vh - 7rem);
-}
-
-.card-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    top: 1rem;
-    transition: opacity var(--t);
-}
-
-.card-container h2 {
-    margin-top: 0;
-    line-height: 1.2;
-}
-
-.card-container p.info-subtitle {
-    margin: 0;
-    font-weight: bold;
-}
-
-.card-container p {
-    margin: 0;
-}
-
-.card-breadcrumbs {
-    font-size: .6rem;
-    text-transform: uppercase;
-}
-
-[data-breadcrumb-level="venezuela"] .breadcrumb-venezuela,
-[data-breadcrumb-level="venezuela"] .breadcrumb-provincia,
-[data-breadcrumb-level="venezuela"] .breadcrumb-separator {
-    opacity: 0;
-    display: none;
-}
-
-[data-breadcrumb-level="provincias"] .breadcrumb-provincia,
-[data-breadcrumb-level="provincias"] .breadcrumb-separator  {
-    opacity: 0;
-    display: none;
-}
-
-.card-breadcrumbs button {
-    border: none;
-    background-color: transparent;
-    border: 2px solid transparent;
-    padding: 0;
-}
-
-.card-breadcrumbs button:hover {
-    border-color: var(--color-highlight);
-}
-
-/* medios */
-.info-medios {
-    display: none;
-}
-
-[data-location-type="provincias"] .info-medios {
-    display: block;
-}
-
-.wrapper-info-location {
-    display: flex;
-    justify-content: space-between;
-}
-
-.wrapper-info-location > div {
-    flex: 0 0 50%;
-}
-
-.info-medios * {
-    text-align: right;
-}
-
-.wrapper-medios-types { 
-    display: flex;
-    justify-content: space-between;
-}
-
-.wrapper-medios-types > span::before {
-    padding-right: .3em;
-}
-
-[data-text="tv"]::before { content: '📺' ;}
-[data-text="radio"]::before { content: '📻' ;}
-[data-text="print"]::before { content: '📰' ;}
-[data-text="digital"]::before { content: '🖥️' ;}
-
-/*
-.breadcrumb-provincia::before {
-    display: inline-block;
-    content: '>';
-    margin-right: .3rem;
-    margin-left: .3rem;
-    border: none;
-    background-color: transparent;
-}*/
-
-/* text */
-
-.wrapper-text-container {
-    position: relative;
-    margin-top: -2.2rem;
-    transition: transform var(--t), opacity var(--t);
-}
-
-.text-container, .card-container {
-    background-color: var(--color-back);
-    padding: 2rem 2rem 2rem 1.5rem;
-    line-height: 1.65;
-    border-radius: 2rem 2rem 0 0;
-}
-
-.text-container * {
-    margin: 0;
-}
-
-.text-container h1 {
-    margin-bottom: 1.5rem;
-    line-height: 1;
-    font-weight: 500;
-    font-size: 2rem;
-}
+.no-color path[data-category] { fill: var(--color-gris); }
 
 .key-word {
-    font-size: .8rem;
+    /*font-size: .8rem;
     padding: .2em .6em;
     border-radius: .8rem;
     /*background-color: var(--color-highlight);*/
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-weight: 500;
     /*transition: all .3s;*/
 }
 
 
-.btn-no-desiertos, [data-word="no desiertos"], [data-label-category="No desierto"]::before  {background-color: var(--color-no-desiertos);}
-.btn-semi-desiertos, [data-word="semi-desiertos"], [data-label-category="Desierto Moderado"]::before {background-color: var(--color-semi-desiertos);}
-.btn-desiertos, [data-word="desiertos"], [data-label-category="Desierto"]::before {background-color: var(--color-desiertos);}
+[data-word="no desiertos"]   { color: var(--color-no-desiertos);}
+[data-word="semi-desiertos"] { color: var(--color-semi-desiertos);}
+[data-word="desiertos"]      { color: var(--color-desiertos);}
 
 .key-word.highlighted {
     border-color: crimson;
     background-color: lightpink;
 }
 
-[data-bar-category="No desierto"] { background-color: var(--color-no-desiertos); }
-[data-bar-category="Desierto"] { background-color: var(--color-desiertos); }
-[data-bar-category="Desierto Moderado"] { background-color: var(--color-semi-desiertos); }
-
 /* state : opening*/
 
-[data-state="opening"] .top-controls {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-100%);
-}
-
+/*
 [data-state="opening"] .map-container {
     margin-top: -5rem;
-}
-
-[data-state="explore"] .wrapper-text-container {
-    transform: translateY(100%);
-    opacity: 0;
-}
-
-[data-state="explore"] .card-container {
-    opacity: 1;
-}
+}*/
 
 
 .hud {
@@ -316,6 +135,7 @@ g path.municipios.municipios.municipios:hover {
     top: 0;
     left: 0;
     width: 100%;
+    color: var(--color-black);
 }
 
 .text-step-wrapper {
@@ -331,7 +151,7 @@ g path.municipios.municipios.municipios:hover {
     /*height: 40vh;*/
     padding: 1em;
     font-size: 1rem;
-    max-width: 640px;
+    max-width: 560px;
     width: 80%;
     border: 3px solid currentColor;
     background-color: #FFFFFFCC;
@@ -346,6 +166,10 @@ g path.municipios.municipios.municipios:hover {
     font-size: 4rem;
 }
 
+.text-step p {
+    font-weight: 300;
+}
+
 p.lead {
     line-height: 1.4;
     letter-spacing: .05em;
@@ -358,5 +182,8 @@ p.chapeu {
     text-transform: uppercase;
     letter-spacing: .1em;
     margin: 0;
+    font-weight: 600;
+    color: var(--color-ypis);
+    margin-bottom: .5rem;
 }
 
