@@ -253,13 +253,11 @@ class Mapa {
 
         // resets selections
         main.features.municipios.d3sel.classed('selected', false);
-        main.features.provincias.d3sel.classed('selected', false);
+       // main.features.provincias.d3sel.classed('selected', false);
 
         if (class_name == 'reset') {
 
-            main.card.update_bread_crumb('venezuela');
-            main.card.set('venezuela');
-            this.el.dataset.zoomedToProvince = "";
+            //this.el.dataset.zoomedToProvince = "";
 
             viewBox = this.original_viewbox;
 
@@ -269,7 +267,7 @@ class Mapa {
 
         } else {
 
-            main.card.set(class_name, name);
+            //main.card.set(class_name, name);
 
             this.el.classList.add('zoomed');
             this.flag_zoom_to_feature = true;
@@ -284,7 +282,7 @@ class Mapa {
                 const mun_data = main.data.retrieve_data('municipios', name);
                 const provincia = mun_data.parent_name;
                 //console.log(mun_data, provincia);
-                document.querySelector(`[data-provincias="${provincia}"]`).classList.add('selected');
+                //document.querySelector(`[data-provincias="${provincia}"]`).classList.add('selected');
             } else {
 
                 // when a province was clicked
@@ -1129,6 +1127,19 @@ const scroller = {
         'desiertos' : function(direction = null) {
 
             main.features.municipios.color_single_category('Desierto');
+
+            if (direction == 'back') {
+                main.mapa.fit_bounds('reset');
+            }
+
+        },
+
+        'desiertos, pequeno' : function(direction = null) {
+
+            main.mapa.fit_bounds('municipios', 'Alto Orinoco (La Esmeralda)');
+            //main.data.municipios.features.filter(d => d.properties.category == 'Desierto' && d.properties.size == 'Pequeño')
+
+            // Array.from(document.querySelectorAll('path[data-municipios]')).map(m => m.dataset.municipios).filter(d => d.includes('Iturriza'))
 
         },
 
