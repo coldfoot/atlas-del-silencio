@@ -382,9 +382,16 @@ class Features {
 
     }
 
+    toggle_css_control(toggle) {
+        this.d3sel.classed('css-controlled', toggle);
+    }
+
     color_single_category(category) {
 
-        this.d3sel.classed('no-color', d => d.properties.category != category);
+        this.d3sel.classed('no-color', d => {
+            if (category == false) return false;
+            return d.properties.category != category
+        });
     }
 
     change_to_circle(grid) {
@@ -1197,39 +1204,33 @@ const scroller = {
 
         'no desiertos 3' : function(direction = null) {
 
-        },
-
-
-        'first' : function(direction = null) {
-
-            if (direction == 'back') { 
-                d3.selectAll('path.municipios').style('fill', 'khaki');
+            if (direction == 'back') {
+                main.features.municipios.toggle_css_control(true);
+                main.features.municipios.color_single_category('No desierto');
             }
 
-            //app.map_obj.setPaintProperty('localidad', 'fill-pattern', null);
-            //app.map_obj.setPaintProperty('localidad', 'fill-color', ['get', 'color']);
-            //app.map_obj.setPaintProperty('localidad', 'fill-outline-color', 'ghostwhite');
-            //app.map_obj.setPaintProperty('localidad', 'fill-opacity', .5);
-           // app.map.set_initial_view();
-           //app.ctrl.prevents_scroll_on_opening(true);
+        },
 
-            //app.interactions.story.toggle_visibility("dashboard_button");
+        'pre-bubble' : function(direction = null) {
+
+            main.features.municipios.color_single_category(false);
+
 
         },
 
-        // 'pesquisa' : function() {
 
-        //     console.log('Pesquisando...');
+        'bubble transition' : function(direction = null) {
 
-        //     app.map.set_initial_view();
-        //     app.map.fog_of_war.toggle('provincia', '');
-        //     app.map.fog_of_war.toggle('localidad', '');
-        //     app.map_obj.setPaintProperty('localidad', 'fill-color', ['get', 'color']);
-        //     app.map.localidad.toggle_highlight_border('');
-            
-        // },
+            main.features.municipios.change_to_circle();
+            //charts.force_bubble();
 
-        // no scroller
+            if (direction == 'back') { 
+        
+            }
+
+        },
+
+
         'second' : function(direction = null) {                
 
             if (direction == 'back') {
