@@ -216,7 +216,7 @@ desiertosModeradosButton.addEventListener("click", function(e) {
 
 var noDesiertosButton = document.getElementById("NoDesiertos");
 noDesiertosButton.addEventListener("click", function(e) {
- drawChart("./percentageNoDesiertos.csv",
+ drawChart("./data/percentageNoDesiertos.csv",
     "./imgs/legends/slope-legend-no-desiertos@2x.png",
     "#19A476"); 
     document.querySelector(".category-selected").classList.remove("category-selected");
