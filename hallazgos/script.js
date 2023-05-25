@@ -397,7 +397,7 @@ class Features {
     color_single_category(category) {
 
         this.d3sel.classed('no-color', d => {
-            if (category == false) return false;
+            if (category == 'all') return false;
             return d.properties.category != category
         });
     }
@@ -979,6 +979,8 @@ function animation() {
 
 const sim = {
 
+    first_run : true,
+
     simulation : d3.forceSimulation().stop(),
 
     strength : 0.04,
@@ -1003,7 +1005,9 @@ const sim = {
                 d3.selectAll('path.municipios')
                     .attr('transform', d => {
 
-                        return `translate(${d.x - d.x_last}, ${d.y - d.y_last})`
+                        return `translate(
+                            ${d.x - d.x0}, 
+                            ${d.y - d.y0})`
 
                     });
             })
@@ -1011,9 +1015,18 @@ const sim = {
                 
                 console.log('terminou');
                 main.nodes.forEach(d => {
+
+                    if (sim.first_run) {
+                        d.tx_map = d.x - d.x_last;
+                        d.ty_map = d.y - d.y_last;
+                    }
+
                     d.x_last = d.x;
                     d.y_last = d.y;
+
                 })
+
+                sim.first_run = false;
             })
             .stop()
         ;
@@ -1022,29 +1035,82 @@ const sim = {
 
     },
 
-    start : () => sim.simulation.alpha(1).restart()
+    start : () => sim.simulation.alpha(1).restart(),
+
+    save_positions_map : () => {
+        //main.nodes.forEach()
+    }
 
 
 };
 
 const charts = {
 
-    force_bubble() {
+    bubble_groups() {
 
-        const w = 1000;//+d3.select('svg.map').style('width').slice(0,-2);
+        const w = +d3.select('svg.map').style('width').slice(0,-2);
+        const h = +d3.select('svg.map').style('height').slice(0,-2);
 
-        sim.simulation.force('x', d3.forceX().strength(sim.strength/3).x(d => {
-            if (d.properties.category == 'Desierto') return w / 4;
-            if (d.properties.category == 'Desierto Moderado') return w/ 2;
-            if (d.properties.category == 'No desierto') return 3*w/4;
+        console.log(w,h);
+        
+        const charge = function(d) {
+            return -Math.pow(d.r, 2.0) * sim.strength;
+        }
+
+
+        sim.simulation.force('x', d3.forceX().strength(sim.strength).x(d => {
+            if (d.properties.category == 'Desierto') return w / 6;
+            if (d.properties.category == 'Desierto Moderado') return w / 2;
+            if (d.properties.category == 'No desierto') return 5*w/6;
+            return w/2;
         }))
 
-        .force('y', d3.forceY().strength(sim.strength/3).y(w/2))
-        .force('collision', d3.forceCollide().strength(sim.strength*4).radius(d => d.r))
-        .velocityDecay(0.1)
-        .alphaMin(0.05);
+        .force('y', d3.forceY().strength(sim.strength).y(h/2))
+        //.force('charge', d3.forceManyBody().strength(charge))
+        //.force('collision', null)
+        //.force('collision', d3.forceCollide().strength(sim.strength*1.5).radius(d => d.r))
+        //.velocityDecay(0.1)
+        .alphaMin(0.02);
 
         sim.start();
+
+    },
+
+    bubble_map() {
+
+        const strength = sim.strength;
+
+        sim.simulation.stop();
+        sim.simulation
+          .velocityDecay(0.2)
+          .force('x', null)
+          .force('y', null)
+          .force('collision', d3.forceCollide().strength(strength*1.5).radius(d => d.r))
+          .alphaMin(0.2)
+        ;
+
+        main.features.municipios.d3sel.transition().duration(500)
+          .attr('transform',  d => `translate(
+            ${d.tx_map ? d.tx_map : 0},
+            ${d.ty_map ? d.ty_map : 0})`
+        );
+
+        /*
+        const charge = function(d) {
+            return -Math.pow(d.r, 2.0) * sim.strength;
+        }
+
+        sim.simulation
+          .force('x', d3.forceX().strength(sim.strength*3).x(d => d.x0))
+          .force('y', d3.forceY().strength(sim.strength*3).y(d => d.y0))
+          //.force('charge', d3.forceManyBody().strength(charge))
+          //.force('charge', null)
+          //.force('collision', d3.forceCollide().strength(sim.strength).radius(d => d.r))
+          //.velocityDecay(0.1)
+          .alphaMin(0.02);
+
+        sim.start();*/
+
 
     },
 
@@ -1234,7 +1300,7 @@ const scroller = {
 
         'pre-bubble' : function(direction = null) {
 
-            main.features.municipios.color_single_category(false);
+            main.features.municipios.color_single_category('all');
 
             if (direction == 'back') { 
                 main.features.municipios.change_to_shape();
@@ -1245,25 +1311,24 @@ const scroller = {
 
         'bubble transition' : function(direction = null) {
 
-            main.features.municipios.change_to_circle();
-            setTimeout(() => sim.start(), 500);
-            //charts.force_bubble();
-
             if (direction == 'back') { 
+
+                charts.bubble_map();
         
+            } else {
+
+                main.features.municipios.change_to_circle();
+                setTimeout(() => sim.start(), 500);
+                //charts.force_bubble();
+
             }
 
         },
 
 
-        'second' : function(direction = null) {                
+        'bubble groups 1' : function(direction = null) {                
 
-            if (direction == 'back') {
-                main.features.municipios.change_to_shape();
-                console.log('here, back');
-            } else {
-                d3.selectAll('path.municipios').style('fill', '');
-            }
+            charts.bubble_groups();
 
 
         },
