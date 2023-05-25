@@ -506,6 +506,12 @@ class Features {
                 x = +d.x0;//.attr('data-x');
                 y = +d.y0;//.attr('data-y');
 
+                // resets x, y params for simulation
+                d.x = d.x0;
+                d.y = d.y0;
+                d.x_last = d.x0;
+                d.y_last = d.y0;
+
                 const d_attr = d.d;
 
                 //r = +d3.select(this).attr('data-r');
