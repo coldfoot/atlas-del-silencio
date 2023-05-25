@@ -280,6 +280,8 @@ class Mapa {
             //document.querySelector('.tooltip').innerHTML = name + ` (${class_name})`;
     
             const bbox = feat.getBBox();
+
+            if (bbox.width < bbox.height) bbox.width = bbox.height;
     
             //viewBox = `${bbox.x - margin} ${bbox.y - margin} ${bbox.width + 2*margin} ${bbox.height + 2*margin}`
             viewBox = `${bbox.x - (margin * bbox.width) } ${ bbox.y - (margin * bbox.height)} ${(1+2*margin)*bbox.width} ${(1+2*margin)*bbox.height}`
@@ -290,7 +292,7 @@ class Mapa {
 
         }
 
-        main.mapa.d3svg.transition().duration(500).attr('viewBox', viewBox);
+        main.mapa.d3svg.transition().duration(800).attr('viewBox', viewBox);
 
     }
 
@@ -1352,6 +1354,12 @@ const scroller = {
         },
 
         'bubble groups 2' : function(direction = null) {
+
+            show_labels(true);
+
+        },
+
+        'bubble groups 3' : function(direction = null) {
 
             show_labels(true);
 
