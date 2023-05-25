@@ -39,9 +39,9 @@
             console.log(groupedData);
 
             // Set up the SVG container and dimensions
-            const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-            const width = 200 - margin.left - margin.right;
-            const height = 200 - margin.top - margin.bottom;
+            const margin = { top: 20, right: 0, bottom: 30, left: 20 };
+            const width = 80 - margin.left - margin.right;
+            const height = 100 - margin.top - margin.bottom;
 
             const svg = d3
                 .select("body")
