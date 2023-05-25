@@ -69,7 +69,7 @@ g:has(path.selected) path {
 }
 
 path.municipios.selected {
-    --stroke: .5;
+    --stroke: .25;
     opacity: 1;
 }
 
