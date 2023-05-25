@@ -54,9 +54,13 @@ body {
 
 path {
     stroke-width: var(--stroke);
-    stroke: #333;/* #BFA98F;*/
+    stroke: var(--color-black);/* #BFA98F;*/
     fill: #FEFED0; /* lightseagreen;*/
-    transition: stroke var(--t), fill var(--t);
+    /*transition: stroke var(--t), fill var(--t);*/
+}
+
+path.css-controlled {
+    transition: fill var(--t);
 }
 
 path.provincias {
@@ -64,7 +68,7 @@ path.provincias {
     opacity: .7;
     stroke: #333;
     stroke-width: calc(var(--stroke) * 2);
-    transition: opacity var(--t);
+    /*transition: opacity var(--t);*/
     /*transition: fill var(--t);*/
 }
 
@@ -81,7 +85,7 @@ path[data-category="No desierto"] { fill: var(--color-no-desiertos); }
 path[data-category="Desierto Moderado"] { fill: var(--color-semi-desiertos); }
 path[data-category="Desierto"] { fill: var(--color-desiertos); }
 
-.no-color path[data-category] { fill: var(--color-gris); }
+path[data-category].no-color { fill: var(--color-gris); }
 
 .key-word {
     /*font-size: .8rem;

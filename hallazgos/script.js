@@ -2,10 +2,10 @@ const main = {};
 
 Promise.all([
 
-    fetch(
+    /*fetch(
         '../data/output/finished-geojsons/level_1_results.geojson'
         //'lv1.json'
-        ).then(response => response.json()),
+        ).then(response => response.json()),*/
     fetch(
         '../data/output/finished-geojsons/level_2_results.geojson'
         //'lv2.json'
@@ -17,7 +17,9 @@ function init(data) {
 
     //console.log(data);
 
-    main.data = new Data(data[0], data[1]);
+    main.data = new Data(
+        null, //data[0], 
+        data[0]); //1
 
     main.r = d3.scaleSqrt().domain(d3.extent(main.data.municipios.features, d => d.properties.population)).range([1,40]);
 
@@ -27,7 +29,7 @@ function init(data) {
 
     main.features = {
 
-        provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa),
+        //provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa),
         municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa)
 
     }
@@ -110,11 +112,14 @@ function compute_subtotals() {
 
     }
 
+    /*
+
     main.data.provincias.features.forEach(provincia => {
         provincia.properties['pop Desierto'] = get_pop(provincia.properties.name, 'Desierto');
         provincia.properties['pop No desierto'] = get_pop(provincia.properties.name, 'No desierto');
         provincia.properties['pop Desierto Moderado'] = get_pop(provincia.properties.name, 'Desierto Moderado');
     })
+    */
 
     //console.log(get_pop(provincias[2], 'No desierto'));
 
@@ -208,16 +213,6 @@ class Mapa {
         if (toggle == false) method = 'add';
 
         this.cont.classList[method]('hidden');
-
-    }
-
-    noColor(toggle = true) {
-
-        let method = 'add';
-        if (toggle == false) method = 'remove';
-
-        this.el.classList[method]('no-color');
-
 
     }
 
@@ -352,7 +347,8 @@ class Features {
             .data(ref_to_data.features)
             .join("path")
             .classed(class_name, true)
-            .classed('distrito-capital', d => d.properties.parent_name == "Distrito capital")
+            .classed('no-color', true)
+            .classed('css-controlled', true)
             .attr('data-type', class_name)
             //.style('fill', 'khaki')
             .attr('data-r', d => {
@@ -386,6 +382,11 @@ class Features {
 
         });
 
+    }
+
+    color_single_category(category) {
+
+        this.d3sel.classed('no-color', d => d.properties.category != category);
     }
 
     change_to_circle(grid) {
@@ -1107,7 +1108,6 @@ const scroller = {
 
             if (direction == 'back') {
 
-                console.log('here we are');
                 main.mapa.show(false);
 
             }
@@ -1118,11 +1118,17 @@ const scroller = {
 
             main.mapa.show(true);
 
+            if (direction == 'back') {
+
+                main.features.municipios.color_single_category('');
+
+            }
+
         },
 
-        '2' : function(direction = null) {
+        'desiertos' : function(direction = null) {
 
-            main.mapa.noColor(false);
+            main.features.municipios.color_single_category('Desierto');
 
         },
 
