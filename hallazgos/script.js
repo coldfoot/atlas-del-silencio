@@ -72,13 +72,21 @@ function set_centers() {
         const bbox = p.getBBox();
         //console.log(bbox);
 
-        p.setAttribute('data-x', bbox.x + bbox.width / 2);
-        p.setAttribute('data-y', bbox.y + bbox.height / 2);
+        const x = bbox.x + bbox.width / 2;
+        const y = bbox.y + bbox.height / 2
 
-        d3.select(p).datum().x0 = bbox.x + bbox.width / 2;
-        d3.select(p).datum().x = bbox.x + bbox.width / 2;
-        d3.select(p).datum().y0 = bbox.y + bbox.height / 2;
-        d3.select(p).datum().y = bbox.y + bbox.height / 2;
+        p.setAttribute('data-x', x);
+        p.setAttribute('data-y', y);
+
+
+        d3.select(p).datum().x0 = x;
+        d3.select(p).datum().x = x;
+        d3.select(p).datum().x_last = x;
+
+        d3.select(p).datum().y0 = y;
+        d3.select(p).datum().y = y;
+        d3.select(p).datum().y_last = y;
+
 
     })
 
@@ -412,7 +420,7 @@ class Features {
         this.d3sel
             .transition()
             .delay((d,i) => d.x * 2) //5)//(i % 50) * 100)
-            .duration(2000)
+            .duration(1000)
             .attrTween('d', function(d, n) {
 
                 //d.cx = x;
@@ -423,9 +431,9 @@ class Features {
 
                 if (!grid) {
 
-                    r = +d3.select(this).attr('data-r');
-                    x = +d3.select(this).attr('data-x');
-                    y = +d3.select(this).attr('data-y');
+                    r = d.r;//+d3.select(this).attr('data-r');
+                    x = d.x0;//+d3.select(this).attr('data-x');
+                    y = d.y0;//+d3.select(this).attr('data-y');
 
                     if (n < 10) console.log(x,y);
 
@@ -488,19 +496,21 @@ class Features {
         this.d3sel
             .transition()
             //.delay((d,i) => (i % 100) * 100)
-            .duration(3000)
+            .delay((d,i) => d.x * 2)
+            .duration(1000)
+            .attr('transform', 'translate(0,0)')
             //.attr('transform', `translate(${0},${0})`)
             .attrTween('d', function(d, n) {
 
-                r = +d3.select(this).attr('data-r');
-                x = +d3.select(this).attr('data-x');
-                y = +d3.select(this).attr('data-y');
+                r = +d.r;
+                x = +d.x0;//.attr('data-x');
+                y = +d.y0;//.attr('data-y');
 
                 const d_attr = d.d;
 
-                r = +d3.select(this).attr('data-r');
+                //r = +d3.select(this).attr('data-r');
 
-                if (n <10) console.log(x,y,r);
+                //if (n <10) console.log(x,y,r);
 
                 return flubber.fromCircle (x, y, r, d_attr, {maxSegmentLength: 2})
             })
@@ -987,12 +997,17 @@ const sim = {
                 d3.selectAll('path.municipios')
                     .attr('transform', d => {
 
-                        return `translate(${d.x}, ${d.y})`
+                        return `translate(${d.x - d.x_last}, ${d.y - d.y_last})`
 
                     });
             })
             .on('end', () => {
+                
                 console.log('terminou');
+                main.nodes.forEach(d => {
+                    d.x_last = d.x;
+                    d.y_last = d.y;
+                })
             })
             .stop()
         ;
@@ -1215,6 +1230,9 @@ const scroller = {
 
             main.features.municipios.color_single_category(false);
 
+            if (direction == 'back') { 
+                main.features.municipios.change_to_shape();
+            }
 
         },
 
