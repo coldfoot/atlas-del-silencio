@@ -1,9 +1,9 @@
 const main = {
 
     colors : {
-        'No desierto' : '#65CA87',
-        'Desierto Moderado' : '#EFBB8B',
-        'Desierto' : '#FF8888'
+        'No desierto' : '#19A476',
+        'Desierto Moderado' : '#EDAE70',
+        'Desierto' : '#EA7885'
     },
     
     dims : {
@@ -31,9 +31,26 @@ Promise.all([
     fetch(
         './data/output/finished-geojsons/level_2_results.geojson'
         //'lv2.json'
+        ).then(response => response.json()),
+    fetch(
+        './data/output/finished-geojsons/zer.geojson'
+        //'lv2.json'
         ).then(response => response.json())
 
+
 ]).then( init )
+
+function compute_bbox_venezuela() {
+    const bbox_provincias = turf.bbox(main.data.provincias);
+    const bbox_zer = turf.bbox(main.zer);
+
+    const poly_provincias = turf.bboxPolygon(bbox_provincias);
+    const poly_zer = turf.bboxPolygon(bbox_zer);
+
+    const poly_venezuela = turf.union(poly_provincias, poly_zer);
+
+    return turf.bbox(poly_venezuela);
+}
 
 function init(data) {
 
@@ -41,7 +58,9 @@ function init(data) {
 
     main.data = new Data(data[0], data[1]);
 
-    main.bboxVenezuela = turf.bbox(main.data.provincias);
+    main.zer = data[2];
+
+    main.bboxVenezuela = compute_bbox_venezuela();//turf.bbox(main.data.provincias, main.zer);
     utils.computeCenters('provincias');
     utils.computeCenters('municipios');
 
@@ -175,6 +194,11 @@ function load_sources_layers() {
         'promoteId' : 'name'
     });
 
+    main.mapa.addSource('zer', {
+        type: 'geojson',
+        data : main.zer
+    });
+
     main.mapa.addLayer({
         'id': 'municipios',
         'type': 'fill',
@@ -299,6 +323,28 @@ function load_sources_layers() {
         },
         'filter': ['==', 'estado', '']
     });
+
+    main.mapa.addLayer({
+        'id': 'zer',
+        'type': 'fill',
+        'source': 'zer',
+        'layout': {},
+        'paint': {
+          'fill-color': '#d4d4d5',
+          'fill-outline-color' : 'transparent',
+        }
+    });
+
+    main.mapa.addLayer({
+        'id': 'zer-border',
+        'type': 'line',
+        'source': 'zer',
+        'layout': {},
+        'paint': {
+            'line-color': '#666',
+            'line-width': 1,
+        }
+    }); 
 
 }
 
