@@ -111,7 +111,8 @@ function compute_subtotals() {
     categories.forEach(category => main.data.subtotals.push(
         {
             category : category,
-            pop : main.data.municipios.features.filter(d => d.properties.category == category).map(d => d.properties.population).reduce( (a,b) => a+b )
+            pop : main.data.municipios.features.filter(d => d.properties.category == category).map(d => d.properties.population).reduce( (a,b) => a+b ),
+            qde : main.data.municipios.features.filter(d => d.properties.category == category).length
         })
     )   
 
@@ -928,7 +929,7 @@ function make_labels_pop_category() {
             new_label.classList.add('label-pop');
             new_label.classList.add('hidden');
             new_label.dataset.category = cat.category;
-            new_label.innerText = main.format(cat.pop);
+            new_label.innerHTML = main.format(cat.pop) + '</br>' + '<span class="label-qde-localidades">(' + cat.qde + ' localidades)</span>';
             //new_label.style.left = left + 'px';
 
             //left += increment;

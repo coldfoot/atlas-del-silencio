@@ -195,6 +195,12 @@ p.chapeu {
     bottom: 33vh;
     display: inline-block;
     transform: translateX(-50%);
+    width: max-content;
+    line-height: 1.5;
+}
+
+.label-pop .label-qde-localidades {
+    font-weight: 300;
 }
 
 .label-pop.hidden {
