@@ -25,8 +25,6 @@ Promise.all([
 
 function init(data) {
 
-    //console.log(data);
-
     main.data = new Data(
         data[0], 
         data[1]); //1
@@ -79,7 +77,6 @@ function set_centers() {
     document.querySelectorAll('path.municipios').forEach(p => {
 
         const bbox = p.getBBox();
-        //console.log(bbox);
 
         const x = bbox.x + bbox.width / 2;
         const y = bbox.y + bbox.height / 2
@@ -132,7 +129,6 @@ class Data {
 
     retrieve_data(type, name) {
 
-        //console.log(type, this[type]);
         const mini_data = this[type].features
           .map(d => d.properties)
           .filter(d => d.name == name)[0];
@@ -218,7 +214,6 @@ class Mapa {
     }
 
     initZoom() {
-        //console.log('init');
         d3.select('svg')
             .call(this.zoom);
     }
@@ -269,7 +264,6 @@ class Mapa {
 
             const feat = document.querySelector(`[data-${class_name}="${name}"]`);
 
-            //console.log(class_name, name);
             feat.classList.add('selected');
 
             // also make the parent provincia selected, so it stays transparent;
@@ -298,8 +292,6 @@ class Mapa {
             viewBox = `${bbox.x - (margin * bbox.width) } ${ bbox.y - (margin * bbox.height)} ${(1+2*margin)*bbox.width} ${(1+2*margin)*bbox.height}`
         
             //console.log(feat, bbox, viewBox);
-
-            console.log('bbox-width ', bbox.width);
 
         }
 
@@ -434,7 +426,7 @@ class Features {
                     x = d.x0;//+d3.select(this).attr('data-x');
                     y = d.y0;//+d3.select(this).attr('data-y');
 
-                    if (n < 10) console.log(x,y);
+                    //if (n < 10) console.log(x,y);
 
                 } else {
 
@@ -680,7 +672,7 @@ class Card {
 
     monitorSelect() {
 
-        console.log('monitoring select!');
+        //console.log('monitoring select!');
 
         this.select.addEventListener('change', (e) => {
             this.updateBarsAndLabels(this)
@@ -799,7 +791,7 @@ class Button {
 
     monitor() {
 
-        console.log(this.el, ' -- monitoring...');
+        //console.log(this.el, ' -- monitoring...');
         this.el.addEventListener('click', this.handler);
 
     }
@@ -827,7 +819,7 @@ class SearchBar {
         const provincias = main.data.provincias.features.map(d => d.properties.name);
         this.provincias = provincias.map(d => d.normalize('NFD').replace(/[\u0300-\u036f]/g, ""));
 
-        console.log(provincias);
+        //console.log(provincias);
 
         provincias.forEach(provincia => {
 
@@ -848,7 +840,6 @@ class SearchBar {
     submit(e, thisObj) {
 
         const text = e.target.value;
-        console.log(text, thisObj.provincias.indexOf(e.target.value));
         //if (this.provincias.indexOf(e.target.value)
 
         const index = thisObj.provincias.indexOf(e.target.value);
@@ -1053,7 +1044,7 @@ const sim = {
             })
             .on('end', () => {
                 
-                console.log('terminou');
+                //console.log('terminou');
                 main.nodes.forEach(d => {
 
                     if (sim.first_run) {
@@ -1205,7 +1196,7 @@ const scroller = {
 
                 const step = el.dataset.step;
 
-                console.log("Renderizando step... ", step);
+                //console.log("Renderizando step... ", step);
 
                 scroller.render[step]();
 
@@ -1219,7 +1210,7 @@ const scroller = {
 
                 const step_anterior = scroller.steps.list[index_step - 1];
 
-                console.log(scroller.steps.list);
+                //console.log(scroller.steps.list);
 
                 scroller.render[step_anterior]('back');
 
@@ -1382,7 +1373,7 @@ const scroller = {
 
         },
 
-        'bubble groups 3' : function(direction = null) {
+        'end' : function(direction = null) {
 
             show_labels(true);
 
