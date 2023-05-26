@@ -1102,14 +1102,14 @@ class Card {
     pop_el;
     medios_el;
 
-    breadcrumb_el;
+    //breadcrumb_el;
 
     constructor(ref, data_provincias, data_municipios) {
 
         this.ref = ref;
         this.el = document.querySelector('.' + ref);
         this.select = document.querySelector('select.info-subtitle');
-        this.breadcrumb_el = document.querySelector('.' + ref + ' .card-breadcrumbs');
+        //this.breadcrumb_el = document.querySelector('.' + ref + ' .card-breadcrumbs');
         this.title_el = document.querySelector('[data-text="location"]');
         this.pop_el = document.querySelector('[data-text="poblacion"]');
         //this.medios_ = document.querySelector('[data-text="medios"]');
@@ -1199,7 +1199,7 @@ class Card {
 
         }
 
-        this.update_bread_crumb(type, name);
+        //this.update_bread_crumb(type, name);
         //this.medios_el.innerHTML = mini_data.medios;
     }
 
@@ -1267,6 +1267,7 @@ class Controls {
             }
         },*/
 
+        /*
         {
 
             ref : 'breadcrumb-venezuela',
@@ -1277,7 +1278,7 @@ class Controls {
                 fit_bounds('venezuela');
 
             }
-        },
+        },*/
 
         {
 
@@ -1291,6 +1292,7 @@ class Controls {
             }
         },
 
+        /*
         {
 
             ref : 'breadcrumb-provincia',
@@ -1302,7 +1304,7 @@ class Controls {
                 main.mapa.fit_bounds('provincias', provincia);
 
             }
-        },
+        },*/
 
         {
             ref: 'btn-explora',
