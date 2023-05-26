@@ -1,5 +1,7 @@
 const main = {};
 
+//JSON.stringify(turf.bboxPolygon(turf.bbox(main.data.municipios)))
+
 main.format = function(n) {
     return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
 }
@@ -13,6 +15,10 @@ Promise.all([
     fetch(
         '../data/output/finished-geojsons/level_2_results.geojson'
         //'lv2.json'
+        ).then(response => response.json()),
+    fetch(
+        '../data/output/finished-geojsons/zer.geojson'
+        //'lv1.json'
         ).then(response => response.json())
 
 ]).then( init )
@@ -22,8 +28,8 @@ function init(data) {
     //console.log(data);
 
     main.data = new Data(
-        null, //data[0], 
-        data[0]); //1
+        data[0], 
+        data[1]); //1
 
     main.r = d3.scaleSqrt().domain(d3.extent(main.data.municipios.features, d => d.properties.population)).range([1,40]);
 
@@ -35,7 +41,9 @@ function init(data) {
     main.features = {
 
         //provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa),
-        municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa)
+        municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa),
+
+        zer  : new Features('zer' , ref_to_data = main.data.zer, ref_to_map = main.mapa)
 
     }
 
@@ -113,10 +121,12 @@ class Data {
 
     provincias;
     municipios;
+    zer;
 
-    constructor(provincias_data, municipios_data) {
-        this.provincias = provincias_data;
+    constructor(municipios_data, zer_data) {
+        //this.provincias = provincias_data;
         this.municipios = municipios_data;
+        this.zer = zer_data
     }
 
     retrieve_data(type, name) {
@@ -176,8 +186,8 @@ class Mapa {
         this.proj = d3.geoMercator()
           .center(this.center)
           //.rotate([10, 0])
-          .translate([this.w/1.4, this.h/1.3]) // arrumar um jeito de calcular isso direito
-          .scale(4000)
+          .translate([this.w/1.6, this.h/1.3]) // arrumar um jeito de calcular isso direito
+          .scale(3600)
 
         ;
 
@@ -378,6 +388,16 @@ class Features {
             if (category == 'all') return false;
             return d.properties.category != category
         });
+    }
+
+    toggle_opacity(op) {
+
+        this.d3sel
+          .transition()
+          .delay(1000)
+          .duration(500)
+          .attr('opacity', op)
+
     }
 
     change_to_circle(grid) {
@@ -1323,6 +1343,7 @@ const scroller = {
 
             if (direction == 'back') { 
                 main.features.municipios.change_to_shape();
+                main.features.zer.toggle_opacity(1);
             }
 
         },
@@ -1337,6 +1358,7 @@ const scroller = {
             } else {
 
                 main.features.municipios.change_to_circle();
+                main.features.zer.toggle_opacity(0);
                 setTimeout(() => sim.start(), 500);
                 //charts.force_bubble();
 
