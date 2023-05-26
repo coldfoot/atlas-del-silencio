@@ -14,6 +14,8 @@ const main = {
 
     },
 
+    mun_to_estado_dict : {},
+
     IDhoveredEstado : null,
     IDhoveredMunicipio : null,
 
@@ -1444,6 +1446,19 @@ class SearchBar {
             option.value = provincia;//provincia.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
             this.datalist.appendChild(option);
 
+            const municipios = main.data.municipios.features.filter(d => d.properties.parent_name == provincia).map(d => d.properties.name);
+
+            municipios.forEach(municipio => {
+
+                main.mun_to_estado_dict[municipio] = provincia;
+
+                const option = document.createElement('option');
+                option.value = '    ' + municipio;
+                //option.dataset.parent_estado = provincia;
+                this.datalist.appendChild(option);
+
+            })
+
         })
 
     }
@@ -1456,11 +1471,19 @@ class SearchBar {
 
     submit(e, thisObj) {
 
-        const text = e.target.value;
-        console.log(text, thisObj.provincias.indexOf(e.target.value));
+        let text = e.target.value;
+
+        let mun;
+
+        if (text.slice(0,4) == '    ') {
+            mun = text.slice(4);
+            text = main.mun_to_estado_dict[mun];
+        }
+
+        console.log(text, thisObj.provincias.indexOf(e.target.value), mun);
         //if (this.provincias.indexOf(e.target.value)
 
-        const index = thisObj.provincias.indexOf(e.target.value);
+        const index = thisObj.provincias.indexOf(text);
 
         if (index >= 0) {
 
