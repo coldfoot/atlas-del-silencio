@@ -303,7 +303,7 @@ class Mapa {
 
         }
 
-        main.mapa.d3svg.transition().duration(800).attr('viewBox', viewBox);
+        main.mapa.d3svg.transition().duration(1000).attr('viewBox', viewBox);
 
     }
 
