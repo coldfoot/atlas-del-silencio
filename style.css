@@ -187,27 +187,6 @@ button.back-to-main-map:hover {
     flex-direction: column;
 }
 
-.container-link-hallazgos {
-    flex: 0 0 1rem;
-}
-
-.link-hallazgos {
-    display: block;
-    margin: 0 auto 1rem 1rem;
-    line-height: 1;
-    padding: .6rem;
-    font-family: 1rem;
-    background-color: var(--color-back);
-    /*border: 2px solid var(--color-back);*/
-    width: 33%;
-    text-align: center;
-    color: #333;
-    text-decoration: none;
-    border-radius: 1.5rem;
-    /*opacity: 0;*/
-    transition: opacity var(--t);
-}
-
 .text-container, .card-container {
     background-color: white;
     padding: 2rem 2rem 1rem 2rem;
@@ -387,7 +366,7 @@ select.info-subtitle {
 [data-bar-category="Desierto"] { background-color: var(--color-desiertos); }
 [data-bar-category="Desierto Moderado"] { background-color: var(--color-semi-desiertos); }
 
-/* button explora, hallazgos */
+/* button explora*/
 
 .btn-explora {
     border-radius: 2rem;
