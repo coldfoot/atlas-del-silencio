@@ -4,14 +4,16 @@
 
 :root {
     font-family: Roboto;
-    --color-highlight: #a6a6a6;
+    --color-highlight: #d4d4d5;
     --color-back: #d9d9d9;
     background-color: #e8e8e8;
     --t: .5s;
 
-    --color-no-desiertos: #65CA87;
-    --color-semi-desiertos: #EFBB8B;
-    --color-desiertos: #FF8888;
+    --color-no-desiertos: #19A476;
+    --color-semi-desiertos: #EDAE70;
+    --color-desiertos: #EA7885;
+
+    --color-black: #1b1b1b;
 
 }
 
@@ -70,7 +72,7 @@ button.back-to-main-map {
     z-index: 2;
     height: 2rem;
     width: 2rem;
-    border: 1px solid black;
+    border: 1px solid var(--color-black);;
     background-color: white;
     font-weight: bold;
 }
@@ -370,7 +372,7 @@ select.info-subtitle {
 
 .btn-explora {
     border-radius: 2rem;
-    background-color: black;
+    background-color: var(--color-black);;
     color: white;
     padding: .5rem 2.5rem;
     width: 11.5rem;
@@ -425,7 +427,7 @@ select.info-subtitle {
 }
 
 .top-bar .btn-menu line {
-    stroke: #333;
+    stroke: var(--color-black);;
     stroke-width: 3;
 }
 
@@ -518,7 +520,7 @@ select.info-subtitle {
 .controls select,
 .controls button {
     background-color: aliceblue;
-    border: 2px solid #333;
+    border: 2px solid var(--color-black);;
     box-shadow: 4px 4px #AAA;
     padding: .3em .4em;
     border-radius: 3px;
@@ -562,7 +564,7 @@ select.info-subtitle {
     position: absolute;
     top: 1em;
     right: 1em;
-    background-color: #333;
+    background-color: var(--color-black);;
     padding: .5em;
     border-radius: 2px;
     width: 13em;
