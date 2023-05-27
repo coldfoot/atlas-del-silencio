@@ -1,0 +1,98 @@
+    * {
+        box-sizing: border-box;
+    }
+
+    :root {
+        font-family: Roboto;
+        --color-highlight: #a6a6a6;
+        --color-back: #d9d9d9;
+        --color-ipys-blue: ;
+/*        background-color: #e8e8e8;*/
+        --t: .5s;
+
+        --color-no-desiertos: #65CA87;
+        --color-semi-desiertos: #EFBB8B;
+        --color-desiertos: #FF8888;
+
+    }
+
+        body {
+            background-color: #FFF;
+            color: #1B1B1B;
+            max-width: 600px; /* Or any other width that you feel is appropriate */
+            margin: auto;
+/*            padding: 10px;*/
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+        }
+
+        header {
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        #logo {
+            height: 100%;
+        }
+
+        #hamburger-menu {
+            cursor: pointer;
+        }
+
+        h1#headline {
+            text-align: left;
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 5px; /* Reduced space */
+        }
+
+        h2#subheadline {
+            text-align: left;
+            font-size: 1.5em;
+            font-weight: 400;
+            color: #1B1B1B;
+            margin-top: 5px; /* Reduced space */
+        }
+
+        section {
+            margin: 20px 0;
+        }
+
+        section h3 {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #0d61aa;
+        }
+
+        .small-multiple-title{
+            text-align: center;
+            font-weight: regular;
+            font-size: 12px;
+
+        }
+
+        .chart-container {
+/*            border-color: #1b1b1b;
+            border-width: 1px;
+            border: solid;*/
+            padding: 10px;
+        }
+
+/*        .bar {
+            fill: #266FB0;
+        }*/
+        .bar:hover {
+            fill: #D4D4D5;
+        }
+
+        .percent {
+            fill: white;
+            font-weight: bold;
+            font-size: 12px;
+        }

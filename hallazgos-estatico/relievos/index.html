@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" id="logo">
+        <div id="hamburger-menu">Menu</div>
+    </header>
+    <main>
+        <p class="hat">Relievos</p>
+        <h1 id="headline">Título</h1>
+        <section>
+
+            <p>La segunda edición del Atlas del Silencio también ofrece más información acerca de los medios de información que sirven a la población venezolana y acerca de la percepción que las personas tienen del ecosistema mediático en el país. Fueron catalogados <b>619 medios</b> en todo el territorio nacional. En esta sección, puedes leer los principales hallazgos del estudio acerca de estas dinámicas.</p>
+
+            <h2>Características de los medios de comunicación</h2>
+
+            <div class="chart-container">
+                <h3>Más de ocho en cada diez medios son de naturaleza privada</h3>
+                <p>Medios catalogados por naturaleza de gestión</p>
+                <div class="naturaleza-medios"></div>
+            </div>
+            <div class="chart-container">
+                <h3>Más de la mitad de los medios catalogados son radios</h3>
+                <p>Medios catalogados por plataforma utilizada</p>
+                <div class="tipo-medios"></div>
+            </div>
+
+        </section>
+            
+        <section>
+
+            <h2>Presencia de los medios en el territorio</h2>
+            <div class="chart-container">
+                <h3>La radio es el tipo de medio con mayor presencia en el territorio nacional</h3>
+                <p>Porcentaje de localidades venezolanas que tienen al menos un medio de este tipo cubriéndolas</p>
+                <div class="presencia-medios"></div>
+            </div>        
+
+        </section>
+
+        <section>
+            
+            <h2>Percepción ciudadana</h2>
+            <p>El estudio incluye también una encuesta ciudadana hecha con más de 1600 personas que contestaron a cuestiones acerca de su conocimiento y percepción de los medios locales.</p>
+            
+            <div class="chart-container">
+                <h3>Un cuarto de las personas no conocen o dicen que no existen medios que cubran sus localidades</h3>
+                <p>¿Conoces medios que difundan información sobre su comunidad?</p>
+                <div class="conoce-medios"></div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Mitad de los encuestados prefieren consumir contenido noticioso en las redes sociales</h3>
+                <p>¿Cuál es el medio que prefiere para informarse?</p>
+                <div class="preferencia-medios"></div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Los encuestados conocen más medios en Facebook e Instagram que en las demás redes</h3>
+                <p>Conocimiento acerca de medios periodísticos presentes en cada red social</p>
+                <div class="conoce-medios-redes-sociales"></div>
+            </div>                        
+
+        </section>
+    </main>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-delaunay@6"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+
+    <!-- /* SIMPLER BAR CHARTS */ -->
+    <script src="./scripts/naturaleza-medios.js"></script>
+    <script src="./scripts/tipo-medios.js"></script>
+    <script src="./scripts/presencia-medios.js"></script>
+    <script src="./scripts/conoce-medios.js"></script>
+    <script src="./scripts/preferencia-medios.js"></script>
+    <script src="./scripts/conoce-medios-redes-sociales.js"></script>
+
+
+
+
+    </script>
+
+
+</body>
+</html>
