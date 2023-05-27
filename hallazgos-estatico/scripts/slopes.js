@@ -40,7 +40,7 @@ function drawChart(dataFileName, legendFileName, color) {
        var thisLine = d3.select(thisLineCssSelector);
 
        thisLine.attr("opacity", 1);
-       
+
        // Specific value labels visible
        console.log("#value-label-" + d.line.idState + "-2020");
        d3.select("#value-label-" + d.line.idState + "-2020")
@@ -411,7 +411,7 @@ function drawChart(dataFileName, legendFileName, color) {
 var desiertosButton = document.getElementById("Desiertos");
 desiertosButton.addEventListener("click", function(e){ 
     drawChart("./data/percentageDesiertos.csv?v=123",
-    "./imgs/legends/slope-legend-desiertos@2x.png",
+    "./imgs/legends/2x/how-to-read-desiertos@2x.png",
      "#EA7875"); 
     document.querySelector(".category-selected").classList.remove("category-selected");
     e.target.classList.add("category-selected");
@@ -420,7 +420,7 @@ desiertosButton.addEventListener("click", function(e){
 var desiertosModeradosButton = document.getElementById("DesiertosModerados");
 desiertosModeradosButton.addEventListener("click", function(e) { 
     drawChart("./data/percentageDesiertosModerados.csv?v=123", 
-                "./imgs/legends/slope-legend-desiertos-moderados@2x.png",
+                "./imgs/legends/2x/how-to-read-desiertos-moderados@2x.png",
                 "#EDAE70");
     document.querySelector(".category-selected").classList.remove("category-selected");
     e.target.classList.add("category-selected");
@@ -430,7 +430,7 @@ desiertosModeradosButton.addEventListener("click", function(e) {
 var noDesiertosButton = document.getElementById("NoDesiertos");
 noDesiertosButton.addEventListener("click", function(e) {
  drawChart("./data/percentageNoDesiertos.csv?v=123",
-    "./imgs/legends/slope-legend-no-desiertos@2x.png",
+    "./imgs/legends/2x/how-to-read-no-desiertos@2x.png",
     "#19A476"); 
     document.querySelector(".category-selected").classList.remove("category-selected");
     e.target.classList.add("category-selected");
@@ -438,4 +438,4 @@ noDesiertosButton.addEventListener("click", function(e) {
 
 // Initially draw the chart with the first data file
 desiertosButton.classList.add("category-selected");
-drawChart("./data/percentageDesiertos.csv", "./imgs/legends/slope-legend-desiertos@2x.png", "#EA7875");
+drawChart("./data/percentageDesiertos.csv", "imgs/legends/2x/how-to-read-desiertos@2x.png", "#EA7875");
