@@ -1,9 +1,9 @@
 const main = {
 
     colors : {
-        'No desierto' : '#65CA87',
-        'Desierto Moderado' : '#EFBB8B',
-        'Desierto' : '#FF8888'
+        'No desierto' : '#19A476',
+        'Desierto Moderado' : '#EDAE70',
+        'Desierto' : '#EA7885'
     },
     
     dims : {
@@ -13,6 +13,8 @@ const main = {
         left: null
 
     },
+
+    mun_to_estado_dict : {},
 
     IDhoveredEstado : null,
     IDhoveredMunicipio : null,
@@ -31,9 +33,26 @@ Promise.all([
     fetch(
         './data/output/finished-geojsons/level_2_results.geojson'
         //'lv2.json'
+        ).then(response => response.json()),
+    fetch(
+        './data/output/finished-geojsons/zer.geojson'
+        //'lv2.json'
         ).then(response => response.json())
 
+
 ]).then( init )
+
+function compute_bbox_venezuela() {
+    const bbox_provincias = turf.bbox(main.data.provincias);
+    const bbox_zer = turf.bbox(main.zer);
+
+    const poly_provincias = turf.bboxPolygon(bbox_provincias);
+    const poly_zer = turf.bboxPolygon(bbox_zer);
+
+    const poly_venezuela = turf.union(poly_provincias, poly_zer);
+
+    return turf.bbox(poly_venezuela);
+}
 
 function init(data) {
 
@@ -41,7 +60,9 @@ function init(data) {
 
     main.data = new Data(data[0], data[1]);
 
-    main.bboxVenezuela = turf.bbox(main.data.provincias);
+    main.zer = data[2];
+
+    main.bboxVenezuela = compute_bbox_venezuela();//turf.bbox(main.data.provincias, main.zer);
     utils.computeCenters('provincias');
     utils.computeCenters('municipios');
 
@@ -175,6 +196,11 @@ function load_sources_layers() {
         'promoteId' : 'name'
     });
 
+    main.mapa.addSource('zer', {
+        type: 'geojson',
+        data : main.zer
+    });
+
     main.mapa.addLayer({
         'id': 'municipios',
         'type': 'fill',
@@ -299,6 +325,28 @@ function load_sources_layers() {
         },
         'filter': ['==', 'estado', '']
     });
+
+    main.mapa.addLayer({
+        'id': 'zer',
+        'type': 'fill',
+        'source': 'zer',
+        'layout': {},
+        'paint': {
+          'fill-color': '#d4d4d5',
+          'fill-outline-color' : 'transparent',
+        }
+    });
+
+    main.mapa.addLayer({
+        'id': 'zer-border',
+        'type': 'line',
+        'source': 'zer',
+        'layout': {},
+        'paint': {
+            'line-color': '#666',
+            'line-width': 1,
+        }
+    }); 
 
 }
 
@@ -1102,14 +1150,14 @@ class Card {
     pop_el;
     medios_el;
 
-    breadcrumb_el;
+    //breadcrumb_el;
 
     constructor(ref, data_provincias, data_municipios) {
 
         this.ref = ref;
         this.el = document.querySelector('.' + ref);
         this.select = document.querySelector('select.info-subtitle');
-        this.breadcrumb_el = document.querySelector('.' + ref + ' .card-breadcrumbs');
+        //this.breadcrumb_el = document.querySelector('.' + ref + ' .card-breadcrumbs');
         this.title_el = document.querySelector('[data-text="location"]');
         this.pop_el = document.querySelector('[data-text="poblacion"]');
         //this.medios_ = document.querySelector('[data-text="medios"]');
@@ -1199,7 +1247,7 @@ class Card {
 
         }
 
-        this.update_bread_crumb(type, name);
+        //this.update_bread_crumb(type, name);
         //this.medios_el.innerHTML = mini_data.medios;
     }
 
@@ -1267,6 +1315,7 @@ class Controls {
             }
         },*/
 
+        /*
         {
 
             ref : 'breadcrumb-venezuela',
@@ -1277,7 +1326,7 @@ class Controls {
                 fit_bounds('venezuela');
 
             }
-        },
+        },*/
 
         {
 
@@ -1291,6 +1340,7 @@ class Controls {
             }
         },
 
+        /*
         {
 
             ref : 'breadcrumb-provincia',
@@ -1302,7 +1352,7 @@ class Controls {
                 main.mapa.fit_bounds('provincias', provincia);
 
             }
-        },
+        },*/
 
         {
             ref: 'btn-explora',
@@ -1396,6 +1446,19 @@ class SearchBar {
             option.value = provincia;//provincia.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
             this.datalist.appendChild(option);
 
+            const municipios = main.data.municipios.features.filter(d => d.properties.parent_name == provincia).map(d => d.properties.name);
+
+            municipios.forEach(municipio => {
+
+                main.mun_to_estado_dict[municipio] = provincia;
+
+                const option = document.createElement('option');
+                option.value = '    ' + municipio;
+                //option.dataset.parent_estado = provincia;
+                this.datalist.appendChild(option);
+
+            })
+
         })
 
     }
@@ -1408,11 +1471,19 @@ class SearchBar {
 
     submit(e, thisObj) {
 
-        const text = e.target.value;
-        console.log(text, thisObj.provincias.indexOf(e.target.value));
+        let text = e.target.value;
+
+        let mun;
+
+        if (text.slice(0,4) == '    ') {
+            mun = text.slice(4);
+            text = main.mun_to_estado_dict[mun];
+        }
+
+        console.log(text, thisObj.provincias.indexOf(e.target.value), mun);
         //if (this.provincias.indexOf(e.target.value)
 
-        const index = thisObj.provincias.indexOf(e.target.value);
+        const index = thisObj.provincias.indexOf(text);
 
         if (index >= 0) {
 
@@ -1464,77 +1535,3 @@ function monitor_select(level) {
 
 }
 
-function magic() {
-
-    main.features.provincias.hide(0);
-    main.features.municipios.change_to_circle();
-}
-
-function un_magic() {
-
-    main.features.provincias.hide(1);
-    main.features.municipios.change_to_shape();
-}
-
-function animation() {
-
-    const tl = gsap.timeline(
-        {repeat: 2}
-    );
-
-    
-    tl
-    .to('.municipios[data-grupo="1"]', {
-        fill: '#FFA614',
-        duration: 2
-    }, "<")
-    .to('[data-word="1"]', {
-        backgroundColor: '#FFA614',
-        duration: 2
-    }, "<")
-    .to('.municipios[data-grupo="1"]', {
-        fill: '#20b2aa',
-        duration: 2
-    }, ">2")
-    .to('[data-word="1"]', {
-        backgroundColor: '#FFFFFF',
-        duration: 2
-    }, "<")
-
-    .to('.municipios[data-grupo="2"]', {
-        fill: '#B33029',
-        duration: 2
-    }, "<")
-    .to('[data-word="2"]', {
-        backgroundColor: '#B33029',
-        duration: 2
-    }, "<")
-    .to('.municipios[data-grupo="2"]', {
-        fill: '#20b2aa',
-        duration: 2
-    }, ">2")
-    .to('[data-word="2"]', {
-        backgroundColor: '#FFFFFF',
-        duration: 2
-    }, "<")
-
-    .to('.municipios[data-grupo="0"]', {
-        fill: '#17B353',
-        duration: 2
-    }, "<")
-    .to('[data-word="0"]', {
-        backgroundColor: '#17B353',
-        duration: 2
-    }, "<")
-    .to('.municipios[data-grupo="0"]', {
-        fill: '#20b2aa',
-        duration: 2
-    }, ">2")
-    .to('[data-word="0"]', {
-        backgroundColor: '#FFFFFF',
-        duration: 2
-    }, "<")
-    
-
-
-}

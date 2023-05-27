@@ -1,5 +1,7 @@
 const main = {};
 
+//JSON.stringify(turf.bboxPolygon(turf.bbox(main.data.municipios)))
+
 main.format = function(n) {
     return new Intl.NumberFormat("es-VE", { style: 'decimal' }).format(n)
 }
@@ -13,17 +15,19 @@ Promise.all([
     fetch(
         '../data/output/finished-geojsons/level_2_results.geojson'
         //'lv2.json'
+        ).then(response => response.json()),
+    fetch(
+        '../data/output/finished-geojsons/zer.geojson'
+        //'lv1.json'
         ).then(response => response.json())
 
 ]).then( init )
 
 function init(data) {
 
-    //console.log(data);
-
     main.data = new Data(
-        null, //data[0], 
-        data[0]); //1
+        data[0], 
+        data[1]); //1
 
     main.r = d3.scaleSqrt().domain(d3.extent(main.data.municipios.features, d => d.properties.population)).range([1,40]);
 
@@ -35,7 +39,9 @@ function init(data) {
     main.features = {
 
         //provincias : new Features('provincias', ref_to_data = main.data.provincias, ref_to_map = main.mapa),
-        municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa)
+        municipios  : new Features('municipios' , ref_to_data = main.data.municipios, ref_to_map = main.mapa),
+
+        zer  : new Features('zer' , ref_to_data = main.data.zer, ref_to_map = main.mapa)
 
     }
 
@@ -71,7 +77,6 @@ function set_centers() {
     document.querySelectorAll('path.municipios').forEach(p => {
 
         const bbox = p.getBBox();
-        //console.log(bbox);
 
         const x = bbox.x + bbox.width / 2;
         const y = bbox.y + bbox.height / 2
@@ -103,7 +108,8 @@ function compute_subtotals() {
     categories.forEach(category => main.data.subtotals.push(
         {
             category : category,
-            pop : main.data.municipios.features.filter(d => d.properties.category == category).map(d => d.properties.population).reduce( (a,b) => a+b )
+            pop : main.data.municipios.features.filter(d => d.properties.category == category).map(d => d.properties.population).reduce( (a,b) => a+b ),
+            qde : main.data.municipios.features.filter(d => d.properties.category == category).length
         })
     )   
 
@@ -113,15 +119,16 @@ class Data {
 
     provincias;
     municipios;
+    zer;
 
-    constructor(provincias_data, municipios_data) {
-        this.provincias = provincias_data;
+    constructor(municipios_data, zer_data) {
+        //this.provincias = provincias_data;
         this.municipios = municipios_data;
+        this.zer = zer_data
     }
 
     retrieve_data(type, name) {
 
-        //console.log(type, this[type]);
         const mini_data = this[type].features
           .map(d => d.properties)
           .filter(d => d.name == name)[0];
@@ -176,8 +183,8 @@ class Mapa {
         this.proj = d3.geoMercator()
           .center(this.center)
           //.rotate([10, 0])
-          .translate([this.w/1.4, this.h/1.3]) // arrumar um jeito de calcular isso direito
-          .scale(4000)
+          .translate([this.w/1.6, this.h/1.3]) // arrumar um jeito de calcular isso direito
+          .scale(3600)
 
         ;
 
@@ -207,7 +214,6 @@ class Mapa {
     }
 
     initZoom() {
-        //console.log('init');
         d3.select('svg')
             .call(this.zoom);
     }
@@ -258,7 +264,6 @@ class Mapa {
 
             const feat = document.querySelector(`[data-${class_name}="${name}"]`);
 
-            //console.log(class_name, name);
             feat.classList.add('selected');
 
             // also make the parent provincia selected, so it stays transparent;
@@ -288,11 +293,9 @@ class Mapa {
         
             //console.log(feat, bbox, viewBox);
 
-            console.log('bbox-width ', bbox.width);
-
         }
 
-        main.mapa.d3svg.transition().duration(800).attr('viewBox', viewBox);
+        main.mapa.d3svg.transition().duration(1000).attr('viewBox', viewBox);
 
     }
 
@@ -380,6 +383,16 @@ class Features {
         });
     }
 
+    toggle_opacity(op) {
+
+        this.d3sel
+          .transition()
+          .delay(1000)
+          .duration(500)
+          .attr('opacity', op)
+
+    }
+
     change_to_circle(grid) {
 
         const w = this.ref_to_map.w;
@@ -413,7 +426,7 @@ class Features {
                     x = d.x0;//+d3.select(this).attr('data-x');
                     y = d.y0;//+d3.select(this).attr('data-y');
 
-                    if (n < 10) console.log(x,y);
+                    //if (n < 10) console.log(x,y);
 
                 } else {
 
@@ -659,7 +672,7 @@ class Card {
 
     monitorSelect() {
 
-        console.log('monitoring select!');
+        //console.log('monitoring select!');
 
         this.select.addEventListener('change', (e) => {
             this.updateBarsAndLabels(this)
@@ -778,7 +791,7 @@ class Button {
 
     monitor() {
 
-        console.log(this.el, ' -- monitoring...');
+        //console.log(this.el, ' -- monitoring...');
         this.el.addEventListener('click', this.handler);
 
     }
@@ -806,7 +819,7 @@ class SearchBar {
         const provincias = main.data.provincias.features.map(d => d.properties.name);
         this.provincias = provincias.map(d => d.normalize('NFD').replace(/[\u0300-\u036f]/g, ""));
 
-        console.log(provincias);
+        //console.log(provincias);
 
         provincias.forEach(provincia => {
 
@@ -827,7 +840,6 @@ class SearchBar {
     submit(e, thisObj) {
 
         const text = e.target.value;
-        console.log(text, thisObj.provincias.indexOf(e.target.value));
         //if (this.provincias.indexOf(e.target.value)
 
         const index = thisObj.provincias.indexOf(e.target.value);
@@ -908,7 +920,7 @@ function make_labels_pop_category() {
             new_label.classList.add('label-pop');
             new_label.classList.add('hidden');
             new_label.dataset.category = cat.category;
-            new_label.innerText = main.format(cat.pop);
+            new_label.innerHTML = main.format(cat.pop) + '</br>' + '<span class="label-qde-localidades">(' + cat.qde + ' localidades)</span>';
             //new_label.style.left = left + 'px';
 
             //left += increment;
@@ -1032,7 +1044,7 @@ const sim = {
             })
             .on('end', () => {
                 
-                console.log('terminou');
+                //console.log('terminou');
                 main.nodes.forEach(d => {
 
                     if (sim.first_run) {
@@ -1184,7 +1196,7 @@ const scroller = {
 
                 const step = el.dataset.step;
 
-                console.log("Renderizando step... ", step);
+                //console.log("Renderizando step... ", step);
 
                 scroller.render[step]();
 
@@ -1198,7 +1210,7 @@ const scroller = {
 
                 const step_anterior = scroller.steps.list[index_step - 1];
 
-                console.log(scroller.steps.list);
+                //console.log(scroller.steps.list);
 
                 scroller.render[step_anterior]('back');
 
@@ -1323,6 +1335,7 @@ const scroller = {
 
             if (direction == 'back') { 
                 main.features.municipios.change_to_shape();
+                main.features.zer.toggle_opacity(1);
             }
 
         },
@@ -1337,6 +1350,7 @@ const scroller = {
             } else {
 
                 main.features.municipios.change_to_circle();
+                main.features.zer.toggle_opacity(0);
                 setTimeout(() => sim.start(), 500);
                 //charts.force_bubble();
 
@@ -1359,7 +1373,7 @@ const scroller = {
 
         },
 
-        'bubble groups 3' : function(direction = null) {
+        'end' : function(direction = null) {
 
             show_labels(true);
 
