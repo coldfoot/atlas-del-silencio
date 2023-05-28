@@ -68,10 +68,25 @@ d3.csv("./data/bubbles.csv").then(function(data) {
     // Set the domain for the radius scale
     radius.domain(d3.extent(data, function(d) { return d.population; }));
 
+    // Prepare the data, Vanilla
+    const estados = data.map(d => d.parent_name).filter( (d,i,a) => a.indexOf(d) == i);
+    const groupedData = [];
+    estados.forEach(estado => {
+        const items = data.filter(d => d.parent_name == estado);
+
+        const el = {
+            key : estado,
+            values : items
+        }
+
+        groupedData.push(el);
+    })
     // Prepare the data
+    /*
     var groupedData = d3.nest()
         .key(function(d) { return d.parent_name; })
         .entries(data);
+    */
 
     var divs = d3.select("#bubbles")
         .selectAll("div")
