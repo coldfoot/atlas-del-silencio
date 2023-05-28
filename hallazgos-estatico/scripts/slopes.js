@@ -23,11 +23,13 @@ function drawChart(dataFileName, legendFileName, color) {
       });
 
 
-    function highlightLine(d) {
+    function highlightLine(e) {
+
+      const d = e.target.__data__;
 
 
 
-      console.log(d);
+      console.log(d, e);
 
        // All other lines are lighter
        var allLinesCssSelector = ".line";
@@ -61,7 +63,7 @@ function drawChart(dataFileName, legendFileName, color) {
 
     }
 
-    function removeLineHighlight(d) {
+    function removeLineHighlight() {
 
        // All lines darker
        var allLinesCssSelector = ".line";
