@@ -218,6 +218,8 @@ function drawChart(dataFileName, legendFileName, color) {
           .style("visibility", "hidden")
         .style("pointer-events", "all")
         .attr("d", (d,i) => voronoi.renderCell(i))
+      ;
+      d3.selectAll('.voronoi-wrapper path')
         .on("click", function(d){
           removeLineHighlight(d);
           highlightLine(d);
@@ -232,6 +234,7 @@ function drawChart(dataFileName, legendFileName, color) {
           removeLineHighlight(d);
 
         })
+      ;
 
       if (dataFileName.includes("percentageDesiertos.csv")) {
 
