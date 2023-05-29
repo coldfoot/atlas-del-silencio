@@ -25,11 +25,18 @@ function drawChart(dataFileName, legendFileName, color) {
 
     function highlightLine(e) {
 
-      const d = e.target.__data__;
+      let d = e.target.__data__;
+
+      if (!d.line) {
+
+        d = {
+          line: d
+        }
+      }
 
 
 
-      console.log(d, e);
+      
 
        // All other lines are lighter
        var allLinesCssSelector = ".line";
@@ -44,7 +51,6 @@ function drawChart(dataFileName, legendFileName, color) {
        thisLine.attr("opacity", 1);
 
        // Specific value labels visible
-       console.log("#value-label-" + d.line.idState + "-2020");
        d3.select("#value-label-" + d.line.idState + "-2020")
         .attr("visibility", "visible");
 
@@ -56,7 +62,6 @@ function drawChart(dataFileName, legendFileName, color) {
         .attr("opacity", .1);
 
       // This state label, darker
-      console.log("#" + d.line.idState + "-label");
       d3.select("#" + d.line.idState + "-label")
         .attr("opacity", 1)
         .attr("font-size", "14px");
@@ -119,7 +124,7 @@ function drawChart(dataFileName, legendFileName, color) {
 
       // Add Y axis left
       svg.append("g")
-            .attr("transform", "translate(" - width + ",0)")
+            //.attr("transform", "translate(" - width + ",0)")
             .call(d3.axisLeft(y).ticks(0).tickSize(0).tickFormat(''))
 
 
@@ -257,32 +262,31 @@ function drawChart(dataFileName, legendFileName, color) {
           .attr("fill", color)
           .attr("font-size", "10px")
           .attr("font-family", "sans-serif")
-          .on("click", function(d){
+          .on("click", function(e){
 
+              /*
               var dd = {
                   "line": d
-              }
+              }*/
 
-              console.log(dd);
-
-              removeLineHighlight(dd);
-              highlightLine(dd);
+              removeLineHighlight(e);
+              highlightLine(e);
             })
-          .on("mouseover", function(d){
+          .on("mouseover", function(e){
 
-              var dd = {
+              /*var dd = {
                   "line": d
-              }
+              }*/
 
-              highlightLine(dd);
-            })
-          .on("mouseout", function(d){
+            highlightLine(e);
+          })
+          .on("mouseout", function(e){
 
-              var dd = {
+              /*var dd = {
                   "line": d
-              }
+              }*/
 
-              removeLineHighlight(dd);
+              removeLineHighlight(e);
             });
           }
 
@@ -319,8 +323,6 @@ function drawChart(dataFileName, legendFileName, color) {
             var dd = {
                 "line": d
             }
-
-            console.log(dd);
 
             removeLineHighlight(dd);
             highlightLine(dd);
@@ -381,8 +383,6 @@ function drawChart(dataFileName, legendFileName, color) {
             var dd = {
                 "line": d
             }
-
-            console.log(dd);
 
             removeLineHighlight(dd);
             highlightLine(dd);
