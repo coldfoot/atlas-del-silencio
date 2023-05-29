@@ -320,28 +320,29 @@ function drawChart(dataFileName, legendFileName, color) {
         .attr("font-family", "sans-serif")
         .on("click", function(d){
 
-            var dd = {
+            /*var dd = {
                 "line": d
-            }
+            }*/
 
-            removeLineHighlight(dd);
-            highlightLine(dd);
+            removeLineHighlight(d);
+            highlightLine(d);
           })
         .on("mouseover", function(d){
 
-            var dd = {
+            /*var dd = {
                 "line": d
-            }
+            }*/
 
-            highlightLine(dd);
+            highlightLine(d);
           })
         .on("mouseout", function(d){
 
+            /*
             var dd = {
                 "line": d
-            }
+            }*/
 
-            removeLineHighlight(dd);
+            removeLineHighlight(d);
           });
 
         }
@@ -380,28 +381,21 @@ function drawChart(dataFileName, legendFileName, color) {
         .attr("font-family", "sans-serif")
         .on("click", function(d){
 
+          /*
             var dd = {
                 "line": d
-            }
+            }*/
 
-            removeLineHighlight(dd);
-            highlightLine(dd);
+            removeLineHighlight(d);
+            highlightLine(d);
           })
         .on("mouseover", function(d){
 
-            var dd = {
-                "line": d
-            }
-
-            highlightLine(dd);
+            highlightLine(d);
           })
         .on("mouseout", function(d){
 
-            var dd = {
-                "line": d
-            }
-
-            removeLineHighlight(dd);
+            removeLineHighlight(d);
           });
 
 
