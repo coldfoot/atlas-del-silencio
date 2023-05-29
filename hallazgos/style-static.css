@@ -5,6 +5,9 @@
             margin: auto;
 /*            padding: 50px;*/
             font-family: 'Roboto', sans-serif;
+            padding: .5rem;
+            padding-bottom: 4rem;
+
         }
 
         main p {
