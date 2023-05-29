@@ -51,8 +51,8 @@ d3.csv("./data/bubbles.csv").then(function(data) {
 
 
     function tooltipUpdate(d) {
-        tooltip.style("top", (d3.event.pageY-10)+"px")
-               .style("left",(d3.event.pageX+10)+"px");
+        tooltip.style("top", (d.pageY-10)+"px")
+               .style("left",(d.pageX+10)+"px");
     }
 
     function tooltipClear(d) {
