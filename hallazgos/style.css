@@ -21,22 +21,23 @@
 
 body {
     margin: 0;
-    font-family: 'Roboto';
+    font-family: 'Playfair', serif;
 }
 
 .outer-wrapper {
     width: 100%;
     /*height: 100vh;*/
-    /*max-width: 600px;*/
+    max-width: 680px;
     margin: 0 auto;
     background: white;
     padding-top: 1rem;
-    overflow-y: scroll;
 }
 
 .map-container {
     height: 95vh;
-    position: fixed;
+    position: sticky;
+    margin: 0;
+    width: 100%;
     /*max-width: 740px;
     width: 100%;*/
     /*margin: 0 auto;*/
@@ -83,19 +84,19 @@ path[data-category="Desierto"] { fill: var(--color-desiertos); }
 path[data-category].no-color { fill: var(--color-gris); }
 
 .key-word {
-    /*font-size: .8rem;
+    font-size: .8rem;
     padding: .2em .6em;
     border-radius: .8rem;
     /*background-color: var(--color-highlight);*/
-    /*text-transform: uppercase;*/
+    text-transform: uppercase;
     font-weight: 500;
     /*transition: all .3s;*/
 }
 
 
-[data-word="no desiertos"]   { color: var(--color-no-desiertos);}
-[data-word="semi-desiertos"] { color: var(--color-semi-desiertos);}
-[data-word="desiertos"]      { color: var(--color-desiertos);}
+[data-word="no desiertos"]   { background-color: var(--color-no-desiertos);}
+[data-word="semi-desiertos"] { background-color: var(--color-semi-desiertos);}
+[data-word="desiertos"]      { background-color: var(--color-desiertos);}
 
 .key-word.highlighted {
     border-color: crimson;
@@ -130,11 +131,9 @@ path[data-category].no-color { fill: var(--color-gris); }
 }
 
 .story {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: relative;
     color: var(--color-black);
+    margin-top: -100vh;
 }
 
 .text-step-wrapper {
@@ -143,17 +142,27 @@ path[data-category].no-color { fill: var(--color-gris); }
     width: 100%;
     display: grid;
     place-items: center;
+    padding: 1rem;
 
+}
+
+.text-step-wrapper:first-of-type {
+    padding: 0;
 }
 
 .text-step {
     /*height: 40vh;*/
     padding: 1em;
-    font-size: 1rem;
-    max-width: 560px;
-    width: 80%;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    max-width:480px;
+    width: 100%;
     border: 3px solid currentColor;
-    background-color: #FFFFFFCC;
+    background-color: #FFFFFFDD;
+
+    padding: 2rem;
+    
+    border-radius: .5em;
 }
 
 [data-step="cover"] .text-step {
@@ -167,6 +176,7 @@ path[data-category].no-color { fill: var(--color-gris); }
 
 .text-step p {
     font-weight: 300;
+    margin: 0;
 }
 
 p.lead {
@@ -182,8 +192,13 @@ p.chapeu {
     letter-spacing: .1em;
     margin: 0;
     font-weight: 600;
+    font-family: 'Roboto', sans-serif;
     color: var(--color-ypis);
     margin-bottom: .5rem;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
 }
 
 .label-pop {
@@ -207,6 +222,9 @@ p.chapeu {
     opacity: 0;
 }
 
+.label-pop {
+    font-family: 'Roboto', serif;
+}
 .label-pop[data-category="Desierto"] { left: calc(100% / 6); }
 .label-pop[data-category="Desierto Moderado"] { left: 50%; }
 .label-pop[data-category="No desierto"] { left: calc(500% / 6); }

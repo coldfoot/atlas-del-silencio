@@ -39,9 +39,9 @@ d3.csv("./data/bubbles.csv").then(function(data) {
         }
     }
 
-    function tooltipCreate(element, d) {
+    function tooltipCreate(element, e) {
 
-        console.log(element, d);
+        let d = e.target.__data__;
         tooltip.html("<b>" + d.name + "</b><br>" + formatPopulation(d.population) + " habitantes")
                 .style("visibility", "visible");
             d3.selectAll(".city-circle").style("opacity", 0.1);
@@ -51,8 +51,8 @@ d3.csv("./data/bubbles.csv").then(function(data) {
 
 
     function tooltipUpdate(d) {
-        tooltip.style("top", (d3.event.pageY-10)+"px")
-               .style("left",(d3.event.pageX+10)+"px");
+        tooltip.style("top", (d.pageY-10)+"px")
+               .style("left",(d.pageX+10)+"px");
     }
 
     function tooltipClear(d) {
@@ -68,10 +68,25 @@ d3.csv("./data/bubbles.csv").then(function(data) {
     // Set the domain for the radius scale
     radius.domain(d3.extent(data, function(d) { return d.population; }));
 
+    // Prepare the data, Vanilla
+    const estados = data.map(d => d.parent_name).filter( (d,i,a) => a.indexOf(d) == i);
+    const groupedData = [];
+    estados.forEach(estado => {
+        const items = data.filter(d => d.parent_name == estado);
+
+        const el = {
+            key : estado,
+            values : items
+        }
+
+        groupedData.push(el);
+    })
     // Prepare the data
+    /*
     var groupedData = d3.nest()
         .key(function(d) { return d.parent_name; })
         .entries(data);
+    */
 
     var divs = d3.select("#bubbles")
         .selectAll("div")

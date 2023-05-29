@@ -1,28 +1,22 @@
-    * {
-        box-sizing: border-box;
-    }
 
-    :root {
-        font-family: Roboto;
-        --color-highlight: #a6a6a6;
-        --color-back: #d9d9d9;
-/*        background-color: #e8e8e8;*/
-        --t: .5s;
 
-        --color-no-desiertos: #65CA87;
-        --color-semi-desiertos: #EFBB8B;
-        --color-desiertos: #FF8888;
-
-    }
-
-        body {
-            background-color: #FFF;
-            color: #1B1B1B;
-            max-width: 600px; /* Or any other width that you feel is appropriate */
+        main {
+            max-width: 560px; /* Or any other width that you feel is appropriate */
             margin: auto;
 /*            padding: 50px;*/
             font-family: 'Roboto', sans-serif;
-            font-size: 14px;
+            padding: .5rem;
+            padding-bottom: 4rem;
+
+        }
+
+        main p {
+            line-height: 1.3;
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #1b1b1b;
+            margin: 1rem 0;
+            font-family: 'Playfair';
         }
 
         header {
@@ -42,23 +36,16 @@
             cursor: pointer;
         }
 
-        #scrollytelling {
-            height: 300px; /* Adjust to your needs */
-            background-color: #EAEAEA; /* Adjust to your needs */
-        }
-
-        h1#headline {
-            text-align: left;
-            font-size: 2.5em;
-            font-weight: 600;
-            margin-bottom: 5px; /* Reduced space */
+        main h1 {
+            margin: 0;
+            font-size: 4rem;
         }
 
         h2#subheadline {
             text-align: left;
             font-size: 1.5em;
             font-weight: 400;
-            color: #1B1B1B;
+            color: var(--color-black);
             margin-top: 5px; /* Reduced space */
         }
 
@@ -82,20 +69,26 @@
         }
 
         .chart-container {
-/*            border-color: #1b1b1b;
+/*          border-color: #1b1b1b;
             border-width: 1px;
-            border: solid;*/
-            padding: 10px;
+            border: solid;
+            padding: 10px;*/
         }
 
-        .btn-no-desiertos, [data-word="no desiertos"], [data-label-category="No desierto"]::before  {background-color: var(--color-no-desiertos);}
-        .btn-semi-desiertos, [data-word="semi-desiertos"], [data-label-category="Desierto Moderado"]::before {background-color: var(--color-semi-desiertos);}
-        .btn-desiertos, [data-word="desiertos"], [data-label-category="Desierto"]::before {background-color: var(--color-desiertos);}
+        .btns {
+            height: 2rem;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .btn-no-desiertos {background-color: var(--color-no-desiertos);}
+        .btn-semi-desiertos {background-color: var(--color-semi-desiertos);}
+        .btn-desiertos {background-color: var(--color-desiertos);}
 
         .btns .btn-categories {
-/*            display: flex;
+            display: flex;
             flex-direction: row;
-            justify-content: flex-start;*/
+            justify-content: flex-start;
             align-items: center;
             border-radius: 1rem;
             flex-basis: 2rem;
