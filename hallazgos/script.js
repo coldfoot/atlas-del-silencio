@@ -176,14 +176,14 @@ class Mapa {
         this.w = +window.getComputedStyle(cont).width.slice(0,-2);
         this.h = +window.getComputedStyle(cont).height.slice(0,-2);
 
-        this.original_viewbox = `0 0 1000 1000`;//${this.w} ${this.h}`;
+        this.original_viewbox = `0 0 1000 1000`;
 
         this.el.setAttribute('viewBox', this.original_viewbox);
 
         this.proj = d3.geoMercator()
           .center(this.center)
           //.rotate([10, 0])
-          .translate([this.w/1.6, this.h/1.3]) // arrumar um jeito de calcular isso direito
+          .translate([this.w/3.7, this.h/1.3]) // arrumar um jeito de calcular isso direito
           .scale(3600)
 
         ;

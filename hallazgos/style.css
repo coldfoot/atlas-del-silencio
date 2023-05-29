@@ -27,16 +27,17 @@ body {
 .outer-wrapper {
     width: 100%;
     /*height: 100vh;*/
-    /*max-width: 600px;*/
+    max-width: 680px;
     margin: 0 auto;
     background: white;
     padding-top: 1rem;
-    overflow-y: scroll;
 }
 
 .map-container {
     height: 95vh;
-    position: fixed;
+    position: sticky;
+    margin: 0;
+    width: 100%;
     /*max-width: 740px;
     width: 100%;*/
     /*margin: 0 auto;*/
@@ -130,11 +131,9 @@ path[data-category].no-color { fill: var(--color-gris); }
 }
 
 .story {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: relative;
     color: var(--color-black);
+    margin-top: -100vh;
 }
 
 .text-step-wrapper {
