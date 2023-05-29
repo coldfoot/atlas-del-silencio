@@ -39,9 +39,9 @@ d3.csv("./data/bubbles.csv").then(function(data) {
         }
     }
 
-    function tooltipCreate(element, d) {
+    function tooltipCreate(element, e) {
 
-        console.log(element, d);
+        let d = e.target.__data__;
         tooltip.html("<b>" + d.name + "</b><br>" + formatPopulation(d.population) + " habitantes")
                 .style("visibility", "visible");
             d3.selectAll(".city-circle").style("opacity", 0.1);
