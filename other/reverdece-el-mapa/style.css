@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+
+    --color-highlight: #a6a6a6;
+    --color-back: #d9d9d9;
+    --t: .5s;
+
+    --color-no-desiertos: #19A476;
+    --color-semi-desiertos: #EDAE70;
+    --color-desiertos: #EA7885;
+    --color-ypis: #266FB0;
+    --color-black: #1b1b1b;
+    --color-gris: #d4d4d5;
+
+    font-family: Roboto;
+
+}
+
+body {
+    margin: 0;
+    font-family: 'Playfair', serif;
+}
+
+main {
+    max-width: 560px; /* Or any other width that you feel is appropriate */
+    margin: auto;
+/*            padding: 50px;*/
+    font-family: 'Roboto', sans-serif;
+    padding: .5rem;
+    padding-bottom: 4rem;
+
+}
+
+main p, ul, li {
+    line-height: 1.3;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: #1b1b1b;
+    margin: 1rem 0;
+    font-family: 'Playfair';
+}
+
+mi
+
+header {
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+#logo {
+    height: 100%;
+}
+
+#hamburger-menu {
+    cursor: pointer;
+}
+
+main h1 {
+    margin: 0;
+    font-size: 4rem;
+}
+
+h2#subheadline {
+    text-align: left;
+    font-size: 1.5em;
+    font-weight: 400;
+    color: var(--color-black);
+    margin-top: 5px; /* Reduced space */
+}
+
+section {
+    margin: 20px 0;
+}
+
+section h3 {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #0d61aa;
+}   
