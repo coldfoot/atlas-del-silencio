@@ -635,7 +635,14 @@ select.info-subtitle {
     button.back-to-main-map {
         position: absolute;
         top: 10rem;
-        left: 1rem;
+        left: -4rem;
+    }
+
+    [data-location-type="venezuela"] button.back-to-main-map {
+
+        opacity: 0;
+        pointer-events: none;
+
     }
 
     .wrapper-text-card-containers {
@@ -646,7 +653,13 @@ select.info-subtitle {
 
     }
 
-    .wrapper-text-card-containers:has([data-location-type="venezuela"]) {
+    [data-state="opening"] .wrapper-text-card-containers:has([data-location-type="venezuela"]) {
+
+        pointer-events: initial;
+
+    }
+
+    [data-state="explore"] .wrapper-text-card-containers:has([data-location-type="venezuela"]) {
 
         pointer-events: none;
 
