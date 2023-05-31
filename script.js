@@ -743,6 +743,10 @@ function monitorMunicipio(toggle = 'on') {
 
 function fit_bounds(type, location) {
 
+    let right_fit_padding = window.innerWidth >= 800 ? 432 : 10;
+    let top_fit_padding = window.innerWidth >= 800 ?  60 : main.dims.top + 10;
+
+
     colorMapCategory('');
 
     let bbox;
@@ -766,6 +770,8 @@ function fit_bounds(type, location) {
 
         location = '';
 
+        right_fit_padding = 10;
+
         toggle_borders_municipios(false);
 
         if (!main.monitoringEstado) monitorEstado('on');
@@ -784,10 +790,10 @@ function fit_bounds(type, location) {
 
     main.mapa.fitBounds(bbox, {
         padding : {
-            top: window.innerWidth >= 800 ?  10 : main.dims.top + 10,
+            top: top_fit_padding,
             bottom: window.innerWidth >= 800 ? 10 : main.dims.bottom + 10,
             left: 10,
-            right: window.innerWidth >= 800 ? 432 : 10
+            right: right_fit_padding
         }
     }
     )
