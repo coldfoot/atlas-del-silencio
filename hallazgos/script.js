@@ -1032,7 +1032,7 @@ const sim = {
             //.force('x', d3.forceX().strength(strength).x(d => d.x0))
             //.force('y', d3.forceY().strength(strength).y(d => d.y0))
             .force('collision', d3.forceCollide().strength(strength*1.5).radius(d => d.r))
-            .alphaMin(0.2)
+            //.alphaMin(0.2)
             /* comentando para não movimentar as bolhas enquanto atualiza */
             .on('tick', () => {
                 d3.selectAll('path.municipios')
@@ -1100,21 +1100,37 @@ const charts = {
         }
 
 
-        sim.simulation.force('x', d3.forceX().strength(sim.strength/4).x(d => {
+        sim.simulation.force('x', d3.forceX().strength(sim.strength/5).x(d => {
             if (d.properties.category == 'Desierto') return w / 6;
             if (d.properties.category == 'Desierto Moderado') return w / 2;
             if (d.properties.category == 'No desierto') return 5*w/6;
             return w/2;
         }))
 
-        .force('y', d3.forceY().strength(sim.strength/4).y(h/2))
+        .force('y', d3.forceY().strength(sim.strength/5).y(h/2))
         //.force('charge', d3.forceManyBody().strength(charge))
         //.force('collision', null)
         //.force('collision', d3.forceCollide().strength(sim.strength*1.5).radius(d => d.r))
         .velocityDecay(0.05)
-        .alphaMin(0.02);
+        //.alphaMin(0.02);
 
         sim.start();
+
+    },
+
+    bubble_two_groups() {
+
+        const w = 1000;//+d3.select('svg.map').style('width').slice(0,-2);
+        const h = 1000;
+
+        sim.simulation.force('x', d3.forceX().strength(sim.strength/5).x(d => {
+            if (d.properties.category != 'No desierto') return w / 3;
+            if (d.properties.category == 'No desierto') return 2*w/3;
+            return w/2;
+        }))
+
+        sim.start();
+
 
     },
 
@@ -1358,6 +1374,7 @@ const scroller = {
 
                 charts.bubble_map();
                 sim.reset_initial_positions();
+                show_labels(false);
         
             } else {
 
@@ -1374,20 +1391,21 @@ const scroller = {
         'bubble groups 1' : function(direction = null) {                
 
             charts.bubble_groups();
-            show_labels(false);
+            show_labels(true);
 
 
         },
 
         'bubble groups 2' : function(direction = null) {
 
-            show_labels(true);
+            charts.bubble_two_groups();
+            show_labels(false);
 
         },
 
         'end' : function(direction = null) {
 
-            show_labels(true);
+            show_labels(false);
 
         }
 
