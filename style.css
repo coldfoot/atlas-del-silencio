@@ -609,6 +609,18 @@ select.info-subtitle {
         max-width: 100%;
         padding-top: 1rem;
     }*/
+    .wrapper-top {
+        z-index: 3;
+    }
+
+    .top-controls {
+        width: 400px;
+        margin-left: auto;
+    }
+
+    .top-controls > div.btns {
+        justify-content: flex-end;
+    }
 
     .map-container#map {
         position: static;
@@ -620,11 +632,23 @@ select.info-subtitle {
         margin-right: -5rem;*/
     }
 
+    button.back-to-main-map {
+        position: absolute;
+        top: 10rem;
+        left: 1rem;
+    }
+
     .wrapper-text-card-containers {
         width: 400px;
         height: 100%;
         right: 0;
         top: 0;
+
+    }
+
+    .wrapper-text-card-containers:has([data-location-type="venezuela"]) {
+
+        pointer-events: none;
 
     }
 
@@ -641,9 +665,11 @@ select.info-subtitle {
         height: 100%;
     }
 
+
+
     .card-container {
         display: block;
-        padding-top: 8rem;
+        padding-top: 10rem;
         border-radius: 2rem 0 0 2rem;
     }
 

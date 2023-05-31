@@ -162,7 +162,7 @@ function init_map() {
         bounds: main.bboxVenezuela,
         fitBoundsOptions: {
             padding: {
-                top: 40, 
+                top: window.innerWidth >= 800 ? 150 : 40, 
                 bottom: window.innerWidth >= 800 ? 30 : window.innerHeight / 2 - 10, 
                 left: 30, 
                 right: window.innerWidth >= 800 ? 432 : 35
