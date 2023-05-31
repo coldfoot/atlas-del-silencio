@@ -157,8 +157,17 @@ function init_map() {
     main.mapa = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/tiagombp/clgxtpl6400eg01p6dtzv8igv', // style URL
-        center : [-65, 1], // starting position [lng, lat]
-        zoom: 4, // starting zoom
+        //center : [-65, 1], // starting position [lng, lat]
+        //zoom: 4, // starting zoom
+        bounds: main.bboxVenezuela,
+        fitBoundsOptions: {
+            padding: {
+                top: 40, 
+                bottom: window.innerWidth >= 800 ? 30 : window.innerHeight / 2 - 10, 
+                left: 30, 
+                right: window.innerWidth >= 800 ? 432 : 35
+            }
+        }
     });
 
     main.mapa.on('load', map_is_loaded);
@@ -775,12 +784,13 @@ function fit_bounds(type, location) {
 
     main.mapa.fitBounds(bbox, {
         padding : {
-            top: main.dims.top + 10,
-            bottom: main.dims.bottom + 10,
+            top: window.innerWidth >= 800 ?  10 : main.dims.top + 10,
+            bottom: window.innerWidth >= 800 ? 10 : main.dims.bottom + 10,
             left: 10,
-            right: 10
+            right: window.innerWidth >= 800 ? 432 : 10
         }
-    })
+    }
+    )
 
     main.card.set(type, location);
 

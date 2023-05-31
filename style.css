@@ -27,12 +27,12 @@ body {
     margin: 0 auto;
     background: white;
     position: relative;
-    height: 95vh;
+    height: 100vh;
     background-color: transparent;
 }
 
 .map-container#map {
-    height: 95vh;
+    height: 100vh;
     width: inherit;
     max-width: inherit;
     position: absolute;
@@ -59,49 +59,6 @@ body {
     height: 50vh;
     bottom: 0;
     z-index: 2;
-}
-
-@media screen and (min-width: 800px) {
-    .outer-wrapper {
-        display: grid;
-        width: 100%;
-        grid-template-rows: 4rem 1fr;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .wrapper-top { 
-        position: static;
-        grid-row: 1 / 2;
-        grid-column: 1 / span 3;
-        max-width: 100%;
-        padding-top: 1rem;
-    }
-
-    .map-container#map {
-        position: static;
-        width: 100%;
-        height: 100%;
-        grid-row: 2 / 3;
-        grid-column: 1 / 2;
-    }
-
-    .wrapper-text-card-containers {
-        position: static;
-        width: 100%;
-        height: 100%;
-        grid-row: 2 / 3;
-        grid-column: 2 / 3;
-    }
-
-    .wrapper-text-container {
-
-        height: 100%;
-        background-color: white;
-        justify-content: center;
-        border-radius: 2rem 2rem 0 0;
-
-    }
-    
 }
 
 /* cards */
@@ -135,7 +92,7 @@ button.back-to-main-map:hover {
     height: 100%;
     width: inherit;
     display: none;
-    transition: opacity var(--t);
+    transition: opacity var(--t), transform var(--t);
 }
 
 .card-container h2 {
@@ -635,3 +592,64 @@ select.info-subtitle {
     border-radius: 1em;
 }
 
+
+
+@media screen and (min-width: 800px) {
+    .outer-wrapper {
+        /*display: grid;*/
+        width: 100%;
+        /*grid-template-rows: 1fr;
+        grid-template-columns: 1fr 400px;*/
+    }
+
+    /*.wrapper-top { 
+        position: static;
+        grid-row: 1 / 2;
+        grid-column: 1 / span 3;
+        max-width: 100%;
+        padding-top: 1rem;
+    }*/
+
+    .map-container#map {
+        position: static;
+        width: 100%;/*calc(100% - 400px + 2rem);*/
+        max-width: 100%;/*calc(100% - 400px + 2rem);*/
+        height: 100%;
+        /*grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        margin-right: -5rem;*/
+    }
+
+    .wrapper-text-card-containers {
+        width: 400px;
+        height: 100%;
+        right: 0;
+        top: 0;
+
+    }
+
+    .wrapper-text-container {
+
+        height: 100%;
+        background-color: white;
+        justify-content: center;
+        border-radius: 2rem 0 0 2rem;
+
+    }
+
+    [data-state="explore"] .wrapper-text-card-containers {
+        height: 100%;
+    }
+
+    .card-container {
+        display: block;
+        padding-top: 8rem;
+        border-radius: 2rem 0 0 2rem;
+    }
+
+    [data-location-type="venezuela"] {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+    
+}
