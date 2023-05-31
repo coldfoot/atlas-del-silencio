@@ -69,11 +69,15 @@
         }
 
         .chart-container {
-            min-height: 600px;
+
 /*          border-color: #1b1b1b;
             border-width: 1px;
             border: solid;
             padding: 10px;*/
+        }
+
+        .chart-slopes { 
+            min-height: 600px;
         }
 
         .btns {
