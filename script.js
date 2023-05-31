@@ -1250,11 +1250,17 @@ class Card {
                 label.dataset.popInfo = utils.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
                 bar.dataset.popValue = pct_pop;
 
+                console.log(mini_data);
+
                 const qty_total = mini_data.desert_children + mini_data.not_desert_children + mini_data.moderate_desert_children;
 
-                const pct_qty = (100 * (mini_data[getVariableName[category]] / qty_total)).toFixed(1) + "%";
+                let qty = mini_data[getVariableName[category]];
 
-                label.dataset.qtyInfo = mini_data[getVariableName[category]] + " (" + pct_qty + ")";
+                if (qty === null) qty = 0;
+
+                let pct_qty = (100 * (qty / qty_total)).toFixed(1) + "%";
+
+                label.dataset.qtyInfo = qty + " (" + pct_qty + ")";
                 bar.dataset.qtyValue = pct_qty;
 
             })
