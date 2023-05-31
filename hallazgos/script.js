@@ -1070,6 +1070,15 @@ const sim = {
 
     start : () => sim.simulation.alpha(1).restart(),
 
+    reset_initial_positions : () => {
+        main.nodes.forEach(node => {
+            node.x = node.x0,
+            node.y = node.y0,
+            node.x_last = node.x0,
+            node.y_last = node.y0
+        })
+    },
+
     save_positions_map : () => {
         //main.nodes.forEach()
     }
@@ -1348,6 +1357,7 @@ const scroller = {
             if (direction == 'back') { 
 
                 charts.bubble_map();
+                sim.reset_initial_positions();
         
             } else {
 
