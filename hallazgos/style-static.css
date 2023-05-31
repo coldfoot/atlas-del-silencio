@@ -69,6 +69,7 @@
         }
 
         .chart-container {
+            min-height: 600px;
 /*          border-color: #1b1b1b;
             border-width: 1px;
             border: solid;
