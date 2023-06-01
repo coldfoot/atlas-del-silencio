@@ -68,6 +68,13 @@ main h1 {
     font-size: 4rem;
 }
 
+@media screen and (max-width: 350px) {
+    main h1 {
+        font-size: 3rem;
+    }
+    
+}
+
 h2#subheadline {
     text-align: left;
     font-size: 1.5em;
