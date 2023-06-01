@@ -7,7 +7,13 @@
     // Sort data
     data.sort(function(a, b) { return b.value - a.value; });
 
-    var chartWidth = window.innerWidth >= 600 ? 600 : window.innerWidth; 
+    //var chartWidth = window.innerWidth >= 600 ? 600 : window.innerWidth; 
+
+    const cont = document.querySelector('.chart-container');
+
+    var chartWidth = +window.getComputedStyle(cont).width.slice(0,-2);
+
+    var barHeight = 30, barSpacing = 5;
 
     // Set up dimensions and scales
     var margin = { top: 20, right: 30, bottom: 35, left: 90 },  // add margin to left and right
@@ -15,9 +21,7 @@
         height = data.length * (barHeight + barSpacing);  // total height based on the number of data points, the bar height, and the bar spacing
 
     var y = d3.scaleLinear().domain([0, data.length]).range([0, data.length * (barHeight + barSpacing)]),
-        x = d3.scaleLinear().range([0, width]).domain([0, 100]),
-        barHeight = 30,
-        barSpacing = 5;
+        x = d3.scaleLinear().range([0, width]).domain([0, 100])
 
 
     var svg = d3.select(".naturaleza-medios").append("svg")

@@ -26,7 +26,11 @@ var data = {
 }
 
 
-var chartWidth = window.innerWidth >= 600 ? 600 : window.innerWidth; 
+//var chartWidth = window.innerWidth >= 600 ? 600 : window.innerWidth; 
+//const cont = document.querySelector('.chart-container');
+
+//var chartWidth = +window.getComputedStyle(cont).width.slice(0,-2);
+
 var barHeight = 30;
 var barSpacing = 5;
 

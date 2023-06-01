@@ -10,7 +10,9 @@ var data = [
 // Sort data
 data.sort(function(a, b) { return b.value - a.value; });
 
-var chartWidth = window.innerWidth >= 600 ? 600 : window.innerWidth; 
+//const cont = document.querySelector('.chart-container');
+
+//var chartWidth = +window.getComputedStyle(cont).width.slice(0,-2); //window.innerWidth >= 600 ? 600 : window.innerWidth; 
 
 // Set up dimensions and scales
 var margin = { top: 20, right: 30, bottom: 35, left: 90 },  // add margin to left and right
