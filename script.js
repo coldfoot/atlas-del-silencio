@@ -20,7 +20,9 @@ const main = {
     IDhoveredMunicipio : null,
 
     monitoringEstado : false,
-    monitoringMunicipio : true
+    monitoringMunicipio : true,
+
+    menuIsExpanded : false
 
 };
 
@@ -1358,6 +1360,30 @@ class Controls {
                 //console.log('fire');
                 //main.mapa.reset_map();
                 fit_bounds('venezuela');
+
+            }
+        },
+
+        {
+            ref : 'btn-menu',
+            handler : (e) => {
+
+                const menu = document.querySelector('.menu');
+                menu.classList.toggle('hidden');
+
+                const line_top = d3.select('.line-top');
+                const line_mid = d3.select('.line-mid');
+                const line_bottom = d3.select('.line-bottom');
+
+                let top_y2 = main.menuIsExpanded ? '10' : '30';
+                let bottom_y2 = main.menuIsExpanded ? '30' : '10';
+                let mid_opacity = main.menuIsExpanded ? '1' : '0';
+
+                line_top.transition().duration(200).attr('y2', top_y2);
+                line_bottom.transition().duration(200).attr('y2', bottom_y2);
+                line_mid.transition().duration(200).attr('opacity', mid_opacity);
+
+                main.menuIsExpanded = !main.menuIsExpanded;
 
             }
         },
