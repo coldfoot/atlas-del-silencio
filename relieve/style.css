@@ -92,6 +92,16 @@
             color: var(--color-ypis);
             margin-bottom: .5rem;
         }
+
+        p.chart-subheadline {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+
+        p.chart-legend {
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+        }
         
         h1, h2, h3, h4 {
             font-family: 'Roboto', sans-serif;
