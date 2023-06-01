@@ -31,6 +31,7 @@ main {
     font-family: 'Roboto', sans-serif;
     padding: .5rem;
     padding-bottom: 4rem;
+    padding-top: 4rem;
 
 }
 
@@ -86,3 +87,104 @@ section h3 {
 a {
     color: #0d61aa;
 }   
+
+
+/* menu button */
+
+.top-bar {
+    display: flex;
+    height: 4rem;
+    justify-content: space-between;
+    margin: 0;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-color: white;
+
+}
+
+.top-bar img {
+    display: block;
+    height: 100%;
+}
+
+.top-bar .btn-menu {
+    background-color: transparent;
+    border: none;
+    display: block;
+    height: 100%;
+    width: 3rem;
+    padding: 0;
+    z-index: 2;
+}
+
+.top-bar .btn-menu svg {
+    display: block;
+    height: 2rem;
+    width: 100%;
+}
+
+.top-bar .btn-menu line {
+    stroke: var(--color-black);;
+    stroke-width: 3;
+}
+
+/* MENU */
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+}
+
+.menu ul li {
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+.menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    right: 0;
+    text-align: right;
+    background-color: white;
+    width: 100%;
+    padding-top: 3rem;
+    padding-right: calc( 1rem + calc(0.5 * 1rem) );
+    padding-bottom: 1rem;
+    transition: transform var(--t);
+}
+
+.menu li {
+    margin: 1rem 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: inherit;
+    font-family: 'Roboto', serif;
+}
+
+.menu a:hover {
+    color: var(--color-ypis);
+}
+
+.menu.hidden {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+@media screen and (max-width: 400px) {
+    main h1 {
+        font-size: 3rem;
+    }
+    
+}
