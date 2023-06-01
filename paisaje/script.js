@@ -1,4 +1,6 @@
-const main = {};
+const main = {
+    menuIsExpanded : false
+};
 
 //JSON.stringify(turf.bboxPolygon(turf.bbox(main.data.municipios)))
 
@@ -51,7 +53,7 @@ function init(data) {
 
    // main.mapa.initZoom();
 
-    //main.controls = new Controls();
+    main.controls = new Controls();
 
     //main.searchBar = new SearchBar('#location-search');
 
@@ -708,56 +710,30 @@ class Controls {
 
     buttons = [
 
+        {
         
-        /*{
-
-            ref : 'btn-reset-map',
+            ref : 'btn-menu',
             handler : (e) => {
 
-                console.log('fire');
-                main.mapa.reset_map();
+                const menu = document.querySelector('.menu');
+                menu.classList.toggle('hidden');
 
-                // precisa resetar o zoom
+                const line_top = d3.select('.line-top');
+                const line_mid = d3.select('.line-mid');
+                const line_bottom = d3.select('.line-bottom');
 
-            }
-        },*/
+                let top_y2 = main.menuIsExpanded ? '10' : '30';
+                let bottom_y2 = main.menuIsExpanded ? '30' : '10';
+                let mid_opacity = main.menuIsExpanded ? '1' : '0';
 
-        {
+                line_top.transition().duration(200).attr('y2', top_y2);
+                line_bottom.transition().duration(200).attr('y2', bottom_y2);
+                line_mid.transition().duration(200).attr('opacity', mid_opacity);
 
-            ref : 'breadcrumb-venezuela',
-            handler : (e) => {
-
-                //console.log('fire');
-                main.mapa.reset_map();
+                main.menuIsExpanded = !main.menuIsExpanded;
 
             }
         },
-
-        {
-
-            ref : 'breadcrumb-provincia',
-            handler : (e) => {
-
-                //console.log('fire');
-                const provincia = document.querySelector('.breadcrumb-provincia').innerText;
-                //console.log(provincia);
-                main.mapa.fit_bounds('provincias', provincia);
-
-            }
-        },
-
-        {
-            ref: 'btn-explora',
-            handler: (e) => {
-
-                document.querySelector('.outer-wrapper').dataset.state = "explore";
-
-                //console.log(document.querySelector('.outer-wrapper'));
-
-            }
-        },
-
-
 
     ];
 
