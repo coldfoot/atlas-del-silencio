@@ -9,10 +9,28 @@
 
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Logo" id="logo">
-        <div id="hamburger-menu">Menu</div>
-    </header>
+    <div class="top-bar">
+        <a href="" class="logo-wrapper">
+            <img src="../imgs/logo-ypis.png" alt="Logo de Ypis">
+        </a>
+        <button class="btn-menu" data-state="burger">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
+                <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
+                <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
+            </svg>
+        </button>
+        <nav class="menu hidden">
+            <ul>
+                <li><a href="../index.html">Atlas del Silencio</a></li>
+                <li><a href="../paisaje/index.html">Paisaje</a></li>
+                <li><a href="../relieve/index.html">Relieve</a></li>
+                <li><a href="../metodologia/index.html">Metodologia</a></li>
+                <li><a href="../reverdece-el-mapa/index.html">Reverdece el mapa</a></li>
+                <li><a href="../creditos/index.html">Creditos</a></li>
+            </ul>
+        </nav>
+    </div>
     <main>
         <p class="chapeu">Relievos</p>
         <h1>Medios de comunicación</h1>
@@ -85,6 +103,7 @@
     <script src="https://cdn.jsdelivr.net/npm/d3-delaunay@6"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
 
+    <script src="script.js"></script>
     <!-- /* SIMPLER BAR CHARTS */ -->
     <script src="./scripts/naturaleza-medios.js"></script>
     <script src="./scripts/tipo-medios.js"></script>
