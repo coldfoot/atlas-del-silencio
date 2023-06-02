@@ -182,3 +182,13 @@ a {
     transform: translateY(-100%);
     pointer-events: none;
 }
+
+p.chapeu {
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin: 0;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    color: var(--color-ypis);
+    margin-bottom: .5rem;
+}
