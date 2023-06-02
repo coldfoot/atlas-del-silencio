@@ -218,6 +218,36 @@
     pointer-events: none;
 }
 
+table {
+    font-size: .8rem;
+    border-collapse: collapse;
+}
+
+table thead {
+    text-align: left;
+}
+
+table thead tr {
+    border-bottom: 2px solid currentColor; 
+}
+
+table tr {   
+    border-bottom: 1px solid var(--color-gris); 
+}
+
+table tr:nth-child(even) {
+    background-color: whitesmoke;
+}
+
+table td, table th {
+    padding: .3em 0;
+}
+
+table td + td,
+table th + th {
+    padding-left: .1em;
+}
+
 @media screen and (max-width: 430px) {
     main h1 {
         font-size: 3rem;
@@ -226,5 +256,10 @@
     p.chapeu {
         font-size: 1rem;
     }
+
+    table {
+        
+    }
     
 } 
+
