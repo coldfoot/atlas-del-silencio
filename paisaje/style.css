@@ -238,10 +238,15 @@ h1, h2, h3, h4 {
 
 .label-pop {
     font-family: 'Roboto', serif;
+    transition: all var(--t);
 }
+
 .label-pop[data-category="Desierto"] { left: calc(100% / 6); }
 .label-pop[data-category="Desierto Moderado"] { left: 50%; }
 .label-pop[data-category="No desierto"] { left: calc(500% / 6); }
+
+.label-pop[data-category="Desierto Moderado"].two-labels { left: calc(100%/3); }
+.label-pop[data-category="No desierto"].two-labels { left: calc(200% / 3); }
 
 .arrow-start {
     animation: bounce 2s infinite;

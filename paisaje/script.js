@@ -628,7 +628,6 @@ function show_labels(toggle) {
 }
 
 
-
 function test() {
     main.features.provincias.hide();
     main.features.municipios.change_to_circle();
@@ -696,6 +695,62 @@ function make_labels_pop_category() {
 
     })
 
+}
+
+function alternate_2_3_labels(mode) {
+
+    if (mode == '2 labels') {
+
+        const label2 = 'Desiertos y Desiertos Moderados';
+        //const pop2 = main.data.subtotals[]
+
+        document.querySelectorAll('.label-pop').forEach(label => {
+
+            const category = label.dataset.category;
+
+            if (category == 'Desierto') {
+                label.classList.add('hidden');
+            }
+
+            else {
+
+                label.classList.add('two-labels');
+
+                if (category == 'Desierto Moderado') {
+
+                    const filtered_data = main.data.subtotals.filter(d => ['Desierto', 'Desierto Moderado'].includes(d.category))
+
+                    const total_pop = filtered_data.map(d => d.pop).reduce( (a,b) => a + b);
+                    const total_qty = filtered_data.map(d => d.qde).reduce( (a,b) => a + b);
+
+                    label.innerHTML = main.format(total_pop) + '</br>' + '<span class="label-qde-localidades">(' + total_qty + ' localidades)</span>';
+                }
+            }
+
+        })
+
+    } else {
+
+        document.querySelectorAll('.label-pop').forEach(label => {
+
+            const category = label.dataset.category;
+
+            label.classList.remove('two-labels');
+            label.classList.remove('hidden');
+    
+            if (category == 'Desierto Moderado') {
+    
+                const filtered_data = main.data.subtotals.filter(d => d.category == 'Desierto Moderado')[0];
+    
+                label.innerHTML = main.format(filtered_data.pop) + '</br>' + 
+                    '<span class="label-qde-localidades">(' + 
+                    filtered_data.qde + 
+                    ' localidades)</span>';
+            }
+
+        })
+
+    }
 }
 
 const sim = {
@@ -1081,13 +1136,30 @@ const scroller = {
             charts.bubble_groups();
             show_labels(true);
 
+            if (direction == 'back') {
+
+                alternate_2_3_labels('3 labels');
+
+            }
+
 
         },
 
         'bubble groups 2' : function(direction = null) {
 
-            charts.bubble_two_groups();
-            show_labels(false);
+            
+            if (direction == 'back') {
+
+                show_labels(true);
+
+            } else {
+
+                charts.bubble_two_groups();
+
+            }
+
+            alternate_2_3_labels('2 labels');
+
 
         },
 
