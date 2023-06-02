@@ -196,9 +196,13 @@ a {
     pointer-events: none;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 430px) {
     main h1 {
         font-size: 3rem;
     }
+
+    p.chapeu {
+        font-size: 1rem;
+    }
     
-}
+} 
