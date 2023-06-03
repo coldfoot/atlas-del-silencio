@@ -24,7 +24,8 @@ body {
 
 .outer-wrapper {
     max-width: 100%;
-    width: 400px;
+    /*width: 400px;*/
+    width: 100%;
     margin: 0 auto;
     background: white;
     position: relative;
@@ -58,6 +59,9 @@ body {
     height: 50vh;
     bottom: 0;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 /* cards */
@@ -188,6 +192,14 @@ button.back-to-main-map:hover {
 .wrapper-text-container {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+
+.wrapper-text-container, .card-container {
+    max-width: 400px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .text-container, .card-container {
@@ -195,6 +207,7 @@ button.back-to-main-map:hover {
     padding: 2rem 2rem 1rem 2rem;
     line-height: 1.65;
     border-radius: 2rem 2rem 0 0;
+
 }
 
 .text-container * {
@@ -233,7 +246,6 @@ button.back-to-main-map:hover {
     height: 2rem;
     transition: flex-basis .3s; /* essa transição faz o ícone dar uma saltada */
     padding: 0;
-    border: 1px solid white;
 }
 
 .btn-categories:hover, .btn-categories.category-selected {
@@ -341,8 +353,11 @@ select.info-subtitle {
     background-color: transparent;
     font-size: 1rem;
     font-weight: bold;
-    border: none;
-    margin-left: -0.3rem;
+    padding: .25em;
+    border: 2px solid currentColor;
+    border-radius: 5px;
+    width: 100%;
+
 }
 
 .wrapper-bar-chart-categories {
@@ -635,6 +650,18 @@ select.info-subtitle {
     pointer-events: none;
 }
 
+[data-state="opening"] .wrapper-text-card-containers:has([data-location-type="venezuela"]) {
+
+    pointer-events: initial;
+
+}
+
+[data-state="explore"] .wrapper-text-card-containers:has([data-location-type="venezuela"]) {
+
+    pointer-events: none;
+
+}
+
 @media screen and (min-width: 800px) {
     .outer-wrapper {
         /*display: grid;*/
@@ -694,18 +721,6 @@ select.info-subtitle {
 
     }
 
-    [data-state="opening"] .wrapper-text-card-containers:has([data-location-type="venezuela"]) {
-
-        pointer-events: initial;
-
-    }
-
-    [data-state="explore"] .wrapper-text-card-containers:has([data-location-type="venezuela"]) {
-
-        pointer-events: none;
-
-    }
-
     .wrapper-text-container {
 
         height: 100%;
@@ -730,6 +745,20 @@ select.info-subtitle {
     [data-location-type="venezuela"] {
         opacity: 1;
         transform: translateX(100%);
+    }
+    
+}
+
+@media screen and (max-height: 700px) {
+
+    [data-state="explore"] .wrapper-text-card-containers {
+        height: 45vh;
+    }
+
+    .card-container {
+        font-size: .8rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
     
 }
