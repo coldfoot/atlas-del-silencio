@@ -168,6 +168,7 @@ a {
     flex-direction: column;
     top: 0;
     right: 0;
+    height: 100vh;
     text-align: right;
     background-color: white;
     width: 100%;
