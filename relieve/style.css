@@ -191,6 +191,7 @@
     flex-direction: column;
     top: 0;
     right: 0;
+    height: 100vh;
     text-align: right;
     background-color: white;
     width: 100%;
@@ -218,9 +219,31 @@
     pointer-events: none;
 }
 
+.table-filters {
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding: .5rem;
+
+}
+
+.table-filters select {
+
+    border: none;
+    border: 1px solid var(--color-ypis);
+    /*border-bottom: 1px solid currentColor;*/
+    padding: .5em 0;
+}
+
+.table-filters select + select {
+    margin-top: .5em;
+}
+
 table {
     font-size: .8rem;
     border-collapse: collapse;
+    width: 100%;
 }
 
 table thead {

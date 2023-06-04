@@ -1,5 +1,12 @@
+const criteria = {};
+let filtered_data;
+let original_data;
+
 fetch('./data/medios.json').then(response => response.json()).then(data => {
     console.log(data);
+
+    filtered_data = [...data];
+    original_data = data;
 
     const tb = document.querySelector('.table-wrapper table');
 
@@ -42,20 +49,62 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
 
     console.log(get_unique_entries(data, 'medio_type'))
 
-    make_table();
+    make_table(filtered_data);
     populate_selectors();
+    monitor_change_on_selectors();
+
+    function monitor_change_on_selectors() {
+
+        const sels = document.querySelectorAll('.table-filters select');
+
+        console.log(sels);
+
+        sels.forEach(sel => sel.addEventListener('change', filter_table));
+
+    }
+
+    function filter_table(e) {
+
+        const col_name = e.target.dataset.colName;
+
+        const filter_value = e.target.value;
+
+        console.log(col_name, filter_value);
+
+        criteria[col_name] = filter_value;
+
+        filtered_data = [...original_data];
+
+        Object.keys(criteria).forEach(crit => {
+            console.log(crit, criteria);
+            filtered_data = filtered_data.filter(d => {
+                if (criteria[crit] == 'todos') {
+                    return true;
+                } else {
+                    return d[crit] == criteria[crit];
+                }
+            });
+            console.log(filtered_data);
+        })
+
+        make_table(filtered_data);
+
+    }
 
     function populate_selectors() {
 
         cols.forEach(col => {
 
+            criteria[col.name] = 'todos';
+
             const domain = get_unique_entries(data, col.name);
 
             const generic_option = document.createElement('option');
-            generic_option.value = "";
-            generic_option.innerText = col.title;
+            generic_option.value = "todos";
+            generic_option.innerText = col.title + ' (todos)';
 
             const new_select = document.createElement('select');
+            new_select.dataset.colName = col.name;
 
             new_select.appendChild(generic_option);
 
@@ -75,7 +124,19 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
 
     }
 
-    function make_table() {
+
+    function make_table(data) {
+
+        if (filtered_data.length == 0) {
+
+            tb.innerHTML = 'Sin resultados!'
+            return;
+
+        } else {
+
+            tb.innerHTML = '';
+
+        }
 
         const table_header = document.createElement('thead');
         const header_row = document.createElement('tr');
@@ -90,7 +151,7 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
             header_row.appendChild(th);
     
         })
-    
+
         const table_body = document.createElement('tbody');
     
         data.forEach(row => {
