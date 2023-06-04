@@ -105,7 +105,7 @@ const utils = {
 
     getDims() {
 
-        main.dims.top = +window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
+        main.dims.top = document.querySelector('.wrapper-top').getBoundingClientRect().height;//+window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
         main.dims.left = document.querySelector('.wrapper-top').getBoundingClientRect().x;
         main.dims.bottom = +window.getComputedStyle(document.querySelector('.wrapper-text-card-containers')).height.slice(0,-2);
 
@@ -746,7 +746,7 @@ function monitorMunicipio(toggle = 'on') {
 function fit_bounds(type, location) {
 
     let right_fit_padding = window.innerWidth >= 800 ? 432 : 10;
-    let top_fit_padding = window.innerWidth >= 800 ?  60 : main.dims.top + 10;
+    let top_fit_padding = window.innerWidth >= 800 ?  150 : main.dims.top + 10;
 
 
     colorMapCategory('');

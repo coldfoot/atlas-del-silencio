@@ -48,7 +48,7 @@ body {
     left: 0;
     width: inherit;
     max-width: inherit;
-    padding-top: 1rem;
+    padding-top: 4rem;
     z-index: 1;
 }
 
@@ -414,11 +414,16 @@ select.info-subtitle {
 /* menu button */
 
 .top-bar {
+    position: fixed;
+    top: 1rem;
+    left: 0;
+    right: 0;
     display: flex;
     height: 3rem;
     justify-content: space-between;
     margin: 0 1rem;
     padding-bottom: 1rem;
+    z-index: 5;
 
 }
 
@@ -618,18 +623,19 @@ select.info-subtitle {
 }
 
 .menu {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     top: 0;
     right: 0;
+    height: 100vh;
     text-align: right;
     background-color: white;
     width: 100%;
     padding-top: 3rem;
     padding-right: calc( 1rem + calc(0.5 * 1rem) );
     padding-bottom: 1rem;
-    transition: transform var(--t);
+    transition: all var(--t);
 }
 
 .menu li {
@@ -647,6 +653,7 @@ select.info-subtitle {
 
 .menu.hidden {
     transform: translateY(-100%);
+    opacity: 0;
     pointer-events: none;
 }
 
@@ -745,6 +752,10 @@ select.info-subtitle {
     [data-location-type="venezuela"] {
         opacity: 1;
         transform: translateX(100%);
+    }
+
+    [data-state="opening"] .card-container[data-location-type="venezuela"] {
+        display: none;
     }
     
 }
