@@ -53,6 +53,30 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
     populate_selectors();
     monitor_change_on_selectors();
 
+    function update_results_count() {
+
+        const t = document.querySelector('.table-results-count');
+
+        let text;
+
+        const count = filtered_data.length;
+
+        if (count == 0) {
+            text = 'Sin resultados!';
+        } else {
+            if (count == 1) {
+                text = '1 resultado'
+            } else {
+                text = count + ' resultados'
+            }
+        }
+
+        t.innerText = text;
+
+
+
+    }
+
     function monitor_change_on_selectors() {
 
         const sels = document.querySelectorAll('.table-filters select');
@@ -88,6 +112,7 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
         })
 
         make_table(filtered_data);
+        update_results_count();
 
     }
 
@@ -127,16 +152,7 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
 
     function make_table(data) {
 
-        if (filtered_data.length == 0) {
-
-            tb.innerHTML = 'Sin resultados!'
-            return;
-
-        } else {
-
-            tb.innerHTML = '';
-
-        }
+        tb.innerHTML = '';
 
         const table_header = document.createElement('thead');
         const header_row = document.createElement('tr');
