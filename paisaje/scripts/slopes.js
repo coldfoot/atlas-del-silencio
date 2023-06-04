@@ -89,11 +89,15 @@ function drawChart(dataFileName, legendFileName, color) {
 
     }
 
-    var charWidth = window.innerWidth >= 600 ? 600 : window.innerWidth; 
+    const cont = document.querySelector('.chart-slopes');
+
+    var chartWidth = +window.getComputedStyle(cont).width.slice(0,-2);
+
+    //var charWidth = window.innerWidth >= 600 ? 600 : window.innerWidth; 
 
     // Set up dimensions and scales
     var margin = { top: 20, right: 110, bottom: 35, left: 110 },  // add margin to left and right
-        width = charWidth - margin.left - margin.right,
+        width = chartWidth - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
 
