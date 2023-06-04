@@ -56,7 +56,7 @@ body {
     position: absolute;
     width: inherit;
     max-width: inherit;
-    height: 50vh;
+    /*height: 50vh;*/
     bottom: 0;
     z-index: 2;
     display: flex;
@@ -204,7 +204,7 @@ button.back-to-main-map:hover {
 
 .text-container, .card-container {
     background-color: white;
-    padding: 2rem 2rem 1rem 2rem;
+    padding: 1.5rem;
     line-height: 1.65;
     border-radius: 2rem 2rem 0 0;
 
@@ -509,7 +509,7 @@ select.info-subtitle {
 }
 
 [data-state="explore"] .wrapper-text-card-containers {
-    height: 35vh;
+    /*height: 35vh;*/
 }
 
 [data-state="explore"] .wrapper-text-container {
@@ -769,10 +769,11 @@ select.info-subtitle {
     
 }
 
+/*
 @media screen and (max-height: 700px) {
 
     [data-state="explore"] .wrapper-text-card-containers {
-        height: 45vh;
+        /*height: 45vh;*/ /*
     }
 
     .card-container {
@@ -782,3 +783,4 @@ select.info-subtitle {
     }
     
 }
+*/

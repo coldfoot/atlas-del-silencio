@@ -65,6 +65,7 @@ class Controls {
                 //console.log('fire');
                 //main.mapa.reset_map();
                 fit_bounds('venezuela');
+                main.searchBar.el.value = ''
 
             }
         },
@@ -251,7 +252,7 @@ const utils = {
 
         main.dims.top = document.querySelector('.wrapper-top').getBoundingClientRect().height;//+window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
         main.dims.left = document.querySelector('.wrapper-top').getBoundingClientRect().x;
-        main.dims.bottom = +window.getComputedStyle(document.querySelector('.wrapper-text-card-containers')).height.slice(0,-2);
+        main.dims.bottom = document.querySelector('.wrapper-text-card-containers').getBoundingClientRect().height;
 
     },
 
@@ -937,7 +938,7 @@ function fit_bounds(type, location) {
     main.mapa.fitBounds(bbox, {
         padding : {
             top: top_fit_padding,
-            bottom: window.innerWidth >= 800 ? 10 : main.dims.bottom + 10,
+            bottom: window.innerWidth >= 800 ? 10 : 270,//main.dims.bottom + 40,
             left: 10,
             right: right_fit_padding
         }
