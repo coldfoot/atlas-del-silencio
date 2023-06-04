@@ -224,3 +224,14 @@ p.chapeu {
 .btn-form:active {
     transform: translate(5px, 5px);
 }
+
+@media screen and (min-width: 800px) {
+
+    .top-bar {
+        height: 5rem;
+    }
+
+    main {
+        padding-top: 5rem;
+    }
+}

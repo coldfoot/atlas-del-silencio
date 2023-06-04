@@ -675,6 +675,11 @@ select.info-subtitle {
 }
 
 @media screen and (min-width: 800px) {
+
+    .top-bar {
+        height: 4rem;
+    }
+
     .outer-wrapper {
         /*display: grid;*/
         width: 100%;
@@ -689,6 +694,7 @@ select.info-subtitle {
         max-width: 100%;
         padding-top: 1rem;
     }*/
+
     .wrapper-top {
         z-index: 3;
         pointer-events: none;

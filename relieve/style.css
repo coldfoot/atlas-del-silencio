@@ -288,3 +288,13 @@ table th + th {
     
 } 
 
+@media screen and (min-width: 800px) {
+
+    .top-bar {
+        height: 5rem;
+    }
+
+    main {
+        padding-top: 6rem;
+    }
+}
