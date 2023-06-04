@@ -855,6 +855,10 @@ const eventsBTNsCategory = {
 
     },
 
+    clear() {
+        document.querySelectorAll('.btn-categories').forEach(btn => btn.classList.remove('category-selected'));
+    },
+
     click(e, ref) {
 
         if (e.target.tagName == 'BUTTON') {
@@ -869,7 +873,7 @@ const eventsBTNsCategory = {
 
             } else {
 
-                document.querySelectorAll('.btn-categories').forEach(btn => btn.classList.remove('category-selected'));
+                this.clear();
                 e.target.classList.add('category-selected');
 
             }
@@ -944,6 +948,7 @@ function fit_bounds(type, location) {
 
 
     colorMapCategory('');
+    eventsBTNsCategory.clear();
 
     let bbox;
 
