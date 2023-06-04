@@ -738,6 +738,49 @@ const mouseEventsMunicipio = {
 
 }
 
+function showPopUpMunSearch(municipio) {
+
+            monitorMunicipio('off');
+                
+            // Copy coordinates array.
+            const mun_data = main.data.municipios.features.filter(d => d.properties.name == municipio)[0];
+
+            console.log(mun_data);
+
+            const coordinates = mun_data.properties.center;
+            
+            const name = mun_data.properties.name;
+            const category = mun_data.properties.category;
+            const estado = mun_data.properties.parent_name;
+            const pop = mun_data.properties.population;
+            
+            const content = `
+                <p style="font-weight: bold;">${name}</p>
+                <p>Estado: ${estado}</p>
+                <p>Población: ${utils.format(pop)}</p>
+                <p class="popup-category" style="display: inline-block; background-color: ${main.colors[category]};">${category}</p>
+            `
+    
+            //console.log(coordinates);
+                
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            /*
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }*/
+                
+            // Populate the popup and set its coordinates
+            // based on the feature found.
+            main.popup_municipios.setLngLat(coordinates).setHTML(content).addTo(main.mapa);
+
+            setTimeout(() => {
+                monitorMunicipio('on');
+            }, 3000);
+
+}
+
 function colorMapCategory(category) {
 
     if (category == '') {
@@ -1536,6 +1579,8 @@ class SearchBar {
 
             //main.mapa.fit_bounds('provincias', text);
             fit_bounds('provincias', text);
+
+            showPopUpMunSearch(mun);
 
         }
 
