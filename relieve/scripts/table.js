@@ -35,8 +35,6 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
         }        
     ]
 
-    console.log(cols);
-
     function get_unique_entries(dat, col) {
 
         return dat

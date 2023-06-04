@@ -74,7 +74,6 @@ svg.selectAll(".percent")
     .attr("x", function(d) { return x(d.percent) - 3; })  // x position over the right edge of the bar
     .attr("text-anchor", "end")
     .text(function(d) { 
-        console.log(chartWidth);
         if ((chartWidth <= 400) & (d.percent <= 12)) {
             return "" 
         }
