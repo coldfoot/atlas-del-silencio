@@ -1397,8 +1397,6 @@ class Card {
                 label.dataset.popInfo = utils.format(mini_data['pop ' + category]) + " (" + pct_pop + ")";
                 bar.dataset.popValue = pct_pop;
 
-                console.log(mini_data);
-
                 const qty_total = mini_data.desert_children + mini_data.not_desert_children + mini_data.moderate_desert_children;
 
                 let qty = mini_data[getVariableName[category]];
