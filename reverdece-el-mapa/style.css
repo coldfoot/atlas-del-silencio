@@ -194,3 +194,33 @@ p.chapeu {
     color: var(--color-ypis);
     margin-bottom: .5rem;
 }
+
+.btn-form {
+    border-radius: 2rem;
+    background-color: var(--color-ypis);
+    color: white;
+    padding: .5rem 2.5rem;
+    width: 11.5rem;
+    max-width: 70%;
+    display: block;
+    margin: 2rem auto 2rem;
+    font-size: 1rem;
+    border: 2px solid transparent;
+    position: relative;
+    transition: all .5s;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.btn-form:hover {
+
+    box-shadow: 0px 0px 3px var(--color-ypis);
+    border-color: var(--color-gris);
+
+}
+
+.btn-form:active {
+    transform: translate(5px, 5px);
+}
