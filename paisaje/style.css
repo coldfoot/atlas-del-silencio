@@ -59,7 +59,7 @@ body {
 
 path {
     stroke-width: var(--stroke);
-    stroke: var(--color-black);/* #BFA98F;*/
+    /*stroke: var(--color-black);*//* #BFA98F;*/
     fill: var(--color-gris); /* lightseagreen;*/
     /*transition: stroke var(--t), fill var(--t);*/
 }
