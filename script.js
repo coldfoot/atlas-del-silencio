@@ -314,7 +314,11 @@ function init_map() {
                 left: 30, 
                 right: window.innerWidth >= 800 ? 432 : 35
             }
-        }
+        },
+        maxBounds: [
+            [-87.05716227221353, -12.347713915207734], //sw
+            [-43.58672576693186, 26.36509356527405] //ne
+        ]
     });
 
     main.mapa.on('load', map_is_loaded);
