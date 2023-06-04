@@ -430,6 +430,7 @@ select.info-subtitle {
 .top-bar img {
     display: block;
     height: 100%;
+    max-width: 100%;
 }
 
 .top-bar .btn-menu {
@@ -473,6 +474,7 @@ select.info-subtitle {
     padding-left: 2rem;
     font-family: inherit;
     border: 1px solid black;
+    font-size: 16px;
 }
 
 .top-controls > div + div {
