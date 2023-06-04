@@ -228,6 +228,7 @@ button.back-to-main-map:hover {
     /*background-color: var(--color-highlight);*/
     text-transform: uppercase;
     font-weight: 500;
+    white-space: nowrap;
     /*transition: all .3s;*/
 }
 

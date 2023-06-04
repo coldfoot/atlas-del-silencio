@@ -59,7 +59,7 @@ body {
 
 path {
     stroke-width: var(--stroke);
-    stroke: var(--color-black);/* #BFA98F;*/
+    /*stroke: var(--color-black);*//* #BFA98F;*/
     fill: var(--color-gris); /* lightseagreen;*/
     /*transition: stroke var(--t), fill var(--t);*/
 }
@@ -90,6 +90,7 @@ path[data-category].no-color { fill: var(--color-gris); }
     /*background-color: var(--color-highlight);*/
     text-transform: uppercase;
     font-weight: 500;
+    white-space: nowrap;
     /*transition: all .3s;*/
 }
 

@@ -105,7 +105,7 @@
             border: 1px solid white;
         }
 
-        .btn-categories:hover, .btn-categories.category-selected {
+        .btn-categories.category-selected {
             flex-basis: 100%;
         }
 
