@@ -152,6 +152,7 @@
 .top-bar img {
     display: block;
     height: 100%;
+    max-width: 100%;
 }
 
 .top-bar .btn-menu {
