@@ -406,7 +406,7 @@ select.info-subtitle {
 .btn-explora:hover {
 
     border-color: var(--color-highlight);
-    background-color: var(--color-back);
+    background-color: var(--color-ypis);
 
 
 }
