@@ -65,7 +65,7 @@ class Controls {
                 //console.log('fire');
                 //main.mapa.reset_map();
                 fit_bounds('venezuela');
-                main.searchBar.el.value = ''
+                main.searchBar.el.value = '';
 
             }
         },
@@ -601,6 +601,7 @@ const mouseEventsEstado = {
 
         console.log(e, e.features);
         fit_bounds('provincias', e.features[0].id);
+        main.searchBar.el.value = '';
 
     },
 
@@ -694,6 +695,7 @@ const mouseEventsMunicipio = {
 
         //console.log(e, e.features);
         fit_bounds('provincias', e.features[0].properties.parent_name);
+        main.searchBar.el.value = '';
 
     },
 
