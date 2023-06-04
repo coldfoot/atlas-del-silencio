@@ -59,12 +59,16 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
         if (count == 0) {
             text = 'Sin resultados!';
         } else {
+            text = '';
+        }
+        /*
+        else {
             if (count == 1) {
                 text = '1 resultado'
             } else {
                 text = count + ' resultados'
             }
-        }
+        }*/
 
         t.innerText = text;
 
@@ -113,6 +117,8 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
 
         cols.forEach(col => {
 
+            if (col.name == 'medio_name') return;
+
             criteria[col.name] = 'todos';
 
             const domain = get_unique_entries(data, col.name);
@@ -146,6 +152,8 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
     function make_table(data) {
 
         tb.innerHTML = '';
+
+        if (data.length == 0) return;
 
         const table_header = document.createElement('thead');
         const header_row = document.createElement('tr');
