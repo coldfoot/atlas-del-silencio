@@ -90,6 +90,7 @@ path[data-category].no-color { fill: var(--color-gris); }
     /*background-color: var(--color-highlight);*/
     text-transform: uppercase;
     font-weight: 500;
+    white-space: nowrap;
     /*transition: all .3s;*/
 }
 
