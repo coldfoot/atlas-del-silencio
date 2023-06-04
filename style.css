@@ -246,9 +246,10 @@ button.back-to-main-map:hover {
     height: 2rem;
     transition: flex-basis .3s; /* essa transição faz o ícone dar uma saltada */
     padding: 0;
+    pointer-events: initial;
 }
 
-.btn-categories:hover, .btn-categories.category-selected {
+.btn-categories.category-selected {
     flex-basis: 100%;
 }
 
@@ -475,6 +476,7 @@ select.info-subtitle {
     font-family: inherit;
     border: 1px solid black;
     font-size: 16px;
+    pointer-events: initial;
 }
 
 .top-controls > div + div {
@@ -688,6 +690,7 @@ select.info-subtitle {
     }*/
     .wrapper-top {
         z-index: 3;
+        pointer-events: none;
     }
 
     .top-controls {
@@ -697,6 +700,10 @@ select.info-subtitle {
 
     .top-controls > div.btns {
         justify-content: flex-end;
+    }
+
+    .btn-categories:hover {
+        flex-basis: 100%;
     }
 
     .map-container#map {
