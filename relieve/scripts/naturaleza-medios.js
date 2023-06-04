@@ -1,7 +1,7 @@
     var data = [
-        {label: "Comunitario", value: 55, percent: 8.9},
-        {label: "Estatal", value: 36, percent: 5.83},
-        {label: "Privado", value: 527, percent: 85.28},
+        {label: "Comunitario", value: 55, percent: 10.5},
+        {label: "Estatal", value: 36, percent: 5.1},
+        {label: "Privado", value: 527, percent: 84.4},
     ];
 
     // Sort data

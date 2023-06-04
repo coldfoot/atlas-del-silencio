@@ -1,8 +1,8 @@
 var data = [
-    {label: "Digital", value: 236, percent: 38.19},
-    {label: "Impreso", value: 19, percent: 3.07},
-    {label: "Radio", value: 295, percent: 47.73},
-    {label: "TV", value: 68, percent: 11},
+    {label: "Digital", value: 236, percent: 32.7},
+    {label: "Impreso", value: 19, percent: 4.2},
+    {label: "Radio", value: 295, percent: 55.5},
+    {label: "TV", value: 68, percent: 7.6},
 ];
 
 
