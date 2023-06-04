@@ -3,7 +3,6 @@ let filtered_data;
 let original_data;
 
 fetch('./data/medios.json').then(response => response.json()).then(data => {
-    console.log(data);
 
     filtered_data = [...data];
     original_data = data;
@@ -47,8 +46,6 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
 
     }
 
-    console.log(get_unique_entries(data, 'medio_type'))
-
     make_table(filtered_data);
     populate_selectors();
     monitor_change_on_selectors();
@@ -81,8 +78,6 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
 
         const sels = document.querySelectorAll('.table-filters select');
 
-        console.log(sels);
-
         sels.forEach(sel => sel.addEventListener('change', filter_table));
 
     }
@@ -100,7 +95,7 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
         filtered_data = [...original_data];
 
         Object.keys(criteria).forEach(crit => {
-            console.log(crit, criteria);
+
             filtered_data = filtered_data.filter(d => {
                 if (criteria[crit] == 'todos') {
                     return true;
@@ -108,7 +103,7 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
                     return d[crit] == criteria[crit];
                 }
             });
-            console.log(filtered_data);
+            
         })
 
         make_table(filtered_data);
@@ -126,7 +121,7 @@ fetch('./data/medios.json').then(response => response.json()).then(data => {
 
             const generic_option = document.createElement('option');
             generic_option.value = "todos";
-            generic_option.innerText = col.title + ' (todos)';
+            generic_option.innerText = col.title + (col.title == 'Naturaleza' ? ' (todas)' : ' (todos)'); 
 
             const new_select = document.createElement('select');
             new_select.dataset.colName = col.name;
