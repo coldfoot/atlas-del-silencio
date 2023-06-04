@@ -698,6 +698,7 @@ select.info-subtitle {
     .wrapper-top {
         z-index: 3;
         pointer-events: none;
+        padding-top: 5rem;
     }
 
     .top-controls {
