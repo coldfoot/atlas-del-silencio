@@ -155,8 +155,12 @@ button.back-to-main-map:hover {
     justify-content: space-between;
 }
 
-.wrapper-info-location > div {
-    flex: 0 0 50%;
+.wrapper-info-location > .info-pop {
+    flex: 0 0 40%;
+}
+
+.wrapper-info-location > .info-medios {
+    flex: 0 0 60%;
 }
 
 .info-medios * {
@@ -168,14 +172,32 @@ button.back-to-main-map:hover {
     justify-content: space-between;
 }
 
-.wrapper-medios-types > span::before {
-    padding-right: .3em;
+.wrapper-medios-types > span {
+    display: flex;
+    align-items: center;
 }
 
+.wrapper-medios-types > span::before {
+    margin-right: 0.3em;
+    content: '';
+    width: 1em;
+    height: 1em;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+/*
 [data-text="tv"]::before { content: '📺' ;}
 [data-text="radio"]::before { content: '📻' ;}
 [data-text="print"]::before { content: '🗞️' ;}
 [data-text="digital"]::before { content: '🖥️' ;}
+*/
+
+[data-text="tv"]::before { background-image: url(./imgs/tv.png);}
+[data-text="radio"]::before { background-image: url(./imgs/radio.png);}
+[data-text="print"]::before { background-image: url(./imgs/periodicos.png);}
+[data-text="digital"]::before { background-image: url(./imgs/digital.png);}
 
 /*
 .breadcrumb-provincia::before {
