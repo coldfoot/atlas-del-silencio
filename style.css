@@ -678,7 +678,7 @@ select.info-subtitle {
 @media screen and (min-width: 800px) {
 
     .top-bar {
-        height: 4rem;
+        height: 5rem;
     }
 
     .outer-wrapper {
@@ -699,7 +699,7 @@ select.info-subtitle {
     .wrapper-top {
         z-index: 3;
         pointer-events: none;
-        padding-top: 5rem;
+        padding-top: 6rem;
     }
 
     .top-controls {

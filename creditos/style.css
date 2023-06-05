@@ -212,10 +212,10 @@ a {
 @media screen and (min-width: 800px) {
 
     .top-bar {
-        height: 5rem;
+        height: 6rem;
     }
 
     main {
-        padding-top: 5rem;
+        padding-top: 6rem;
     }
 }

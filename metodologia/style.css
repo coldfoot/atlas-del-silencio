@@ -239,3 +239,14 @@ a {
 .container-desierto-moderado { --color: var(--color-semi-desiertos); }
 .container-desierto { --color: var(--color-desiertos); }
 .container-no-desierto { --color: var(--color-no-desiertos); }
+
+@media screen and (min-width: 800px) {
+
+    .top-bar {
+        height: 6rem;
+    }
+
+    main {
+        padding-top: 6rem;
+    }
+}
