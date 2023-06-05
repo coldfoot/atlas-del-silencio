@@ -159,7 +159,7 @@ a {
 
 .menu ul li {
     font-family: 'Roboto', sans-serif;
-    font-weight: normal;
+    font-weight: 500;
     font-size: 1.5rem;
 }
 
@@ -208,3 +208,14 @@ a {
     }
     
 } 
+
+@media screen and (min-width: 800px) {
+
+    .top-bar {
+        height: 6rem;
+    }
+
+    main {
+        padding-top: 6rem;
+    }
+}

@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/svg+xml" href="/imgs/favicon-32.svg" sizes="32x32">
+    <link rel="icon" type="image/svg+xml" href="/imgs/favicon-16.svg" sizes="16x16">
+
+
     <title>Atlas del Silencio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +39,7 @@
                 <li><a href="./relieve/index.html">Relieve</a></li>
                 <li><a href="./metodologia/index.html">Metodología</a></li>
                 <li><a href="./reverdece-el-mapa/index.html">Reverdece el mapa</a></li>
-                <li><a href="./creditos/index.html">Creditos</a></li>
+                <li><a href="./creditos/index.html">Créditos</a></li>
             </ul>
         </nav>
     </div>
@@ -46,7 +51,7 @@
             <div class="top-controls">
                 <div class="search-bar">
     
-                    <input type="search" id="location-search" name="q" placeholder="Busca un estado, municipio, o parroquia…" list="locations" aria-label="Busca un estado, municipio, o parroquia">
+                    <input type="search" id="location-search" name="q" placeholder="Busca un estado, municipio, o parroquia…" list="locations" autocomplete="off" aria-label="Busca un estado, municipio, o parroquia">
                     
                     <datalist id="locations"></datalist>
     
@@ -108,10 +113,10 @@
                     <div class="info-medios">
                         <p class="info-subtitle"><span data-text="medios"></span> Medios</p>
                         <div class="wrapper-medios-types">
-                            <span data-text="radio"></span>
-                            <span data-text="tv"></span>
-                            <span data-text="print"></span>
-                            <span data-text="digital"></span>
+                            <span data-text="radio" title="Radio"></span>
+                            <span data-text="tv" title="TV"></span>
+                            <span data-text="print" title="Periódico (impreso)"></span>
+                            <span data-text="digital" title="Digital"></span>
                         </div>
 
                     </div>
@@ -130,9 +135,9 @@
                     </div>
 
                     <div class="bar-chart-label-container">
-                        <span data-label-category="No desierto"></span>
-                        <span data-label-category="Desierto Moderado"></span>
-                        <span data-label-category="Desierto"></span>
+                        <span data-label-category="No desierto" title="No desierto"></span>
+                        <span data-label-category="Desierto Moderado" title="Desierto Moderado"></span>
+                        <span data-label-category="Desierto" title="Desierto"></span>
                     </div>
 
 

@@ -184,6 +184,7 @@
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .menu {
@@ -264,12 +265,12 @@ table tr:nth-child(even) {
 }
 
 table td, table th {
-    padding: .3em 0;
+    padding: .5em 0;
 }
 
 table td + td,
 table th + th {
-    padding-left: .1em;
+    padding-left: 1em;
 }
 
 @media screen and (max-width: 430px) {
@@ -282,8 +283,19 @@ table th + th {
     }
 
     table {
+        font-size: .6rem;
         
     }
     
 } 
 
+@media screen and (min-width: 800px) {
+
+    .top-bar {
+        height: 6rem;
+    }
+
+    main {
+        padding-top: 7rem;
+    }
+}
