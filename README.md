@@ -1,16 +1,8 @@
-# atlas-del-silencio
+# Atlas del Silencio
 
-## to-do
+7 millones de venezolanos viven en DESIERTOS de noticias, sin acceso a un periodismo local de calidad. 8 millones más viven en DESIERTOS MODERADOS, donde el acceso tampoco es suficiente. Son raros los municipios NO DESIERTOS. Y tú, ¿dónde vives?
 
-limitar "pan" -- movimento lateral do mapa
+Welcome to our repository!
 
-zoom parece meio "choppy"?
-
-ordenar dados por x,y. para transicao para shapes ficar mais suave
-
-pegar x,y dos centros
-
-"https://unpkg.com/world-atlas@2.0.2/countries-110m.json"
-
-fazer uma forma mais inteligente de calcular o tamanho do stroke-width automaticamente
+This project comprehends multiple pages. We used Mapbox GL JS for the main interactive page, and D3.js for most of the other charts. The scrollytelling piece was created with the [enter-view library](https://github.com/russellsamora/enter-view), and for the polygon-bubble morphing we used [flubber](https://github.com/veltman/flubber).
 
