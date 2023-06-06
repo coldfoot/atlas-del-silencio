@@ -263,6 +263,10 @@ h1, h2, h3, h4 {
     font-family: 'Roboto', sans-serif;
 }
 
+[data-step="cover"] {
+    position: relative;
+}
+
 @keyframes bounce {
 
     0%, 20%, 50%, 80%, 100% {
