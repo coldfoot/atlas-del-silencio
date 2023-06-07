@@ -79,7 +79,7 @@ body {
 
 button.back-to-main-map {
     --top-position: 10vh; /*updated by JS */
-    --left-position: calc(50vw - 200px);
+    --left-position: 0; /*(calc(50vw - 200px);*/
     position: fixed;
     top: var(--top-position);
     left: var(--left-position);
@@ -240,6 +240,11 @@ button.back-to-main-map:hover {
     padding: 1.5rem;
     line-height: 1.65;
     border-radius: 2rem;/*2rem 2rem 0 0;*/
+
+}
+
+.card-container {
+    border-radius: 2rem 2rem 0 0;
 
 }
 
@@ -761,7 +766,7 @@ select.info-subtitle {
 
     button.back-to-main-map {
         position: absolute;
-        top: 10rem;
+        top: 12rem;
         left: -4rem;
     }
 
@@ -797,7 +802,7 @@ select.info-subtitle {
 
     .card-container {
         display: block;
-        padding-top: 10rem;
+        padding-top: 12rem;
         border-radius: 2rem 0 0 2rem;
     }
 
@@ -812,18 +817,21 @@ select.info-subtitle {
     
 }
 
-/*
+
 @media screen and (max-height: 700px) {
 
-    [data-state="explore"] .wrapper-text-card-containers {
+    /*[data-state="explore"] .wrapper-text-card-containers {
         /*height: 45vh;*/ /*
-    }
+    }*/
 
-    .card-container {
+    .text-container, .card-container {
         font-size: .8rem;
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
+
+    .text-container h1 {
+        font-size: 1.5rem;
+    }
     
 }
-*/
