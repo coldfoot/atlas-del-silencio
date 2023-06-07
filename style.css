@@ -267,6 +267,7 @@ button.back-to-main-map:hover {
     flex-grow: 0;
     flex-shrink: 1;
     height: 2rem;
+    color: inherit;
     transition: flex-basis .3s; /* essa transição faz o ícone dar uma saltada */
     padding: 0;
     pointer-events: initial;
