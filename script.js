@@ -217,6 +217,8 @@ function init(data) {
 
     compute_subtotals();
 
+    utils.getDims();
+
     //main.mapa = new Mapa('.map');
 
     /*
@@ -250,9 +252,12 @@ const utils = {
 
     getDims() {
 
-        main.dims.top = document.querySelector('.wrapper-top').getBoundingClientRect().height;//+window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
-        main.dims.left = document.querySelector('.wrapper-top').getBoundingClientRect().x;
-        main.dims.bottom = document.querySelector('.wrapper-text-card-containers').getBoundingClientRect().height;
+        const wrap_top = document.querySelector('.wrapper-top').getBoundingClientRect();
+        const wrap_text = document.querySelector('.wrapper-text-card-containers').getBoundingClientRect();
+
+        main.dims.top = wrap_top.height + 5;//+window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
+        main.dims.left = window.innerWidth - wrap_text.x + 30;
+        main.dims.bottom = window.innerHeight - wrap_text.y + 5;
 
     },
 
@@ -299,6 +304,8 @@ const utils = {
 
 function init_map() {
 
+    console.log(window.innerWidth >= 800 ? 30 : window.innerHeight / 2 - 10, window.innerWidth >= 800 ? 150 : 40);
+
     mapboxgl.accessToken = 'pk.eyJ1IjoidGlhZ29tYnAiLCJhIjoiY2thdjJmajYzMHR1YzJ5b2huM2pscjdreCJ9.oT7nAiasQnIMjhUB-VFvmw';
 
     main.mapa = new mapboxgl.Map({
@@ -309,16 +316,16 @@ function init_map() {
         bounds: main.bboxVenezuela,
         fitBoundsOptions: {
             padding: {
-                top: window.innerWidth >= 800 ? 150 : 40, 
-                bottom: window.innerWidth >= 800 ? 30 : window.innerHeight / 2 - 10, 
+                top: window.innerWidth >= 800 ? 150 : main.dims.top, 
+                bottom: window.innerWidth >= 800 ? 30 : main.dims.bottom,//window.innerHeight / 2 - 10, 
                 left: 30, 
-                right: window.innerWidth >= 800 ? 432 : 35
+                right: window.innerWidth >= 800 ? main.dims.left : 30// 432 : 35
             }
         },
-        maxBounds: [
+        /*maxBounds: [
             [-87.05716227221353, -12.347713915207734], //sw
             [-43.58672576693186, 26.36509356527405] //ne
-        ]
+        ]*/
     });
 
     main.mapa.on('load', map_is_loaded);
