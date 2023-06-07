@@ -257,14 +257,14 @@ const utils = {
 
         main.dims.top = wrap_top.height + 5;//+window.getComputedStyle(document.querySelector('.wrapper-top')).height.slice(0,-2);
         main.dims.left = window.innerWidth - wrap_text.x + 30;
-        main.dims.bottom = window.innerHeight - wrap_text.y + 5;
+        main.dims.bottom = window.innerHeight - wrap_text.y + 10;
 
     },
 
     position_back_button() {
 
-        document.querySelector('button.back-to-main-map').style.setProperty('--top-position', main.dims.top + 'px');
-        document.querySelector('button.back-to-main-map').style.setProperty('--left-position', main.dims.left + 'px');
+        document.querySelector('button.back-to-main-map').style.setProperty('--top-position', (main.dims.top - 5 + 8) + 'px');
+        //document.querySelector('button.back-to-main-map').style.setProperty('--left-position', main.dims.left + 'px');
 
     },
 
@@ -322,10 +322,10 @@ function init_map() {
                 right: window.innerWidth >= 800 ? main.dims.left : 30// 432 : 35
             }
         },
-        /*maxBounds: [
-            [-87.05716227221353, -12.347713915207734], //sw
-            [-43.58672576693186, 26.36509356527405] //ne
-        ]*/
+        maxBounds: [
+            [-117.58288765122606, -20.66405376327529], //sw
+            [-15.84734199583633, 30.659393214665457] //ne
+        ]
     });
 
     main.mapa.on('load', map_is_loaded);
