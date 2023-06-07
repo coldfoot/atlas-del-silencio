@@ -20,6 +20,7 @@
 
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 .outer-wrapper {
@@ -40,6 +41,16 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.outer-wrapper,
+.map-container#map {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: initial; 
 }
 
 .wrapper-top {
@@ -228,7 +239,7 @@ button.back-to-main-map:hover {
     background-color: white;
     padding: 1.5rem;
     line-height: 1.65;
-    border-radius: 2rem 2rem 0 0;
+    border-radius: 2rem;/*2rem 2rem 0 0;*/
 
 }
 
