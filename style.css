@@ -814,6 +814,10 @@ select.info-subtitle {
     [data-state="opening"] .card-container[data-location-type="venezuela"] {
         display: none;
     }
+
+    .menu {
+        padding-top: 5rem;
+    }
     
 }
 

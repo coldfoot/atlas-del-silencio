@@ -387,4 +387,8 @@ h1, h2, h3, h4 {
         height: 6rem;
     }
 
+    .menu {
+        padding-top: 5rem;
+    }
+
 }

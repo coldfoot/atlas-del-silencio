@@ -298,4 +298,8 @@ table th + th {
     main {
         padding-top: 7rem;
     }
+
+    .menu {
+        padding-top: 5rem;
+    }
 }
