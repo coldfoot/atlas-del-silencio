@@ -315,7 +315,7 @@ table th + th {
 }
 
 @media (min-width: 768px) {
-    .bubbles.map {
-        width: 500px;
+    .bubbles.map, .bubbles.bar {
+        width: 400px;
     }
 }
