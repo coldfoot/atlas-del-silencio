@@ -1,0 +1,367 @@
+id,population,category,size,parent_name,name
+0,16774,Desierto,Pequeño,Amazonas,Alto Orinoco (La Esmeralda)
+1,12492,Desierto,Pequeño,Amazonas,Atabapo (San Fernando de Atabapo)
+2,155705,No desierto,Grande,Amazonas,Atures (Puerto Ayacucho)
+3,11902,Desierto,Pequeño,Amazonas,Autana (Isla Ratón)
+4,10488,Desierto,Pequeño,Amazonas,Manapiare (San Juan de Manapiare)
+5,2771,Desierto,Pequeño,Amazonas,Maroa
+6,3071,Desierto,Pequeño,Amazonas,Río Negro (San Carlos de Río Negro)
+7,154362,Desierto Moderado,Grande,Anzoátegui,Anaco
+8,36779,Desierto Moderado,Mediano,Anzoátegui,Aragua (Aragua de Barcelona)
+9,517669,No desierto,Grande,Anzoátegui,Bolívar (Barcelona)
+10,37515,Desierto,Mediano,Anzoátegui,Bruzual (Clarines)
+11,16773,Desierto,Pequeño,Anzoátegui,Cajigal (Onoto)
+12,49544,No desierto,Mediano,Anzoátegui,Diego Bautista Urbaneja (Lechería)
+13,87124,Desierto Moderado,Mediano,Anzoátegui,Freites (Cantaura)
+14,83969,Desierto Moderado,Mediano,Anzoátegui,Guanipa (San José de Guanipa)
+15,39990,No desierto,Mediano,Anzoátegui,Guanta (Guanta)
+16,40467,Desierto,Mediano,Anzoátegui,Independencia (Soledad)
+17,18375,Desierto,Pequeño,Anzoátegui,Libertad (San Mateo)
+18,12420,Desierto,Pequeño,Anzoátegui,McGregor (El Chaparro)
+19,47689,Sin información,Mediano,Anzoátegui,Miranda (Pariaguán)
+20,20179,Desierto,Pequeño,Anzoátegui,Monagas (San Diego de Cabrutica)
+21,16740,Desierto,Pequeño,Anzoátegui,Carvajal (Valle de Guanape)
+22,46362,Desierto Moderado,Mediano,Anzoátegui,Peñalver (Puerto Píritu)
+23,29958,Desierto Moderado,Mediano,Anzoátegui,Píritu (Anzoátegui)
+24,11245,Desierto Moderado,Pequeño,Anzoátegui,San Juan de Capistrano (Boca de Uchire)
+25,11899,Desierto,Pequeño,Anzoátegui,Santa Ana
+26,227930,No desierto,Grande,Anzoátegui,Simón Rodriguez (El Tigre)
+27,317516,No desierto,Grande,Anzoátegui,Sotillo (Puerto La Cruz)
+28,83643,Desierto Moderado,Mediano,Apure,Achaguas (Achaguas)
+29,79541,Desierto,Mediano,Apure,Biruaca (Biruaca)
+30,37084,Desierto,Mediano,Apure,Muñoz (Bruzual)
+31,135459,Desierto,Grande,Apure,Páez (Guasdualito)
+32,42936,Desierto,Mediano,Apure,Pedro Camejo (San Juan de Payara)
+33,35678,Desierto,Mediano,Apure,Rómulo Gallegos (Elorza)
+34,240666,No desierto,Grande,Apure,San Fernando (San Fernando de Apure)
+35,42586,Desierto,Mediano,Aragua,Bolívar (San Mateo)
+36,19848,Desierto,Pequeño,Aragua,Camatagua
+37,143692,Desierto,Grande,Aragua,Francisco Linares Alcántara (Santa Rita)
+38,482356,No desierto,Grande,Aragua,Girardot (Maracay)
+39,37187,Desierto Moderado,Mediano,Aragua,José Ángel Lamas (Santa Cruz)
+40,170268,No desierto,Grande,Aragua,José Félix Ribas (La Victoria)
+41,57548,Desierto Moderado,Mediano,Aragua,José Rafael Revenga (El Consejo)
+42,132681,Desierto Moderado,Grande,Aragua,Libertador (Palo Negro)
+43,117941,Desierto Moderado,Grande,Aragua,Mario Briceño Iragorry (El Limón)
+44,15457,Desierto,Pequeño,Aragua,Ocumare de la Costa de Oro (Ocumare de la Costa)
+45,28948,Desierto,Mediano,Aragua,San Casimiro (San Casimiro)
+46,26982,Desierto,Mediano,Aragua,San Sebastián (San Sebastián de los Reyes)
+47,249608,Desierto Moderado,Grande,Aragua,Santiago Mariño (Turmero)
+48,43906,Desierto Moderado,Mediano,Aragua,Santos Michelena (Las Tejerías)
+49,139513,Desierto Moderado,Grande,Aragua,Sucre (Cagua)
+50,16738,Desierto Moderado,Pequeño,Aragua,Tovar (Colonia Tovar)
+51,24382,Desierto,Pequeño,Aragua,Urdaneta (Barbacoas)
+52,165573,Desierto,Grande,Aragua,Zamora (Villa de Cura)
+53,49337,No desierto,Mediano,Barinas,Alberto Arvelo Torrealba (Sabaneta)
+54,18579,Desierto Moderado,Pequeño,Barinas,Andrés Eloy Blanco (El Cantón)
+55,92985,No desierto,Mediano,Barinas,Antonio José de Sucre (Socopó)
+56,32223,Desierto,Mediano,Barinas,Arismendi
+57,442921,No desierto,Grande,Barinas,Barinas
+58,63657,No desierto,Mediano,Barinas,Bolívar (Barinitas)
+59,30535,No desierto,Mediano,Barinas,Cruz Paredes (Barrancas)
+60,62689,No desierto,Mediano,Barinas,Ezequiel Zamora (Santa Bárbara)
+61,43393,No desierto,Mediano,Barinas,Obispos
+62,79478,No desierto,Mediano,Barinas,Pedraza (Ciudad Bolivia)
+63,47795,No desierto,Mediano,Barinas,Rojas (Libertad)
+64,28655,No desierto,Mediano,Barinas,Sosa (Ciudad de Nutrias)
+65,56520,Desierto Moderado,Mediano,Bolívar,Angostura (Ciudad Piar)
+66,110647,Desierto,Grande,Bolívar,Cedeño (Caicara del Orinoco)
+67,27601,No desierto,Mediano,Bolívar,El Callao
+68,41392,Desierto Moderado,Mediano,Bolívar,Gran Sabana (Santa Elena de Uairén)
+69,453144,No desierto,Grande,Bolívar,Heres (Ciudad Bolívar)
+70,978133,No desierto,Grande,Bolívar,Caroní (Ciudad Guayana)
+71,19913,Desierto Moderado,Pequeño,Bolívar,Padre Pedro Chien (El Palmar)
+72,135761,No desierto,Grande,Bolívar,Piar (Upata)
+73,29758,Desierto Moderado,Mediano,Bolívar,Roscio (Guasipati)
+74,68138,No desierto,Mediano,Bolívar,Sifontes (Tumeremo)
+75,26396,Desierto Moderado,Mediano,Bolívar,Sucre (Maripa)
+76,54424,No desierto,Mediano,Carabobo,Bejuma
+77,167780,Desierto,Grande,Carabobo,Carlos Arvelo (Güigüe)
+78,118599,Desierto Moderado,Grande,Carabobo,Diego Ibarra (Mariara)
+79,202579,No desierto,Grande,Carabobo,Guacara
+80,79366,No desierto,Mediano,Carabobo,Juan José Mora (Morón)
+81,194987,No desierto,Grande,Carabobo,Libertador (Tocuyito)
+82,171286,No desierto,Grande,Carabobo,Los Guayos
+83,33716,No desierto,Mediano,Carabobo,Miranda
+84,30274,No desierto,Mediano,Carabobo,Montalbán
+85,194335,No desierto,Grande,Carabobo,Naguanagua
+86,207031,No desierto,Grande,Carabobo,Puerto Cabello
+87,126579,No desierto,Grande,Carabobo,San Diego
+88,71012,Desierto Moderado,Mediano,Carabobo,San Joaquín
+89,958206,No desierto,Grande,Carabobo,Valencia
+90,19133,Desierto,Pequeño,Cojedes,Anzoátegui (Cojedes)
+91,131415,No desierto,Grande,Cojedes,Ezequiel Zamora
+92,120158,Desierto,Grande,Cojedes,Falcón (Tinaquillo)
+93,13427,Desierto,Pequeño,Cojedes,Girardot (El Baúl)
+94,10784,Desierto,Pequeño,Cojedes,Lima Blanco (Macapo)
+95,18870,Desierto,Pequeño,Cojedes,Pao de San Juan Bautista (El Pao)
+96,14302,Desierto,Pequeño,Cojedes,Ricaurte (Libertad)
+97,20557,Desierto Moderado,Pequeño,Cojedes,Rómulo Gallegos
+98,39458,Desierto,Mediano,Cojedes,Tinaco
+99,134014,Desierto Moderado,Grande,Delta Amacuro,Tucupita
+100,34878,Desierto,Mediano,Delta Amacuro,Antonio Díaz Curiapo (Curiapo)
+101,42413,Desierto,Mediano,Delta Amacuro,Casacoima (Sierra Imataca)
+102,8375,Desierto,Pequeño,Delta Amacuro,Pedernales
+103,81462,Desierto Moderado,Mediano,Distrito capital,Parroquia 23 de enero
+104,58277,Desierto Moderado,Mediano,Distrito capital,Parroquia Altagracia
+105,133005,Desierto Moderado,Grande,Distrito capital,Parroquia Antímano
+106,75473,Desierto Moderado,Mediano,Distrito capital,Parroquia Candelaria
+107,154529,Desierto Moderado,Grande,Distrito capital,Parroquia Caricuao
+108,15701,No desierto,Pequeño,Distrito capital,Parroquia Catedral
+109,61801,Desierto Moderado,Mediano,Distrito capital,Parroquia Coche
+110,55426,Desierto Moderado,Mediano,Distrito capital,Parroquia El Junquito
+111,123498,Desierto Moderado,Grande,Distrito capital,Parroquia El Paraíso
+112,128281,Desierto Moderado,Grande,Distrito capital,Parroquia El Recreo
+113,147937,Desierto Moderado,Grande,Distrito capital,Parroquia El Valle
+114,84494,Desierto Moderado,Mediano,Distrito capital,Parroquia La Pastora
+115,124937,Desierto Moderado,Grande,Distrito capital,Parroquia La Vega
+116,48089,Desierto Moderado,Mediano,Distrito capital,Parroquia Macarao
+117,41441,Desierto Moderado,Mediano,Distrito capital,Parroquia San Agustín
+118,33617,Desierto Moderado,Mediano,Distrito capital,Parroquia San Bernardino
+119,44324,Desierto Moderado,Mediano,Distrito capital,Parroquia San José
+120,108902,Desierto Moderado,Grande,Distrito capital,Parroquia San Juan
+121,75846,Desierto Moderado,Mediano,Distrito capital,Parroquia San Pedro
+122,103719,Desierto Moderado,Grande,Distrito capital,Parroquia Santa Rosalía
+123,29847,Desierto Moderado,Mediano,Distrito capital,Parroquia Santa Teresa
+124,363092,Desierto Moderado,Grande,Distrito capital,Parroquia Sucre
+125,23540,No desierto,Pequeño,Falcón,Acosta (San Juan de los Cayos)
+126,10247,Desierto Moderado,Pequeño,Falcón,Bolívar (San Luis)
+127,28001,Desierto Moderado,Mediano,Falcón,Buchivacoa (Capatárida)
+128,13293,No desierto,Pequeño,Falcón,Cacique Manaure (Yaracal)
+129,300208,No desierto,Grande,Falcón,Carirubana (Punto Fijo)
+130,50576,No desierto,Mediano,Falcón,Colina (La Vela de Coro)
+131,28974,No desierto,Mediano,Falcón,Dabajuro (Dabajuro)
+132,12180,No desierto,Pequeño,Falcón,Democracia (Pedregal)
+133,59381,No desierto,Mediano,Falcón,Falcón (Pueblo Nuevo)
+134,36495,Desierto Moderado,Mediano,Falcón,Federación (Churuguara)
+135,13776,Desierto Moderado,Pequeño,Falcón,Jacura
+136,49450,No desierto,Mediano,Falcón,Los Taques (Santa Cruz de Los Taques)
+137,30371,Desierto Moderado,Mediano,Falcón,Mauroa (Mene de Mauroa)
+138,260919,No desierto,Grande,Falcón,Miranda (Santa Ana de Coro)
+139,24268,No desierto,Pequeño,Falcón,Monseñor Iturriza (Chichiriviche)
+140,9050,No desierto,Pequeño,Falcón,Palmasola
+141,17044,Desierto Moderado,Pequeño,Falcón,Petit (Cabure)
+142,12739,Desierto Moderado,Pequeño,Falcón,Píritu (Falcón)
+143,13399,Desierto Moderado,Pequeño,Falcón,San Francisco (Mirimire)
+144,45709,No desierto,Mediano,Falcón,Silva (Tucacas)
+145,6895,Desierto Moderado,Pequeño,Falcón,Sucre (La Cruz de Taratara)
+146,6518,No desierto,Pequeño,Falcón,Tocópero
+147,19229,Desierto Moderado,Pequeño,Falcón,Unión (Santa Cruz de Bucaral)
+148,9742,Desierto Moderado,Pequeño,Falcón,Urumaco
+149,41588,No desierto,Mediano,Falcón,Zamora (Puerto Cumarebo)
+150,30545,Desierto Moderado,Mediano,Guárico,Ortíz
+151,18424,No desierto,Pequeño,Guárico,Chaguaramas
+152,21653,No desierto,Pequeño,Guárico,El Socorro
+153,32542,Desierto,Mediano,Guárico,Esteros de Camaguan
+154,188099,Desierto Moderado,Grande,Guárico,Francisco de Miranda (Calabozo)
+155,48374,No desierto,Mediano,Guárico,José Félix Ribas (Tucupido)
+156,99472,Desierto Moderado,Mediano,Guárico,José Tadeo Monagas (Altagracia de Orituco)
+157,174939,No desierto,Grande,Guárico,Juan Germán Roscio (San Juan de Los Morros)
+158,35353,Desierto Moderado,Mediano,Guárico,Julián Mellado (El Sombrero)
+159,43396,No desierto,Mediano,Guárico,Las Mercedes
+160,165511,No desierto,Grande,Guárico,Leonardo Infante (Valle de La Pascua)
+161,79854,No desierto,Mediano,Guárico,Pedro Zaraza (Zaraza)
+162,25325,Desierto Moderado,Mediano,Guárico,San Gerónimo de Guayabal (Guayabal)
+163,14801,No desierto,Pequeño,Guárico,San José de Guaribe
+164,16761,No desierto,Pequeño,Guárico,Santa María de Ipire
+165,56353,Desierto,Mediano,Lara,Andrés Eloy Blanco (Sanare)
+166,60906,Desierto Moderado,Mediano,Lara,Crespo (Duaca)
+167,1187312,No desierto,Grande,Lara,Iribarren (Barquisimeto)
+168,120462,Desierto,Grande,Lara,Jiménez (Quibor)
+169,143864,Desierto,Grande,Lara,Morán (El Tocuyo)
+170,207349,No desierto,Grande,Lara,Palavecino (Cabudare)
+171,42095,Desierto,Mediano,Lara,Simón Planas (Sarare)
+172,215536,Desierto Moderado,Grande,Lara,Torres (Carora)
+173,71095,Desierto,Mediano,Lara,Urdaneta (Siquisique)
+174,170995,No desierto,Grande,Mérida,Alberto Adriani (El Vigía)
+175,17613,Desierto Moderado,Pequeño,Mérida,Andrés Bello (La Azulita)
+176,5223,Desierto Moderado,Pequeño,Mérida,Aricagua
+177,6122,Desierto Moderado,Pequeño,Mérida,Briceño (Torondoy)
+178,137107,No desierto,Grande,Mérida,Campo Elías (Ejido)
+179,16111,Desierto Moderado,Pequeño,Mérida,Chacón (Canaguá)
+180,25733,No desierto,Mediano,Mérida,Dávila (Bailadores)
+181,41068,Desierto Moderado,Mediano,Mérida,Febres Cordero (Nueva Bolivia)
+182,11216,No desierto,Pequeño,Mérida,Guaraque (Guaraque)
+183,308142,No desierto,Grande,Mérida,Libertador (Mérida)
+184,24455,No desierto,Pequeño,Mérida,Marquina (Tabay)
+185,28152,Desierto,Mediano,Mérida,Miranda (Timotes)
+186,3997,Desierto Moderado,Pequeño,Mérida,Noguera (Santa María de Caparo)
+187,34410,No desierto,Mediano,Mérida,Parra Olmedo (Tucaní)
+188,30047,No desierto,Mediano,Mérida,Antonio Pinto Salinas (Santa Cruz de Mora)
+189,13483,No desierto,Pequeño,Mérida,Pueblo Llano
+190,11817,No desierto,Pequeño,Mérida,Quintero (Santo Domingo)
+191,30790,Desierto Moderado,Mediano,Mérida,Ramos de Lora (Santa Elena de Arenales)
+192,24097,No desierto,Pequeño,Mérida,Rangel (Mucuchíes)
+193,17987,Desierto Moderado,Pequeño,Mérida,Salas (Arapuey)
+194,73744,No desierto,Mediano,Mérida,Sucre (Lagunillas)
+195,13986,No desierto,Pequeño,Mérida,Zea
+196,47255,No desierto,Mediano,Mérida,Tovar
+197,101403,Desierto Moderado,Grande,Miranda,Acevedo (Caucagua)
+198,24057,Desierto Moderado,Pequeño,Miranda,Andrés Bello (San José de Barlovento)
+199,384413,Desierto Moderado,Grande,Miranda,Baruta
+200,71097,Desierto Moderado,Mediano,Miranda,Brión (Higuerote)
+201,31392,Desierto,Mediano,Miranda,Buroz (Mamporal)
+202,59797,No desierto,Mediano,Miranda,Carrizal
+203,81415,No desierto,Mediano,Miranda,Chacao
+204,149629,No desierto,Grande,Miranda,Cristóbal Rojas (Charallave)
+205,95483,Desierto Moderado,Mediano,Miranda,El Hatillo
+206,307662,No desierto,Grande,Miranda,Guaicaipuro (Los Teques)
+207,168619,No desierto,Grande,Miranda,Independencia (Santa Teresa del Tuy)
+208,181433,Desierto Moderado,Grande,Miranda,Lander (Ocumare del Tuy)
+209,80407,No desierto,Mediano,Miranda,Los Salias (San Antonio de los Altos)
+210,44353,Desierto,Mediano,Miranda,Páez (Río Chico)
+211,131216,No desierto,Grande,Miranda,Paz Castillo (Santa Lucía)
+212,25126,Desierto,Mediano,Miranda,Pedro Gual (Cúpira)
+213,253016,No desierto,Grande,Miranda,Plaza (Guarenas)
+214,50920,Desierto Moderado,Mediano,Miranda,Simón Bolívar (San Francisco de Yare)
+215,730183,Desierto Moderado,Grande,Miranda,Sucre (Petare)
+216,177568,No desierto,Grande,Miranda,Urdaneta (Cúa)
+217,231587,No desierto,Grande,Miranda,Zamora (Guatire)
+218,20269,Desierto Moderado,Pequeño,Monagas,Acosta (San Antonio de Capayacuar)
+219,13567,Desierto Moderado,Pequeño,Monagas,Aguasay
+220,44375,Desierto Moderado,Mediano,Monagas,Bolívar (Caripito)
+221,39403,Desierto,Mediano,Monagas,Caripe
+222,40922,Desierto Moderado,Mediano,Monagas,Cedeño (Caicara de Maturín)
+223,50911,Desierto,Mediano,Monagas,Libertador (Temblador)
+224,637082,No desierto,Grande,Monagas,Maturín
+225,52057,Desierto,Mediano,Monagas,Piar (Aragua de Maturín)
+226,31175,Desierto Moderado,Mediano,Monagas,Punceres (Quiriquire)
+227,11099,Desierto Moderado,Pequeño,Monagas,Santa Bárbara
+228,27218,Desierto,Mediano,Monagas,Sotillo (Barrancas del Orinoco)
+229,10745,Desierto,Pequeño,Monagas,Uracoa
+230,74656,Desierto Moderado,Mediano,Monagas,Zamora (Punta de Mata)
+231,37499,Desierto Moderado,Mediano,Nueva Esparta,Antolín del Campo (La Plaza de Paraguachí)
+232,38430,No desierto,Mediano,Nueva Esparta,Arismendi (La Asunción)
+233,94939,Desierto Moderado,Mediano,Nueva Esparta,Díaz (San Juan Bautista)
+234,90431,Desierto,Mediano,Nueva Esparta,García (El Valle del Espíritu Santo)
+235,54815,Desierto Moderado,Mediano,Nueva Esparta,Gómez (Santa Ana)
+236,68431,No desierto,Mediano,Nueva Esparta,Maneiro (Pampatar)
+237,48545,Desierto Moderado,Mediano,Nueva Esparta,Marcano (Juan Griego)
+238,137137,No desierto,Grande,Nueva Esparta,Mariño (Porlamar)
+239,35162,Desierto Moderado,Mediano,Nueva Esparta,Península de Macanao (Boca de Río)
+240,49288,Desierto Moderado,Mediano,Nueva Esparta,Tubores (Punta de Piedras)
+241,12032,Desierto Moderado,Pequeño,Nueva Esparta,Villalba (San Pedro de Coche)
+242,25175,Desierto Moderado,Mediano,Portuguesa,Agua Blanca
+243,204553,No desierto,Grande,Portuguesa,Araure
+244,53530,Desierto Moderado,Mediano,Portuguesa,Esteller (Píritu)
+245,242436,No desierto,Grande,Portuguesa,Guanare
+246,45522,Desierto,Mediano,Portuguesa,Guanarito
+247,28716,Desierto,Mediano,Portuguesa,Monseñor José Vicenti de Unda (Chabasquén de Unda)
+248,58838,Desierto,Mediano,Portuguesa,Ospino
+249,222441,No desierto,Grande,Portuguesa,Páez (Acarigua)
+250,20116,Desierto Moderado,Pequeño,Portuguesa,Papelón
+251,28244,Desierto,Mediano,Portuguesa,San Genaro de Boconoíto (Boconoíto)
+252,22339,Desierto Moderado,Pequeño,Portuguesa,San Rafael de Onoto
+253,21174,Desierto Moderado,Pequeño,Portuguesa,Santa Rosalía (El Playón)
+254,50288,Desierto,Mediano,Portuguesa,Sucre (Biscucuy)
+255,77693,Desierto,Mediano,Portuguesa,Turén (Villa Bruzual)
+256,32602,Desierto,Mediano,Sucre,Andrés Eloy Blanco (Casanay)
+257,24491,Desierto,Pequeño,Sucre,Andrés Mata (San José de Aerocuar)
+258,58310,Desierto,Mediano,Sucre,Arismendi (Río Caribe)
+259,38485,Desierto,Mediano,Sucre,Benítez (El Pilar)
+260,171370,Desierto,Grande,Sucre,Bermúdez (Carúpano)
+261,27282,Desierto,Mediano,Sucre,Bolívar (Marigüitar)
+262,26213,Desierto,Mediano,Sucre,Cajigal (Yaguaraparo)
+263,43451,Desierto,Mediano,Sucre,Cruz Salmerón Acosta (Araya)
+264,11854,Desierto,Pequeño,Sucre,Libertador (Tunapuy)
+265,29793,Desierto,Mediano,Sucre,Mariño (Irapa).
+266,17419,Desierto,Pequeño,Sucre,Mejía (San Antonio del Golfo)
+267,66070,Desierto,Mediano,Sucre,Montes (Cumanacoa)
+268,74844,Desierto,Mediano,Sucre,Ribero (Cariaco)
+269,465225,No desierto,Grande,Sucre,Sucre (Cumaná)
+270,50898,Desierto,Mediano,Sucre,Valdez (Güiria)
+271,22160,Desierto Moderado,Pequeño,Táchira,Andrés Bello (Cordero)
+272,11447,Desierto,Pequeño,Táchira,Antonio Rómulo Costa (Las Mesas)
+273,63253,Desierto,Mediano,Táchira,Ayacucho (Colón)
+274,67039,Desierto,Mediano,Táchira,Bolívar (San Antonio del Táchira)
+275,140692,Desierto Moderado,Grande,Táchira,Cárdenas (Táriba)
+276,35866,Desierto,Mediano,Táchira,Córdoba (Santa Ana de Táchira)
+277,49602,Desierto,Mediano,Táchira,Fernández Feo (San Rafael del Piñal)
+278,4423,Desierto,Pequeño,Táchira,Francisco de Miranda (San José de Bolívar)
+279,53256,Desierto,Mediano,Táchira,García de Hevia (La Fría)
+280,48884,Desierto,Mediano,Táchira,Guásimos (Palmira)
+281,40827,Desierto,Mediano,Táchira,Independencia (Capacho Nuevo)
+282,45500,Desierto,Mediano,Táchira,Jáuregui (La Grita)
+283,11000,Desierto,Pequeño,Táchira,José María Vargas (El Cobre)
+284,94019,Desierto,Mediano,Táchira,Junín (Rubio)
+285,29910,Desierto,Mediano,Táchira,Libertad (Capacho Viejo)
+286,24034,Desierto,Pequeño,Táchira,Libertador (Abejales)
+287,14176,Desierto Moderado,Pequeño,Táchira,Lobatera
+288,20820,Desierto Moderado,Pequeño,Táchira,Michelena
+289,34549,Desierto,Mediano,Táchira,Panamericano (Coloncito)
+290,57270,Desierto,Mediano,Táchira,Pedro María Ureña (Ureña)
+291,6333,Desierto,Pequeño,Táchira,Rafael Urdaneta (Delicias)
+292,20227,Desierto,Pequeño,Táchira,Samuel Dario Maldonado (La Tendida)
+293,292556,No desierto,Grande,Táchira,San Cristóbal
+294,8077,Desierto,Pequeño,Táchira,San Judas Tadeo (Umuquena)
+295,11232,Desierto,Pequeño,Táchira,Seboruco
+296,2698,Desierto,Pequeño,Táchira,Simón Rodríguez (San Simon)
+297,8042,Desierto,Pequeño,Táchira,Sucre (Queniquea)
+298,55406,Desierto,Mediano,Táchira,Torbes (San Josecito)
+299,21891,Desierto,Pequeño,Táchira,Uribante (Pregonero)
+300,21060,Desierto Moderado,Pequeño,Trujillo,Andrés Bello (Santa Isabel)
+301,112463,No desierto,Grande,Trujillo,Boconó
+302,20732,No desierto,Pequeño,Trujillo,Bolívar (Sabana Grande)
+303,6701,No desierto,Pequeño,Trujillo,Campos Elías
+304,36220,Desierto Moderado,Mediano,Trujillo,Candelaria (Chejendé)
+305,35789,Desierto,Mediano,Trujillo,Carache
+306,75289,No desierto,Mediano,Trujillo,Carvajal (Carvajal)
+307,35630,Desierto Moderado,Mediano,Trujillo,Escuque
+308,25262,Desierto Moderado,Mediano,Trujillo,La Ceiba (Santa Apolonia)
+309,5943,Desierto Moderado,Pequeño,Trujillo,Márquez Cañizales (El Paradero)
+310,28553,Desierto Moderado,Mediano,Trujillo,Miranda (El Dividive)
+311,16372,Desierto Moderado,Pequeño,Trujillo,Monte Carmelo
+312,26151,Desierto Moderado,Mediano,Trujillo,Motatán
+313,61253,No desierto,Mediano,Trujillo,Pampán
+314,36981,No desierto,Mediano,Trujillo,Pampanito
+315,29098,Desierto Moderado,Mediano,Trujillo,Rangel (Betijoque)
+316,39723,Desierto Moderado,Mediano,Trujillo,Sucre (Sabana de Mendoza)
+317,73748,No desierto,Mediano,Trujillo,Trujillo
+318,44050,Desierto Moderado,Mediano,Trujillo,Urdaneta (La Quebrada)
+319,175496,No desierto,Grande,Trujillo,Valera
+320,52390,Desierto Moderado,Mediano,Vargas,Parroquia Caraballeda
+321,45349,Desierto,Mediano,Vargas,Parroquia Carayaca
+322,34186,Desierto,Mediano,Vargas,Parroquia Carlos Soublette
+323,6070,Desierto,Pequeño,Vargas,Parroquia Caruao
+324,91758,Desierto,Mediano,Vargas,Parroquia Catia La Mar
+325,4649,Desierto,Pequeño,Vargas,Parroquia El Junko
+326,20915,Desierto Moderado,Pequeño,Vargas,Parroquia La Guaira
+327,22190,Desierto Moderado,Pequeño,Vargas,Parroquia Macuto
+328,37920,Desierto Moderado,Mediano,Vargas,Parroquia Maiquetía
+329,19544,Desierto,Pequeño,Vargas,Parroquia Naiguatá
+330,53436,Desierto,Mediano,Vargas,Parroquia Urimare
+331,26432,Desierto Moderado,Mediano,Yaracuy,Arístides Bastidas (San Pablo)
+332,39695,Desierto,Mediano,Yaracuy,Bolívar (Aroa)
+333,88687,Desierto Moderado,Mediano,Yaracuy,Bruzual (Chivacoa)
+334,54423,No desierto,Mediano,Yaracuy,Cocorote
+335,78203,No desierto,Mediano,Yaracuy,Independencia
+336,22310,No desierto,Pequeño,Yaracuy,La Trinidad (Boraure)
+337,16143,Desierto Moderado,Pequeño,Yaracuy,Monge (Yumare)
+338,72890,Desierto,Mediano,Yaracuy,Nirgua
+339,25118,Desierto,Mediano,Yaracuy,Páez (Sabana de Parra)
+340,131493,Desierto,Grande,Yaracuy,Peña (Yaritagua)
+341,135095,No desierto,Grande,Yaracuy,San Felipe
+342,25446,Desierto Moderado,Mediano,Yaracuy,Sucre (Guama)
+343,27639,Desierto,Mediano,Yaracuy,Urachiche
+344,33531,Desierto,Mediano,Yaracuy,Veroes (Farriar)
+345,108713,Desierto,Grande,Zulia,Baralt (San Timoteo)
+346,51597,Desierto,Mediano,Zulia,Bolívar (Tía Juana)
+347,319035,Desierto,Grande,Zulia,Cabimas
+348,48437,Desierto,Mediano,Zulia,Catatumbo (Encontrados)
+349,148724,Desierto,Grande,Zulia,Colón (San Carlos del Zulia)
+350,77950,Desierto,Mediano,Zulia,Guajira (Sinamaica)
+351,97784,Desierto,Mediano,Zulia,La Cañada de Urdaneta (Concepción)
+352,232027,Desierto,Grande,Zulia,Lagunillas (Ciudad Ojeda)
+353,138500,Desierto,Grande,Zulia,Lossada (La Concepción)
+354,145056,Desierto,Grande,Zulia,Machiques
+355,234196,Desierto,Grande,Zulia,Mara (San Rafael del Moján)
+356,1823841,No desierto,Grande,Zulia,Maracaibo
+357,116423,Desierto,Grande,Zulia,Miranda (Los Puertos de Altagracia)
+358,14746,Desierto,Pequeño,Zulia,Padilla (El Toro)
+359,38914,Desierto,Mediano,Zulia,Pulgar (Pueblo Nuevo
+360,101839,Desierto,Grande,Zulia,Rosario (La Villa del Rosario)
+361,541628,No desierto,Grande,Zulia,San Francisco
+362,68341,Desierto,Mediano,Zulia,Santa Rita
+363,35203,Desierto,Mediano,Zulia,Semprún (Casigua El Cubo)
+364,69705,Desierto,Mediano,Zulia,Sucre (Bobures)
+365,61243,Desierto,Mediano,Zulia,Valmore Rodríguez (Bachaquero)

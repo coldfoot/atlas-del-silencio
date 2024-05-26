@@ -556,8 +556,6 @@ class Controls {
             ref : 'btn-menu',
             handler : (e) => {
 
-                console.log('click');
-
                 const menu = document.querySelector('.menu');
                 menu.classList.toggle('hidden');
 
@@ -585,8 +583,6 @@ class Controls {
     constructor() {
 
         this.buttons.forEach(button => {
-
-            console.log('hey');
 
             this.refs[button.ref] = new Button('.' + button.ref, button.handler)
 
