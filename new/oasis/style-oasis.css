@@ -247,7 +247,6 @@ p {
     pointer-events: none;
 }
 
-
 /* Shortcut to map */
 @media screen and (min-width: 1000px) {
     .fixed-sidebar {
@@ -368,6 +367,14 @@ p {
     padding-top: 50px;
     padding-bottom: 0%;
     position: relative;
+}
+
+.title-container {
+    padding: 10%;
+    padding-top: 50px;
+    padding-bottom: 0%;
+    position: relative;
+    margin-bottom: 30px;
 }
 
 /* Sections – Intro */
@@ -662,9 +669,8 @@ section.stories p.img-legend {
 
 section.stories .big-opener-container {
     position: relative;
-    margin-left: -12%; /* Negative margin to offset the text-container's padding */
-    margin-right: -6%;
-    margin-bottom: 60px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 section.stories .big-opener-container p.img-legend {
@@ -762,8 +768,7 @@ img.aspa, img.linha {
 section.stories .box-profile {
     margin-top: 100px;
     position: relative;
-    padding: 2% 10% 2% 10%;
-    padding
+    padding: 2% 10% 2% 10% !important;
     width: 100%;
     /* margin-right: -6%; */
 }
