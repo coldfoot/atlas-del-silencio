@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" id="logo">
+        <div id="hamburger-menu">Menu</div>
+    </header>
+    <div id="scrollytelling">Scrollytelling placeholder</div>
+    <main>
+        <h1 id="headline">Atlas del Silencio</h1>
+        <h2 id="subheadline">Segunda edición</h2>
+        <section>
+
+            <p>Un desierto es un lugar donde es difícil vivir. La Real Academia Española lo define como un sitio despoblado, solo e inhabitado que, por la falta casi total de lluvias, carece de vegetación o la tiene muy escasa. Más que un concepto, esta definición fue una metáfora que guió el desarrollo de esta investigación, la cual se planteó obtener una fotografía sobre la cobertura informativa venezolana en todos los municipios del país.</p>
+
+            <p>Un desierto de noticias –también llamado desierto informativo–  es un sitio en el que hay poca o ninguna cobertura sobre lo local, lo hiperlocal: esto es información de interés inmediato para los habitantes de una comunidad; eso que les permite tomar decisiones sobre su cotidianidad y entender el mundo que les rodea.</p>
+
+            <p>La escasez de información local es considerada por organizaciones como la Red Interamericana de la Prensa como una de las amenazas estructurales a la libertad de expresión, la libertad de prensa y la participación ciudadana, pues esto dificulta la construcción de una sociedad mejor informada, plural y democrática.</p>
+
+            <p>Esto ocurre en un país impactado por una galopante crisis económica, política y social, donde se ha producido un progresivo debilitamiento del ecosistema de medios. Emisoras, portales de noticias y periódicos han ido desapareciendo durante la última década. Los que quedan, y los que han emergido al fragor de ese desmantelamiento, deben hacerle frente a mecanismos de censura cada vez más sofisticados y a la criminalización del ejercicio periodístico, lo que, en un perverso círculo vicioso, contribuye a la desaparición de más medios.</p>
+
+            <p>Este contexto de silencio no solo reduce el acceso a la información de interés público, sino que además limita el derecho de los ciudadanos a expresarse sobre los problemas que los afectan en sus comunidades, a hacer contraloría y fiscalizar a quienes están en el poder.</p>
+
+        </section>
+        <section>
+            <h3>La desertificación en Venezuela avanzó desde 2020</h3>
+
+            <p>El resultado del estudio es que 7 millones 25 mil 427 venezolanos (21% de la población) viven en desiertos de noticias. Es decir, en alguna de las 133 localidades que, de acuerdo con esta investigación, pueden catalogarse como desiertos informativos.</p>
+
+            <p>El dato, pasmoso, supone un incremento sustancial de la aridez informativa con respecto a la primera edición de la investigación que, hace dos años, en 2020, arrojó que eran 5 millones 271 mil 753 los venezolanos en desiertos de noticias.</p>
+
+            <div class="chart-container">
+                <h4>Avanza el porcentaje de población venezolana que vive en desiertos</h4>
+                <p class="chart-subheadline">Desde el último levantamiento de IPYS, realizado hace dos años, la crisis informativa en el país se ha agudizado.</p>
+                <div id="bars"></div>
+            </div>
+
+            <p>Esto sin considerar los 8 millones 81 mil 85 ciudadanos (24.26% de la población) que viven en los 123 desiertos moderados identificados (lugares en los que se reportaron al menos dos medios que publican información local, lo cual se considera poco). De  acuerdo con esto, serían más de 15 millones de venezolanos que no tienen a disposición suficientes fuentes de información noticiosa sobre su realidad más próxima.</p>
+
+            <p>Esto sin considerar los 8 millones 81 mil 85 ciudadanos (24.26% de la población) que viven en los 123 desiertos moderados identificados (lugares en los que se reportaron al menos dos medios que publican información local, lo cual se considera poco). De  acuerdo con esto, serían más de 15 millones de venezolanos que no tienen a disposición suficientes fuentes de información noticiosa sobre su realidad más próxima.</p>
+
+        </section>
+
+        <section>
+            <h3>14 de los 23 estados se volvieron más desérticos</h3>
+            <p>Cuando se desagregan los datos, se puede ver cómo esta dinámica también se reproduce en los estados del país. En 14 de los 23 estados, el número de personas viviendo en áreas de desiertos de noticias aumentó.</p>
+            <p>Solo en Zulia, se añadieron 1 millón 178 mil 868 personas al total de los que viven en zonas desérticas. Esto ocurrió porque 10 ciudades que eran consideradas desiertos moderados en 2020 se convirtieron en desiertos, incluyendo Cabimas, la tercera ciudad más poblada, con un estimado de 319 mil 35 habitantes en 2022.</p>
+
+            <div class="chart-container">
+                <h4>La mayoría de los estados venezolanos tiene más desertos de noticias ahora que en 2022</h4>
+                <p class="chart-subheadline">Situación se agravo más em zonas como Táchira, Sucre y Zulia</p>
+
+                <div class="btns">
+                    <button id="Desiertos" class="btn-categories btn-desiertos" data-btn-category="Desierto"></button>
+                    <button id="DesiertosModerados" class="btn-categories btn-semi-desiertos" data-btn-category="Desierto moderado"></button>
+                    <button id="NoDesiertos"  class="btn-categories btn-no-desiertos" data-btn-category="No desierto"></button>
+                </div>
+                <div class="slope-legend-container"></div>
+                <p class='chart-legend'>100% de la población del estado ↑ </p>  
+                <div id="slopes"></div>
+                <p class='chart-legend'>0% de la población del estado ↓ </p>
+
+            </div>
+
+            <p>Procesos similares ocurrieron en Sucre y Táchira, que pasaron de tener cuatro y 11 desiertos, respectivamente, a tener 14 y 24.</p>
+            <p>Cabe también destacar que en el Distrito Capital y en Vargas se cambió la metodología de investigación entre 2020 y 2022. Ahora se clasifica a cada parroquia de estos territorios en vez de los municipios autónomos como un todo. De este modo, ahora se reporta una población que mayoritariamente no tiene acceso a noticias hiperlocales, en oposición al dato de 2020 que mostraba que todos vivían en una región no desértica.</p>
+
+        </section>
+        <!-- Repeat the section as needed -->
+
+        <section>
+
+            <h3>Un panorama geográfico</h3>
+            <p>Cuando si pone atención al panorama de 2022, es posible identificar también las características comunes de zonas donde hay más desiertos.</p>
+
+            <div class="chart-container">
+                <div class="bubble-tooltip"></div>
+                <h4>Título</h4>
+                <p class="chart-subheadline">Cada círculo representa a una ciudad venezolana</p>
+                <div id="bubble-legend">
+                    <img src="./imgs/legends/bubble-legend@2x.png" width="300">
+                </div>
+                <div id="bubbles"></div>
+            </div>
+
+            <p><strong>Hoy los estados con más desiertos son Táchira (28), Zulia (19) y Sucre (14).</strong> Pero es importante tomar en consideración que esos son estados con más municipios que otros. Por ejemplo, es de hacer notar los casos de Delta Amacuro (sólo tiene 4 municipios, 3 de los cuales son desiertos y 1 es desierto moderado) y Vargas (compuesto por un solo municipio de 11 parroquias, de las cuales 7 son desiertos y 4 desiertos moderados).</p>
+             
+            <p><strong>En algunos estados fronterizos se extienden largos desiertos informativos.</strong>Ocurre en Amazonas, Apure, Delta Amacuro, Sucre, Táchira y Zulia, entidades por las que han salido muchos migrantes venezolanos en condiciones de vulnerabilidad hacia otros destinos, y en las cuales la mayoría de los municipios son desiertos.</p>
+
+            <p><strong>Las precarias condiciones de infraestructura inciden en la aridez.</strong> Carreteras inaccesibles, falta de electricidad e Internet. Destaca el caso, por ejemplo, del estado Miranda (entidad en la que viven unos 3. 380.776 ciudadanos en 23 municipios), donde sólo Pedro Gual (Cúpira), Páez (Río Chico) y Buroz (Mamporal), son desiertos de noticias. Se trata de municipios rurales, distantes entre sí, alejados de los principales centros urbanos. </p>
+
+            <p><strong>En algunos casos los municipios que son considerados "desiertos informativos" pueden tener un bajo nivel socioeconómico.</strong> Delta Amacuro, Sucre y Cojedes, por ejemplo, son entidades en las que, de acuerdo con la Encuesta Nacional de Condiciones de Vida (2022), más de 90% de la población es pobre y sobrevive lidiando con la inseguridad alimentaria. Casi la totalidad de los municipios de esos estados son desiertos severos o moderados.</p>
+
+
+        </section>
+    </main>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!--<script src="https://d3js.org/d3.v5.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/d3-delaunay@6"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+
+    <!-- /* STACKED BAR CHART */ -->
+    <script src="./scripts/stackedBars.js"> </script>
+
+    <!-- /* SLOPES */ -->
+    <script src="./scripts/slopes.js"> </script>
+
+    <!-- /* BUBBLES */ -->
+    <script src="./scripts/bubbles.js"></script>
+
+
+
+
+    </script>
+
+
+</body>
+</html>

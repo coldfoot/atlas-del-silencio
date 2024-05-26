@@ -39,6 +39,10 @@ class Controls {
 
         this.buttons.forEach(button => {
 
+            console.log("this:", this); // Object with an array in the key 'buttons'
+            console.log("this.refs:", this.refs); // Empty object
+            console.log(button.ref);
+
             this.refs[button.ref] = new Button('.' + button.ref, button.handler)
 
         })
@@ -55,6 +59,8 @@ class Button {
     handler;
 
     constructor(ref, handler) {
+
+        console.log(ref);
 
         this.ref = ref;
         this.el = document.querySelector(ref);
