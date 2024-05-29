@@ -157,7 +157,7 @@ img.logo {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url("./imgs/mapa-venezuela-home.png");
+    background-image: url("./imgs/mapavenezuela.png");
     background-size: cover;
 }
 
@@ -174,14 +174,14 @@ img.logo {
 
 .intro-container img.atlas-logo {
     width: 70%;
-    max-width: 600px;
+    max-width: 400px;
 }
 
 .intro-container .img-holder.dots {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 25px;;
+    margin-top: 25px;
 }
 
 .lead-holder {
@@ -243,7 +243,7 @@ img.logo {
     }
     
     .fixed-text p {
-        font-size: 25px;
+        font-size: 32px;
         text-transform: uppercase;
         font-family: Roboto;
         color: var(--color-back);
@@ -290,17 +290,18 @@ img.logo {
     }
     
     .fixed-text p {
-        font-size: 25px;
+        font-size: 26px;
         text-transform: uppercase;
         font-family: Roboto;
         color: var(--color-back);
         font-weight: bolder;
-        margin-top: 20px;
+        margin-top: 8px;
         margin-bottom: 0px;
     }
     
     .arrow-to-map {
         display: inline-block;
+        width: 80%;
     }
     
     .arrow-to-map circle {
@@ -361,7 +362,7 @@ img.logo {
 .story-link-container h2 {
     margin-top: 5px;
     font-size: 24px;
-    font-weight: lighter;
+    font-weight: 300;
 }
 
 
@@ -414,7 +415,7 @@ img.logo {
         
     .story-link-container h2 {
         font-size: 22px;
-        font-weight: lighter;
+        font-weight: 300;
     }
     
         
