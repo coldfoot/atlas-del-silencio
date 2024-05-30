@@ -460,14 +460,16 @@ section.intro .text-container {
 }
 
 .section-menu-subdivision img.murillo {
-    width: 40%;
+    width: 70%;
     margin-top: 90px;
     text-align: left;
 }
 
 .section-menu-subdivision img.castillo {
-    width: 40%;
-    margin-top: 90px;
+    width: 99%;
+    margin-left: 100px;
+    margin-top: 102px;
+    text-align: left;
 }
 
 .section-menu .menu-text {
