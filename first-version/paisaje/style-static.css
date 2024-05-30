@@ -1,0 +1,182 @@
+
+
+        main {
+            max-width: 560px; /* Or any other width that you feel is appropriate */
+            margin: auto;
+/*            padding: 50px;*/
+            font-family: 'Roboto', sans-serif;
+            padding: .5rem;
+            padding-bottom: 4rem;
+
+        }
+
+        main p {
+            line-height: 1.3;
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #1b1b1b;
+            margin: 1rem 0;
+            font-family: 'Playfair';
+        }
+
+        header {
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        #logo {
+            height: 100%;
+        }
+
+        #hamburger-menu {
+            cursor: pointer;
+        }
+
+        main h1 {
+            margin: 0;
+            font-size: 4rem;
+        }
+
+        h2#subheadline {
+            text-align: left;
+            font-size: 1.5em;
+            font-weight: 400;
+            color: var(--color-black);
+            margin-top: 5px; /* Reduced space */
+        }
+
+        section {
+            margin: 20px 0;
+        }
+
+        section h3 {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #0d61aa;
+        }
+
+        .small-multiple-title{
+            text-align: center;
+            font-weight: regular;
+            font-size: 12px;
+
+        }
+
+        .chart-container {
+
+/*          border-color: #1b1b1b;
+            border-width: 1px;
+            border: solid;
+            padding: 10px;*/
+        }
+
+        .chart-slopes { 
+            min-height: 600px;
+        }
+
+        .btns {
+            height: 2rem;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .btn-no-desiertos {background-color: var(--color-no-desiertos);}
+        .btn-semi-desiertos {background-color: var(--color-semi-desiertos);}
+        .btn-desiertos {background-color: var(--color-desiertos);}
+
+        .btns .btn-categories {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            border-radius: 1rem;
+            flex-basis: 2rem;
+            flex-grow: 0;
+            flex-shrink: 1;
+            height: 2rem;
+            transition: flex-basis .3s; /* essa transição faz o ícone dar uma saltada */
+            padding: 0;
+            border: 1px solid white;
+        }
+
+        .btn-categories.category-selected {
+            flex-basis: 100%;
+        }
+
+        .btn-categories::before,
+        [data-label-category]::before {
+            content: '';
+            background-size: contain;
+            /*margin-left: .35em;*/
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 2rem;
+            height: 75%;
+            display: inline-block;
+        }
+
+        .btn-no-desiertos::before, [data-label-category="No desierto"]::before { background-image: url(../imgs/no-desierto.png);}
+        .btn-semi-desiertos::before, [data-label-category="Desierto Moderado"]::before { background-image: url(../imgs/semidesert.png);}
+        .btn-desiertos::before, [data-label-category="Desierto"]::before { background-image: url(../imgs/desierto.png);}
+
+        .btn-categories::after {
+            opacity: 0;
+            content: '';
+            transition: opacity .2s .2s;
+            text-align: left;
+        }
+
+        .btn-categories:hover::after,
+        .btn-categories.category-selected::after {
+            opacity: 1;
+            content: attr(data-btn-category);
+        }
+
+        .btn-categories.category-selected::after {
+            font-weight: bold;
+        }
+
+
+        #bubbles {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+
+        }
+
+        .line {
+          stroke-width: 2;
+        }
+
+        .non-increasing {
+          stroke-dasharray: 3,6;
+          stroke-width: 1;
+        }
+        .axis text {
+          font-size: 12px;
+          fill: #1B1B1B;
+        }
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: none;
+        }
+
+        .chart-legend {
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        svg.slopes {
+            display: block;
+            margin: auto;
+            text-align: center;
+        }

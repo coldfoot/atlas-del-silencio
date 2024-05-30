@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small Multiples of Slope Charts</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        svg {
+            display: inline-block;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Read the data from the CSV file
+        d3.csv("pop-comparison.csv").then((rawData) => {
+
+          const data = rawData.map((d) => {
+            const total =
+              +d.Desiertos + +d.DesiertosModerados + +d.NoDesiertos + +d.SinInformacion;
+            return {
+              state: d.state,
+              year: +d.year,
+              Desiertos: (+d.Desiertos / total) * 100,
+              DesiertosModerados: (+d.DesiertosModerados / total) * 100,
+              NoDesiertos: (+d.NoDesiertos / total) * 100,
+              SinInformacion: (+d.SinInformacion / total) * 100,
+            };
+          });
+
+            // Prepare the data
+            const groupedData = Array.from(
+                d3.group(data, (d) => d.state),
+                ([key, values]) => ({ state: key, values: values })
+            );
+
+            console.log(groupedData);
+
+            // Set up the SVG container and dimensions
+            const margin = { top: 20, right: 0, bottom: 30, left: 20 };
+            const width = 80 - margin.left - margin.right;
+            const height = 100 - margin.top - margin.bottom;
+
+            const svg = d3
+                .select("body")
+                .selectAll("svg")
+                .data(groupedData)
+                .enter()
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .attr("data-state", d => d.state)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+
+                // Add state name text
+                svg
+                  .append("text")
+                  .attr("x", 0)
+                  .attr("y", -10)
+                  .attr("font-family", "sans-serif")
+                  .attr("font-size", "12px")
+                  .attr("font-weight", "bold")
+                  .text((d) => d.state);
+
+
+            // Create the x and y axis scales
+            const xScale = d3.scalePoint().domain([2020, 2022]).range([0, width]);
+            const yScale = d3.scaleLinear().domain([0, 100]).range([height, 0]);
+
+            // Draw the x and y axis
+            const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d")).tickSize(-height);
+            const yAxis = d3.axisLeft(yScale).tickValues([0, 100]).tickFormat((d) => d + "%"); // Show only 0 and 100 on the left axis, add a percentage sign after the numbers
+            const yAxisRight = d3.axisRight(yScale).tickSize(0).tickValues([]); // Right axis with no ticks
+
+            svg.append("g").attr("transform", "translate(0," + height + ")").call(xAxis);
+            svg.append("g").call(yAxis).selectAll("line").style("stroke-dasharray", "2,2").style("opacity", 0.5); // Apply dotted and light style to the left axis
+            svg.append("g").attr("transform", "translate(" + width + ", 0)").call(yAxisRight).selectAll("line").style("stroke-dasharray", "2,2").style("opacity", 0.5); // Apply dotted and light style to the right axis, position the right axis at the right side of the chart
+
+            // Remove the domain line for both yAxis and yAxisRight
+            svg.selectAll(".domain").remove();
+
+            // Makes the x-axis ticks larger and dotted
+            svg.select("g.x-axis").selectAll(".tick").attr 
+
+
+            // Draw the lines
+            const line = d3
+                .line()
+                .x((d) => xScale(d.year))
+                .y((d) => yScale(d.value));
+
+            const variables = ["Desiertos", "DesiertosModerados", "NoDesiertos", "SinInformacion"];
+            colors = ["#EA7875", "#EDAE70", '#19A476', "#EAEAEA" ];
+            const colorScale = d3.scaleOrdinal()
+                .domain(variables)
+                .range(colors);
+
+
+            variables.forEach((variable) => {
+
+                console.log(variable);
+
+                svg.append("path")
+                    .datum((d) => d.values.map((v) => ({ year: +v.year, value: +v[variable] })))
+                    .attr("fill", "none")
+                    .attr("stroke", colorScale(variable))
+                    .attr("stroke-width", 1.5)
+                    .attr("d", line);
+            });
+        });
+    </script>
+</body>
+</html>

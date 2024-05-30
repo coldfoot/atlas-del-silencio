@@ -10,7 +10,7 @@
         --color-no-desiertos: #19A476;
         --color-semi-desiertos: #EDAE70;
         --color-desiertos: #EA7885;
-        --color-ypis: #266FB0;
+        --color-ipys: #266FB0;
         --color-black: #1b1b1b;
         --color-gris: #d4d4d5;
     
@@ -173,12 +173,19 @@
     width: 100%;
 }
 
-.top-bar .btn-menu line {
-    stroke: var(--color-black);;
+
+.top-bar .btn-menu line,
+.top-bar .btn-menu .arrow-back {
+    stroke: var(--color-ipys);
     stroke-width: 3;
 }
 
+.rotated {
+    transform: rotate(90);
+}
+
 /* MENU */
+
 
 .menu ul {
     list-style: none;
