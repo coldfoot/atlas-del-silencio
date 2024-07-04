@@ -30,278 +30,299 @@
 </head>
 <body>
 
-    <div class="top-bar">
-        <a href="../index.html" class="logo-wrapper">
-            <img src="../imgs/logo-ipys.png" alt="Logo de Ypis">
-        </a>
-        <button class="btn-menu" data-state="burger">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
-                <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
-                <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
-            </svg>
-        </button>
-        <nav class="menu hidden">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../atlas/">Atlas</a></li>
-                <li><a href="../paisaje/">Paisaje</a></li>
-                <li><a href="../relieve/">Relieve</a></li>
-                <li><a href="../entorno/">Entorno</a></li>
-                <li><a href="../metodologia/">Metodología</a></li>
-            </ul>
-        </nav>
+    <!-- Top menu -->
+    <div class="menu-container">
+        <div class="top-bar">
+            <div class="burger-menu">
+                <button class="btn-menu" data-state="burger">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
+                        <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
+                        <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
+                    </svg>
+                </button>
+                <nav class="menu hidden">
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../atlas/">Atlas</a></li>
+                        <li><a href="../paisaje/">Paisaje</a></li>
+                        <li><a href="../relieve/">Relieve</a></li>
+                        <li><a href="../simbiosis/">Simbiosis</a></li>
+                        <li><a href="../metodologia/">Metodología</a></li>
+                    </ul>
+            </div>
+
+            </nav>
+            <a href="../index.html" class="logo-wrapper">
+                <img src="../imgs/logo-ipys.png" alt="Logo de Ipys">
+            </a>
+        </div>
+
     </div>
 
-    <div class="outer-wrapper" data-state="opening"> <!-- exploring-->
-
-        <!--<div class="top-bar">
-            <a href="" class="logo-wrapper">
-                <img src="../imgs/logo-ypis.png" alt="Logo de Ypis">
-            </a>
-            <button class="btn-menu" data-state="burger">
-                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
-                    <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
-                    <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
+    <!-- Shortcut to map -->
+    <a class="fixed-sidebar" href="../atlas/">
+        <div class="fixed-text">
+            <p>Explora<br> el mapa</p>
+            <svg class="arrow-to-map" width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="25" cy="25" r="18" />
+                <polyline points="10,10,31,25 10,40"  />           
                 </svg>
-            </button>
-        </div>-->
+        </div>
+    </a>
 
-        <div class="map-container hidden">
+    <div class="main-content">
 
-            <!--<div class="hud">
-                <p><strong>Atlas del Silencio</strong></p>
-                <p>------------------</p>
-                <p>Prototype 0.1</p>
-                <p>Map interactions</p>
-                <p>------------------</p>
-                <p class="tooltip"></p>
+        <div class="outer-wrapper" data-state="opening"> <!-- exploring-->
+
+            <!--<div class="top-bar">
+                <a href="" class="logo-wrapper">
+                    <img src="../imgs/logo-ypis.png" alt="Logo de Ypis">
+                </a>
+                <button class="btn-menu" data-state="burger">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
+                        <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
+                        <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
+                    </svg>
+                </button>
             </div>-->
     
-            <svg class="map no-color" data-zoomed-to-province="">
-            </svg>
+            <div class="map-container hidden">
     
+                <!--<div class="hud">
+                    <p><strong>Atlas del Silencio</strong></p>
+                    <p>------------------</p>
+                    <p>Prototype 0.1</p>
+                    <p>Map interactions</p>
+                    <p>------------------</p>
+                    <p class="tooltip"></p>
+                </div>-->
+        
+                <svg class="map no-color" data-zoomed-to-province="">
+                </svg>
+        
+        
+            </div>
+    
+            <div class="story">
+    
+                <div class="text-step-wrapper" data-step="cover">
+                    <div class="text-step">
+                        <p class="chapeu">Atlas del silencio</p>
+                        <h1>Paisaje</h1>
+                        <p class="lead">Casi 30 millones de personas viven en Venezuela, ¿Pero cuántas de ellas tienen acceso suficiente a información local de calidad?</p>
+                        <div class="arrow-start">v</div>
+                    </div>
+                </div>
+    
+                <div class="text-step-wrapper" data-step="1">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Para responder a esta pregunta, el <strong>IPYS Venezuela ha hecho la segunda edición del estudio <i>Atlas del Silencio</i></strong>, que clasifica todos los municipios o parroquias del país en tres categorías: 
+                            <span class="key-word" data-word="desiertos">desiertos</span>,
+                            <span class="key-word" data-word="semi-desiertos">desiertos moderados</span> o
+                            <span class="key-word" data-word="no desiertos">no desiertos</span>.
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="desiertos">
+    
+                    <div class="text-step">
+        
+                        <p>Los <span class="key-word" data-word="desiertos">desiertos</span> son municipios o parroquias donde no hay medios de prensa suficientes para informar a la población. <strong>Estos representan cerca de 36% de los municipios en el país.</strong>
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="desiertos, pequeno">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Esta clasificación siempre es relativa al tamaño del municipio. Localidades pequeñas, con hasta <strong>25 mil habitantes</strong>, son consideradas
+                            <span class="key-word" data-word="desiertos">desiertos</span> 
+                            si solo hay hasta <strong>tres medios</strong> que cubren diariamente las informaciones locales. Este es el caso de Alto Orinoco, en Amazonas.
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="desiertos, mediano">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Si la localidad es mediana (entre <strong>25.000 y 100.000 habitantes</strong>), el territorio se considera
+                            <span class="key-word" data-word="desiertos">desierto</span> 
+                            <strong>si solo hay hasta cuatro medios</strong> que lo hagan. Así es en Júnin, Táchira. 
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="desiertos, grande">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Finalmente, si la localidad es grande (con más de <strong>100.000 habitantes</strong>), el territorio se considera
+                            <span class="key-word" data-word="desiertos">desierto</span> 
+                            si <strong>solo hay hasta cinco medios</strong> cubriendo informaciones locales. Eso pasa, por ejemplo, en Cabimas, Zulia. 
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="desiertos moderados 1">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Por otra parte, los <span class="key-word" data-word="semi-desiertos">desiertos moderados</span>, por su vez, son territorios donde puedes acceder a noticias relevantes con cierta frecuencia, pero aún así la cobertura informativa enfrenta serias restricciones. 
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="desiertos moderados 2">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Se clasifican así...
+                        </p>
+    
+                        <ul class="inner-step-list">
+                            <li>localidades <strong>pequeñas</strong> con entre <strong>cuatro y seis</strong> medios haciendo la cobertura local;</li>
+                            <li>localidades <strong>medianas</strong> con entre <strong>cinco y siete</strong> medios; y</li>
+                            <li>localidades<strong> grandes</strong> con entre <strong>seis y ocho</strong>.</li>
+                        </ul>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="desiertos moderados 3">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Estos <span class="key-word" data-word="semi-desiertos">desiertos moderados</span> representan <strong>cerca de 34% de los municipios o parroquias</strong> en el país.
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="no desiertos 1">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Finalmente, hay las zonas clasificadas como <span class="key-word" data-word="no desiertos">no desiertos</span>. Aunque también haya restricciones para la prensa en estos lugares, existen <strong>suficientes medios de comunicación</strong> que cubren regularmente las noticias locales.
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="no desiertos 2">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Para ser clasificados así, municipios <strong>pequeños</strong> deben tener <strong>más de siete medios</strong> haciendo la cobertura local; municipios <strong>medianos más de ocho</strong>; y <strong>grandes más de nueve</strong>.
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="no desiertos 3">
+    
+                    <div class="text-step">
+        
+                        <p>
+                            Solo 30% de los municipios o parroquias venezolanos son <span class="key-word" data-word="no desiertos">no desiertos</span>.
+                        </p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="pre-bubble">
+    
+                    <div class="text-step">
+        
+                        <p>Sin embargo, otra forma de pensar en estos números es llevando en cuenta <strong>la población</strong> y no solamente el territorio.</p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="bubble transition">
+    
+                    <div class="text-step">
+        
+                        <p>Cada burbuja ◯ en el mapa representa la población del respectivo municipio. Cuanto mayor la población, mayor la burbuja.</p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="bubble groups 1">
+    
+                    <div class="text-step">
+        
+                        <p>Poniéndolas lado a lado, es posible ver cómo <strong>casi la mitad de los venezolanos</strong> viven en <span class="key-word" data-word="desiertos">desiertos</span> o <span class="key-word" data-word="semi-desiertos">desiertos moderados</span> &mdash; es decir, no tienen garantizado el acceso a noticias locales.</p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="bubble groups 2">
+    
+                    <div class="text-step">
+        
+                        <p>Son, en total, <strong>15 millones de personas que no pueden informarse</strong> suficientemente bien sobre asuntos de interés inmediato para  su comunidad. Esto torna más difícil que tomen decisiones sobre su cotidianidad y entiendan el mundo que les rodea.</p>
+                
+                    </div>
+        
+                </div>
+    
+                <div class="text-step-wrapper" data-step="end">
+    
+                    <div class="text-step">
+        
+                        <p>Hay aún otras realidades importantes reveladas por el estudio. Puedes explorarlas con más detalles en el reporte abajo.</p>
+    
+                
+                    </div>
+        
+                </div>
+    
+                <div class="arrow-start">v</div>
+    
+            </div>
     
         </div>
 
-        <div class="story">
-
-            <div class="text-step-wrapper" data-step="cover">
-                <div class="text-step">
-                    <p class="chapeu">Atlas del silencio</p>
-                    <h1>Paisaje</h1>
-                    <p class="lead">Casi 30 millones de personas viven en Venezuela, ¿Pero cuántas de ellas tienen acceso suficiente a información local de calidad?</p>
-                    <div class="arrow-start">v</div>
-                </div>
-            </div>
-
-            <div class="text-step-wrapper" data-step="1">
-
-                <div class="text-step">
-    
-                    <p>
-                        Para responder a esta pregunta, el <strong>IPYS Venezuela ha hecho la segunda edición del estudio <i>Atlas del Silencio</i></strong>, que clasifica todos los municipios o parroquias del país en tres categorías: 
-                        <span class="key-word" data-word="desiertos">desiertos</span>,
-                        <span class="key-word" data-word="semi-desiertos">desiertos moderados</span> o
-                        <span class="key-word" data-word="no desiertos">no desiertos</span>.
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="desiertos">
-
-                <div class="text-step">
-    
-                    <p>Los <span class="key-word" data-word="desiertos">desiertos</span> son municipios o parroquias donde no hay medios de prensa suficientes para informar a la población. <strong>Estos representan cerca de 36% de los municipios en el país.</strong>
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="desiertos, pequeno">
-
-                <div class="text-step">
-    
-                    <p>
-                        Esta clasificación siempre es relativa al tamaño del municipio. Localidades pequeñas, con hasta <strong>25 mil habitantes</strong>, son consideradas
-                        <span class="key-word" data-word="desiertos">desiertos</span> 
-                        si solo hay hasta <strong>tres medios</strong> que cubren diariamente las informaciones locales. Este es el caso de Alto Orinoco, en Amazonas.
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="desiertos, mediano">
-
-                <div class="text-step">
-    
-                    <p>
-                        Si la localidad es mediana (entre <strong>25.000 y 100.000 habitantes</strong>), el territorio se considera
-                        <span class="key-word" data-word="desiertos">desierto</span> 
-                        <strong>si solo hay hasta cuatro medios</strong> que lo hagan. Así es en Júnin, Táchira. 
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="desiertos, grande">
-
-                <div class="text-step">
-    
-                    <p>
-                        Finalmente, si la localidad es grande (con más de <strong>100.000 habitantes</strong>), el territorio se considera
-                        <span class="key-word" data-word="desiertos">desierto</span> 
-                        si <strong>solo hay hasta cinco medios</strong> cubriendo informaciones locales. Eso pasa, por ejemplo, en Cabimas, Zulia. 
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="desiertos moderados 1">
-
-                <div class="text-step">
-    
-                    <p>
-                        Por otra parte, los <span class="key-word" data-word="semi-desiertos">desiertos moderados</span>, por su vez, son territorios donde puedes acceder a noticias relevantes con cierta frecuencia, pero aún así la cobertura informativa enfrenta serias restricciones. 
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="desiertos moderados 2">
-
-                <div class="text-step">
-    
-                    <p>
-                        Se clasifican así...
-                    </p>
-
-                    <ul class="inner-step-list">
-                        <li>localidades <strong>pequeñas</strong> con entre <strong>cuatro y seis</strong> medios haciendo la cobertura local;</li>
-                        <li>localidades <strong>medianas</strong> con entre <strong>cinco y siete</strong> medios; y</li>
-                        <li>localidades<strong> grandes</strong> con entre <strong>seis y ocho</strong>.</li>
-                    </ul>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="desiertos moderados 3">
-
-                <div class="text-step">
-    
-                    <p>
-                        Estos <span class="key-word" data-word="semi-desiertos">desiertos moderados</span> representan <strong>cerca de 34% de los municipios o parroquias</strong> en el país.
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="no desiertos 1">
-
-                <div class="text-step">
-    
-                    <p>
-                        Finalmente, hay las zonas clasificadas como <span class="key-word" data-word="no desiertos">no desiertos</span>. Aunque también haya restricciones para la prensa en estos lugares, existen <strong>suficientes medios de comunicación</strong> que cubren regularmente las noticias locales.
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="no desiertos 2">
-
-                <div class="text-step">
-    
-                    <p>
-                        Para ser clasificados así, municipios <strong>pequeños</strong> deben tener <strong>más de siete medios</strong> haciendo la cobertura local; municipios <strong>medianos más de ocho</strong>; y <strong>grandes más de nueve</strong>.
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="no desiertos 3">
-
-                <div class="text-step">
-    
-                    <p>
-                        Solo 30% de los municipios o parroquias venezolanos son <span class="key-word" data-word="no desiertos">no desiertos</span>.
-                    </p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="pre-bubble">
-
-                <div class="text-step">
-    
-                    <p>Sin embargo, otra forma de pensar en estos números es llevando en cuenta <strong>la población</strong> y no solamente el territorio.</p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="bubble transition">
-
-                <div class="text-step">
-    
-                    <p>Cada burbuja ◯ en el mapa representa la población del respectivo municipio. Cuanto mayor la población, mayor la burbuja.</p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="bubble groups 1">
-
-                <div class="text-step">
-    
-                    <p>Poniéndolas lado a lado, es posible ver cómo <strong>casi la mitad de los venezolanos</strong> viven en <span class="key-word" data-word="desiertos">desiertos</span> o <span class="key-word" data-word="semi-desiertos">desiertos moderados</span> &mdash; es decir, no tienen garantizado el acceso a noticias locales.</p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="bubble groups 2">
-
-                <div class="text-step">
-    
-                    <p>Son, en total, <strong>15 millones de personas que no pueden informarse</strong> suficientemente bien sobre asuntos de interés inmediato para  su comunidad. Esto torna más difícil que tomen decisiones sobre su cotidianidad y entiendan el mundo que les rodea.</p>
-            
-                </div>
-    
-            </div>
-
-            <div class="text-step-wrapper" data-step="end">
-
-                <div class="text-step">
-    
-                    <p>Hay aún otras realidades importantes reveladas por el estudio. Puedes explorarlas con más detalles en el reporte abajo.</p>
-
-            
-                </div>
-    
-            </div>
-
-            <div class="arrow-start">v</div>
-
-        </div>
-
-    </div>
 
     <main>
-        <p class="chapeu">Atlas del silencio</p>
-        <h1>Paisaje</h1>
+        <p class="chapeu">Paisaje</p>
+        <h1>El Estudio</h1>
         <section>
 
             <p>Un desierto es un lugar donde es difícil vivir. La Real Academia Española lo define como un sitio despoblado, solo e inhabitado que, por la falta casi total de lluvias, carece de vegetación o la tiene muy escasa. Más que un concepto, esta definición fue una metáfora que guió el desarrollo de esta investigación, la cual se planteó obtener una fotografía sobre la cobertura informativa venezolana en todos los municipios del país.</p>
@@ -367,7 +388,7 @@
             <div class="chart-container">
                 <div class="bubble-tooltip"></div>
                 <h4 class="chart-title">Datos segregados por estado revelan paisajes dispares</h4>
-                <p class="chart-subheadline">Cada círculo representa a un estado venezolana</p>
+                <p class="chart-subheadline">Cada círculo representa a un estado venezolano</p>
                 <div id="bubble-legend">
                     <img src="./imgs/legends/bubble-legend@2x.png" width="300">
                 </div>
@@ -432,11 +453,15 @@
 
             <p>Las respuestas registradas advierten que estas situaciones de amenazas que pueden significar daños a la integridad personal producen un efecto de censura y autocensura que refuerza la tendencia de llevar a cabo coberturas periodísticas limitadas.</p>
 
-            <p>El consumo de información por parte de los pueblos indígenas que están ubicados en los estados de Zulia, Delta Amacuro, Bolívar, Amazonas y Apure es fundamentalmente a través de  la radio. Es el medio que más llega a las comunidades indígenas, dado que estas se encuentran alejadas, en zonas rurales y de difícil acceso. Aún así es limitado el consumo de la radio por los cortes eléctricos diarios. Incluso, se precisó que en Zulia, hay localidades que han pasado hasta 48 horas sin electricidad, y entre los más afectados se mencionan a los pueblos Wayuu y Añu, ubicados en el municipio Guajira, y también a las poblaciones Yukpa, Barí y Japreria que habitan en el municipio Machiques de Perijá. Asimismo, se resaltó que sólo el pueblo Wayuu recibe contenido en su lengua materna: el wayuunaiki.</p>
+            <p class="last-element">El consumo de información por parte de los pueblos indígenas que están ubicados en los estados de Zulia, Delta Amacuro, Bolívar, Amazonas y Apure es fundamentalmente a través de  la radio. Es el medio que más llega a las comunidades indígenas, dado que estas se encuentran alejadas, en zonas rurales y de difícil acceso. Aún así es limitado el consumo de la radio por los cortes eléctricos diarios. Incluso, se precisó que en Zulia, hay localidades que han pasado hasta 48 horas sin electricidad, y entre los más afectados se mencionan a los pueblos Wayuu y Añu, ubicados en el municipio Guajira, y también a las poblaciones Yukpa, Barí y Japreria que habitan en el municipio Machiques de Perijá. Asimismo, se resaltó que sólo el pueblo Wayuu recibe contenido en su lengua materna: el wayuunaiki.</p>
 
 
         </section>
     </main>
+    
+    </div>
+
+
 
 
     <script src="https://d3js.org/d3.v7.min.js"></script>

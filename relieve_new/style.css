@@ -18,9 +18,13 @@
     --color-black: #494949;
     --color-ipys: #266FB0;
 
-    --color-entorno: #ea7875;
-    --color-entorno-bg: #fff;
+    --color-relieve: #edae70;
 
+    --color-datos: #eaa13f;
+    --color-datos-bg: #fcf4ec;
+
+    --color-estudio: #e09048; 
+    --color-estudio-bg: #fdf5eb;
 
 }
 
@@ -159,8 +163,12 @@ p.question {
     border-right: 1px solid #ccc; /* Optional: To visually separate the divisions */
 }
 
-.secondary-fixed-menu-division.entorno {
-    background-color: var(--color-entorno);
+.secondary-fixed-menu-division.datos {
+    background-color: var(--color-datos);
+}
+
+.secondary-fixed-menu-division.estudio {
+    background-color: var(--color-estudio);
 }
 
 .secondary-fixed-menu-division:last-child {
@@ -332,15 +340,6 @@ p.question {
 
 
 /* Main content */
-.chart-container {
-    text-align: center;
-    margin: auto;
-}
-
-.bubbles {
-    width: 320px;
-}
-
 .main-content {
     margin-top: 92px;
     margin-right: 20%; /* Leave space for the sidebar */
@@ -414,8 +413,8 @@ section.intro .text-container {
     margin-bottom: 0;   
 }
 
-.section-opener.entorno {
-    background-color: var(--color-entorno);
+.section-opener.relieve {
+    background-color: var(--color-relieve);
 }
 
 .section-title {
@@ -458,12 +457,15 @@ section.intro .text-container {
 .section-menu-subdivision img {
     margin: auto;
     height: auto; /* Maintain aspect ratio */
+    margin-top: 20px;
+    margin-left: 280px;
+    width: 40%;
+
 }
 
-.section-menu-subdivision img.entorno {
-    width: 70%;
-    margin-top: 90px;
-    text-align: left;
+
+.section-menu-subdivision img.datos {
+    transform: rotateY(180deg); /* Rotate 180 degrees along the y-axis} */
 }
 
 .section-menu .menu-text {
@@ -520,20 +522,28 @@ section.intro .text-container {
     font-size: 22px;
 }
 
-.section-menu-subdivision.entorno {
-    background-color: var(--color-entorno);
+.section-menu-subdivision.datos {
+    background-color: var(--color-datos);
 }
 
-.section-menu-subdivision.entorno h2 {
-    color: var(--color-entorno)
+.section-menu-subdivision.datos h2 {
+    color: var(--color-datos)
 }
 
-.section-menu-subdivision.entorno {
-    background-color: var(--color-entorno)
+.section-menu-subdivision.datos {
+    background-color: var(--color-datos)
 }
 
-.section-menu-subdivision.entorno h2 {
-    color: var(--color-entorno);
+.section-menu-subdivision.datos h2 {
+    color: var(--color-datos);
+}
+
+.section-menu-subdivision.estudio {
+    background-color: var(--color-estudio);
+}
+
+.section-menu-subdivision.estudio h2 {
+    color: var(--color-estudio);
 }
 
 .section-menu .chevron-container {
@@ -729,60 +739,32 @@ section.stories .box-profile {
 }
 
 /* Sections – Amazonas */
-.stories.entorno {
-    background-color: var(--color-entorno-bg);
+.stories.datos {
+    background-color: var(--color-datos-bg);
     scroll-margin-top: 95px;
 }
 
-/* .stories.amazonas p {
-    color: var(--color-amazonas);
-} */
 
-section.stories.entorno h2,
-section.stories.entorno h3,
-section.stories.entorno h4 {
-    color: var(--color-entorno);
+section.stories.datos h2,
+section.stories.datos h3,
+section.stories.datos h4 {
+    color: var(--color-datos);
 }
 
-/* .map-box.amazonas p {
-    color: var(--color-amazonas);
-} */
-
-/* section.stories.amazonas p.highlight.amazonas {
-    color: var(--color-amazonas);
-} */
-
-/* Sections – Yaracuy */
-.stories.castillo {
-    background-color: var(--color-castillo-bg);
+.stories.estudio {
+    background-color: var(--color-estudio-bg);
 }
 
-section.stories.castillo h2,
-section.stories.castillo h3,
-section.stories.castillo h4 {
-    color: var(--color-castillo);
+section.stories.estudio h2,
+section.stories.estudio h3,
+section.stories.estudio h4 {
+    color: var(--color-estudio);
 }
 
 section.stories .map-box.yaracuy {
     background-color: var(--color-yaracuy-box);
 }
 
-/* .map-box.yaracuy p {
-    color: var(--color-yaracuy);
-} */
-
-/* section.stories.yaracuy p.highlight.yaracuy {
-    color: var(--color-yaracuy);
-} */
-
-section.stories .box-profile.yaracuy {
-    background-color: var(--color-yaracuy-box);
-}
-
-/* Sections – Tachira */
-.stories.tachira {
-    background-color: var(--color-tachira-bg);
-}
 
 section.stories.tachira h2,
 section.stories.tachira h3,
@@ -794,13 +776,6 @@ section.stories .map-box.tachira {
     background-color: var(--color-tachira-box);
 }
 
-/* .map-box.tachira p {
-    color: var(--color-tachira);
-} */
-
-/* section.stories.tachira p.highlight.tachira {
-    color: var(--color-tachira);
-} */
 
 section.stories .box-profile.tachira {
     background-color: var(--color-tachira-box);
@@ -837,5 +812,128 @@ section.stories .box-profile.sucre {
 @media screen and (max-width: 1000px) {
     section.stories .box-profile.sucre {
         margin-bottom: 120px;
+    }
+}
+
+/* D3 CHARTS */
+.chart-container {
+    max-width: 650px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+section.stories h2.intertitle {
+    color: var(--color-black);
+    margin-top: 50px;
+}
+.chart-container h3 {
+    color: var(--color-black) !important;
+}
+
+.chart-container h4 {
+    color: var(--color-black) !important;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+p.chart-subheadline {
+    font-size: 1.2rem !important;
+    font-weight: lighter;
+    margin-top: 5px;
+}
+
+p.chart-legend {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+
+/* TABLE */
+
+.table-filters {
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding: .5rem;
+
+}
+
+.table-filters select {
+
+    border: none;
+    border: 1px solid var(--color-datos);
+    /*border-bottom: 1px solid currentColor;*/
+    padding: .5em;
+}
+
+.table-filters select + select {
+    margin-top: .5em;
+}
+
+table {
+    font-size: .8rem;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead, td {
+    color: var(--color-black);
+}
+
+table thead {
+    text-align: left;
+}
+
+table thead tr {
+    border-bottom: 2px solid currentColor; 
+}
+
+table tr {   
+    border-bottom: 1px solid var(--color-black); 
+}
+
+table tr:nth-child(even) {
+    background-color: rgb(212, 212, 213);
+}
+
+table td, table th {
+    padding: .5em 0;
+}
+
+table td + td,
+table th + th {
+    padding-left: 1em;
+}
+
+@media screen and (max-width: 430px) {
+    main h1 {
+        font-size: 3rem;
+    }
+
+    p.chapeu {
+        font-size: 1rem;
+    }
+
+    table {
+        font-size: .6rem;
+        
+    }
+    
+} 
+
+@media screen and (min-width: 800px) {
+
+    .top-bar {
+        height: 6rem;
+    }
+
+    main {
+        padding-top: 7rem;
+    }
+
+    .menu {
+        padding-top: 5rem;
     }
 }
