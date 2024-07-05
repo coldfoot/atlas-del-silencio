@@ -440,7 +440,7 @@ img.logo {
     }
     
     .logo-holder img.logo {
-        width: 300px;
+        width: 300px !important;
     }
     
     .divider {
