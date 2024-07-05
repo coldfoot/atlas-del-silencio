@@ -145,7 +145,7 @@ span.no-desiertos {
 }
 
 img.logo {
-    width: 350px;
+    width: 200px;
     margin: 0;
 }
 
@@ -384,6 +384,9 @@ img.logo {
     width: 50%;
 } */
 
+.logo-holder img.ilustra {
+    width: 300px;
+}
 
 .divider {
     border: none; /* Remove default border */
@@ -440,7 +443,11 @@ img.logo {
     }
     
     .logo-holder img.logo {
-        width: 300px !important;
+        width: 150px;
+    }
+
+    .logo-holder img.ilustra {
+        width: 300px;
     }
     
     .divider {
