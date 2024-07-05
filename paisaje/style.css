@@ -267,7 +267,7 @@ h1, h2, h3, h4 {
     text-shadow: 0 -1.5rem var(--color-black);
     text-align: center;
     position: absolute;
-    bottom: 20vh;
+    bottom: 12vh;
     left: calc(50% - 1.5rem);
     font-family: 'Roboto', sans-serif;
 }
@@ -666,4 +666,15 @@ h1, h2, h3, h4 {
 
 nav.menu li.active {
     color: #D4D4D5;
+}
+
+.ilustra-holder {
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+img.ilustra {
+    max-width: 290px;
+    margin: auto;
 }
