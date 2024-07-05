@@ -18,7 +18,7 @@
     --color-black: #494949;
     --color-ipys: #266FB0;
 
-    --color-relieve: #edae70;
+    --color-relieve: #DE893F;
 
     --color-datos: #eaa13f;
     --color-datos-bg: #fcf4ec;
@@ -406,10 +406,11 @@ section.intro .text-container {
 }
 
 .section-opener img {
-    width: 200px;
+    width: 290px;
     text-align: center;
     display: block;
     margin: auto;
+    margin-top: 20px;
     margin-bottom: 0;   
 }
 

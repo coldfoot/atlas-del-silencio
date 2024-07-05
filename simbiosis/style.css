@@ -406,10 +406,11 @@ section.intro .text-container {
 }
 
 .section-opener img {
-    width: 200px;
+    width: 290px;
     text-align: center;
     display: block;
     margin: auto;
+    margin-top: 20px;
     margin-bottom: 0;   
 }
 

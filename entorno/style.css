@@ -18,7 +18,7 @@
     --color-black: #494949;
     --color-ipys: #266FB0;
 
-    --color-entorno: #ea7875;
+    --color-entorno: #E4534e;
     --color-entorno-bg: #fff;
 
 
@@ -406,11 +406,13 @@ section.intro .text-container {
     text-align: center;
 }
 
+
 .section-opener img {
-    width: 200px;
+    width: 290px;
     text-align: center;
     display: block;
     margin: auto;
+    margin-top: 20px;
     margin-bottom: 0;   
 }
 
