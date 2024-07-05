@@ -663,3 +663,7 @@ h1, h2, h3, h4 {
     margin-top: 100px;
     margin-bottom: 50px;
 }
+
+nav.menu li.active {
+    color: #D4D4D5;
+}

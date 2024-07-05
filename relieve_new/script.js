@@ -37,9 +37,14 @@ class Controls {
 
     constructor() {
 
+        console.log(this.buttons);
+
         this.buttons.forEach(button => {
 
-            this.refs[button.ref] = new Button('.' + button.ref, button.handler)
+            console.log("this:", this); // Object with an array in the key 'buttons'
+            console.log("this.refs:", this.refs); // Empty object
+            console.log(button.ref);
+            this.ref[button.ref] = new Button('.' + button.ref, button.handler)
 
         })
 
@@ -65,7 +70,8 @@ class Button {
 
     monitor() {
 
-        //console.log(this.el, ' -- monitoring...');
+        console.log(this);
+        console.log(this.el, ' -- monitoring...');
         this.el.addEventListener('click', this.handler);
 
     }

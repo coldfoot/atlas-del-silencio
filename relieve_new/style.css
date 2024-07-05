@@ -924,17 +924,7 @@ table th + th {
     
 } 
 
-@media screen and (min-width: 800px) {
 
-    .top-bar {
-        height: 6rem;
-    }
-
-    main {
-        padding-top: 7rem;
-    }
-
-    .menu {
-        padding-top: 5rem;
-    }
+nav.menu li.active {
+    color: #D4D4D5;
 }

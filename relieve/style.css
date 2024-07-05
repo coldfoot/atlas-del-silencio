@@ -303,3 +303,7 @@ table th + th {
         padding-top: 5rem;
     }
 }
+
+nav.menu li.active {
+    color: #D4D4D5;
+}
