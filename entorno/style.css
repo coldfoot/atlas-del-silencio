@@ -841,3 +841,7 @@ section.stories .box-profile.sucre {
         margin-bottom: 120px;
     }
 }
+
+nav.menu li.active {
+    color: #D4D4D5;
+}
