@@ -34,7 +34,7 @@ var data = {
 var barHeight = 30;
 var barSpacing = 5;
 
-var margin = { top: 20, right: 30, bottom: 35, left: 90 };
+var margin = { top: 20, right: 30, bottom: 35, left: 100 };
 
 var x = d3.scaleLinear().range([0, chartWidth - margin.left - margin.right]).domain([0, 100]);
 
@@ -51,9 +51,10 @@ Object.keys(data).forEach(function(medio) {
     .attr("id", medio);
 
 
-var htmlString = "<i>¿Conoces medios en <strong>" + medio.charAt(0).toUpperCase() + medio.slice(1) + "</strong>?</i>";
+var htmlString = "¿Conoces medios en <strong>" + medio.charAt(0).toUpperCase() + medio.slice(1) + "</strong>?";
 divMedio.append("p")
-    .html(htmlString);
+    .html(htmlString)
+    .attr("class", "chart-subheadline");
 
 
 

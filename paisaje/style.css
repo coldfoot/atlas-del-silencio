@@ -411,28 +411,47 @@ h1, h2, h3, h4 {
 
 /* New design adaptation */
 /* TOP BAR */
- 
-.menu-container {
+ /* TOP BAR */
+ .menu-container {
+    display: flex;
+    flex-direction: column;
     position: fixed;
+    min-height: 100px;
     background-color: #fff;
-    width: 80%;
     top: 0;
     left: 0;
-    right: 0;
-    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Vertical shadow */
+    z-index: 9998;
 }
 
+/* If small screen, 100% width */
+@media screen and (max-width: 1000px) {
+    .menu-container {
+        width: 100%;
+    }
+}
+
+/* If large screen, 80%, making space for the right bar */
+@media screen and (min-width: 1000px) {
+    .menu-container {
+        width: 80%;
+    }
+}
 
 .top-bar {
+    flex: 1;
     position: relative;
     display: flex;
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding: 1rem;
-    height: 65%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Vertical shadow */
     z-index: 11;
-    flex-direction: row-reverse;
+}
+
+.top-bar-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
@@ -440,6 +459,8 @@ h1, h2, h3, h4 {
     display: block;
     height: 60px;
     max-width: 100%;
+    position: relative;
+    top: 0;
 }
 
 .top-bar .btn-menu {
@@ -463,29 +484,7 @@ h1, h2, h3, h4 {
     stroke-width: 3;
 }
 
-@media screen and (max-width: 1000px) {
-    .menu-container {
-        position: fixed;
-        background-color: #fff;
-        width: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10;
-    }
-
-    .top-bar img {
-        display: flex;
-        height: 60px;
-        max-width: 100%;
-    }
-    
-}
-
-.arrow-back {
-    stroke-color: var(--color-ipys);
-}
-
+/* Fixed sidebar */     
 @media screen and (min-width: 1000px) {
     .fixed-sidebar {
         position: fixed;
@@ -494,7 +493,7 @@ h1, h2, h3, h4 {
         width: 20%; /* 1/5th of the viewport width */
         height: 100%; /* Full height of the viewport */
         background-color: var(--color-ipys);
-        z-index: 10; /* Ensure it stays above other content */
+        z-index: 9999; /* Ensure it stays above other content */
         box-shadow: -4px 0 8px rgba(0, 0, 0, 0.4);
         display: flex;
         flex-direction: column;
@@ -587,7 +586,7 @@ h1, h2, h3, h4 {
 
 /* Main content container */
 .main-content {
-    margin-top: 92px;
+    margin-top: 100px;
     margin-right: 20%; /* Leave space for the sidebar */
     box-sizing: border-box;
 }
@@ -660,7 +659,7 @@ h1, h2, h3, h4 {
 .chart-container {
     max-width: 520px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 50px;
 }
 

@@ -34,7 +34,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style-pages.css">
 
         <script src="https://unpkg.com/scrollama"></script>
         <script src="../prefixfree.min.js"></script>
@@ -57,30 +57,43 @@
 
     <!-- Top menu -->
     <div class="menu-container">
+
         <div class="top-bar">
-            <div class="burger-menu">
-                <button class="btn-menu" data-state="burger">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
-                        <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
-                        <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
-                    </svg>
-                </button>
-                <nav class="menu hidden">
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="../atlas/">Atlas</a></li>
-                        <li><a href="../paisaje/">Paisaje</a></li>
-                        <li><a href="../relieve/">Relieve</a></li>
-                        <li><a href="../entorno/">Entorno</a></li>
-                        <li><a href="../metodologia/">Metodología</a></li>
-                    </ul>
+
+            <div class="top-bar-inner">
+
+                <div class="burger-menu">
+                
+                    <button class="btn-menu" data-state="burger">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
+                            <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
+                            <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
+                        </svg>
+                    </button>
+    
+                    <nav class="menu hidden">
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../atlas/">Atlas</a></li>
+                            <li class='active'><a href="../atlas/">Oasis</a></li>
+                            <li><a href="../atlas/">Simbiosis</a></li>
+                            <li><a href="../paisaje/">Paisaje</a></li>
+                            <li><a href="../relieve/">Relieve</a></li>
+                            <li><a href="../entorno/">Entorno</a></li>
+                            <li><a href="../metodologia/">Metodología</a></li>
+                        </ul>
+                    </nav>
+                
+                </div>
+    
+                <a href="../index.html" class="logo-wrapper">
+                    <img src="../imgs/logo-ipys.png" alt="Logo de Ipys">
+                </a>
+
+
             </div>
->
-            </nav>
-            <a href="../index.html" class="logo-wrapper">
-                <img src="../imgs/logo-ipys.png" alt="Logo de Ipys">
-            </a>
+
         </div>
 
         <div class="secondary-fixed-menu hidden" id="secondary-fixed-menu">
@@ -89,6 +102,7 @@
         </div>
 
     </div>
+
 
     <!-- Shortcut to map -->
     <a class="fixed-sidebar" href="../atlas/">
@@ -182,9 +196,12 @@
 
                 <p>—Cuando se comenzaron a caer las instituciones, los medios, creyendo que ese era su papel, entraron a jugar un rol político. Fue un error. Uno que, por cierto, también ha sucedido en el mundo de las organizaciones: hemos visto defensores que pretenden ser reporteros, ignorando que no manejan la metodología periodística, que supone verificar y  contrastar la información. Parece muy funcionalista, pero un aprendizaje que me ha dejado mi recorrido es ese: hay que entender muy bien el rol que uno ocupa.</p>
 
-                <img class="aspa" src="../imgs/aspaoscar.png">
-                <p class="highlight">Puede que el periodista no sea un defensor, que no sea un activista, pero lo que subyace en su labor suele ser una defensa o una promoción de un derecho humano fundamental</p>
-                <img class="linha" src="../imgs/linhaoscar.png">
+                <div class="aspa-holder">
+                    <img class="aspa" src="../imgs/aspaoscar.png">
+                    <p class="highlight">Puede que el periodista no sea un defensor, que no sea un activista, pero lo que subyace en su labor suele ser una defensa o una promoción de un derecho humano fundamental</p>
+                    <img class="linha" src="../imgs/linhaoscar.png">
+    
+                </div>
 
                 <p class="question">—Hay reporteros que, ante la desaparición de medios, han encontrado en las ONG un espacio para ejercer su oficio. No solo preparan notas de prensa, sino que también investigan con métodos periodísticos. De acuerdo con lo que dice, ese material tendría una utilidad distinta si se publicara en un medio de comunicación. ¿A qué hay que estar atentos en esa práctica?</p>
 
@@ -243,10 +260,11 @@
                 
                 <p>Creo que en la eterna crisis del periodismo —acelerada por la pandemia y porque es el enemigo número uno de los autoritarios y populistas de los que se está llenando el mundo— los medios hiperlocales son los que más han sufrido, porque son vulnerables, tienen menos recursos. Hace un tiempo escuchaba a Nathalie Alvaray decir que hay ciudades como Nueva York que se están quedando sin medios locales. Yo conocí la historia de un medio en esa ciudad que estaba mandándole postales a los vecinos para informales que sus caseros les debían proporcionar calefacción durante el invierno. La gente recibía la postal, escaneaba el código de barras y leía la nota, con datos. Y se generaba una interacción interesante. En efecto, hay medios, gente que está valorando el periodismo local, que permite hacer contraloría al poder local, bajar la polarización, cerrarles el paso a las noticias falsas. Es un periodismo más cercano; más en conjunto con la sociedad civil. Me parece que se va asentando una comprensión de que se puede trabajar a una escala local y de que es muy valioso.</p>
 
-                <img class="aspa" src="../imgs/aspasimbiosis.png">
-                <p class="highlight yaracuy">En la eterna crisis del periodismo —acelerada por la pandemia y porque es el enemigo número uno de los autoritarios y populistas de los que se está llenando el mundo— los medios hiperlocales son los que más han sufrido</p>
-                <img class="aspa" src="../imgs/linhalaura.png">
-
+                <div class="aspa-holder">
+                    <img class="aspa" src="../imgs/aspasimbiosis.png">
+                    <p class="highlight yaracuy">En la eterna crisis del periodismo —acelerada por la pandemia y porque es el enemigo número uno de los autoritarios y populistas de los que se está llenando el mundo— los medios hiperlocales son los que más han sufrido</p>
+                    <img class="aspa" src="../imgs/linhalaura.png">
+                </div>
                 
                 <p class="question">— El Bus TV, que está en el terreno, ¿qué limitaciones tiene para el levantamiento de información o para difundirla?</p>
                 

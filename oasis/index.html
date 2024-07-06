@@ -34,7 +34,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="style-oasis.css">
+        <link rel="stylesheet" href="../style-pages.css">
 
         <script src="https://unpkg.com/scrollama"></script>
         <script src="../prefixfree.min.js"></script>
@@ -60,35 +60,40 @@
 
         <div class="top-bar">
 
-            <div class="burger-menu">
-                
-                <button class="btn-menu" data-state="burger">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
-                        <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
-                        <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
-                    </svg>
-                </button>
+            <div class="top-bar-inner">
 
-                <nav class="menu hidden">
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="../atlas/">Atlas</a></li>
-                        <li class='active'><a href="../atlas/">Oasis</a></li>
-                        <li><a href="../atlas/">Simbiosis</a></li>
-                        <li><a href="../paisaje/">Paisaje</a></li>
-                        <li><a href="../relieve/">Relieve</a></li>
-                        <li><a href="../entorno/">Entorno</a></li>
-                        <li><a href="../metodologia/">Metodología</a></li>
-                    </ul>
-                </nav>
-            
+                <div class="burger-menu">
+                
+                    <button class="btn-menu" data-state="burger">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="5" x2="35" y1="10" y2="10" class="line-top"></line>
+                            <line x1="5" x2="35" y1="20" y2="20" class="line-mid"></line>
+                            <line x1="5" x2="35" y1="30" y2="30" class="line-bottom"></line>
+                        </svg>
+                    </button>
+    
+                    <nav class="menu hidden">
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../atlas/">Atlas</a></li>
+                            <li class='active'><a href="../atlas/">Oasis</a></li>
+                            <li><a href="../atlas/">Simbiosis</a></li>
+                            <li><a href="../paisaje/">Paisaje</a></li>
+                            <li><a href="../relieve/">Relieve</a></li>
+                            <li><a href="../entorno/">Entorno</a></li>
+                            <li><a href="../metodologia/">Metodología</a></li>
+                        </ul>
+                    </nav>
+                
+                </div>
+    
+                <a href="../index.html" class="logo-wrapper">
+                    <img src="../imgs/logo-ipys.png" alt="Logo de Ipys">
+                </a>
+
+
             </div>
 
-
-            <a href="../index.html" class="logo-wrapper">
-                <img src="../imgs/logo-ipys.png" alt="Logo de Ipys">
-            </a>
         </div>
 
         <div class="secondary-fixed-menu hidden" id="secondary-fixed-menu">
@@ -121,8 +126,11 @@
 
             <div class="section-opener oasis">
                 <div class="container">
-                    <img src="../imgs/ilustras/oasis-color.svg" class="opening-img">
-                    <h1 class="section-title">Oasis</h1>
+                    <div class="inner-container">
+                        <img src="../imgs/ilustras/oasis-color.svg" class="opening-img">
+                        <h1 class="section-title">Oasis</h1>
+                    </div>
+
                 </div>
             </div>
 
@@ -237,9 +245,11 @@
                 
                 <p>Hicimos la propuesta en la emisora Raudal Estéreo, que forma parte del Vicariato apostólico de Puerto Ayacucho y pertenece a Fe y Alegría. Allí ya tenían un espacio informativo en la mañana, por lo cual solicitamos que nos ubicaran más bien en la tarde, a las 5:00, como productores independientes. Luego de varias reuniones, llenas de cordialidad, nos admitieron.</p>
                 
-                <img class="aspa" src="../imgs/aspaslinha.png">
-                <p class="highlight amazonas">Ese mismo día, sin darnos cuenta, comenzamos a imaginarnos al frente de un programa donde pudiéramos hacer lo que nos apasiona: informar.</p>
-                <img class="linha" src="../imgs/linha.png">
+                <div class="aspa-holder">
+                    <img class="aspa" src="../imgs/aspaslinha.png">
+                    <p class="highlight amazonas">Ese mismo día, sin darnos cuenta, comenzamos a imaginarnos al frente de un programa donde pudiéramos hacer lo que nos apasiona: informar.</p>
+                    <img class="linha" src="../imgs/linha.png">
+                </div>
 
                 <p>Arrancamos con el programa de 5:00 a 6:30 de la tarde.
                 Cuando sentíamos que el viento por fin estaba a nuestro favor, todo cambió. Para nosotros y para el mundo. En marzo de 2020 decretaron la pandemia de covid-19. Ante esa circunstancia, se nos hacía difícil seguir el ritmo que habíamos mantenido. No podíamos salir al aire a las 5:00 de la tarde porque no teníamos transporte para volver a nuestras casas, y porque había muchas restricciones de movilidad por el confinamiento. Por ello, volvimos a cambiar de horario. Ahora iríamos al aire de 3:00 a 4:30 de la tarde. Y aprovechamos para modificar nuestra identidad: pasamos de llamarnos Radar Informativo a Radar de Amazonas, que es como ya nos estaban conociendo dentro y fuera del estado.</p>
@@ -314,10 +324,12 @@
                 <p>Cuando me gradué en 2015, el país se tambaleaba. Habían pasado las protestas de 2014, que dejaron no sé cuántos muertos; había escasez de medicamentos y de comida; y los servicios públicos apenas funcionaban. Me inquietaba que la mayoría de los periodistas de Yaracuy casi no cubrían esa crisis que no paraba de profundizarse. Y, en contraste, notaba que los periodistas de Caracas, que para mí eran una referencia, sí lo hacían. Desde la certeza de que ese era el periodismo que se necesitaba, comencé a hacerlo por mi cuenta. Así me inicié en el periodismo de comunidad en Yaracuy.</p>
                 
                 <p>Fue algo que hice por instinto, por vocación. Como no tenía un empleo en ningún medio, publicaba en mis cuentas de redes sociales lo que reportaba. Claro que yo quería trabajar en Promar tv, en Televen o Yaracuyana de televisión; y mandé mi hoja de vida, pero nunca me llamaron. Por eso, sin complejos, seguí haciendo periodismo en mi Twitter y en mi Facebook.</p>
-                
-                <img class="aspa" src="../imgs/aspaslinha.png">
-                <p class="highlight yaracuy">Desde la certeza de que ese era el periodismo que se necesitaba, comencé a hacerlo por mi cuenta.</p>
-                <img class="aspa" src="../imgs/linha.png">
+               
+                <div class="aspa-holder">
+                    <img class="aspa" src="../imgs/aspaslinha.png">
+                    <p class="highlight yaracuy">Desde la certeza de que ese era el periodismo que se necesitaba, comencé a hacerlo por mi cuenta.</p>
+                    <img class="aspa" src="../imgs/linha.png">
+                </div>
 
                 <p>Poco a poco, me fui ganando la confianza de la gente de esos caseríos que visitaba. Como se dice en el argot periodístico, fui cultivando mis fuentes con constancia y paciencia. Me di cuenta de que todo tenía sentido cuando esas personas comenzaron a llamarme para avisarme que iban a salir a protestar o cuando necesitaban denunciar algún problema. Eso me hacía sentir que lo estaba haciendo bien porque un periodista debe ser, en esencia, un servidor público. Nos debemos a la gente. Y ahí estaba para oírlos y publicar lo que les ocurría.</p>
 
@@ -526,9 +538,11 @@
                 
                 <p>En Sucre, como en casi todo el país, no funcionan los servicios públicos: hay cortes de luz cada cuatro horas, casi nunca hay agua, el Internet es deficiente y hay escasez de combustible. Eso es parte de lo que reportamos en Atarraya: hemos hecho decenas de notas de gente exigiendo que se solventen esas fallas porque afecta su calidad de vida (y también de gente que se las ingenia para sortear esa precariedad). Esos problemas los vivimos nosotros mismos como periodistas, pues no estamos en una burbuja. Es una realidad que, como he descrito, limita mucho nuestra labor.</p>
                 
-                <img class="aspa" src="../imgs/aspaslinha.png">
-                <p class="highlight sucre">Que las personas nos identifiquen, que nos vean como una ventana para expresarse, es para nosotros un gran premio. Pero también hemos pasado malos ratos por haber molestado al poder.</p>
-                <img class="aspa" src="../imgs/linha.png">
+                <div class="aspa-holder">
+                    <img class="aspa" src="../imgs/aspaslinha.png">
+                    <p class="highlight sucre">Que las personas nos identifiquen, que nos vean como una ventana para expresarse, es para nosotros un gran premio. Pero también hemos pasado malos ratos por haber molestado al poder.</p>
+                    <img class="aspa" src="../imgs/linha.png">
+                </div>
 
                 <p>Otro obstáculo frecuente es que nos encontramos con gente que tiene miedo a declarar porque el consejo comunal les puede quitar la bolsa CLAP. Nos da mucho dolor que tengan a ciudadanos así.</p>
                 

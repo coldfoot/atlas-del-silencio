@@ -15,7 +15,7 @@ data.sort(function(a, b) { return b.value - a.value; });
 //var chartWidth = +window.getComputedStyle(cont).width.slice(0,-2); //window.innerWidth >= 600 ? 600 : window.innerWidth; 
 
 // Set up dimensions and scales
-var margin = { top: 20, right: 30, bottom: 35, left: 90 },  // add margin to left and right
+var margin = { top: 20, right: 30, bottom: 35, left: 100 },  // add margin to left and right
     width = chartWidth - margin.left - margin.right,
     height = data.length * (barHeight + barSpacing);  // total height based on the number of data points, the bar height, and the bar spacing
 
@@ -41,7 +41,7 @@ svg.append("g")
     .attr("height", barHeight)
     .attr("x", 0)
     .attr("width", function(d) { return x(100); })
-    .style("fill", "#eaeaea"); // Lighter color for bars other than the first one;
+    .style("fill", "#d4d4d5"); // Lighter color for bars other than the first one;
 
 
 svg.selectAll(".bar")

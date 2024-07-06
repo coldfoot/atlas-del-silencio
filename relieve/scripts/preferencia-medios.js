@@ -19,7 +19,7 @@ data.sort(function(a, b) { return b.percent - a.percent; });
 //var chartWidth = +window.getComputedStyle(cont).width.slice(0,-2);
 
 // Set up dimensions and scales
-var margin = { top: 20, right: 30, bottom: 35, left: 90 },  // add margin to left and right
+var margin = { top: 20, right: 30, bottom: 35, left: 100 },  // add margin to left and right
     width = chartWidth - margin.left - margin.right,
     height = data.length * (barHeight + barSpacing);  // total height based on the number of data points, the bar height, and the bar spacing
 
