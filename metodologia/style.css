@@ -462,3 +462,7 @@ ul, li {
     flex-direction: column;
     align-items: center;
 }
+
+.stories.metodologia {
+    padding-top: 0px;
+}

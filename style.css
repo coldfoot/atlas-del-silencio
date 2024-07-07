@@ -159,8 +159,9 @@ span.relieve {
 }
 
 img.logo {
-    width: 150px;
+    width: 130px;
     margin: 0;
+    margin-left: 10px;
 }
 
 /* Opening screen */
@@ -183,7 +184,11 @@ img.logo {
 .intro-container .img-holder.logo {
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
+}
+
+.intro-container .img-holder.logo.small {
+    margin-bottom: 0px; 
 }
 
 .intro-container img.atlas-logo {
@@ -191,6 +196,7 @@ img.logo {
     max-width: 500px;
     min-width: 250px;
     margin-bottom: -40px;
+    margin-top: -30px;
 }
 
 .intro-container .img-holder.dots {
@@ -351,6 +357,13 @@ img.logo {
     opacity: 0.5;
 }
 
+@media screen and (min-width: 1000px) {
+    .story-link-outer {
+        margin-left: 110px;
+    }
+}
+
+
 .story-link-container {
     display: flex;
     flex-direction: row;
@@ -399,6 +412,18 @@ img.logo {
     width: 50%;
 } */
 
+.story-links .img-holder {
+    padding: 20px;
+    position: sticky;
+    top: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+    .story-links .img-holder {
+        display: none;
+    }
+}
+
 .logo-holder img.ilustra {
     width: 300px;
 }
@@ -407,7 +432,6 @@ img.logo {
     border: none; /* Remove default border */
     height: 2px;
     background-color: var(--color-divider); /* Color of the line */
-    text-align: centetr;
     width: 80%
 }
 
@@ -463,14 +487,6 @@ img.logo {
 
     .logo-holder img.ilustra {
         width: 300px;
-    }
-    
-    .divider {
-        border: none; /* Remove default border */
-        height: 2px;
-        width: 100%;
-        background-color: var(--color-black); /* Color of the line */
-        margin: auto;
     }
     
 }
