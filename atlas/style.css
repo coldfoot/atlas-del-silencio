@@ -669,8 +669,8 @@ select.info-subtitle {
     padding: 0;
     margin: 0;
     font-family: inherit;
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: bolder;
 }
 
 .menu {
