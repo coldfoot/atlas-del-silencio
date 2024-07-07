@@ -103,6 +103,11 @@ path[data-category].no-color { fill: var(--color-gris); }
     /*transition: all .3s;*/
 }
 
+a.link.no-style {
+    text-decoration: none;
+    color: inherit;
+}
+
 
 [data-word="no desiertos"]   { background-color: var(--color-no-desiertos);}
 [data-word="semi-desiertos"] { background-color: var(--color-semi-desiertos);}
