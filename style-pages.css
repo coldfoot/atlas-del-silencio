@@ -496,6 +496,16 @@ section.intro .text-container {
     text-decoration: none; /* Optional: remove underline */
 }
 
+.stories a:link {
+    color: var(--color-ipys);
+    font-weight: bold;
+}
+
+.stories a:visited {
+    color: var(--color-black);
+    font-weight: bold;
+}
+
 .section-menu-subdivision {
     position: relative;
     flex: 1; /* Each division takes equal space */
