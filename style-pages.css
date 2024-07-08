@@ -187,6 +187,7 @@ p.question {
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
+    text-decoration: none;
 }
 
 .secondary-fixed-menu-division.amazonas {
