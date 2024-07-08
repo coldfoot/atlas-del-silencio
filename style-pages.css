@@ -1133,6 +1133,9 @@ h2.intertitle {
     flex-direction: column;
 }
 
+.chart-container.entorno {
+    align-items: center;
+}
 
 .bubbles {
     width: 320px;

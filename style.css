@@ -191,6 +191,10 @@ img.logo {
     margin-bottom: 0px; 
 }
 
+img.logo.small {
+    max-width: 90px;
+}
+
 .intro-container img.atlas-logo {
     width: 70%;
     max-width: 500px;
