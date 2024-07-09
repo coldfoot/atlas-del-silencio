@@ -1096,6 +1096,7 @@ nav.menu li.hover {
 img.diagrama {
     max-width: 500px;
     margin: auto;
+    margin-top: -40px;
 }
 
 img.nuvem {
@@ -1110,11 +1111,6 @@ img.nuvem {
     
 }
 
-img.diagrama {
-    max-width: 500px;
-    margin: auto;
-}
-
 img.nuvem {
     max-width: 600px;
     margin: auto;
@@ -1126,6 +1122,13 @@ ul.relieve-list li {
     color: var(--color-black) !important;
     margin: 1rem 0;
   }
+
+@media screen and (max-width: 1000px) {
+    img.nuvem, img.diagrama {
+        max-width: 280px;
+        margin-top: -10px;
+    }
+}
 
 #section-estudio .text-container,
 #section-datos .text-container {
@@ -1246,7 +1249,8 @@ section.stories.estudio p.intertitle-sub.relieve {
 }
 
 section.stories.estudio h2.intertitle.inner.relieve {
-    font-weight: 30;
+    font-weight: 300;
+    margin-bottom: 10px;
 }
 
 .intertitle-holder.relieve {
